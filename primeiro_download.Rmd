@@ -90,14 +90,74 @@ links. <- boletim_anp |>
 ```
 
 ## Inspeção do arquivo
-Inspecionando o arquivo de links percebemos um erro de endereçamento no site: a planilha de junho de 2020 está no servidor, mas não há link para ela. Ele será adicionado manualmente.
+
+O primeiro passo é verificar a consistência do arquivo de links. Criamos um objeto apenas com as planilhas.
+```{r}
+links_planilhas <- links. %>% 
+  as_tibble() %>%
+  filter(str_detect(value, "xlsm"))
+```
+
+Em seguida criamos uma função para inspecionar esse objto e produzir uma tabela com o número de links por ano.
+```{r}
+inspecionar <- function(ano){
+num_ano <- links_planilhas %>% 
+  filter(str_detect(value, ano)) %>% 
+  nrow() 
+
+tibble(ano = ano,
+       planilhas = num_ano)  
+}
+
+
+anos <- 2017:2024 %>% as.character()
+numero_planilhas <- map_df(anos, inspecionar)
+numero_planilhas
+```
+Vamos inspecionar com mais detalhes os anos que têm menos de doze planilhas por ano.
 
 ```{r}
+planilhas_diferentes <- numero_planilhas %>% 
+  filter(planilhas < 12) %>% 
+  pull(ano)
 
-jun_2020 <- "https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/boletins/arquivos-bmppgn/2020/2020-06-boletim.xlsm"
+links_planilhas %>% 
+  filter(str_detect(value, planilhas_diferentes[1]) )
 
-links <- c(links., jun_2020)
+links_planilhas %>% 
+  filter(str_detect(value, planilhas_diferentes[2]) )
 
+links_planilhas %>% 
+  filter(str_detect(value, planilhas_diferentes[3]) )
+
+
+```
+
+Aqui é uma percepção visual (não automatizada em código).
+
+2017 está OK: apenas três arquivos porque a série começou a ser divulgada em outubro.
+2020 não está ok: falta  planilha do mês 6 (de 5 vai para 7)
+2024 não está OK: falta a planilha de fevereiro.
+
+Manualmente vamos criar os links faltantes. Para um eventual erro não parar a execução do script, será usada a função "try()".
+
+```{r}
+link_quebrado1 <- "https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/boletins/arquivos-bmppgn/2020/2020-06-boletim.xlsm"
+
+link_quebrado2 <- "https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/boletins/arquivos-bmppgn/2024/tabela-fevereiro.xlsm"
+
+try(download.file(url = link_quebrado1, destfile = "link_quebrado1", mode = "wb"), 
+    silent = TRUE)
+
+try(download.file(url = link_quebrado2, destfile = "link_quebrado2", mode = "wb"),
+  silent = TRUE
+)
+
+```
+O primeiro link está válido, o segundo não. Logo, o primeiro link pode ser adicionado ao arquivo de links.
+
+```{r}
+links <- c(links., link_quebrado1)
 ```
 
 
@@ -111,9 +171,9 @@ write.csv2(x = links, file = "links_antigos.csv")
 ```
 
 
-## Baixar arquivos
+## Gerar arquivo de nomes
 
-### Nomes 
+ 
 Antes de baixar os arquivos que estão nos links é preciso gerar uma lista com os nomes de todos os arquivos. 
 Ex: 
 https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/boletins/arquivos-bmppgn/2010/2010-12-boletim.pdf deve ser salvo em um arquivo chamado 2010-12-boletim.pdf
@@ -140,7 +200,7 @@ nomes_arquivos <- links |>
   str_replace_all("2011_2011", "2011") |> 
   str_replace_all("2010_2010", "2010") 
 
-# nomes_arquivos  
+
 ```
 
 O objeto do nome dos arquivos também é usado para gerar um arquivo ".csv"
@@ -150,7 +210,7 @@ write.csv2(x = nomes_arquivos, file = "nomes_arquivos.csv")
 ```
 
 
-###Loop
+## Baixar arquivos
 
 E agora podemos criar um link para o R baixar todos os arquivos listados em "links", dando a eles os nomes em "nomes_arquivos".
 
@@ -174,6 +234,27 @@ download_insistente <- insistently(download_lento, rate = rate_backoff(60))
 map2(links, nomes_arquivos, download_lento)
 
 ```
+
+
+Em seguida, todos os arquivos serão colocados no diretório "data"
+
+```{r}
+# file.rename(from = "2010-09-boletim.pdf", 
+#            to = "data/2010-09-boletim.pdf")
+
+arquivos_planilhas <- list.files(pattern = "xlsm")
+arquivos_pdf <- list.files(pattern = "pdf")
+
+# custom function
+mover_arquivos <- function(x){
+  file.rename( from = file.path(x) ,
+               to = file.path("data", x) )
+}
+
+mover_arquivos(arquivos_planilhas)
+mover_arquivos(arquivos_pdf)
+```
+
 
 Com isso, todos os arquivos foram baixados localmente. Outro script será criado para baixar apenas os novos arquivos. Eles irão usar os arquivos .csv gerados aqui.
 
