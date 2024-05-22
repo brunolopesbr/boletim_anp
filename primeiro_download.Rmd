@@ -1,0 +1,291 @@
+---
+title: "Primeiro download"
+author: "BML"
+date: "2024-05-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libraries}
+library(tidyverse)
+library(rvest)
+library(robotstxt)
+```
+
+## Verifica se arquivos já foram baixados
+
+Esse script baixa todos arquivos do Boletim de Produção site da ANP. A primeira verificação é, então, verificar se os arquivos já foram baixados. Se já foram baixados, esse script parar automaticamente. 
+
+Se não foram baixados, continua sua execução.
+
+```{r}
+ verifica_links_antigos <- file.exists("links_antigos.csv")
+
+{
+  if (verifica_links_antigos == TRUE) {stop("The value is TRUE, so the script must end here")}
+  
+  print("The value is FALSE. Continue to next line in the script.")
+}
+
+```
+
+## Verificar se podemos fazer o scrapping
+
+Usando a função robotstxt() não precisamos sair do R para saber isso. A resposta "TRUE" para indica que podemos prosseguir
+
+```{r robots}
+url <- "https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/boletins/boletim-mensal-da-producao-de-petroleo-e-gas-natural"
+
+resultado_bots <- paths_allowed(
+  paths  = "/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/boletins/boletim-mensal-da-producao-de-petroleo-e-gas-natural", 
+  domain = "www.gov.br", 
+  bot    = "*"
+)
+
+
+ifelse(resultado_bots, "Webscapping autorizado", "Webscrapping não autorizado")
+
+```
+
+
+## Iniciar o webscrapping
+
+Imprimir para o 
+```{r}
+boletim_anp <- read_html(url)
+
+boletim_anp
+```
+
+
+### Inspecionar a página    
+
+Os conteúdo do site está todo dentro de <div id="content-core">.
+
+!(img/inspecao_anp.png) 
+
+```{r}
+boletim_anp |> 
+  html_elements("content-core")
+```
+
+Podemos usar o <div class="conteudo">, e em seguida reter apenas o que está à direita do elemento "a". E em seguida obter os links pelo atributo "href". E, e 
+
+```{r}
+
+links. <- boletim_anp |> 
+  html_elements(".conteudo") |> 
+  html_elements("a") |> 
+  html_attr("href") 
+  
+```
+
+Inspecionando o arquivo de links percebemos um erro de endereçamento no site: a planilha de junho de 2020 está no servidor, mas não há link para ela. Ele será adicionado manualmente.
+
+```{r}
+
+jun_2020 <- "https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/boletins/arquivos-bmppgn/2020/2020-06-boletim.xlsm"
+
+links <- c(links., jun_2020)
+
+```
+
+
+### Gerar arquivo de links
+Em seguida, iremos salvar em um arquivo .csv, para uso posterior. A existência desse arquivo é a primeira etapa desse script. Quando 
+
+```{r}
+# links
+
+write.csv2(x = links, file = "links_antigos.csv")
+```
+
+
+## Baixar arquivos
+
+### Nomes 
+Antes de baixar os arquivos que estão nos links é preciso gerar uma lista com os nomes de todos os arquivos. 
+Ex: 
+https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/boletins/arquivos-bmppgn/2010/2010-12-boletim.pdf deve ser salvo em um arquivo chamado 2010-12-boletim.pdf
+
+Isso pode ser feito através de regex.
+```{r}
+caminho <- "https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/boletins/arquivos-bmppgn/"
+caminho2 <- "https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/"
+
+nomes_arquivos <- links |> 
+  str_remove_all(caminho) |>
+  str_remove_all(caminho2) |> 
+  str_replace_all("/", "_") |> 
+  str_replace_all("2021_2021", "2021") |> 
+  str_replace_all("2020_2020", "2020") |> 
+  str_replace_all("2019_2019", "2019") |>
+  str_replace_all("2018_2018", "2018") |>
+  str_replace_all("2017_2017", "2017") |>
+  str_replace_all("2016_2016", "2016") |>
+  str_replace_all("2015_2015", "2015") |>
+  str_replace_all("2014_2014", "2014") |>
+  str_replace_all("2013_2013", "2013") |>
+  str_replace_all("2012_2012", "2012") |> 
+  str_replace_all("2011_2011", "2011") |> 
+  str_replace_all("2010_2010", "2010") 
+
+# nomes_arquivos  
+```
+
+###Loop
+
+E agora podemos criar um link para o R baixar todos os arquivos listados em "links", dando a eles os nomes em "nomes_arquivos".
+
+Como são muitos arquivos baixados, para não receber um "timeout" do servidor do governo é recomendável fazer o R esperar entre cada download, e recomeçar automaticamente no caso de erro.
+
+```{r}
+
+# criando uma função para baixar no modo binário (wb)
+
+download_arquivos <- function(x,y){download.file(url = x, destfile =y, mode = "wb")}
+
+# criando uma função lenta, para evitar o timeout
+
+atraso <- rate_delay(5)
+download_lento <- slowly(download_arquivos, atraso)
+
+# tentar de novo em caso de erro
+download_insistente <- insistently(download_lento, rate = rate_backoff(60))
+
+# função map equivalente ao for loop anterior, ativar para baixar todos os arquivos
+# map2(links, nomes_arquivos, download_lento)
+
+```
+
+```{r}
+file.copy(from = "2017-10-boletim-tabelas.xlsm", to = "")
+```
+
+### Movendo arquivos
+
+Para organizar os arquivos, todos eles serão movidos para o diretório "data".
+
+```{r}
+arquivos_pdf <- list.files(pattern = "pdf")
+arquivos_xls <- list.files(pattern = "xlsm")
+
+move_to_data <- function(x){
+  file.rename(from = file.path(x) ,
+               to = file.path("data", x) )
+}
+
+# apply the function to all files
+move_to_data(arquivos_pdf)
+
+# lapply(arquivos_xls, move_to_data)
+map(arquivos_pdf, move_to_data)
+map(arquivos_xls, move_to_data)
+
+
+```
+
+## -- reescrever a partir dessa linha --
+Agora podemos listar os arquivos pdf e planilhas que foram baixadas. Comparando o número de arquivos e o número de links podemos ver que algo está errado.
+
+```{r}
+arquivos_pdf <- list.files(pattern = "*.pdf")
+planilhas <- list.files(pattern = "*.xls")
+
+arquivos <- c(arquivos_pdf, planilhas)
+
+ifelse(length(arquivos) == length(links),
+"OK", "Há algo errado")
+
+ifelse(length(arquivos) < length(links),
+"Menos arquivos que links", "Outra situação")
+
+ifelse(length(arquivos) > length(links),
+"Mais arquivos que links", "Outra situação")
+
+```
+
+
+
+```{r}
+arquivos_pdf <- list.files(pattern = "*.pdf")
+planilhas <- list.files(pattern = "*.xls")
+
+ifelse(length(arquivos) == length(links),
+"OK", "Há algo errado")
+
+ifelse(length(arquivos) < length(links),
+"Menos arquivos que nomes", "Outra situação")
+
+ifelse(length(arquivos) > length(links),
+"Mais arquivos que nomes", "Outra situação")
+```
+
+Agora precisamos comparar a última lista de links salva com a nova lista de links. Simulando com a lista atual, que não deve ter os elementos 3 e 6 (de março).
+
+```{r message=FALSE}
+
+links_antigos <- read_csv2("links_antigos.csv")
+
+#aqui retiramos as linhas referentes a março
+
+links_antigos <- links_antigos[-c(3,6),2] |> 
+  rename(values = "x")
+
+# comparando o número de linhas dos dois arquivos
+links_df <- links |> 
+  as_tibble() 
+
+# comparar número de linhas
+nrow(links_antigos)
+nrow(links_df)
+
+# igualar nomes das colunas
+names(links_antigos) <- names(links_df)
+
+# Extrair novos links
+novos_links <- setdiff(links_df, links_antigos)
+
+novos_links
+```
+Em seguida, criar o novo arquivo de nomes 
+```{r}
+
+
+novos_links_car <- novos_links |>
+  pull("value")
+
+
+novos_nomes <-  novos_links_car |> 
+  str_remove_all(caminho) |>
+  str_remove_all(caminho2) |> 
+  str_replace_all("/", "_") |> 
+  str_replace_all("2021_2021", "2021") |> 
+  str_replace_all("2020_2020", "2020") |> 
+  str_replace_all("2019_2019", "2019") |>
+  str_replace_all("2018_2018", "2018") |>
+  str_replace_all("2017_2017", "2017") |>
+  str_replace_all("2016_2016", "2016") |>
+  str_replace_all("2015_2015", "2015") |>
+  str_replace_all("2014_2014", "2014") |>
+  str_replace_all("2013_2013", "2013") |>
+  str_replace_all("2012_2012", "2012") |> 
+  str_replace_all("2011_2011", "2011") |> 
+  str_replace_all("2010_2010", "2010") 
+
+novos_nomes
+
+```
+
+E podemos baixar os novos arquivos
+
+```{r}
+map2(novos_links_car, novos_nomes, download_lento)
+```
+
+Com isso, todos os arquivos foram baixados localmente. Agora o tarefa é extrair as informações dos arquivos locais.
+
+A tarefa agora é organizar melhor esse rascunho, que servirá para a tarefa de fazer o download dos arquivos.
