@@ -1,0 +1,167 @@
+---
+title: "Worksheets das planilhas"
+author: "BML"
+date: "2024-06-01"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(plyr)
+library(tidyverse)
+library(readxl)
+
+```
+
+Funções personalizadas
+
+```{r}
+excel_sheets_data <- function(x){
+  excel_sheets(paste0("data/", x))
+}
+
+read_excel_data  <- function(x,sheet = 1){
+  read_excel(paste0("data/", x), sheet = sheet)
+}
+
+```
+
+
+## Análise do conjunto das planilhas
+
+Identificar planilhas
+```{r}
+# planilhas <- dir(pattern = "*xls*")
+planilhas <- dir(path = "data", pattern = "*xls*")
+
+```
+
+Identificar as abas de uma planilha, que está no diretório "data", é preciso usar a função "paste0" e o parâmetro "data/".
+
+Vamos criar uma função que une essas duas funções (excel_sheets e paste0).
+
+```{r}
+excel_sheets(paste0("data/", planilhas[1]))
+
+
+
+excel_sheets_data(planilhas[1])
+```
+
+Quantas planilhas?
+
+```{r}
+num_planilhas <- seq_along(planilhas)
+num_planilhas
+```
+`r num_planilhas` planilhas
+
+Gerando uma lista com todos os nomes de abas
+```{r}
+nomes_abas <- planilhas |> 
+  map(~{.x %>% 
+            excel_sheets_data })
+```
+
+Como geramos uma lista com vetores de tamanhos diferentes e um dataframe é a melhor maneira de tratar dados no R, vamos uar uma função que está no pacote plyr.
+```{r}
+nomes_abas_df <- plyr::ldply(nomes_abas,rbind) 
+nomes_abas_df
+```
+Então, percebemos que há planilhas com 5 abas, e outras com quatro. Vamos separar em dois grupos, e ver os grupos de nomes de planilhas.
+
+```{r}
+nomes_unicos <- nomes_abas_df |> 
+  unique()
+nomes_unicos
+```
+
+Há três grupos de planilhas:
+1 - há 4 worksheets, e a 4a worksheet é "3. Movimentação de Gás Natural"; 
+2 - há 4 worksheets, e a 4a worksheet é "3. Ranking";
+3 - há 5 worksheets, e a 5a worksheet é 4. "Pandemia_Covid-19"
+
+A primeira aba, "Lista de tabelas", é composta de uma maneira que não pode ser lida no R. Ela pode ser ignorada, então. 
+
+```{r}
+
+read_excel("data/2018-10-boletim-tabelas.xlsm", 
+    sheet = "Lista de Tabelas")
+
+```
+
+Para separar as planilhas em grupos podemos usar os nomes das colunas 4 e 5. Para finalizar, iremos numerar as linhas.
+```{r}
+ nomes_abas_df <- nomes_abas_df |> 
+  mutate(aux = paste0(`4`,`5`)
+  ) 
+
+
+grupos_planilhas <- nomes_abas_df |> 
+  select(aux) |> 
+  unique()
+
+nomes_abas_df <- nomes_abas_df |> 
+  mutate(grupo = case_when(
+    aux =="3. Movimentação de Gás NaturalNA" ~ "A",
+    aux =="3. RankingNA" ~ "B",
+    aux =="3. Ranking4. Pandemia_Covid-19" ~ "C"
+  )) |> 
+  mutate(num_linhas = 1:nrow(nomes_abas_df))
+```
+
+Quais planilhas estão em cada grupo?
+
+```{r}
+planilhas_a <- nomes_abas_df |> 
+  filter(grupo == "A") |> 
+  select(num_linhas)
+
+planilhas_b <- nomes_abas_df |> 
+  filter(grupo == "B") |> 
+  select(num_linhas)
+
+planilhas_c <-nomes_abas_df |> 
+  filter(grupo == "C") |> 
+  select(num_linhas)
+```
+
+Retornando ao objeto com as planilhas, vamos criar uma coluna com o número de linhas.
+
+```{r}
+planilhas_numeradas <- planilhas |>
+  as_tibble()
+
+planilhas_numeradas <- planilhas_numeradas |> 
+  mutate(num_linhas = 1:nrow(planilhas_numeradas))
+
+planilhas_numeradas
+```
+
+Vamos separar as planilhas do grupo A
+
+```{r}
+read_excel("data/2017-10-boletim-tabelas.xlsm", 
+    sheet = 2)
+
+read_excel_data("2017-10-boletim-tabelas.xlsm", 2)
+
+
+```
+
+
+
+```{r}
+planilhas_grupo_a <- planilhas_numeradas |> 
+  inner_join(planilhas_a, by = "num_linhas") |> 
+  pull(value)
+
+map(planilhas_grupo_a, read_excel_data, sheet = 2)
+
+map_df(planilhas_grupo_a, read_excel_data, sheet = 2)
+
+```
+
