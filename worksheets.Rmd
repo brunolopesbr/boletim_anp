@@ -165,8 +165,20 @@ planilhas_grupo_a <- planilhas_numeradas |>
   pull(value)
 
 map(planilhas_grupo_a, read_excel_data, sheet = 2)
+```
 
-map_df(planilhas_grupo_a, read_excel_data, sheet = 2)
+Filtrar a primeira coluna:
+https://stackoverflow.com/questions/46397148/dplyr-filter-by-the-first-column
 
+iris %>% 
+  filter(across(1, ~ . > 6))
+
+```{r}
+sheet2_grupo_a <- map_df(planilhas_grupo_a, read_excel_data, sheet = 2)
+
+
+sheet2_grupo_a |> 
+  mutate(num_linhas = 1:nrow(sheet2_grupo_a)) |> 
+  filter(str_detect(`1. HISTÓRICO DA PRODUÇÃO NACIONAL`, "Tabela"))
 ```
 
