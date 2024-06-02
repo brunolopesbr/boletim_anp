@@ -16,6 +16,7 @@ library(readxl)
 
 ```
 
+
 Funções personalizadas
 
 ```{r}
@@ -28,6 +29,7 @@ read_excel_data  <- function(x,sheet = 1){
 }
 
 ```
+
 
 
 ## Análise do conjunto das planilhas
@@ -48,6 +50,7 @@ excel_sheets(paste0("data/", planilhas[1]))
 
 
 
+
 excel_sheets_data(planilhas[1])
 ```
 
@@ -64,6 +67,7 @@ Gerando uma lista com todos os nomes de abas
 nomes_abas <- planilhas |> 
   map(~{.x %>% 
             excel_sheets_data })
+
 ```
 
 Como geramos uma lista com vetores de tamanhos diferentes e um dataframe é a melhor maneira de tratar dados no R, vamos uar uma função que está no pacote plyr.
@@ -112,6 +116,7 @@ nomes_abas_df <- nomes_abas_df |>
   )) |> 
   mutate(num_linhas = 1:nrow(nomes_abas_df))
 ```
+
 
 Quais planilhas estão em cada grupo?
 
