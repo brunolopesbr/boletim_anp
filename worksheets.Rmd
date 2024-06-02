@@ -310,3 +310,5 @@ As worksheets 5, que correspondem ao conteúdo da época da pandemia, são consi
 2 - Tabelas adicionais 7 e 8 também são diferentes
 
 3 - Tirando dois casos de diferenças entre maíusculas e minusculas, as tabelas podem ser agregadas pelos nomes, retirando os números.
+
+Testar computador da Petrobras
