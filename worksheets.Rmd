@@ -25,7 +25,10 @@ excel_sheets_data <- function(x){
 }
 
 read_excel_data  <- function(x,sheet = 1){
-  read_excel(paste0("data/", x), sheet = sheet)
+  read_excel(paste0("data/", x), 
+             sheet = sheet,
+               col_names = FALSE,
+               .name_repair = "unique_quiet")
 }
 
 ```
@@ -70,7 +73,7 @@ nomes_abas <- planilhas |>
 
 ```
 
-Como geramos uma lista com vetores de tamanhos diferentes e um dataframe é a melhor maneira de tratar dados no R, vamos uar uma função que está no pacote plyr.
+Como geramos uma lista com vetores de tamanhos diferentes e um dataframe é a melhor maneira de tratar dados no R, vamos uar uma função que está no pacote plyr, a ldply.
 ```{r}
 nomes_abas_df <- plyr::ldply(nomes_abas,rbind) 
 nomes_abas_df
@@ -164,21 +167,146 @@ planilhas_grupo_a <- planilhas_numeradas |>
   inner_join(planilhas_a, by = "num_linhas") |> 
   pull(value)
 
+planilhas_grupo_b <- planilhas_numeradas |> 
+  inner_join(planilhas_b, by = "num_linhas") |> 
+  pull(value)
+
+planilhas_grupo_c <- planilhas_numeradas |> 
+  inner_join(planilhas_c, by = "num_linhas") |> 
+  pull(value)
+
+
+
 map(planilhas_grupo_a, read_excel_data, sheet = 2)
 ```
 
 Filtrar a primeira coluna:
 https://stackoverflow.com/questions/46397148/dplyr-filter-by-the-first-column
 
-iris %>% 
-  filter(across(1, ~ . > 6))
+
 
 ```{r}
-sheet2_grupo_a <- map_df(planilhas_grupo_a, read_excel_data, sheet = 2)
-
-
-sheet2_grupo_a |> 
-  mutate(num_linhas = 1:nrow(sheet2_grupo_a)) |> 
-  filter(str_detect(`1. HISTÓRICO DA PRODUÇÃO NACIONAL`, "Tabela"))
+map_df(planilhas_grupo_a, read_excel_data, sheet = 2) |> 
+# filtrando a primeira coluna do DF
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  distinct(if_any(1))
 ```
 
+Assim, em todas as planilhas do "Grupo a" (quatro abas por planilha, planilha "3. Movimentação de Gás Natural" têm as mesmas três tabelas)
+
+Vamos fazer a mesma verificção para o terceiro worksheet.
+
+```{r}
+map_df(planilhas_grupo_a, read_excel_data, sheet = 3) |> 
+# filtrando a primeira coluna do DF
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  distinct(if_any(1))
+```
+
+Mesmo resultado: estão presentes aqui as tabelas de número 4 a 16.
+
+O conteúdo da quarta planilha é esse:
+
+```{r}
+map_df(planilhas_grupo_a, read_excel_data, sheet = 4) |> 
+# filtrando a primeira coluna do DF
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  distinct(if_any(1))
+```
+
+## Grupo B 
+O grupo b de planilhas tem o seguinte conteúdo:
+
+```{r}
+map_df(planilhas_grupo_b, read_excel_data, sheet = 2) |> 
+# filtrando a primeira coluna do DF
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  distinct(...1) |> 
+  arrange(...1)
+```
+
+As tabelas parecem ter o mesmo conteúdo. Nomes têm diferenças porque diferenças entre maiúsculas e minúsculas (MMm3/d e MMm³/d, e MMm³/d) e Mm³/d).
+
+As worksheets 3 do grupo b:
+
+```{r}
+# não consigo usar map_df
+# algumas planilhas têm 8 colunas
+lista_grupob_aba3 <- map(planilhas_grupo_b, read_excel_data, sheet = 3) 
+ 
+df_grupob_aba3 <- plyr::ldply(lista_grupob_aba3, rbind) 
+
+df_grupob_aba3 |>  
+# filtrando a primeira coluna do DF
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  distinct(...1) |> 
+  arrange(...1)
+```
+As worksheets 3 do grupo b também tem conteúdos consistentes entre si.
+
+Worksheets 4 do grupo b:
+```{r}
+map_df(planilhas_grupo_b, read_excel_data, sheet = 4) |> 
+# filtrando a primeira coluna do DF
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  distinct(...1) 
+```
+
+O mesmo conteúdo pode ser numerado de 12 a 19 ou de 11 a 18. Uma tabela numerada como 11, a "Tabela 11. Produção dos poços do Pré-sal¹", foi incluída em algumas worksheets.
+
+
+## Grupo C
+O grupo c de planilhas tem o seguinte conteúdo:
+
+Worksheets 2:
+```{r}
+map_df(planilhas_grupo_c, read_excel_data, sheet = 2) |> 
+# filtrando a primeira coluna do DF
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  distinct(...1) |> 
+  arrange(...1)
+```
+
+As tabelas parecem ter o mesmo conteúdo.
+
+As worksheets 3 do grupo c:
+
+```{r}
+map_df(planilhas_grupo_c, read_excel_data, sheet = 3) |>  
+# filtrando a primeira coluna do DF
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  distinct(...1) |> 
+  arrange(...1)
+```
+As worksheets 3 do grupo b também tem conteúdos consistentes entre si.
+
+Worksheets 4 do grupo c:
+```{r}
+map_df(planilhas_grupo_c, read_excel_data, sheet = 4) |> 
+# filtrando a primeira coluna do DF
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  distinct(...1) |> 
+  arrange(...1)
+```
+
+Mesma situação: o mesmo conteúdo pode ser numerado de 12 a 19 ou de 11 a 18. Uma tabela numerada como 11, a "Tabela 11. Produção dos poços do Pré-sal¹", foi incluída em algumas worksheets.
+Além disso, há diferenças nas Tabelas Adicionais 7 e 8, que se referem a conteúdos diferentes.
+
+Worksheets 5 do grupo c:
+```{r}
+map_df(planilhas_grupo_c, read_excel_data, sheet = 5) |> 
+# filtrando a primeira coluna do DF
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  distinct(...1) |> 
+  arrange(...1)
+```
+
+As worksheets 5, que correspondem ao conteúdo da época da pandemia, são consistentes entre si. A diferença na numeração é pelo mesmo motivo anterior (presença da planilha "11 Produção dos poços do Pré-sal¹").
+
+## Conclusões
+
+1 - Verificar quais planilhas têm na worksheet 3 a tabela Tabela 11. "Produção dos poços do Pré-sal¹". Ela altera a numeração das tabelas da worksheet 4.
+
+2 - Tabelas adicionais 7 e 8 também são diferentes
+
+3 - Tirando dois casos de diferenças entre maíusculas e minusculas, as tabelas podem ser agregadas pelos nomes, retirando os números.
