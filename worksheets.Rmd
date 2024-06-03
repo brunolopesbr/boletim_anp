@@ -27,6 +27,7 @@ excel_sheets_data <- function(x){
 read_excel_data  <- function(x,sheet = 1){
   read_excel(paste0("data/", x), 
              sheet = sheet,
+              range = "A1:Z1000",
                col_names = FALSE,
                .name_repair = "unique_quiet")
 }
@@ -76,7 +77,8 @@ nomes_abas <- planilhas |>
 Como geramos uma lista com vetores de tamanhos diferentes e um dataframe é a melhor maneira de tratar dados no R, vamos uar uma função que está no pacote plyr, a ldply.
 ```{r}
 nomes_abas_df <- plyr::ldply(nomes_abas,rbind) 
-nomes_abas_df
+nomes_abas_df %>% 
+  distinct(`1`, `2`,`3`,`4`, `5`)
 ```
 Então, percebemos que há planilhas com 5 abas, e outras com quatro. Vamos separar em dois grupos, e ver os grupos de nomes de planilhas.
 
@@ -311,4 +313,107 @@ As worksheets 5, que correspondem ao conteúdo da época da pandemia, são consi
 
 3 - Tirando dois casos de diferenças entre maíusculas e minusculas, as tabelas podem ser agregadas pelos nomes, retirando os números.
 
-Testar computador da Petrobras
+## Todos os nomes de tabelas
+
+Sabemos: 
+
+1) Que o nome de cada tabela está na primeira coluna de cada dataframe. 
+
+2) Que o nome de cada tabela começa por um número, que deve ser descartado.
+
+Para isso não precisamos de todo aquele trabalho de dividir as planilhas em grupos. Vamos ignorar a primeira aba, que não tem informação.
+
+```{r}
+nomes_unicos <- nomes_abas_df |> 
+  unique()
+nomes_unicos %>% 
+  distinct(`1`, `2`, `3`, `4`, `5`)
+```
+
+```{r}
+historico <- map_df(planilhas, read_excel_data, sheet = 2) |> 
+  select(...1) %>% 
+# filtrando a primeira coluna do DF
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  mutate(...1 = str_to_lower(...1)) %>% 
+  mutate(...1 = str_remove(...1, pattern = "tabela [0-9]. ")) %>% 
+  mutate(...1 = str_replace_all(...1, pattern = "3" , replacement = "³")) %>% 
+  mutate(...1 = str_replace_all(...1, pattern = "mmm" , replacement = "mm")) %>% 
+  distinct()
+
+historico
+```
+
+```{r}
+map_df(planilhas[1:10], read_excel_data, sheet = 3) |> 
+  select(...1) %>% 
+# filtrando a primeira coluna do DF
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  mutate(...1 = str_to_lower(...1)) %>% 
+  mutate(...1 = str_remove(...1, pattern = "tabela [0-9]+")) %>%   
+  mutate(...1 = str_remove(...1, pattern = "\\.")) %>%   
+  mutate(...1 = str_replace_all(...1, pattern = "3" , replacement = "³")) %>% 
+  mutate(...1 = str_replace_all(...1, pattern = "³0" , replacement = "10")) %>%
+  mutate(...1 = str_replace_all(...1, pattern = "mmm" , replacement = "mm")) %>% 
+  distinct()
+
+```
+```{r}
+map_df(planilhas[23:24], read_excel_data, sheet = 3) |> 
+  select(...1) %>% 
+# filtrando a primeira coluna do DF
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  mutate(...1 = str_to_lower(...1)) %>% 
+  mutate(...1 = str_remove(...1, pattern = "tabela [0-9]+")) %>%   
+  mutate(...1 = str_remove(...1, pattern = "\\.")) %>%   
+  mutate(...1 = str_replace_all(...1, pattern = "3" , replacement = "³")) %>% 
+  mutate(...1 = str_replace_all(...1, pattern = "³0" , replacement = "10")) %>%
+  mutate(...1 = str_replace_all(...1, pattern = "mmm" , replacement = "mm")) %>% 
+  distinct()
+
+```
+
+
+```{r}
+map_df(planilhas[20:22], read_excel_data, sheet = 3) 
+```
+
+
+```{r}
+map_df(planilhas[25:30], read_excel_data, sheet = 3) 
+```
+
+```{r}
+map_df(planilhas[23:24], read_excel_data, sheet = 3) 
+
+
+```
+
+
+```{r}
+map_df(planilhas[1:13], read_excel_data, sheet = 3) 
+```
+```{r}
+map_df(planilhas[14:22], read_excel_data, sheet = 3) 
+```
+
+```{r}
+map_df(planilhas[25:72], read_excel_data, sheet = 3) 
+```
+
+```{r}
+map_df(planilhas[74:77], read_excel_data, sheet = 3) 
+```
+
+```{r}
+planilhas[c(14, 23, 24, 73)]
+```
+
+```{r}
+read_excel_data(planilhas[14], sheet = 3)
+```
+
+```{r}
+read_excel(paste0("data/", planilhas[23]), sheet = 3, range = "A1:Z1000")
+```
+
