@@ -1,0 +1,65 @@
+---
+title: "Caixa de texto"
+output: html_document
+date: "2024-06-05"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Objetivo
+
+Esse script tentará obter a informação que está nas caixas de texto das planilhas. 
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(xml2)
+library(XML)
+```
+
+Renomear planilha como zip
+```{r}
+file.copy(from = "data/2019-01-boletim-tabelas.xlsm", to = "data/zip/2019-01-boletim-tabelas.zip")
+```
+extrair zip
+```{r}
+unzip(zipfile = "data/zip/2019-01-boletim-tabelas.zip", exdir = "data/zip")
+```
+
+importar xml do arquivo xl/drawings/drawing1.xml
+```{r}
+xml_2019_01 <- xmlParse("data/zip/xl/drawings/drawing1.xml")
+```
+
+Converter de XML a dataframe
+```{r}
+df_xml_2019_01 <- xmlToDataFrame(xml_2019_01)
+
+```
+
+A segunda linha da terceira coluna tem a informação da data.
+
+```{r}
+df_xml_2019_01[2,3]
+
+```
+
+Que pode ser limpa:
+
+```{r}
+data_boletim <- df_xml_2019_01[2,3] |> 
+  str_remove_all("/.*") |> 
+    str_trim() |> 
+  str_remove_all("[:punct:]")
+
+data_boletim
+
+```
+
+```{r}
+my("January 2019")
+my(data_boletim, locale = "Portuguese_Brazil.utf8")
+```
+
