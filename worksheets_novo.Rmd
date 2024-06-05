@@ -102,7 +102,7 @@ read_excel("data/2018-10-boletim-tabelas.xlsm",
 
 Vamos buscar o nome de todas as tabelas que estão dentro das worksheets.
 
-Tabelas que estão na wqorksheet 1:
+Tabelas que estão na worksheet 2:
 
 ```{r}
 map_df(planilhas, read_excel_data, sheet = 2)  |> 
@@ -114,10 +114,10 @@ map_df(planilhas, read_excel_data, sheet = 2)  |>
   mutate(...2 = str_replace_all(...2, "mmm", "mm"),
          ...2 = str_replace_all(...2, "mm", "mmm")) |> 
   distinct(...2)  |> 
-  rename("Aba 2" = ...2)
+  rename("Histórico de Produção" = ...2)
 
 ```
-As tabelas que estão na worksheet 2:
+As tabelas que estão na worksheet 3:
 
 ```{r}
 map_df(planilhas, read_excel_data, sheet = 3)  |> 
@@ -129,11 +129,18 @@ map_df(planilhas, read_excel_data, sheet = 3)  |>
   mutate(...2 = str_replace_all(...2, "mmm", "mm"),
          ...2 = str_replace_all(...2, "mm", "mmm")) |> 
   distinct(...2)  |> 
-  rename("Aba 3" = ...2)
+  rename("Dados de Produção" = ...2)
 ```
+Algumas tabelas que estão na worksheet 4 dizem respeito a "Movimentação de Gás Natural", outras dizem respeito a ranking. Os dois grupos vão ser separados. 
 
+As tabelas que estão na worksheet 4 são:
 ```{r}
-map_df(planilhas, read_excel_data, sheet = 4)  |> 
+planilhas_movimentacao <- nomes_abas_df |> 
+  mutate(num_linha = 1:nrow(nomes_abas_df)) |> 
+  filter(str_detect(`4`, "Movimentação")) |> 
+  pull(num_linha)
+
+map_df(planilhas[planilhas_movimentacao], read_excel_data, sheet = 4) |> 
   filter(if_any(2, ~ str_detect(., "Tabela")))  |> 
   mutate(...2 = str_remove_all(...2, "Tabela [0-9]+")) |>
   mutate(...2 = str_remove_all(...2, "\\. ")) |>  
@@ -141,9 +148,27 @@ map_df(planilhas, read_excel_data, sheet = 4)  |>
   mutate(...2 = str_replace_all(...2, "³", "3")) |>
   mutate(...2 = str_replace_all(...2, "mmm", "mm"),
          ...2 = str_replace_all(...2, "mm", "mmm")) |> 
-  filter(!str_detect(...2, "tabela adicional")) |> 
   distinct(...2)  |> 
-  rename("Aba 4" = ...2) 
+  rename("Movimentação de Gás Natural" = ...2)
+```
+
+
+```{r}
+planilhas_ranking <- nomes_abas_df |> 
+  mutate(num_linha = 1:nrow(nomes_abas_df)) |> 
+  filter(str_detect(`4`, "Ranking")) |> 
+  pull(num_linha)
+
+map_df(planilhas[planilhas_ranking], read_excel_data, sheet = 4) |> 
+  filter(if_any(2, ~ str_detect(., "Tabela")))  |> 
+  mutate(...2 = str_remove_all(...2, "Tabela [0-9]+")) |>
+  mutate(...2 = str_remove_all(...2, "\\. ")) |>  
+  mutate(...2 = str_to_lower(...2) ) %>% 
+  mutate(...2 = str_replace_all(...2, "³", "3")) |>
+  mutate(...2 = str_replace_all(...2, "mmm", "mm"),
+         ...2 = str_replace_all(...2, "mm", "mmm")) |> 
+  distinct(...2)  |> 
+  rename("Ranking" = ...2)
   
 ```
 
@@ -160,13 +185,17 @@ map_df(planilhas, read_excel_data, sheet = 4)  |>
          ...2 = str_replace_all(...2, "mm", "mmm")) |> 
   filter(str_detect(...2, "tabela adicional")) |> 
   distinct(...2)  |> 
-  rename("Aba 4" = ...2) 
+  rename("Tabelas adicionais" = ...2) 
 ```
-
-Tabelas da aba 5:
+Nem todas as planilhas têm a aba 5. Para extrair os nomes das tabelas fazemos um filtro antes.
 
 ```{r}
-map_df(planilhas, read_excel_data_try, sheet = 5)  |> 
+planilhas_com_5 <- nomes_abas_df |> 
+  mutate(num_linha = 1:nrow(nomes_abas_df)) |> 
+  filter(!is.na(`5`)) |> 
+  pull(num_linha)
+
+map_df(planilhas[planilhas_com_5], read_excel_data, sheet = 5) |> 
   filter(if_any(2, ~ str_detect(., "Tabela")))  |> 
   mutate(...2 = str_remove_all(...2, "Tabela [0-9]+")) |>
   mutate(...2 = str_remove_all(...2, "\\. ")) |>  
@@ -174,10 +203,14 @@ map_df(planilhas, read_excel_data_try, sheet = 5)  |>
   mutate(...2 = str_replace_all(...2, "³", "3")) |>
   mutate(...2 = str_replace_all(...2, "mmm", "mm"),
          ...2 = str_replace_all(...2, "mm", "mmm")) |> 
-  filter(str_detect(...2, "tabela adicional")) |> 
   distinct(...2)  |> 
-  rename("Aba 4" = ...2) 
+  rename("Pandemia_Covid-19" = ...2) 
 ```
+
+
+
+
+
 
 
 Assim, em todas as planilhas do "Grupo a" (quatro abas por planilha, planilha "3. Movimentação de Gás Natural" têm as mesmas três tabelas)
