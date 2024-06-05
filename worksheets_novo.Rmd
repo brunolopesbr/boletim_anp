@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(plyr)
 library(tidyverse)
 library(readxl)
-
+library(qpcR)
 ```
 
 
@@ -95,7 +95,7 @@ A primeira aba, "Lista de tabelas", é composta de uma maneira que não pode ser
 
 ```{r}
 
-read_excel("data/2018-10-boletim-tabelas.xlsm", 
+read_excel("data/2019-10-boletim-tabelas.xlsm", 
     sheet = 1)
 
 ```
@@ -105,7 +105,7 @@ Vamos buscar o nome de todas as tabelas que estão dentro das worksheets.
 Tabelas que estão na worksheet 2:
 
 ```{r}
-map_df(planilhas, read_excel_data, sheet = 2)  |> 
+tabelas2 <- map_df(planilhas, read_excel_data, sheet = 2)  |> 
   filter(if_any(2, ~ str_detect(., "Tabela")))  |> 
   mutate(...2 = str_remove_all(...2, "Tabela [0-9]+")) |>
   mutate(...2 = str_remove_all(...2, "\\. ")) |>  
@@ -120,7 +120,7 @@ map_df(planilhas, read_excel_data, sheet = 2)  |>
 As tabelas que estão na worksheet 3:
 
 ```{r}
-map_df(planilhas, read_excel_data, sheet = 3)  |> 
+tabelas3 <- map_df(planilhas, read_excel_data, sheet = 3)  |> 
   filter(if_any(2, ~ str_detect(., "Tabela")))  |> 
   mutate(...2 = str_remove_all(...2, "Tabela [0-9]+")) |>
   mutate(...2 = str_remove_all(...2, "\\. ")) |>  
@@ -140,7 +140,7 @@ planilhas_movimentacao <- nomes_abas_df |>
   filter(str_detect(`4`, "Movimentação")) |> 
   pull(num_linha)
 
-map_df(planilhas[planilhas_movimentacao], read_excel_data, sheet = 4) |> 
+tabelas4_1 <- map_df(planilhas[planilhas_movimentacao], read_excel_data, sheet = 4) |> 
   filter(if_any(2, ~ str_detect(., "Tabela")))  |> 
   mutate(...2 = str_remove_all(...2, "Tabela [0-9]+")) |>
   mutate(...2 = str_remove_all(...2, "\\. ")) |>  
@@ -159,7 +159,7 @@ planilhas_ranking <- nomes_abas_df |>
   filter(str_detect(`4`, "Ranking")) |> 
   pull(num_linha)
 
-map_df(planilhas[planilhas_ranking], read_excel_data, sheet = 4) |> 
+tabelas4_2 <- map_df(planilhas[planilhas_ranking], read_excel_data, sheet = 4) |> 
   filter(if_any(2, ~ str_detect(., "Tabela")))  |> 
   mutate(...2 = str_remove_all(...2, "Tabela [0-9]+")) |>
   mutate(...2 = str_remove_all(...2, "\\. ")) |>  
@@ -175,7 +175,7 @@ map_df(planilhas[planilhas_ranking], read_excel_data, sheet = 4) |>
 Tabelas adicionais:
 
 ```{r}
-map_df(planilhas, read_excel_data, sheet = 4)  |> 
+tabelas4_3 <- map_df(planilhas, read_excel_data, sheet = 4)  |> 
   filter(if_any(2, ~ str_detect(., "Tabela")))  |> 
   mutate(...2 = str_remove_all(...2, "Tabela [0-9]+")) |>
   mutate(...2 = str_remove_all(...2, "\\. ")) |>  
@@ -195,7 +195,7 @@ planilhas_com_5 <- nomes_abas_df |>
   filter(!is.na(`5`)) |> 
   pull(num_linha)
 
-map_df(planilhas[planilhas_com_5], read_excel_data, sheet = 5) |> 
+tabelas5 <- map_df(planilhas[planilhas_com_5], read_excel_data, sheet = 5) |> 
   filter(if_any(2, ~ str_detect(., "Tabela")))  |> 
   mutate(...2 = str_remove_all(...2, "Tabela [0-9]+")) |>
   mutate(...2 = str_remove_all(...2, "\\. ")) |>  
@@ -207,232 +207,18 @@ map_df(planilhas[planilhas_com_5], read_excel_data, sheet = 5) |>
   rename("Pandemia_Covid-19" = ...2) 
 ```
 
-
-
-
-
-
-
-Assim, em todas as planilhas do "Grupo a" (quatro abas por planilha, planilha "3. Movimentação de Gás Natural" têm as mesmas três tabelas)
-
-Vamos fazer a mesma verificção para o terceiro worksheet.
+Essas são as tabelas que estão disponíveis nas diferentes planilhas.
 
 ```{r}
-map_df(planilhas_grupo_a, read_excel_data, sheet = 3) |> 
-# filtrando a primeira coluna do DF
-  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
-  distinct(if_any(1))
+tabelas <- gdata::cbindX(tabelas2, tabelas3, tabelas4_1, tabelas4_2, tabelas4_3, tabelas5)
+
+tabelas
 ```
 
-Mesmo resultado: estão presentes aqui as tabelas de número 4 a 16.
+## Data do arquivo
 
-O conteúdo da quarta planilha é esse:
-
-```{r}
-map_df(planilhas_grupo_a, read_excel_data, sheet = 4) |> 
-# filtrando a primeira coluna do DF
-  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
-  distinct(if_any(1))
-```
-
-## Grupo B 
-O grupo b de planilhas tem o seguinte conteúdo:
-
-```{r}
-map_df(planilhas_grupo_b, read_excel_data, sheet = 2) |> 
-# filtrando a primeira coluna do DF
-  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
-  distinct(...1) |> 
-  arrange(...1)
-```
-
-As tabelas parecem ter o mesmo conteúdo. Nomes têm diferenças porque diferenças entre maiúsculas e minúsculas (MMm3/d e MMm³/d, e MMm³/d) e Mm³/d).
-
-As worksheets 3 do grupo b:
-
-```{r}
-# não consigo usar map_df
-# algumas planilhas têm 8 colunas
-lista_grupob_aba3 <- map(planilhas_grupo_b, read_excel_data, sheet = 3) 
- 
-df_grupob_aba3 <- plyr::ldply(lista_grupob_aba3, rbind) 
-
-df_grupob_aba3 |>  
-# filtrando a primeira coluna do DF
-  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
-  distinct(...1) |> 
-  arrange(...1)
-```
-As worksheets 3 do grupo b também tem conteúdos consistentes entre si.
-
-Worksheets 4 do grupo b:
-```{r}
-map_df(planilhas_grupo_b, read_excel_data, sheet = 4) |> 
-# filtrando a primeira coluna do DF
-  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
-  distinct(...1) 
-```
-
-O mesmo conteúdo pode ser numerado de 12 a 19 ou de 11 a 18. Uma tabela numerada como 11, a "Tabela 11. Produção dos poços do Pré-sal¹", foi incluída em algumas worksheets.
+A informação do mês de cada planilha está em uma caixa de texto. Vamos dedicar um script para essa tarefa.
 
 
-## Grupo C
-O grupo c de planilhas tem o seguinte conteúdo:
 
-Worksheets 2:
-```{r}
-map_df(planilhas_grupo_c, read_excel_data, sheet = 2) |> 
-# filtrando a primeira coluna do DF
-  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
-  distinct(...1) |> 
-  arrange(...1)
-```
-
-As tabelas parecem ter o mesmo conteúdo.
-
-As worksheets 3 do grupo c:
-
-```{r}
-map_df(planilhas_grupo_c, read_excel_data, sheet = 3) |>  
-# filtrando a primeira coluna do DF
-  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
-  distinct(...1) |> 
-  arrange(...1)
-```
-As worksheets 3 do grupo b também tem conteúdos consistentes entre si.
-
-Worksheets 4 do grupo c:
-```{r}
-map_df(planilhas_grupo_c, read_excel_data, sheet = 4) |> 
-# filtrando a primeira coluna do DF
-  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
-  distinct(...1) |> 
-  arrange(...1)
-```
-
-Mesma situação: o mesmo conteúdo pode ser numerado de 12 a 19 ou de 11 a 18. Uma tabela numerada como 11, a "Tabela 11. Produção dos poços do Pré-sal¹", foi incluída em algumas worksheets.
-Além disso, há diferenças nas Tabelas Adicionais 7 e 8, que se referem a conteúdos diferentes.
-
-Worksheets 5 do grupo c:
-```{r}
-map_df(planilhas_grupo_c, read_excel_data, sheet = 5) |> 
-# filtrando a primeira coluna do DF
-  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
-  distinct(...1) |> 
-  arrange(...1)
-```
-
-As worksheets 5, que correspondem ao conteúdo da época da pandemia, são consistentes entre si. A diferença na numeração é pelo mesmo motivo anterior (presença da planilha "11 Produção dos poços do Pré-sal¹").
-
-## Conclusões
-
-1 - Verificar quais planilhas têm na worksheet 3 a tabela Tabela 11. "Produção dos poços do Pré-sal¹". Ela altera a numeração das tabelas da worksheet 4.
-
-2 - Tabelas adicionais 7 e 8 também são diferentes
-
-3 - Tirando dois casos de diferenças entre maíusculas e minusculas, as tabelas podem ser agregadas pelos nomes, retirando os números.
-
-## Todos os nomes de tabelas
-
-Sabemos: 
-
-1) Que o nome de cada tabela está na primeira coluna de cada dataframe. 
-
-2) Que o nome de cada tabela começa por um número, que deve ser descartado.
-
-Para isso não precisamos de todo aquele trabalho de dividir as planilhas em grupos. Vamos ignorar a primeira aba, que não tem informação.
-
-```{r}
-nomes_unicos <- nomes_abas_df |> 
-  unique()
-nomes_unicos %>% 
-  distinct(`1`, `2`, `3`, `4`, `5`)
-```
-
-```{r}
-historico <- map_df(planilhas, read_excel_data, sheet = 2) |> 
-  select(...1) %>% 
-# filtrando a primeira coluna do DF
-  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
-  mutate(...1 = str_to_lower(...1)) %>% 
-  mutate(...1 = str_remove(...1, pattern = "tabela [0-9]. ")) %>% 
-  mutate(...1 = str_replace_all(...1, pattern = "3" , replacement = "³")) %>% 
-  mutate(...1 = str_replace_all(...1, pattern = "mmm" , replacement = "mm")) %>% 
-  distinct()
-
-historico
-```
-
-```{r}
-map_df(planilhas[1:10], read_excel_data, sheet = 3) |> 
-  select(...1) %>% 
-# filtrando a primeira coluna do DF
-  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
-  mutate(...1 = str_to_lower(...1)) %>% 
-  mutate(...1 = str_remove(...1, pattern = "tabela [0-9]+")) %>%   
-  mutate(...1 = str_remove(...1, pattern = "\\.")) %>%   
-  mutate(...1 = str_replace_all(...1, pattern = "3" , replacement = "³")) %>% 
-  mutate(...1 = str_replace_all(...1, pattern = "³0" , replacement = "10")) %>%
-  mutate(...1 = str_replace_all(...1, pattern = "mmm" , replacement = "mm")) %>% 
-  distinct()
-
-```
-```{r}
-map_df(planilhas[23:24], read_excel_data, sheet = 3) |> 
-  select(...1) %>% 
-# filtrando a primeira coluna do DF
-  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
-  mutate(...1 = str_to_lower(...1)) %>% 
-  mutate(...1 = str_remove(...1, pattern = "tabela [0-9]+")) %>%   
-  mutate(...1 = str_remove(...1, pattern = "\\.")) %>%   
-  mutate(...1 = str_replace_all(...1, pattern = "3" , replacement = "³")) %>% 
-  mutate(...1 = str_replace_all(...1, pattern = "³0" , replacement = "10")) %>%
-  mutate(...1 = str_replace_all(...1, pattern = "mmm" , replacement = "mm")) %>% 
-  distinct()
-
-```
-
-
-```{r}
-map_df(planilhas[20:22], read_excel_data, sheet = 3) 
-```
-
-
-```{r}
-map_df(planilhas[25:30], read_excel_data, sheet = 3) 
-```
-
-```{r}
-map_df(planilhas[23:24], read_excel_data, sheet = 3) 
-
-
-```
-
-
-```{r}
-map_df(planilhas[1:13], read_excel_data, sheet = 3) 
-```
-```{r}
-map_df(planilhas[14:22], read_excel_data, sheet = 3) 
-```
-
-```{r}
-map_df(planilhas[25:72], read_excel_data, sheet = 3) 
-```
-
-```{r}
-map_df(planilhas[74:77], read_excel_data, sheet = 3) 
-```
-
-```{r}
-planilhas[c(14, 23, 24, 73)]
-```
-
-```{r}
-read_excel_data(planilhas[14], sheet = 3)
-```
-
-```{r}
-read_excel(paste0("data/", planilhas[23]), sheet = 3, range = "A1:Z1000")
-```
 
