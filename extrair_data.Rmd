@@ -17,6 +17,9 @@ library(tidyverse)
 library(readxl)
 library(xml2)
 library(XML)
+
+library(clock)
+
 ```
 
 Renomear planilha como zip
@@ -49,17 +52,23 @@ df_xml_2019_01[2,3]
 Que pode ser limpa:
 
 ```{r}
-data_boletim <- df_xml_2019_01[2,3] |> 
+data_boletim. <- df_xml_2019_01[2,3] |> 
   str_remove_all("/.*") |> 
     str_trim() |> 
   str_remove_all("[:punct:]") 
 
+data_boletim <- paste0("01 ", data_boletim.)
+
 data_boletim
-
 ```
-
+Converter para data
 ```{r}
-my("January 2019")
+
+year_month_day_parse(
+  data_boletim,
+  format = "%d %B %Y",
+  locale = clock_locale("pt")
+)
 
 ```
 
