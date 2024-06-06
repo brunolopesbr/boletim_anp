@@ -17,6 +17,7 @@ library(tidyverse)
 library(readxl)
 library(xml2)
 library(XML)
+library(clock)
 ```
 
 Renomear planilha como zip
@@ -61,5 +62,6 @@ data_boletim
 ```{r}
 my("January 2019")
 my(data_boletim, locale = "Portuguese_Brazil.utf8")
+clock_labels_lookup("pt")
 ```
 
