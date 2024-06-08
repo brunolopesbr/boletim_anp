@@ -37,12 +37,13 @@ read_excel_data  <- function(x,sheet = 1){
                .name_repair = "unique_quiet",)
 }
 
-read_excel_data_try  <- function(x,sheet = 1){
-  try(read_xlsx(paste0("data/", x), col_types = "text",
-             sheet = sheet,
-              range = "A1:M1000",
-               col_names = FALSE,
-               .name_repair = "unique_quiet",))
+padronizar_nomes <- function(x){x |> 
+  mutate(...2 = str_remove_all(...2, "Tabela [0-9]+")) |>
+  mutate(...2 = str_remove_all(...2, "\\. ")) |>  
+  mutate(...2 = str_to_lower(...2) ) %>% 
+  mutate(...2 = str_replace_all(...2, "³", "3")) |>
+  mutate(...2 = str_replace_all(...2, "mmm", "mm"),
+         ...2 = str_replace_all(...2, "mm", "mmm")) 
 }
 
 ```
@@ -105,14 +106,9 @@ Vamos buscar o nome de todas as tabelas que estão dentro das worksheets.
 Tabelas que estão na worksheet 2:
 
 ```{r}
-tabelas2 <- map_df(planilhas, read_excel_data, sheet = 2)  |> 
+tabela2 <- map_df(planilhas, read_excel_data, sheet = 2)  |> 
   filter(if_any(2, ~ str_detect(., "Tabela")))  |> 
-  mutate(...2 = str_remove_all(...2, "Tabela [0-9]+")) |>
-  mutate(...2 = str_remove_all(...2, "\\. ")) |>  
-  mutate(...2 = str_to_lower(...2) ) %>% 
-  mutate(...2 = str_replace_all(...2, "³", "3")) |>
-  mutate(...2 = str_replace_all(...2, "mmm", "mm"),
-         ...2 = str_replace_all(...2, "mm", "mmm")) |> 
+  padronizar_nomes() |> 
   distinct(...2)  |> 
   rename("Histórico de Produção" = ...2)
 
@@ -122,12 +118,7 @@ As tabelas que estão na worksheet 3:
 ```{r}
 tabelas3 <- map_df(planilhas, read_excel_data, sheet = 3)  |> 
   filter(if_any(2, ~ str_detect(., "Tabela")))  |> 
-  mutate(...2 = str_remove_all(...2, "Tabela [0-9]+")) |>
-  mutate(...2 = str_remove_all(...2, "\\. ")) |>  
-  mutate(...2 = str_to_lower(...2) ) %>% 
-  mutate(...2 = str_replace_all(...2, "³", "3")) |>
-  mutate(...2 = str_replace_all(...2, "mmm", "mm"),
-         ...2 = str_replace_all(...2, "mm", "mmm")) |> 
+ padronizar_nomes() |> 
   distinct(...2)  |> 
   rename("Dados de Produção" = ...2)
 ```
@@ -142,12 +133,7 @@ planilhas_movimentacao <- nomes_abas_df |>
 
 tabelas4_1 <- map_df(planilhas[planilhas_movimentacao], read_excel_data, sheet = 4) |> 
   filter(if_any(2, ~ str_detect(., "Tabela")))  |> 
-  mutate(...2 = str_remove_all(...2, "Tabela [0-9]+")) |>
-  mutate(...2 = str_remove_all(...2, "\\. ")) |>  
-  mutate(...2 = str_to_lower(...2) ) %>% 
-  mutate(...2 = str_replace_all(...2, "³", "3")) |>
-  mutate(...2 = str_replace_all(...2, "mmm", "mm"),
-         ...2 = str_replace_all(...2, "mm", "mmm")) |> 
+  padronizar_nomes() |>
   distinct(...2)  |> 
   rename("Movimentação de Gás Natural" = ...2)
 ```
@@ -161,12 +147,7 @@ planilhas_ranking <- nomes_abas_df |>
 
 tabelas4_2 <- map_df(planilhas[planilhas_ranking], read_excel_data, sheet = 4) |> 
   filter(if_any(2, ~ str_detect(., "Tabela")))  |> 
-  mutate(...2 = str_remove_all(...2, "Tabela [0-9]+")) |>
-  mutate(...2 = str_remove_all(...2, "\\. ")) |>  
-  mutate(...2 = str_to_lower(...2) ) %>% 
-  mutate(...2 = str_replace_all(...2, "³", "3")) |>
-  mutate(...2 = str_replace_all(...2, "mmm", "mm"),
-         ...2 = str_replace_all(...2, "mm", "mmm")) |> 
+  padronizar_nomes() |>
   distinct(...2)  |> 
   rename("Ranking" = ...2)
   
@@ -177,12 +158,7 @@ Tabelas adicionais:
 ```{r}
 tabelas4_3 <- map_df(planilhas, read_excel_data, sheet = 4)  |> 
   filter(if_any(2, ~ str_detect(., "Tabela")))  |> 
-  mutate(...2 = str_remove_all(...2, "Tabela [0-9]+")) |>
-  mutate(...2 = str_remove_all(...2, "\\. ")) |>  
-  mutate(...2 = str_to_lower(...2) ) %>% 
-  mutate(...2 = str_replace_all(...2, "³", "3")) |>
-  mutate(...2 = str_replace_all(...2, "mmm", "mm"),
-         ...2 = str_replace_all(...2, "mm", "mmm")) |> 
+  padronizar_nomes() |>
   filter(str_detect(...2, "tabela adicional")) |> 
   distinct(...2)  |> 
   rename("Tabelas adicionais" = ...2) 
@@ -197,12 +173,7 @@ planilhas_com_5 <- nomes_abas_df |>
 
 tabelas5 <- map_df(planilhas[planilhas_com_5], read_excel_data, sheet = 5) |> 
   filter(if_any(2, ~ str_detect(., "Tabela")))  |> 
-  mutate(...2 = str_remove_all(...2, "Tabela [0-9]+")) |>
-  mutate(...2 = str_remove_all(...2, "\\. ")) |>  
-  mutate(...2 = str_to_lower(...2) ) %>% 
-  mutate(...2 = str_replace_all(...2, "³", "3")) |>
-  mutate(...2 = str_replace_all(...2, "mmm", "mm"),
-         ...2 = str_replace_all(...2, "mm", "mmm")) |> 
+  padronizar_nomes() |>
   distinct(...2)  |> 
   rename("Pandemia_Covid-19" = ...2) 
 ```
