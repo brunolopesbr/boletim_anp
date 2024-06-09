@@ -106,7 +106,7 @@ Vamos buscar o nome de todas as tabelas que estão dentro das worksheets.
 Tabelas que estão na worksheet 2:
 
 ```{r}
-tabela2 <- map_df(planilhas, read_excel_data, sheet = 2)  |> 
+tabelas2 <- map_df(planilhas, read_excel_data, sheet = 2)  |> 
   filter(if_any(2, ~ str_detect(., "Tabela")))  |> 
   padronizar_nomes() |> 
   distinct(...2)  |> 
