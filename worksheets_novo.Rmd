@@ -14,6 +14,8 @@ library(plyr)
 library(tidyverse)
 library(readxl)
 library(qpcR)
+library(janitor)
+
 ```
 
 
@@ -29,10 +31,11 @@ excel_sheets_data <- function(x){
   excel_sheets(paste0("data/", x))
 }
 
-read_excel_data  <- function(x,sheet = 1){
+read_excel_data  <- function(x,sheet = 1, range = "A1:J1000", skip = 0){
   read_xlsx(paste0("data/", x), col_types = "text",
              sheet = sheet,
-              range = "A1:M1000",
+              range = range,
+                skip = skip,
                col_names = FALSE,
                .name_repair = "unique_quiet",)
 }
@@ -190,6 +193,38 @@ tabelas
 
 A informação do mês de cada planilha está em uma caixa de texto. Vamos dedicar um script para essa tarefa.
 
+## Separando as tabelas
 
+Em cada worksheet há várias tabelas. Com esse procedimento podemos 
 
+```{r}
+provisorio <-  read_excel_data(planilhas[1], sheet = 2) 
+
+linhas_vazias <- rowSums(is.na(provisorio))==ncol(provisorio)
+
+# cria várias listas. a ímpar tem o nome, a par tem 
+split(subset(provisorio,!linhas_vazias),cumsum(linhas_vazias)[!linhas_vazias])
+
+```
+
+```{r}
+provisorio3 <-  read_excel_data(planilhas[1], sheet = 3) 
+
+linhas_vazias3 <- rowSums(is.na(provisorio3))==ncol(provisorio3)
+
+# cria várias listas. a ímpar tem o nome, a par tem 
+lista3 <- split(subset(provisorio3,!linhas_vazias3),cumsum(linhas_vazias3)[!linhas_vazias3])
+```
+
+Os itens pares mostram o título da tabela, os itens impares os dados
+
+```{r}
+lista3[2]
+```
+
+Para transformar a primeira linha em nome de coluna:
+```{r}
+lista3_3 <- lista3[[3]]
+row_to_names(lista3_3, 1)
+```
 
