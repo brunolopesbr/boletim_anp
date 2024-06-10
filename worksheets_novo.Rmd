@@ -115,7 +115,10 @@ tabelas2 <- map_df(planilhas, read_excel_data, sheet = 2)  |>
   distinct(...2)  |> 
   rename("Histórico de Produção" = ...2)
 
+tabelas2
 ```
+
+
 As tabelas que estão na worksheet 3:
 
 ```{r}
@@ -125,6 +128,7 @@ tabelas3 <- map_df(planilhas, read_excel_data, sheet = 3)  |>
   distinct(...2)  |> 
   rename("Dados de Produção" = ...2)
 ```
+
 Algumas tabelas que estão na worksheet 4 dizem respeito a "Movimentação de Gás Natural", outras dizem respeito a ranking. Os dois grupos vão ser separados. 
 
 As tabelas que estão na worksheet 4 são:
@@ -166,6 +170,7 @@ tabelas4_3 <- map_df(planilhas, read_excel_data, sheet = 4)  |>
   distinct(...2)  |> 
   rename("Tabelas adicionais" = ...2) 
 ```
+
 Nem todas as planilhas têm a aba 5. Para extrair os nomes das tabelas fazemos um filtro antes.
 
 ```{r}
@@ -189,23 +194,19 @@ tabelas <- gdata::cbindX(tabelas2, tabelas3, tabelas4_1, tabelas4_2, tabelas4_3,
 tabelas
 ```
 
+Na worksheet 2 constam informações históricas. Elas não vão ser usadas para captura de informações. Apenas vão ser usadas em uma etapa de consistência de dados.
+
 ## Data do arquivo
 
 A informação do mês de cada planilha está em uma caixa de texto. Vamos dedicar um script para essa tarefa.
 
 ## Separando as tabelas
 
-Em cada worksheet há várias tabelas. Com esse procedimento podemos 
+Em cada worksheet há várias tabelas. Com esse procedimento criamos uma lista com vários dataframes.  
 
-```{r}
-provisorio <-  read_excel_data(planilhas[1], sheet = 2) 
+Faremos isso com as worksheets 3 e 4, já que a worksheet 2 tem apenas informações que remetem ao histórico de produção.
 
-linhas_vazias <- rowSums(is.na(provisorio))==ncol(provisorio)
 
-# cria várias listas. a ímpar tem o nome, a par tem 
-split(subset(provisorio,!linhas_vazias),cumsum(linhas_vazias)[!linhas_vazias])
-
-```
 
 ```{r}
 provisorio3 <-  read_excel_data(planilhas[1], sheet = 3) 
@@ -214,17 +215,107 @@ linhas_vazias3 <- rowSums(is.na(provisorio3))==ncol(provisorio3)
 
 # cria várias listas. a ímpar tem o nome, a par tem 
 lista3 <- split(subset(provisorio3,!linhas_vazias3),cumsum(linhas_vazias3)[!linhas_vazias3])
+
 ```
 
-Os itens pares mostram o título da tabela, os itens impares os dados
+Nas workshhets 3 os elementos ímpares mostram o título da tabela:
 
 ```{r}
-lista3[2]
+for(i in seq(from = 2, to = length(lista3), by = 2)){
+  print(lista3[[i]][[2]]) 
+}
+
+```
+E os elementos pares contêm os dados que queremos capturar.
+
+Vamos tratar os dataframes para:
+1) Colocar a primeira linha como título de coluna
+2) Apagar as colunas que só têm valores vazios
+
+```{r}
+row_to_names1 <- function(x){row_to_names(x, 1)}
+not_all_na <- function(x) any(!is.na(x)) 
+
+tam_lista3 <- length(lista3)
+
+lista3_mod <- lista3[c(seq(from = 3, to = tam_lista3, by = 2))] |> 
+map(.f = row_to_names1) |> 
+  map(.f = clean_names)
+
+
+for(i in 1:length(lista3_mod)){
+lista3_mod[[i]] <- lista3_mod[[i]] |> 
+  select_if(not_all_na)  
+}
+
+lista3_mod
+
+```
+A "Tabela 9. Produção de Campos do Pré-sal¹" tem os títulos separados compostos de uma maneira pouco organizada, já que a primeira coluna representa a produção de petróleo do pré-sal, e a segunda do pré-sal. Esse  procedimento se repete para produção de gás natural e produção total. Isso vai ser corrigido manualmente, com novos nomes e apagando a primeira linha.
+
+```{r}
+names(lista3_mod[[6]])
+
+novos_nomes <- c("campo", "petroleo_pre-sal", "petroleo_pos-sal", "gas_natural_mm3_d_pre-sal", "gas_natural_mm3_d__pos-sal", "producao_boe_d_pre-sal", "producao_boe_d_pos-sal")
+
+names(lista3_mod[[6]]) <- novos_nomes
+
+lista3_mod[[6]] <- lista3_mod[[6]][-1,]
+
+lista3_mod[[6]]
 ```
 
+
+
+
+Essas são as informações que estão nas worksheets 4:
+
+```{r}
+provisorio4 <-  read_excel_data(planilhas[1], sheet = 4) 
+
+linhas_vazias4 <- rowSums(is.na(provisorio4))==ncol(provisorio4)
+
+# cria várias listas. a ímpar tem o nome, a par tem 
+lista4 <- split(subset(provisorio4,!linhas_vazias4),cumsum(linhas_vazias4)[!linhas_vazias4])
+```
+Esses são os títulos das tabelas:
+
+```{r}
+for(i in seq(from = 2, to = length(lista4), by = 2)){
+  print(lista4[[i]])
+}
+```
+E esses são os conteúdos:
+
+```{r}
+# transforma primeira linha em nomes
+row_to_names1 <- function(x){row_to_names(x, 1)}
+not_all_na <- function(x) any(!is.na(x))
+
+lista4_mod <- lista4[c(3,5,7)] |> 
+map(.f = row_to_names1) |> 
+  map(.f = clean_names) 
+
+for(i in 1:length(lista4_mod)){
+lista4_mod[[i]] <- lista4_mod[[i]] |> 
+  select_if(not_all_na)  
+}
+
+
+lista4_mod
+
+```
+
+
+
+Em seguida, vamos 
+1) Selecionar o primeiro 
 Para transformar a primeira linha em nome de coluna:
 ```{r}
 lista3_3 <- lista3[[3]]
-row_to_names(lista3_3, 1)
+
+row_to_names(lista3_3, 1) |> 
+  clean_names() |> 
+  select_if(~ !all(is.na(.)))
 ```
 
