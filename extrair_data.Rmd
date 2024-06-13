@@ -150,7 +150,8 @@ mutate(mes = year_month_day_parse(
   V1,
   format = "%d %B %Y",
   locale = clock_locale("pt")
-))
+)) |> 
+  rename(mes_escrito = V1)
 
 df_planilhas_datas  
 ```

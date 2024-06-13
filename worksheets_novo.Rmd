@@ -139,7 +139,7 @@ tabelas2.2 <- map_df(planilhas[4:length(planilhas)], read_excel_data, sheet = 2)
 
 tabelas2.2
 ```
-As planilhas4:77] têm quatro tabelas na worksheet 2. 
+As planilhas 4:77] têm quatro tabelas na worksheet 2. 
 
 As tabelas que estão na worksheet 3:
 
