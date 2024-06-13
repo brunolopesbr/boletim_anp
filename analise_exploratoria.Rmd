@@ -14,7 +14,7 @@ library(rvest)
 library(robotstxt)
 ```
 
-## Análise Exploratória
+# Análise Exploratória
 
 O Boletim Mensal de Produção da ANP é divulgado mensalmente, com dados quantitativos da produção de petróleo e gás descrito em tabelas e gráficos. Está disponível desde 2010, e seu conteúdo será tratado aqui. Ao longo do tempo ocorreram mudanças na maneira que os dados são divulgados.
 
@@ -252,6 +252,7 @@ write.csv2(x = links, file = "links_antigos.csv")
 write.csv2(x = nomes_arquivos, file = "nomes_arquivos.csv")
 ```
 
+A tabela o final do arquivo "analise_exploratoria_planilhas.Rmd" mostra que falta a planilha para o mês de fevereiro de 2024.
 
 ## FIM
 

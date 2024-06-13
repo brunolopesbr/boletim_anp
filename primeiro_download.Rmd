@@ -32,7 +32,7 @@ Se não foram baixados, continua sua execução.
 
 ```
 
-## Verificar se podemos fazer o scrapping
+## Verificar se podemos fazer o webscrapping
 
 Usando a função robotstxt() não precisamos sair do R para saber isso. A resposta "TRUE" para indica que podemos prosseguir
 
@@ -98,7 +98,7 @@ links_planilhas <- links. %>%
   filter(str_detect(value, "xlsm"))
 ```
 
-Em seguida criamos uma função para inspecionar esse objto e produzir uma tabela com o número de links por ano.
+Em seguida criamos uma função para inspecionar esse objeto e produzir uma tabela com o número de links por ano.
 ```{r}
 inspecionar <- function(ano){
 num_ano <- links_planilhas %>% 
@@ -108,10 +108,7 @@ num_ano <- links_planilhas %>%
 tibble(ano = ano,
        planilhas = num_ano)  
 }
-
-
-anos <- 2017:2024 %>% as.character()
-numero_planilhas <- map_df(anos, inspecionar)
+numero_planilhas <- map_df(as.character(2017:2024), inspecionar)
 numero_planilhas
 ```
 Vamos inspecionar com mais detalhes os anos que têm menos de doze planilhas por ano.
@@ -236,24 +233,7 @@ map2(links, nomes_arquivos, download_lento)
 ```
 
 
-Em seguida, todos os arquivos serão colocados no diretório "data"
 
-```{r}
-# file.rename(from = "2010-09-boletim.pdf", 
-#            to = "data/2010-09-boletim.pdf")
-
-arquivos_planilhas <- list.files(pattern = "xlsm")
-arquivos_pdf <- list.files(pattern = "pdf")
-
-# custom function
-mover_arquivos <- function(x){
-  file.rename( from = file.path(x) ,
-               to = file.path("data", x) )
-}
-
-mover_arquivos(arquivos_planilhas)
-mover_arquivos(arquivos_pdf)
-```
 
 
 Com isso, todos os arquivos foram baixados localmente. Outro script será criado para baixar apenas os novos arquivos. Eles irão usar os arquivos .csv gerados aqui.

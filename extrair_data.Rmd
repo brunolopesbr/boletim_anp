@@ -17,42 +17,53 @@ library(tidyverse)
 library(readxl)
 library(xml2)
 library(XML)
-
 library(clock)
 
 ```
 
-Renomear planilha como zip
 ```{r}
-file.copy(from = "data/2019-01-boletim-tabelas.xlsm", to = "data/zip/2019-01-boletim-tabelas.zip")
+planilhas <- dir(path = "data", pattern = "*xls*")
+```
+Primeiro esse procedimento será feito apenas para uma worksheet.
+
+Criar objeto com o nome das planilhas zipadas
+```{r}
+planilhas_zip <- planilhas
+
+planilhas_zip <- planilhas_zip |> 
+  str_replace_all(pattern = "xlsm", replacement = "zip")
+```
+
+
+Copiar planilha para outro diretório, e renomeando como .zip:
+
+```{r}
+file.copy(from = paste0("data/", planilhas[1]), to = paste0("data/zip/", planilhas_zip[1]), overwrite = TRUE)
 ```
 extrair zip
+
 ```{r}
-unzip(zipfile = "data/zip/2019-01-boletim-tabelas.zip", exdir = "data/zip")
+unzip(zipfile = paste0("data/zip/", planilhas_zip[1]), exdir = "data/zip", overwrite = TRUE)
 ```
 
-importar xml do arquivo xl/drawings/drawing1.xml
-```{r}
-xml_2019_01 <- xmlParse("data/zip/xl/drawings/drawing1.xml")
+importar xml do arquivo xl/drawings/drawing1.xml, e converter para dataframe
+```{r warning=FALSE}
+xml_prov <- xmlParse("data/zip/xl/drawings/drawing1.xml") |> 
+  xmlToDataFrame()
 ```
 
-Converter de XML a dataframe
-```{r}
-df_xml_2019_01 <- xmlToDataFrame(xml_2019_01)
-
-```
 
 A segunda linha da terceira coluna tem a informação da data.
 
 ```{r}
-df_xml_2019_01[2,3]
+xml_prov[2,3]
 
 ```
 
 Que pode ser limpa:
 
 ```{r}
-data_boletim. <- df_xml_2019_01[2,3] |> 
+data_boletim. <- xml_prov[2,3] |> 
   str_remove_all("/.*") |> 
     str_trim() |> 
   str_remove_all("[:punct:]") 
@@ -61,7 +72,7 @@ data_boletim <- paste0("01 ", data_boletim.)
 
 data_boletim
 ```
-Converter para data
+Eem seguida convertida para o formato de data
 ```{r}
 
 year_month_day_parse(
@@ -71,4 +82,107 @@ year_month_day_parse(
 )
 
 ```
+Colocando todos esses passos em um workflow que cria um dataframe, correlacionando o nome da planilha e seu mês correspondente:
+
+
+
+```{r warning=FALSE}
+invisible(file.copy(from = paste0("data/", planilhas[10]), to = paste0("data/zip/", planilhas_zip[10]), overwrite = TRUE))
+
+unzip(zipfile = paste0("data/zip/", planilhas_zip[10]), exdir = "data/zip", overwrite = TRUE)
+
+xml_prov <- xmlParse("data/zip/xl/drawings/drawing1.xml") |> 
+  xmlToDataFrame()
+
+sheet1_data <- xml_prov[2,3] |> 
+  str_remove_all("/.*") |> 
+    str_trim() |> 
+  str_remove_all("[:punct:]")
+
+mes_boletim <- paste0("01 ",sheet1_data)
+
+mes_boletim
+```
+Criando uma função personalizada:
+
+```{r}
+extrair_data <- function(num){
+  
+invisible(file.copy(from = paste0("data/", planilhas[num]), to = paste0("data/zip/", planilhas_zip[num]), overwrite = TRUE))
+
+unzip(zipfile = paste0("data/zip/", planilhas_zip[num]), exdir = "data/zip", overwrite = TRUE)
+
+xml_prov <- xmlParse("data/zip/xl/drawings/drawing1.xml") |> 
+  xmlToDataFrame()
+
+sheet1_data <- xml_prov[2,3] |> 
+  str_remove_all("/.*") |> 
+    str_trim() |> 
+  str_remove_all("[:punct:]") |> 
+  str_remove_all(" de")
+
+mes_boletim <- paste0("01 ",sheet1_data)
+
+mes_boletim
+
+
+}
+
+```
+
+Fazer a iteração em map, e gerar uma lista
+
+```{r warning=FALSE}
+lista_datas <- map(1:length(planilhas), extrair_data)
+
+
+```
+
+Transformar a lista em dataframe e parsear vetor como datas
+```{r}
+lista_datas2 <- do.call(rbind, lista_datas)
+
+df_planilhas_datas <- data.frame(arquivos = planilhas,
+           mes = as.data.frame(lista_datas2)) 
+
+df_planilhas_datas <- df_planilhas_datas |> 
+mutate(mes = year_month_day_parse(
+  V1,
+  format = "%d %B %Y",
+  locale = clock_locale("pt")
+))
+
+df_planilhas_datas  
+```
+
+
+```{r warning=FALSE}
+extrair_data(76)
+
+
+invisible(file.copy(from = paste0("data/", planilhas[76]), to = paste0("data/zip/", planilhas_zip[76]), overwrite = TRUE))
+
+unzip(zipfile = paste0("data/zip/", planilhas_zip[76]), exdir = "data/zip", overwrite = TRUE)
+
+xml_prov <- xmlParse("data/zip/xl/drawings/drawing1.xml") |> 
+  xmlToDataFrame()
+
+xml_prov[2,3] |> 
+  str_remove_all("/.*") |> 
+    str_trim() |> 
+  str_remove_all("[:punct:]") |> 
+  str_remove_all(" de")
+
+sheet1_data <- xml_prov[2,3] |> 
+  str_remove_all("/.*") |> 
+    str_trim() |> 
+  str_remove_all("[:punct:]") |> 
+  str_remove_all(" de")
+
+mes_boletim <- paste0("01 ",sheet1_data)
+
+mes_boletim
+```
+
+Uma nota: nos dois meses de 2024 a data passou a ser registrada como "Janeiro de 2024", e não "Dezembro de 2023", como era feito anteriormente. Isso levou a uma mudança na função "extrair datas", que passou a retirar o texto " de" do vetor.
 
