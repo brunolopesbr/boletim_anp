@@ -118,6 +118,28 @@ tabelas2 <- map_df(planilhas, read_excel_data, sheet = 2)  |>
 tabelas2
 ```
 
+```{r}
+tabelas2.1 <- map_df(planilhas[1:3], read_excel_data, sheet = 2)  |> 
+  filter(if_any(2, ~ str_detect(., "Tabela")))  |> 
+  padronizar_nomes() |> 
+  distinct(...2)  |> 
+  rename("Histórico de Produção" = ...2)
+
+tabelas2.1
+```
+As planilhas[1:3] têm três tabelas na worksheet 2
+
+
+```{r}
+tabelas2.2 <- map_df(planilhas[4:length(planilhas)], read_excel_data, sheet = 2)  |> 
+  filter(if_any(2, ~ str_detect(., "Tabela")))  |> 
+  padronizar_nomes() |> 
+  distinct(...2)  |> 
+  rename("Histórico de Produção" = ...2)
+
+tabelas2.2
+```
+As planilhas4:77] têm quatro tabelas na worksheet 2. 
 
 As tabelas que estão na worksheet 3:
 
@@ -127,7 +149,29 @@ tabelas3 <- map_df(planilhas, read_excel_data, sheet = 3)  |>
  padronizar_nomes() |> 
   distinct(...2)  |> 
   rename("Dados de Produção" = ...2)
+
+tabelas3
 ```
+```{r}
+tabelas3.1 <- map_df(planilhas[1:3], read_excel_data, sheet = 3)  |> 
+  filter(if_any(2, ~ str_detect(., "Tabela")))  |> 
+ padronizar_nomes() |> 
+  distinct(...2)  |> 
+  rename("Dados de Produção" = ...2)
+
+tabelas3.1
+```
+
+```{r}
+tabelas3.2 <- map_df(planilhas[4:length(planilhas)], read_excel_data, sheet = 3)  |> 
+  filter(if_any(2, ~ str_detect(., "Tabela")))  |> 
+ padronizar_nomes() |> 
+  distinct(...2)  |> 
+  rename("Dados de Produção" = ...2)
+
+tabelas3.2
+```
+
 
 Algumas tabelas que estão na worksheet 4 dizem respeito a "Movimentação de Gás Natural", outras dizem respeito a ranking. Os dois grupos vão ser separados. 
 
@@ -169,7 +213,29 @@ tabelas4_3 <- map_df(planilhas, read_excel_data, sheet = 4)  |>
   filter(str_detect(...2, "tabela adicional")) |> 
   distinct(...2)  |> 
   rename("Tabelas adicionais" = ...2) 
+
+tabelas4_3
 ```
+```{r}
+
+for(i in 33:54){
+map_df(planilhas[i], read_excel_data, sheet = 4)  |> 
+  filter(if_any(2, ~ str_detect(., "Tabela")))  |> 
+  padronizar_nomes() |>
+  filter(str_detect(...2, "tabela adicional")) |> 
+  distinct(...2)  |> 
+  rename("Tabelas adicionais" = ...2) |> 
+    print()
+}
+
+
+
+```
+As tabelas adicionais aparecem nas planilhas 33 a 40, na worksheet 4
+
+
+
+
 
 Nem todas as planilhas têm a aba 5. Para extrair os nomes das tabelas fazemos um filtro antes.
 
@@ -178,6 +244,8 @@ planilhas_com_5 <- nomes_abas_df |>
   mutate(num_linha = 1:nrow(nomes_abas_df)) |> 
   filter(!is.na(`5`)) |> 
   pull(num_linha)
+
+planilhas_com_5
 
 tabelas5 <- map_df(planilhas[planilhas_com_5], read_excel_data, sheet = 5) |> 
   filter(if_any(2, ~ str_detect(., "Tabela")))  |> 
@@ -200,13 +268,11 @@ Na worksheet 2 constam informações históricas. Elas não vão ser usadas para
 
 A informação do mês de cada planilha está em uma caixa de texto. Vamos dedicar um script para essa tarefa.
 
-## Separando as tabelas
+## Tática 1: Usando o comando split para gerar uma lista com todas as tabelas da worksheet
 
 Em cada worksheet há várias tabelas. Com esse procedimento criamos uma lista com vários dataframes.  
 
 Faremos isso com as worksheets 3 e 4, já que a worksheet 2 tem apenas informações que remetem ao histórico de produção.
-
-
 
 ```{r}
 provisorio3 <-  read_excel_data(planilhas[1], sheet = 3) 
@@ -319,3 +385,123 @@ row_to_names(lista3_3, 1) |>
   select_if(~ !all(is.na(.)))
 ```
 
+## Tática 2: extrair um dataframe, filtrar por linhas com valoes ausentes, e importar demarcando os locais
+
+## Extrair um dataframe para a worksheet 2 da planilha 1
+
+Vamos começar pelo histórico. Ele mostra a produção de óleo, gás e total do mês e dos n meses anteriores. Logo, é possível condensar toda a informação em apenas um data frame.
+
+O primeiro passo é extrair um dataframe provisório, em que todos os componentes estão codificados como caracteres.
+```{r}
+print(planilhas[1])
+planilha_1_2 <- read_excel_data(planilhas[1], sheet = 2)
+```
+
+Cada tabela é dividida por uma ou mais linhas em branco. Dois passos: 
+1) Criar uma nova coluna, com os números das linhas
+2) Filtrar as colunas, para capturar os números das linhas em branco
+
+```{r}
+planilha_1_2_na <- planilha_1_2 |> 
+  mutate(num_linhas = 1:nrow(planilha_1_2)) |> 
+  filter(is.na(...3))
+
+planilha_1_2_na[,c(2, ncol(planilha_1_2_na) )] 
+```
+
+O padrão é:
+- 5 linhas em branco (1:5)
+- linha com o título da tabela 1 (6)
+- linha em branco (7)
+- linhas com os dados da tabela 1 (8:11)
+- 2 linhas em branco (12 e 13)
+- linha com o título da tabela 2 (14)
+- linha em branco (15)
+- linhas com os dados da tabela 2 (16:19)
+- 2 linhas em branco (20 a 21)
+- linha com o título da tabela 3 (22)
+- linha em branco
+- linhas com os dados da tabela 3 (24:27)
+
+Ou extraindo apenas as linhas com dados:
+```{r}
+planilha_1_2_dados <- planilha_1_2 |> 
+  #mutate(num_linhas = 1:nrow(planilha_1_2)) |> 
+  filter(!is.na(...3))
+
+linhas_com_dados <- planilha_1_2_dados |> 
+  pull(num_linhas)
+
+# primeira linha com dados
+linhas_com_dados[1]
+# última linha com dados
+linhas_com_dados[length(linhas_com_dados)]
+```
+Temos uma sequencia numérica com duas quebras (de 11 a 16 e de 19 a 24). Precisamos identificar uma maneira de extrair três dataframes a partir dessas informações. 
+
+Vamos criar uma função que vai extrair os dados da worksheet 1. 
+Ela se baseia na suposição de que as é composto por tabelas de 4 linhas, em que a primeira é o título da tabela. 
+Além disso, o título das colunas indica o mês e o ano da medição, e as linhas indicam o tipo da produção.
+
+A função faz as seguintes operações:
+1) Seleciona apenas linhas e colunas com informações
+2) Seleciona linhas (input do usuário)
+3) Transforma a primeira linha em nome de coluna
+4) Organiza a tabela em formato "tidy" (cada linha passa a indicar um tipo de produção, e um mês)
+5) Parsea a data para um formato cronológico
+6) Parsea o volume para um formato numérico
+
+
+
+```{r}
+extrair_dados_ws_1 <- function(df, linhas_selec, Unidade){
+  not_all_na <- function(x) any(!is.na(x))
+  
+ dfprov1 <- df |> 
+  filter(!is.na(...3)) |> 
+  select_if(not_all_na) |> 
+  slice(linhas_selec) |> 
+  clean_names() |> 
+  row_to_names1() 
+
+ names(dfprov1)[1] <- "Tipo"
+  
+ dfprov <- dfprov1 |>   
+  gather(key = "Mes", value = "Volume", -1) |> 
+  mutate(Mes = my(Mes)) |> 
+  mutate(Volume = as.double(Volume)) |> 
+  mutate(Unidade = Unidade) 
+
+dfprov
+}
+
+df_1_2_1_f <- extrair_dados_ws_1(planilha_1_2, 1:4, "bbl")
+
+```
+
+Fazendo o percurso de extrair os dados da worksheet 2, e gerar três dataframes:
+
+```{r}
+print(planilhas[1])
+
+planilha_1_2 <- read_excel_data(planilhas[1], sheet = 2)
+
+df_ws1_1 <- extrair_dados_ws_1(planilha_1_2, 1:4, "Mbbld")
+df_ws1_1
+```
+
+
+```{r}
+df_ws1_2 <- extrair_dados_ws_1(planilha_1_2, 5:8, "MMm3d")
+df_ws1_2
+```
+
+```{r}
+df_ws1_3 <- extrair_dados_ws_1(planilha_1_2, 9:12, "Mboed")
+df_ws1_3
+```
+
+Com a função map_df já automatizamos a tarefa de buscar as informações emtodas as planilhas. A próxima tarefa é juntar essas duas funções: 
+1) Capturar o dataframe "bruto" da planilha
+2) Tratar todos dados, deixando-os de maneira "tidy" 
+3) Parsear os dados da coluna para que o R possa identificar se são datas e números
