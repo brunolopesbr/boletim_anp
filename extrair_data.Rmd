@@ -121,10 +121,11 @@ sheet1_data <- xml_prov[2,3] |>
   str_remove_all("[:punct:]") |> 
   str_remove_all(" de")
 
-mes_boletim <- paste0("01 ",sheet1_data)
+mes_boletim <- paste0("01 ",sheet1_data) |> 
+      clock::date_parse(format = "%d %B %Y",
+      locale = clock_locale("pt"))
 
-mes_boletim
-
+mes_boletim 
 
 }
 

@@ -153,11 +153,12 @@ Como se pode ver na imagem, o número de colunas varia conforme cada tabela. Ao 
 A worksheet 2 contém tabelas históricas. As três primeiras planilhas (outubro a dezembro de 2017) contém apenas três tabelas.
 
 ```{r}
-arquivos_2017 <- 1:3]
+arquivos_2017 <- 1:3
 
 map_df(planilhas[arquivos_2017], read_excel_data, sheet = 2) |> 
   filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
-  distinct()
+  distinct() |> 
+  select(...2)
 ```
 
 Para as outras planilhas a worksheet 2 contém quatro tabelas. Nas tabelas 4 a 7 percebe-se uma pequena inconsistência na nomenclatura, mas o título permite a inferência de que se tratam dos mesmos dados.
@@ -165,7 +166,8 @@ Para as outras planilhas a worksheet 2 contém quatro tabelas. Nas tabelas 4 a 7
 ```{r}
 map_df(planilhas[4], read_excel_data, sheet = 2) |> 
   filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
-  distinct()
+  distinct() |> 
+  select(...2)
 ```
 
 ```{r}
@@ -173,7 +175,8 @@ worksheet2_outras <- map_df(planilhas[8:20], read_excel_data, sheet = 2)
 
 worksheet2_outras |> 
   filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
-  distinct()
+  distinct() |> 
+  select(...2)
 ```
 
 Portanto, essas são as tabelas que constam da worksheet 2:
@@ -185,7 +188,8 @@ map_df(planilhas[arquivos_2018_diante], read_excel_data, sheet = 2) |>
   filter(if_any(2, ~ str_detect(., "Tabela"))) |>
   mutate(...2 = str_replace_all(...2, "MMm", "Mm"),
          ...2 = str_replace_all(...2, "m3", "m³")) |> 
-  distinct()
+  distinct() |> 
+  select(...2)
 ```
 
 #### Worksheet 3
@@ -195,13 +199,15 @@ A worksheet contém os dados disponibilizados mensalmente, e por isso os mais re
 ```{r}
 map_df(planilhas[arquivos_2017], read_excel_data, sheet = 3) |> 
   filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
-  distinct()
+  distinct() |> 
+  select(...2)
 ```
 Os arquivos de 2018 em diante têm as tabelas numeradas de 5 em diante (já que têm 4 tabelas na worksheet 2). Mas alguns desses arquivos possuem tabelas adicionais.
 ```{r}
 map_df(planilhas[arquivos_2018_diante], read_excel_data, sheet = 3) |> 
   filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
-  distinct()
+  distinct() |> 
+  select(...2)
 ```
 Com um for loop é possível verificar quais são os arquivos que tê uma tabela adicional na worksheet 4. 
 
@@ -225,7 +231,9 @@ arquivos_tabela_adicional_ws3 <- 33:57
 map_df(planilhas[arquivos_tabela_adicional_ws3], read_excel_data, sheet = 3) |> 
   filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
   distinct()  |> 
-    print()
+    print() |> 
+  select(...2)
+
 ```
 
 As planilhas de 4 a 32 e 58 até xxx têm tabelas numeradas de 5 a 11 na worksheet 3.
@@ -236,7 +244,8 @@ arquivos_sem_tabela_adicional_ws4 <- c(4:32, 58:77)
 map_df(planilhas[arquivos_sem_tabela_adicional_ws4], read_excel_data, sheet = 3) |> 
   filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
   distinct()  |> 
-    print()
+    print() |> 
+  select(...2)
 ```
 
 #### Worksheet 4
@@ -247,7 +256,8 @@ Usando os grupos estabelecidos anteriormente. Arquivos de 2017:
 map_df(planilhas[arquivos_2017], read_excel_data, sheet = 4) |> 
   filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
   distinct()  |> 
-    print()
+    print() |> 
+  select(...2)
 ```
 
 Arquivos numerados de 4 a 32:
@@ -256,7 +266,7 @@ Arquivos numerados de 4 a 32:
 map_df(planilhas[4:32], read_excel_data, sheet = 4) |> 
   filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
   distinct()  |> 
-    print()
+    select(...2)
 ```
 
 Arquivos com a tabela adicional:
@@ -265,8 +275,7 @@ Arquivos com a tabela adicional:
 map_df(planilhas[arquivos_tabela_adicional_ws3], read_excel_data, sheet = 4) |> 
   filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
   distinct()  |> 
-  select(...2) |> 
-    print()
+  select(...2) 
 ```
 Os arquivos numerados de 58 a 77:
 
@@ -274,7 +283,7 @@ Os arquivos numerados de 58 a 77:
 map_df(planilhas[58:77], read_excel_data, sheet = 4) |> 
   filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
   distinct()  |> 
-    print()
+    select(...2)
 ```
 
 CONCLUSÃO?????
@@ -292,14 +301,16 @@ arquivos_covid <- do.call(rbind, lista_abas) |>
   filter(str_detect(V5, "Covid")) |> 
   pull(num_linhas)
 
-
+arquivos_covid
 
 ```
+
+
 ```{r}
 
 map_df(planilhas[arquivos_covid], read_excel_data, sheet = 5) |> 
   filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
   distinct()  |> 
-    print()
+      select(...2)
 ```
 
