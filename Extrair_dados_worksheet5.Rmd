@@ -1,0 +1,72 @@
+---
+title: "Extrair dados worksheet 5"
+output: html_document
+date: "2024-06-15"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(plyr)
+library(tidyverse)
+library(readxl)
+library(qpcR)
+library(janitor)
+
+```
+
+## Arquivos com a worksheet 5
+
+Nem todas as planilhas têm dados na worksheet 5. Ela a abriga tabelas com informações da época da Covid.
+
+
+```{r}
+lista_abas <- map(planilhas[1:length(planilhas)], excel_sheets_data)  
+
+arquivos_covid <- do.call(rbind, lista_abas) |> 
+  as.data.frame() |> 
+  mutate(num_linhas = 1:length(planilhas)) |> 
+  filter(str_detect(V5, "Covid")) |> 
+  pull(num_linhas)
+
+arquivos_covid
+
+```
+Esses são os títulos das tabelas da worksheet 5, com tabelas sobre a Covid.
+
+```{r}
+
+map_df(planilhas[arquivos_covid], read_excel_data, sheet = 5) |> 
+  filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
+  distinct()  |> 
+      select(...2)
+```
+
+Verificando o número de linhas de cada planilha:
+
+```{r}
+for(i in c(31:39, 51)){
+  read_excel(paste0("data/", planilhas[i]), sheet = 5) |> 
+  nrow() |> 
+    print()
+  }
+  
+```
+```{r}
+read_excel(paste0("data/", planilhas[31]), sheet = 5)
+```
+
+```{r}
+read_excel(paste0("data/", planilhas[31]), sheet = 5) |> 
+  filter(!is.na(`4. PANDEMIA/COVID-19`))
+```
+Estrutura:
+"Tabela 20. Campos com produção interrompida temporariamente" 
+(com nomes)
+Tês linhas com totalizadores
+Tabela 21. Plataformas com produção temporariamente interrompida
+(com nomes)]
+* Observação
+Três linhas com totalizadores
