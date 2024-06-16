@@ -8,7 +8,7 @@ date: "2024-06-13"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+```{r include=FALSE}
 library(tidyverse)
 library(readxl)
 library(xml2)
@@ -156,7 +156,8 @@ mutate(mes = year_month_day_parse(
   format = "%d %B %Y",
   locale = clock_locale("pt")
 )) |> 
-  rename(mes_escrito = V1)
+  rename(mes_escrito = V1) |> 
+  mutate(numeracao = 1:nrow(df_planilhas_datas))
 
 df_planilhas_datas
 ```
@@ -177,15 +178,18 @@ A worksheet 2 contém tabelas históricas. As três primeiras planilhas (outubro
 ```{r}
 arquivos_2017 <- 1:3
 
-map_df(planilhas[arquivos_2017], read_excel_data, sheet = 2) |> 
-filtrar_titulo_tabela()
+resumo_w2_1 <- map_df(planilhas[arquivos_2017], read_excel_data, sheet = 2) |> 
+filtrar_titulo_tabela() |> 
+  mutate(grupo = "ws2_1",
+         primeiro_arquivo = 1,
+         ultimo_arquivo = 3)
 ```
 
 Para as outras planilhas a worksheet 2 contém quatro tabelas. Nas tabelas 4 a 7 percebe-se uma pequena inconsistência na nomenclatura, mas o título permite a inferência de que se tratam dos mesmos dados.
 
 ```{r}
 map_df(planilhas[4], read_excel_data, sheet = 2) |> 
-filtrar_titulo_tabela()
+filtrar_titulo_tabela() 
 ```
 
 ```{r}
@@ -200,27 +204,50 @@ Portanto, essas são as tabelas que constam da worksheet 2:
 ```{r}
 arquivos_2018_diante <- 4:length(planilhas)
 
-map_df(planilhas[arquivos_2018_diante], read_excel_data, sheet = 2) |> 
+resumo_w2_2 <-  map_df(planilhas[arquivos_2018_diante], read_excel_data, sheet = 2) |> 
     # filter(if_any(2, ~ str_detect(., "Tabela"))) |>
   mutate(...2 = str_replace_all(...2, "MMm", "Mm"),
          ...2 = str_replace_all(...2, "m3", "m³")) |> 
-  filtrar_titulo_tabela()
-  
+  filtrar_titulo_tabela() |> 
+  mutate(grupo = "ws2_2",
+         primeiro_arquivo = 4,
+         ultimo_arquivo = length(planilhas))
+resumo_w2_2  
 ```
+
+```{r}
+resumo_w2 <- bind_rows(resumo_w2_1, resumo_w2_2)
+resumo_w2
+```
+
 
 #### Worksheet 3
 
-A worksheet contém os dados disponibilizados mensalmente, e por isso os mais relevantes. Todas as worksheets de 2017 contém as mesmas tabelas de dados:
+A worksheet contém os dados disponibilizados mensalmente, e por isso os mais relevantes. Todas as worksheets de 2017 contém essas tabelas de dados:
 
 ```{r}
-map_df(planilhas[arquivos_2017], read_excel_data, sheet = 3) |> 
-filtrar_titulo_tabela()
+resumo_ws3_1 <- map_df(planilhas[arquivos_2017], read_excel_data, sheet = 3) |> 
+filtrar_titulo_tabela() |> 
+    mutate(grupo = "ws3_1",
+         primeiro_arquivo = 1,
+         ultimo_arquivo = 3)
+
+resumo_ws3_1
 ```
+
+
 Os arquivos de 2018 em diante têm as tabelas numeradas de 5 em diante (já que têm 4 tabelas na worksheet 2). Mas alguns desses arquivos possuem tabelas adicionais.
 ```{r}
 map_df(planilhas[arquivos_2018_diante], read_excel_data, sheet = 3) |> 
-  filtrar_titulo_tabela()
+  filtrar_titulo_tabela() |>
+  distinct(...2) |> 
+    mutate(grupo = "ws3_2",
+         primeiro_arquivo = 4,
+         ultimo_arquivo = length(planilhas))
+
 ```
+
+
 Usando um "for loop" é possível verificar visualmente quais são os arquivos que têm uma tabela adicional na worksheet 4. Mudando os números dos arquivos verificamos quais atendem esse critério, até chegar ao intervalo 33:57 . O output não é mostrado aqui por brevidade. 
 
 ```{r eval=FALSE, include=FALSE}
@@ -239,9 +266,13 @@ Esse é o resultado da inspeção feita com o "for loop": vemos que possuem uma 
 ```{r}
 arquivos_tabela_adicional_ws3 <- 33:57
 
-map_df(planilhas[arquivos_tabela_adicional_ws3], read_excel_data, sheet = 3) |>
-filtrar_titulo_tabela()
+resumo_ws3_3 <-  map_df(planilhas[arquivos_tabela_adicional_ws3], read_excel_data, sheet = 3) |>
+filtrar_titulo_tabela() |> 
+    mutate(grupo = "ws3_3",
+         primeiro_arquivo = 33,
+         ultimo_arquivo = 57)
 
+resumo_ws3_3
 ```
 
 As planilhas de 4 a 32 e 58 até 77 têm tabelas numeradas de 5 a 11 na worksheet 3.
@@ -249,39 +280,75 @@ As planilhas de 4 a 32 e 58 até 77 têm tabelas numeradas de 5 a 11 na workshee
 ```{r}
 arquivos_sem_tabela_adicional_ws4 <- c(4:32, 58:77)
   
-map_df(planilhas[arquivos_sem_tabela_adicional_ws4], read_excel_data, sheet = 3) |> 
-filtrar_titulo_tabela()
+resumo_ws3_2 <- map_df(planilhas[arquivos_sem_tabela_adicional_ws4], read_excel_data, sheet = 3) |> 
+filtrar_titulo_tabela() |> 
+   mutate(grupo = "ws3_2",
+         primeiro_arquivo = 4,
+         ultimo_arquivo = 32)
+
+resumo_ws3_2
+
+resumo_ws3_4 <- map_df(planilhas[arquivos_sem_tabela_adicional_ws4], read_excel_data, sheet = 3) |> 
+filtrar_titulo_tabela() |> 
+   mutate(grupo = "ws3_4",
+         primeiro_arquivo = 58,
+         ultimo_arquivo = length(planilhas))
+
+resumo_ws3_4
 ```
+
+```{r}
+resumo_ws3 <- bind_rows(resumo_ws3_1, resumo_ws3_2, resumo_ws3_3, resumo_ws3_4)
+resumo_ws3
+```
+
 
 #### Worksheet 4
 
 Usando os grupos estabelecidos anteriormente. Arquivos de 2017:
 
 ```{r}
-map_df(planilhas[arquivos_2017], read_excel_data, sheet = 4) |> 
-  filtrar_titulo_tabela()
+resumo_ws4_1 <- map_df(planilhas[arquivos_2017], read_excel_data, sheet = 4) |> 
+  filtrar_titulo_tabela() |> 
+   mutate(grupo = "ws4_1",
+         primeiro_arquivo = 1,
+         ultimo_arquivo = 3)
 ```
 
 Arquivos numerados de 4 a 32 têm tabelas numeradas de 12 a 19:
 
 ```{r}
-map_df(planilhas[4:32], read_excel_data, sheet = 4) |> 
-filtrar_titulo_tabela()
+resumo_ws4_2 <- map_df(planilhas[4:32], read_excel_data, sheet = 4) |> 
+filtrar_titulo_tabela() |> 
+   mutate(grupo = "ws4_2",
+         primeiro_arquivo = 4,
+         ultimo_arquivo = 32)
 ```
 
 Os arquivos no intervalo 33:57 têm na worksheet 4 tabelas numeradas de 11 a 18, e também tabelas adicionais:
 
 ```{r}
-map_df(planilhas[arquivos_tabela_adicional_ws3], read_excel_data, sheet = 4) |> 
-filtrar_titulo_tabela()
+resumo_ws4_3 <- map_df(planilhas[arquivos_tabela_adicional_ws3], read_excel_data, sheet = 4) |> 
+filtrar_titulo_tabela() |> 
+   mutate(grupo = "ws4_3",
+         primeiro_arquivo = 4,
+         ultimo_arquivo = 32)
 ```
 Os arquivos numerados de 58 a 77 não tem as tabelas adicionais:
 
 ```{r}
-map_df(planilhas[58:77], read_excel_data, sheet = 4) |> 
-filtrar_titulo_tabela()
+resumo_ws4_4 <- map_df(planilhas[58:77], read_excel_data, sheet = 4) |> 
+filtrar_titulo_tabela() |> 
+   mutate(grupo = "ws4_4",
+         primeiro_arquivo = 58,
+         ultimo_arquivo = length(planilhas))
 ```
 
+
+```{r}
+resumo_ws4 <- bind_rows(resumo_ws4_1, resumo_ws4_2, resumo_ws4_3, resumo_ws4_4)
+resumo_ws4
+```
 
 
 #### Worksheet 5
@@ -305,9 +372,25 @@ Esses são os títulos das tabelas da worksheet 5, com tabelas sobre a Covid.
 
 ```{r}
 
-map_df(planilhas[arquivos_covid], read_excel_data, sheet = 5) |> 
+resumo_ws5_1 <- map_df(planilhas[arquivos_covid], read_excel_data, sheet = 5) |> 
   filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
   distinct()  |> 
-      select(...2)
+      select(...2) |> 
+    mutate(grupo = "ws5_1",
+         primeiro_arquivo = arquivos_covid[1],
+         ultimo_arquivo = 39)
+
+resumo_ws5_2 <- map_df(planilhas[arquivos_covid], read_excel_data, sheet = 5) |> 
+  filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
+  distinct()  |> 
+      select(...2) |> 
+    mutate(grupo = "ws5_2",
+         primeiro_arquivo = 51,
+         ultimo_arquivo = 51)
+```
+
+```{r}
+resumo_ws5 <-bind_rows(resumo_ws5_1, resumo_ws5_2)
+resumo_ws5
 ```
 

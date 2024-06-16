@@ -19,54 +19,136 @@ library(janitor)
 
 ## Arquivos com a worksheet 5
 
-Nem todas as planilhas têm dados na worksheet 5. Ela a abriga tabelas com informações da época da Covid.
-
-
 ```{r}
-lista_abas <- map(planilhas[1:length(planilhas)], excel_sheets_data)  
-
-arquivos_covid <- do.call(rbind, lista_abas) |> 
-  as.data.frame() |> 
-  mutate(num_linhas = 1:length(planilhas)) |> 
-  filter(str_detect(V5, "Covid")) |> 
-  pull(num_linhas)
-
-arquivos_covid
-
-```
-Esses são os títulos das tabelas da worksheet 5, com tabelas sobre a Covid.
-
-```{r}
-
-map_df(planilhas[arquivos_covid], read_excel_data, sheet = 5) |> 
-  filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
-  distinct()  |> 
-      select(...2)
+resumo_ws5
 ```
 
-Verificando o número de linhas de cada planilha:
-
+Datas em que as planilhas têm worksheet 5:
 ```{r}
-for(i in c(31:39, 51)){
-  read_excel(paste0("data/", planilhas[i]), sheet = 5) |> 
-  nrow() |> 
-    print()
-  }
-  
-```
-```{r}
-read_excel(paste0("data/", planilhas[31]), sheet = 5)
+df_planilhas_datas |> 
+  filter(numeracao >= resumo_ws5$primeiro_arquivo[1] & numeracao <= resumo_ws5$ultimo_arquivo[1] | numeracao == resumo_ws5$ultimo_arquivo[3])
 ```
 
+
+Exemplo da importação da worksheet 5 de uma planilha:
 ```{r}
-read_excel(paste0("data/", planilhas[31]), sheet = 5) |> 
-  filter(!is.na(`4. PANDEMIA/COVID-19`))
+ws5_1 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = 4)
+ws5_1
 ```
+
 Estrutura:
 "Tabela 20. Campos com produção interrompida temporariamente" 
 (com nomes)
-Tês linhas com totalizadores
+
+(Linha em branco
+Linhas com totalizadores) 3 vezes
+
 Tabela 21. Plataformas com produção temporariamente interrompida
 (com nomes)]
 * Observação
-Três linhas com totalizadores
+
+(Linha em branco
+Linhas com totalizadores) 3 vezes
+
+## Importando com comando split lines
+
+```{r}
+u <- rowSums(ws5_1 == "")==ncol(ws5_1)
+
+out <- split(subset(ws5_1,!u),cumsum(u)[!u])
+
+out
+```
+```{r}
+
+linhas_vazias3 <- rowSums(is.na(ws5_1))==ncol(ws5_1)
+
+# cria várias listas. a ímpar tem o nome, a par tem 
+lista3 <- split(subset(linhas_vazias3,!linhas_vazias3),cumsum(linhas_vazias3)[!linhas_vazias3])
+
+lista3
+```
+```{r}
+## add column to indicate groups
+ws5_1$tbl_id <- cumsum(!nzchar(ws5_1$Campos))
+
+## remove blank lines
+ws5_1 <- ws5_1[nzchar(ws5_1$Campos), ]
+
+## split the data frame
+dt_s <- split(ws5_1[, -ncol(ws5_1)], ws5_1$tbl_id)
+
+dt_s
+```
+```{r}
+ws5_1 <- ws5_1 |> 
+  mutate(col2_vazia = !is.na(Operador) )
+
+n <- rowSums(is.na(ws5_1)) == ncol(ws5_1)
+cs <- cumsum(n) + 1
+s <- split(ws5_1[!n, ], cs[!n])
+
+s
+```
+```{r}
+# pegando primeira linha em branco
+ws5_1_prov <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = 4)
+
+primeira_embranco <- ws5_1_prov |> 
+  mutate(num_linha = 1:nrow(ws5_1_prov)) |> 
+  filter(is.na(Operador)) |> 
+  pull(num_linha)
+
+ws5_1_1 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = 4, n_max = primeira_embranco[1] )
+
+ws5_1_1
+
+ws5_1_2 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[1]+ 5)
+
+ws5_1_2
+
+ws5_1_3 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[2]+ 5)
+
+ws5_1_3
+
+ws5_1_4 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[3]+ 5)
+
+ws5_1_4
+
+ws5_1_5 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[4]+ 5)
+
+ws5_1_5
+
+ws5_1_6 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[5]+ 5)
+
+ws5_1_6
+
+ws5_1_7 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[6]+ 5)
+
+ws5_1_7
+
+ws5_1_8 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[7]+ 5)
+
+ws5_1_8
+
+ws5_1_9 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[8]+ 5)
+
+ws5_1_9
+
+ws5_1_9 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[9]+ 5)
+
+ws5_1_9
+
+ws5_1_10 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[10]+ 5)
+
+ws5_1_10
+
+ws5_1_11 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[11]+ 5)
+
+ws5_1_11
+
+read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[13]+ 5)
+
+
+```
+
