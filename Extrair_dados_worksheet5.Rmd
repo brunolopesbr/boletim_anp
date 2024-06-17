@@ -20,19 +20,19 @@ library(janitor)
 ## Arquivos com a worksheet 5
 
 ```{r}
-resumo_ws5
+# resumo_ws5
 ```
 
 Datas em que as planilhas têm worksheet 5:
 ```{r}
-df_planilhas_datas |> 
-  filter(numeracao >= resumo_ws5$primeiro_arquivo[1] & numeracao <= resumo_ws5$ultimo_arquivo[1] | numeracao == resumo_ws5$ultimo_arquivo[3])
+# df_planilhas_datas |> 
+#  filter(numeracao >= resumo_ws5$primeiro_arquivo[1] & numeracao <= resumo_ws5$ultimo_arquivo[1] | #numeracao == resumo_ws5$ultimo_arquivo[3])
 ```
 
 
 Exemplo da importação da worksheet 5 de uma planilha:
 ```{r}
-ws5_1 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = 4)
+ws5_1 <- read_excel(paste0("data/", planilhas[32]), sheet = 5, skip = 4)
 ws5_1
 ```
 
@@ -92,63 +92,55 @@ s
 ```
 ```{r}
 # pegando primeira linha em branco
-ws5_1_prov <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = 4)
+ws5_1_prov <- read_excel(paste0("data/", planilhas[32]), sheet = 5)
 
-primeira_embranco <- ws5_1_prov |> 
+linhas_embranco <- ws5_1_prov |> 
   mutate(num_linha = 1:nrow(ws5_1_prov)) |> 
-  filter(is.na(Operador)) |> 
+filter(is.na(...2)) |>
   pull(num_linha)
+```
+Usando k-means
 
-ws5_1_1 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = 4, n_max = primeira_embranco[1] )
+```{r}
+grupos <- kmeans(linhas_embranco, 4)
 
-ws5_1_1
+pontos_de_corte <- data.frame(
+  linhas = linhas_embranco,
+  grupos = grupos$cluster
+)
 
-ws5_1_2 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[1]+ 5)
 
-ws5_1_2
+```
 
-ws5_1_3 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[2]+ 5)
 
-ws5_1_3
+```{r}
+linhas_inicial <- pontos_de_corte |> 
+  group_by(grupos) |> 
+  slice_tail() |> 
+  arrange(linhas) |> 
+  pull(linhas)
+```
 
-ws5_1_4 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[3]+ 5)
 
-ws5_1_4
+```{r}
+linha_final <- pontos_de_corte |> 
+  group_by(grupos) |> 
+  slice_head() |> 
+  arrange(linhas) |> 
+  pull(linhas)
 
-ws5_1_5 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[4]+ 5)
+```
 
-ws5_1_5
+Usando esses pontos
 
-ws5_1_6 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[5]+ 5)
+```{r}
+ws5_1_1 <- read_excel(paste0("data/", planilhas[32]), sheet = 5, range = cell_rows(linhas_inicial[1]:linha_final[2]) )
 
-ws5_1_6
+ws5_1_2 <- read_excel(paste0("data/", planilhas[32]), sheet = 5, range = cell_rows(linhas_inicial[2]:linha_final[3]) )
 
-ws5_1_7 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[6]+ 5)
+ws5_1_3 <- read_excel(paste0("data/", planilhas[32]), sheet = 5, range = cell_rows(linhas_inicial[3]:linha_final[4]) )
 
-ws5_1_7
-
-ws5_1_8 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[7]+ 5)
-
-ws5_1_8
-
-ws5_1_9 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[8]+ 5)
-
-ws5_1_9
-
-ws5_1_9 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[9]+ 5)
-
-ws5_1_9
-
-ws5_1_10 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[10]+ 5)
-
-ws5_1_10
-
-ws5_1_11 <- read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[11]+ 5)
-
-ws5_1_11
-
-read_excel(paste0("data/", planilhas[31]), sheet = 5, skip = primeira_embranco[13]+ 5)
-
+ws5_1_3 <- read_excel(paste0("data/", planilhas[32]), sheet = 5, skip = linhas_inicial[4])
 
 ```
 

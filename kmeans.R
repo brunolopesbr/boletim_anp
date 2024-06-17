@@ -10,7 +10,9 @@ data.frame(
 
 vetor <- c(3:6, 10:14, 20:28, 32:36)
 
-resposta <- kmeans(vetor, 4, algorithm = "Lloyd")
+resposta <- kmeans(linhas_embranco, 4, algorithm = "Lloyd")
+
+resposta$cluster
 
 data.frame(
   frame = vetor,
