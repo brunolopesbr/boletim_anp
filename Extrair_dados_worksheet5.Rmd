@@ -183,10 +183,51 @@ ws6_9[[2]]
 Tabela21_char <- bind_rows(ws6_1[[2]],
 ws6_2[[2]],
 ws6_3[[2]]
-) |> 
+) 
   
 
 Tabela21
 ```
 
+```{r}
+resumo_ws5
+```
+```{r}
+planilhas_ws5 <- planilhas[arquivos_covid]
+
+importacao_ws5 <- map_df(planilhas_ws5, read_excel_data, sheet = 5)
+
+inicio_df1 <- importacao_ws5 |> 
+  mutate(num_linhas = 1:nrow(importacao_ws5)) |> 
+  filter(str_detect(...1, "Tabela 19. Campos|Tabela 20. Campos") ) |> 
+  pull(num_linhas)
+
+inicio_df2 <- importacao_ws5 |> 
+  mutate(num_linhas = 1:nrow(importacao_ws5)) |> 
+  filter(str_detect(...1, "Tabela 20. Plataformas|Tabela 21. Plataformas") ) |> 
+  pull(num_linhas)
+
+```
+
+```{r}
+read_excel_data()
+```
+
+```{r}
+
+
+
+
+```
+```{r}
+planilhas_ws5. <- planilhas_ws5 |> 
+  mutate(num_linhas = 1:nrow(planilhas_ws5)) |> 
+  filter(str_detect(...1, "Tabela") ) |> 
+  clean_names() 
+
+planilhas_ws5.[,1] |> 
+  distinct()
+
+
+```
 
