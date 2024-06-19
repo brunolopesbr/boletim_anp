@@ -209,9 +209,7 @@ inicio_df2 <- importacao_ws5 |>
 
 ```
 
-```{r}
-read_excel_data()
-```
+
 
 ```{r}
 
@@ -231,3 +229,28 @@ planilhas_ws5.[,1] |>
 
 ```
 
+```{r}
+# importa worksheet 5
+prov1 <- read_excel(paste0("data/",planilhas_ws5[1]), sheet = 5)
+
+names(prov1)[1] <- "col1"
+
+# procura inicio do primeiro df
+corte_df1 <- prov1 |> 
+  mutate(num_linhas = 1:nrow(prov1)) |> 
+  filter(str_detect(col1, "Tabela 19. Campos|Tabela 20. Campos") ) |> 
+  pull(num_linhas)
+
+# procura inicio do segundo dataframe
+corte_df2 <- prov1 |> 
+  mutate(num_linhas = 1:nrow(prov1)) |> 
+  filter(str_detect(col1, "Tabela 20. Plataformas|Tabela 21. Plataformas") ) |> 
+  pull(num_linhas)
+
+# importa primeiro df
+ read_excel(paste0("data/",planilhas_ws5[1]), sheet = 5, skip = corte_df1 + 1, n_max = corte_df2 - 5)
+ 
+ # importa segundo df
+ read_excel(paste0("data/",planilhas_ws5[1]), sheet = 5, skip = corte_df2 + 2, n_max = corte_df2)
+
+```
