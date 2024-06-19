@@ -1,0 +1,327 @@
+---
+title: "Extrair dados worksheet 5"
+output: html_document
+date: "2024-06-15"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(plyr)
+library(tidyverse)
+library(readxl)
+library(qpcR)
+library(janitor)
+
+```
+
+
+```{r}
+resumo_ws3 <- bind_rows(resumo_ws3_1, resumo_ws3_2, resumo_ws3_3, resumo_ws3_4)
+resumo_ws3 
+```
+```{r}
+
+tabelas_worksheet3 <- gdata::cbindX(resumo_ws3_1[,1], resumo_ws3_2[,1], resumo_ws3_3[,1], resumo_ws3_4[,1])
+
+```
+As quatro primeiras tabelas são iguais:
+
+```{r}
+tabelas_worksheet3[1:4,]
+```
+
+Movimentação de gás natural por destinação: apenas em três das colunas
+
+```{r}
+tabelas_worksheet3[5,2:4]
+```
+Produção dos campos do Pré-Sal (com nome diferente)
+```{r}
+
+tabelas_worksheet3[6,1]
+tabelas_worksheet3[6,2]
+tabelas_worksheet3[6,3]
+tabelas_worksheet3[6,4]
+```
+Produção dos poços do pré-sal (com nomes diferentes)
+```{r}
+
+tabelas_worksheet3[5,1]
+tabelas_worksheet3[7,2]
+tabelas_worksheet3[7,3]
+tabelas_worksheet3[7,4]
+```
+
+
+
+Outras tabelas:
+
+```{r}
+tabelas_worksheet3[8:10,1]
+```
+
+
+### Importando planilhas do grupo 1
+
+planilhas 1 a 3
+
+```{r}
+planilhas_ws3_1 <- planilhas[1:3]
+```
+```{r}
+
+ws3_1_prov <- read_excel(paste0("data/", planilhas_ws3_1[1]), sheet = 3)
+
+# Filtrando a primeira coluna e criando colunas auxiliares
+names(ws3_1_prov)[1] <- "col1"
+
+linha_inicial_1 <- which(str_detect(ws3_1_prov$col1, tabelas_worksheet3[1,1]))
+linha_inicial_2 <- which(str_detect(ws3_1_prov$col1, tabelas_worksheet3[2,1]))
+linha_inicial_3 <- which(str_detect(ws3_1_prov$col1, tabelas_worksheet3[3,1]))
+linha_inicial_4 <- which(str_detect(ws3_1_prov$col1, tabelas_worksheet3[4,1]))
+linha_inicial_5 <- which(str_detect(ws3_1_prov$col1, tabelas_worksheet3[5,1]))
+```
+
+```{r}
+planilha1_ws3 <- list(
+  
+df1 = read_excel(paste0("data/", planilhas_ws3_1[1]), sheet = 3, skip = linha_inicial_1[1]+2, n_max = linha_final[1] - (4 + 2) ), 
+
+df2 = read_excel(paste0("data/", planilhas_ws3_1[1]), sheet = 3, skip = linha_inicial_2[1]+2, n_max = linha_inicial_3[1] - linha_inicial_2[1] - 2), 
+
+df3 = read_excel(paste0("data/", planilhas_ws3_1[1]), sheet = 3, skip = linha_inicial_3[1]+2, n_max = linha_inicial_4[1] - linha_inicial_3[1] - 2 ),
+
+df4 = read_excel(paste0("data/", planilhas_ws3_1[1]), sheet = 3, skip = linha_inicial_4[1]+2, n_max = linha_inicial_5[1] - linha_inicial_4[1] - 2)
+)
+
+planilha1_ws3
+
+
+```
+
+
+
+
+
+Função personalizada:
+```{r}
+# todas as planilhas e as planilhas com WS 5
+planilhas <- dir(path = "data", pattern = "*xls*")
+
+planilhas_ws5 <- planilhas[c(32:39, 51)]
+
+
+extrair_dados_ws5 <- function(num_planilha, ajuste = 0){
+
+
+# importando planilha completa
+ws5_1_prov <- read_excel(paste0("data/", planilhas_ws5[num_planilha]), sheet = 5)
+
+
+
+# Filtrando a primeira coluna e criando colunas auxiliares
+names(ws5_1_prov)[1] <- "col1"
+ 
+ws5_1_prov <- ws5_1_prov |> 
+  mutate(num_linhas = 1:nrow(ws5_1_prov)) |> 
+  mutate(linha_inicial = str_detect(col1, "Tabela")) |>
+  mutate(em_branco = is.na(col1),
+         linha_final = em_branco + lag(em_branco) + lag(em_branco, 2)) 
+
+       
+
+# Criando tabelas com os pontos fixados
+
+linha_inicial <- ws5_1_prov |> 
+  filter(linha_inicial == TRUE) |> 
+  pull(num_linhas)
+  
+linha_final <- ws5_1_prov |> 
+  filter(linha_final > 2) |> 
+  pull(num_linhas)
+
+pontos_de_corte <- data.frame(linha_inicial = linha_inicial,
+                              linha_final = linha_final)
+
+
+
+df1 <- read_excel(paste0("data/", planilhas_ws5[1]), sheet = 5, range = cell_rows(pontos_de_corte$linha_inicial[1]+7: pontos_de_corte$linha_final[1]-4)) 
+
+
+# df1 <- read_excel(paste0("data/", planilhas_ws5[1]), sheet = 5, skip = pontos_de_corte$linha_inicial[2])
+
+df2 <- read_excel(paste0("data/", planilhas_ws5[1]), sheet = 5, skip = linha_inicial[2] + ajuste)
+
+saida <- list(df1, df2)
+
+}
+```
+
+
+```{r}
+ws5_1 <- extrair_dados_ws5(1)
+
+ws5_2 <- extrair_dados_ws5(2)
+
+ws5_3 <- extrair_dados_ws5(3)
+
+ws5_4 <- extrair_dados_ws5(4)
+
+ws5_5 <- extrair_dados_ws5(5)
+
+ws5_6 <- extrair_dados_ws5(6)
+
+ws5_7 <- extrair_dados_ws5(7)
+
+ws5_8 <- extrair_dados_ws5(8)
+
+ws5_9 <- extrair_dados_ws5(9)
+
+
+```
+
+```{r}
+# Para consertar
+ws5_1[[2]] |> head()
+ws5_2[[2]] |> head()
+ws5_3[[2]] |> head()
+```
+
+```{r}
+ws5_1 <- extrair_dados_ws5(1, ajuste = 3)
+
+ws5_2 <- extrair_dados_ws5(2, ajuste = 3)
+
+ws5_3 <- extrair_dados_ws5(3, ajuste = 3)
+```
+
+```{r}
+# Para consertar
+ws5_1[[2]] |> head()
+ws5_2[[2]] |> head()
+ws5_3[[2]] |> head()
+```
+
+
+
+
+```{r}
+ws5_4[[2]] |> head()
+ws5_5[[2]] |> head()
+ws5_6[[2]] |> head()
+ws5_7[[2]] |> head()
+ws5_8[[2]] |> head()
+ws5_9[[2]] |> head()
+
+
+
+```
+
+
+
+
+```{r}
+Tabela20 <- 
+bind_rows(ws5_1[[1]],
+ws5_2[[1]],
+ws5_3[[1]],
+ws5_4[[1]],
+ws5_5[[1]],
+ws5_6[[1]],
+ws5_7[[1]],
+ws5_8[[1]],
+ws5_9[[1]]
+) 
+
+Tabela20
+```
+```{r}
+Tabela21 <- 
+bind_rows(ws5_1[[2]],
+ws5_2[[2]],
+ws5_3[[2]],
+ws5_4[[2]],
+ws5_5[[2]],
+ws5_6[[2]],
+ws5_7[[2]],
+ws5_8[[2]],
+ws5_9[[2]]
+) 
+
+# Tabela21_char <- bind_rows(ws6_1[[2]],
+# ws6_2[[2]],
+# ws6_3[[2]]
+# ) 
+  
+
+Tabela21
+```
+
+```{r}
+resumo_ws5
+```
+```{r}
+planilhas_ws5 <- planilhas[arquivos_covid]
+
+importacao_ws5 <- map_df(planilhas_ws5, read_excel_data, sheet = 5)
+
+inicio_df1 <- importacao_ws5 |> 
+  mutate(num_linhas = 1:nrow(importacao_ws5)) |> 
+  filter(str_detect(...1, "Tabela 19. Campos|Tabela 20. Campos") ) |> 
+  pull(num_linhas)
+
+inicio_df2 <- importacao_ws5 |> 
+  mutate(num_linhas = 1:nrow(importacao_ws5)) |> 
+  filter(str_detect(...1, "Tabela 20. Plataformas|Tabela 21. Plataformas") ) |> 
+  pull(num_linhas)
+
+```
+
+
+
+```{r}
+
+
+
+
+```
+```{r}
+planilhas_ws5. <- planilhas_ws5 |> 
+  mutate(num_linhas = 1:nrow(planilhas_ws5)) |> 
+  filter(str_detect(...1, "Tabela") ) |> 
+  clean_names() 
+
+planilhas_ws5.[,1] |> 
+  distinct()
+
+
+```
+
+```{r}
+# importa worksheet 5
+prov1 <- read_excel(paste0("data/",planilhas_ws5[1]), sheet = 5)
+
+names(prov1)[1] <- "col1"
+
+# procura inicio do primeiro df
+corte_df1 <- prov1 |> 
+  mutate(num_linhas = 1:nrow(prov1)) |> 
+  filter(str_detect(col1, "Tabela 19. Campos|Tabela 20. Campos") ) |> 
+  pull(num_linhas)
+
+# procura inicio do segundo dataframe
+corte_df2 <- prov1 |> 
+  mutate(num_linhas = 1:nrow(prov1)) |> 
+  filter(str_detect(col1, "Tabela 20. Plataformas|Tabela 21. Plataformas") ) |> 
+  pull(num_linhas)
+
+# importa primeiro df
+ read_excel(paste0("data/",planilhas_ws5[1]), sheet = 5, skip = corte_df1 + 1, n_max = corte_df2 - 5)
+ 
+ # importa segundo df
+ read_excel(paste0("data/",planilhas_ws5[1]), sheet = 5, skip = corte_df2 + 2, n_max = corte_df2)
+
+```

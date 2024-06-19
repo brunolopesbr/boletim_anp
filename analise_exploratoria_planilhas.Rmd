@@ -106,10 +106,11 @@ Função personalizada que retêm os títulos das tabelas, filtrando as linhas d
 
 ```{r}
 filtrar_titulo_tabela <- function(df){
-df |> 
+df. <- df |> 
 filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
-  distinct() |> 
-  select(...2)  
+  distinct() # |> 
+  # select(...2)  
+df.[,2]  
 }
 
 ```
@@ -299,9 +300,50 @@ resumo_ws3_4
 
 ```{r}
 resumo_ws3 <- bind_rows(resumo_ws3_1, resumo_ws3_2, resumo_ws3_3, resumo_ws3_4)
-resumo_ws3
+resumo_ws3 
+```
+```{r}
+
+tabelas_worksheet3 <- gdata::cbindX(resumo_ws3_1[,1], resumo_ws3_2[,1], resumo_ws3_3[,1], resumo_ws3_4[,1])
+
+```
+As quatro primeiras tabelas são iguais:
+
+```{r}
+tabelas_worksheet3[1:4,]
 ```
 
+Movimentação de gás natural por destinação: apenas em três das colunas
+
+```{r}
+tabelas_worksheet3[5,2:4]
+```
+Produção dos campos do Pré-Sal (com nome diferente)
+```{r}
+
+tabelas_worksheet3[6,1]
+tabelas_worksheet3[6,2]
+tabelas_worksheet3[6,3]
+tabelas_worksheet3[6,4]
+```
+Produção dos poços do pré-sal (com nomes diferentes)
+```{r}
+
+tabelas_worksheet3[5,1]
+tabelas_worksheet3[7,2]
+tabelas_worksheet3[7,3]
+tabelas_worksheet3[7,4]
+```
+
+```{r}
+tabelas_worksheet3
+```
+
+Outras tabelas:
+
+```{r}
+tabelas_worksheet3[8:10,1]
+```
 
 #### Worksheet 4
 
@@ -374,23 +416,27 @@ Esses são os títulos das tabelas da worksheet 5, com tabelas sobre a Covid.
 
 resumo_ws5_1 <- map_df(planilhas[arquivos_covid], read_excel_data, sheet = 5) |> 
   filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
-  distinct()  |> 
-      select(...2) |> 
+  distinct()  # |> 
+  #    select(...2) |>
+  
+resumo_ws5_1 <-  resumo_ws5_1[,2] |> 
     mutate(grupo = "ws5_1",
          primeiro_arquivo = arquivos_covid[1],
          ultimo_arquivo = 39)
 
 resumo_ws5_2 <- map_df(planilhas[arquivos_covid], read_excel_data, sheet = 5) |> 
   filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
-  distinct()  |> 
-      select(...2) |> 
-    mutate(grupo = "ws5_2",
+  distinct() 
+  # |> 
+      # select(...2) |> 
+resumo_ws5_2 <- resumo_ws5_2[,2] |> 
+  mutate(grupo = "ws5_2",
          primeiro_arquivo = 51,
          ultimo_arquivo = 51)
 ```
 
 ```{r}
 resumo_ws5 <-bind_rows(resumo_ws5_1, resumo_ws5_2)
-resumo_ws5
+
 ```
 
