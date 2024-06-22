@@ -355,27 +355,6 @@ display: none;
 </div>
 
 
-<pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-## ✔ dplyr     1.1.4     ✔ readr     2.1.5
-## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-## ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-## ✔ purrr     1.0.2     
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
-## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<pre class="r"><code>library(readxl)
-library(xml2)
-library(XML)
-library(clock)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;clock&#39;
-## 
-## The following object is masked from &#39;package:lubridate&#39;:
-## 
-##     as_date</code></pre>
 <div id="análise-exploratória-planilhas" class="section level1">
 <h1>Análise Exploratória: planilhas</h1>
 <p>Aqui vamos explorar a maneira com que os dados estão dispostos nas
@@ -451,10 +430,11 @@ elemento:</p>
 linhas da coluna 2 que contenham a palavra “tabela”. Elimina em seguida
 as instâncias duplicadas:</p>
 <pre class="r"><code>filtrar_titulo_tabela &lt;- function(df){
-df |&gt; 
+df. &lt;- df |&gt; 
 filter(if_any(2, ~ str_detect(., &quot;Tabela&quot;))) |&gt; 
-  distinct() |&gt; 
-  select(...2)  
+  distinct() # |&gt; 
+  # select(...2)  
+df.[,2]  
 }</code></pre>
 </div>
 </div>
@@ -495,7 +475,8 @@ mutate(mes = year_month_day_parse(
   format = &quot;%d %B %Y&quot;,
   locale = clock_locale(&quot;pt&quot;)
 )) |&gt; 
-  rename(mes_escrito = V1)
+  rename(mes_escrito = V1) |&gt; 
+  mutate(numeracao = 1:nrow(df_planilhas_datas))
 
 df_planilhas_datas</code></pre>
 <pre><code>##                                                arquivos       mes_escrito
@@ -576,84 +557,84 @@ df_planilhas_datas</code></pre>
 ## 75                               2023_tabelaagosto.xlsm    01 Agosto 2023
 ## 76                             2024_tabela-janeiro.xlsm   01 Janeiro 2024
 ## 77                               2024_tabela-marco.xlsm     01 Março 2024
-##           mes
-## 1  2017-10-01
-## 2  2017-11-01
-## 3  2017-12-01
-## 4  2018-01-01
-## 5  2018-02-01
-## 6  2018-03-01
-## 7  2018-04-01
-## 8  2018-05-01
-## 9  2018-06-01
-## 10 2018-07-01
-## 11 2018-08-01
-## 12 2018-09-01
-## 13 2018-10-01
-## 14 2018-11-01
-## 15 2018-12-01
-## 16 2019-01-01
-## 17 2019-02-01
-## 18 2019-03-01
-## 19 2019-04-01
-## 20 2019-05-01
-## 21 2019-06-01
-## 22 2019-07-01
-## 23 2019-08-01
-## 24 2019-09-01
-## 25 2019-10-01
-## 26 2019-11-01
-## 27 2019-12-01
-## 28 2020-01-01
-## 29 2020-01-01
-## 30 2020-01-01
-## 31 2020-01-01
-## 32 2020-01-01
-## 33 2020-06-01
-## 34 2020-07-01
-## 35 2020-08-01
-## 36 2020-09-01
-## 37 2020-11-01
-## 38 2020-12-01
-## 39 2020-10-01
-## 40 2021-01-01
-## 41 2021-03-01
-## 42 2021-04-01
-## 43 2021-05-01
-## 44 2021-06-01
-## 45 2021-07-01
-## 46 2021-08-01
-## 47 2021-09-01
-## 48 2021-09-01
-## 49 2021-12-01
-## 50 2021-11-01
-## 51 2021-02-01
-## 52 2022-04-01
-## 53 2022-02-01
-## 54 2022-01-01
-## 55 2022-06-01
-## 56 2022-05-01
-## 57 2022-03-01
-## 58 2022-08-01
-## 59 2022-12-01
-## 60 2022-07-01
-## 61 2022-11-01
-## 62 2022-10-01
-## 63 2022-09-01
-## 64 2023-04-01
-## 65 2023-12-01
-## 66 2023-02-01
-## 67 2023-01-01
-## 68 2023-07-01
-## 69 2023-06-01
-## 70 2023-05-01
-## 71 2023-03-01
-## 72 2023-11-01
-## 73 2023-10-01
-## 74 2023-09-01
-## 75 2023-08-01
-## 76 2024-01-01
-## 77 2024-03-01</code></pre>
+##           mes numeracao
+## 1  2017-10-01         1
+## 2  2017-11-01         2
+## 3  2017-12-01         3
+## 4  2018-01-01         4
+## 5  2018-02-01         5
+## 6  2018-03-01         6
+## 7  2018-04-01         7
+## 8  2018-05-01         8
+## 9  2018-06-01         9
+## 10 2018-07-01        10
+## 11 2018-08-01        11
+## 12 2018-09-01        12
+## 13 2018-10-01        13
+## 14 2018-11-01        14
+## 15 2018-12-01        15
+## 16 2019-01-01        16
+## 17 2019-02-01        17
+## 18 2019-03-01        18
+## 19 2019-04-01        19
+## 20 2019-05-01        20
+## 21 2019-06-01        21
+## 22 2019-07-01        22
+## 23 2019-08-01        23
+## 24 2019-09-01        24
+## 25 2019-10-01        25
+## 26 2019-11-01        26
+## 27 2019-12-01        27
+## 28 2020-01-01        28
+## 29 2020-01-01        29
+## 30 2020-01-01        30
+## 31 2020-01-01        31
+## 32 2020-01-01        32
+## 33 2020-06-01        33
+## 34 2020-07-01        34
+## 35 2020-08-01        35
+## 36 2020-09-01        36
+## 37 2020-11-01        37
+## 38 2020-12-01        38
+## 39 2020-10-01        39
+## 40 2021-01-01        40
+## 41 2021-03-01        41
+## 42 2021-04-01        42
+## 43 2021-05-01        43
+## 44 2021-06-01        44
+## 45 2021-07-01        45
+## 46 2021-08-01        46
+## 47 2021-09-01        47
+## 48 2021-09-01        48
+## 49 2021-12-01        49
+## 50 2021-11-01        50
+## 51 2021-02-01        51
+## 52 2022-04-01        52
+## 53 2022-02-01        53
+## 54 2022-01-01        54
+## 55 2022-06-01        55
+## 56 2022-05-01        56
+## 57 2022-03-01        57
+## 58 2022-08-01        58
+## 59 2022-12-01        59
+## 60 2022-07-01        60
+## 61 2022-11-01        61
+## 62 2022-10-01        62
+## 63 2022-09-01        63
+## 64 2023-04-01        64
+## 65 2023-12-01        65
+## 66 2023-02-01        66
+## 67 2023-01-01        67
+## 68 2023-07-01        68
+## 69 2023-06-01        69
+## 70 2023-05-01        70
+## 71 2023-03-01        71
+## 72 2023-11-01        72
+## 73 2023-10-01        73
+## 74 2023-09-01        74
+## 75 2023-08-01        75
+## 76 2024-01-01        76
+## 77 2024-03-01        77</code></pre>
 <p>A tabela mostra a consistência entre o nome do arquivo e o mês da
 conta. Também mostra que falta o mês de fevereiro.</p>
 <p>Não é uma prática amigável para o usuário escrever a data a que se
@@ -678,19 +659,16 @@ palavra chave “tabela”</p>
 (outubro a dezembro de 2017) contém apenas três tabelas.</p>
 <pre class="r"><code>arquivos_2017 &lt;- 1:3
 
-map_df(planilhas[arquivos_2017], read_excel_data, sheet = 2) |&gt; 
-filtrar_titulo_tabela()</code></pre>
-<pre><code>## # A tibble: 3 × 1
-##   ...2                                                                    
-##   &lt;chr&gt;                                                                   
-## 1 Tabela 1. Histórico de Produção de Petróleo – Óleo e Condensado (Mbbl/d)
-## 2 Tabela 2. Histórico de Produção de Gás Natural – GASA e GASN (MMm³/d)   
-## 3 Tabela 3. Histórico de Produção de Petróleo e Gás Natural (Mboe/d)</code></pre>
+resumo_w2_1 &lt;- map_df(planilhas[arquivos_2017], read_excel_data, sheet = 2) |&gt; 
+filtrar_titulo_tabela() |&gt; 
+  mutate(grupo = &quot;ws2_1&quot;,
+         primeiro_arquivo = 1,
+         ultimo_arquivo = 3)</code></pre>
 <p>Para as outras planilhas a worksheet 2 contém quatro tabelas. Nas
 tabelas 4 a 7 percebe-se uma pequena inconsistência na nomenclatura, mas
 o título permite a inferência de que se tratam dos mesmos dados.</p>
 <pre class="r"><code>map_df(planilhas[4], read_excel_data, sheet = 2) |&gt; 
-filtrar_titulo_tabela()</code></pre>
+filtrar_titulo_tabela() </code></pre>
 <pre><code>## # A tibble: 4 × 1
 ##   ...2                                                                    
 ##   &lt;chr&gt;                                                                   
@@ -712,59 +690,86 @@ filtrar_titulo_tabela()</code></pre>
 <p>Portanto, essas são as tabelas que constam da worksheet 2:</p>
 <pre class="r"><code>arquivos_2018_diante &lt;- 4:length(planilhas)
 
-map_df(planilhas[arquivos_2018_diante], read_excel_data, sheet = 2) |&gt; 
+resumo_w2_2 &lt;-  map_df(planilhas[arquivos_2018_diante], read_excel_data, sheet = 2) |&gt; 
     # filter(if_any(2, ~ str_detect(., &quot;Tabela&quot;))) |&gt;
   mutate(...2 = str_replace_all(...2, &quot;MMm&quot;, &quot;Mm&quot;),
          ...2 = str_replace_all(...2, &quot;m3&quot;, &quot;m³&quot;)) |&gt; 
-  filtrar_titulo_tabela()</code></pre>
-<pre><code>## # A tibble: 4 × 1
-##   ...2                                                                    
-##   &lt;chr&gt;                                                                   
-## 1 Tabela 1. Histórico de produção de petróleo – óleo e condensado (Mbbl/d)
-## 2 Tabela 2. Histórico de produção de gás natural – GASA e GASN (Mm³/d)    
-## 3 Tabela 3. Histórico da movimentação da gás natural (Mm³/d)              
-## 4 Tabela 4. Histórico de produção de petróleo e gás natural (Mboe/d)</code></pre>
+  filtrar_titulo_tabela() |&gt; 
+  mutate(grupo = &quot;ws2_2&quot;,
+         primeiro_arquivo = 4,
+         ultimo_arquivo = length(planilhas))
+resumo_w2_2  </code></pre>
+<pre><code>## # A tibble: 4 × 4
+##   ...2                                     grupo primeiro_arquivo ultimo_arquivo
+##   &lt;chr&gt;                                    &lt;chr&gt;            &lt;dbl&gt;          &lt;int&gt;
+## 1 Tabela 1. Histórico de produção de petr… ws2_2                4             77
+## 2 Tabela 2. Histórico de produção de gás … ws2_2                4             77
+## 3 Tabela 3. Histórico da movimentação da … ws2_2                4             77
+## 4 Tabela 4. Histórico de produção de petr… ws2_2                4             77</code></pre>
+<pre class="r"><code>resumo_w2 &lt;- bind_rows(resumo_w2_1, resumo_w2_2)</code></pre>
+<pre><code>## New names:
+## New names:
+## • `...2` -&gt; `...1`</code></pre>
+<pre class="r"><code>resumo_w2</code></pre>
+<pre><code>## # A tibble: 7 × 4
+##   ...1                                     grupo primeiro_arquivo ultimo_arquivo
+##   &lt;chr&gt;                                    &lt;chr&gt;            &lt;dbl&gt;          &lt;dbl&gt;
+## 1 Tabela 1. Histórico de Produção de Petr… ws2_1                1              3
+## 2 Tabela 2. Histórico de Produção de Gás … ws2_1                1              3
+## 3 Tabela 3. Histórico de Produção de Petr… ws2_1                1              3
+## 4 Tabela 1. Histórico de produção de petr… ws2_2                4             77
+## 5 Tabela 2. Histórico de produção de gás … ws2_2                4             77
+## 6 Tabela 3. Histórico da movimentação da … ws2_2                4             77
+## 7 Tabela 4. Histórico de produção de petr… ws2_2                4             77</code></pre>
 </div>
 <div id="worksheet-3" class="section level4">
 <h4>Worksheet 3</h4>
 <p>A worksheet contém os dados disponibilizados mensalmente, e por isso
-os mais relevantes. Todas as worksheets de 2017 contém as mesmas tabelas
-de dados:</p>
-<pre class="r"><code>map_df(planilhas[arquivos_2017], read_excel_data, sheet = 3) |&gt; 
-filtrar_titulo_tabela()</code></pre>
-<pre><code>## # A tibble: 13 × 1
-##    ...2                                                                         
-##    &lt;chr&gt;                                                                        
-##  1 Tabela 4. Distribuição da Produção de Petróleo e Gás Natural por Estado      
-##  2 Tabela 5. Distribuição da Produção de Petróleo e Gás Natural por Bacia       
-##  3 Tabela 6. Distribuição da Produção de Petróleo e Gás Natural por Operador    
-##  4 Tabela 7. Distribuição da Produção de Petróleo e Gás Natural por Concessioná…
-##  5 Tabela 8. Produção de Poços do Pré-Sal¹                                      
-##  6 Tabela 9. Produção de Campos do Pré-sal¹                                     
-##  7 Tabela 10. Histórico de Produção de Petróleo e Gás Natural em Terra (Mboe/d) 
-##  8 Tabela 11. Os 30 Poços Terrestres com Maior Produção de Petróleo (bbl/d)     
-##  9 Tabela 12. Os 30 Poços Perrestres com Maior Produção de Gás Natural (Mm³/d)  
-## 10 Tabela 13. Os 30 Poços com Maior Produção de Petróleo (bbl/d)                
-## 11 Tabela 14. Os 30 Poços com Maior Produção de Gás Natural (Mm³/d)             
-## 12 Tabela 15. Os 30 Poços com Maior Produção Total (boe/d)                      
-## 13 Tabela 16. As 30 Plataformas com Maior Produção</code></pre>
+os mais relevantes. Todas as worksheets de 2017 contém essas tabelas de
+dados:</p>
+<pre class="r"><code>resumo_ws3_1 &lt;- map_df(planilhas[arquivos_2017], read_excel_data, sheet = 3) |&gt; 
+filtrar_titulo_tabela() |&gt; 
+    mutate(grupo = &quot;ws3_1&quot;,
+         primeiro_arquivo = 1,
+         ultimo_arquivo = 3)
+
+resumo_ws3_1</code></pre>
+<pre><code>## # A tibble: 13 × 4
+##    ...2                                    grupo primeiro_arquivo ultimo_arquivo
+##    &lt;chr&gt;                                   &lt;chr&gt;            &lt;dbl&gt;          &lt;dbl&gt;
+##  1 Tabela 4. Distribuição da Produção de … ws3_1                1              3
+##  2 Tabela 5. Distribuição da Produção de … ws3_1                1              3
+##  3 Tabela 6. Distribuição da Produção de … ws3_1                1              3
+##  4 Tabela 7. Distribuição da Produção de … ws3_1                1              3
+##  5 Tabela 8. Produção de Poços do Pré-Sal¹ ws3_1                1              3
+##  6 Tabela 9. Produção de Campos do Pré-sa… ws3_1                1              3
+##  7 Tabela 10. Histórico de Produção de Pe… ws3_1                1              3
+##  8 Tabela 11. Os 30 Poços Terrestres com … ws3_1                1              3
+##  9 Tabela 12. Os 30 Poços Perrestres com … ws3_1                1              3
+## 10 Tabela 13. Os 30 Poços com Maior Produ… ws3_1                1              3
+## 11 Tabela 14. Os 30 Poços com Maior Produ… ws3_1                1              3
+## 12 Tabela 15. Os 30 Poços com Maior Produ… ws3_1                1              3
+## 13 Tabela 16. As 30 Plataformas com Maior… ws3_1                1              3</code></pre>
 <p>Os arquivos de 2018 em diante têm as tabelas numeradas de 5 em diante
 (já que têm 4 tabelas na worksheet 2). Mas alguns desses arquivos
 possuem tabelas adicionais.</p>
 <pre class="r"><code>map_df(planilhas[arquivos_2018_diante], read_excel_data, sheet = 3) |&gt; 
-  filtrar_titulo_tabela()</code></pre>
-<pre><code>## # A tibble: 9 × 1
-##   ...2                                                                          
-##   &lt;chr&gt;                                                                         
-## 1 Tabela 5. Distribuição da produção de petróleo e gás natural por estado       
-## 2 Tabela 6. Distribuição da produção de petróleo e gás natural por bacia        
-## 3 Tabela 7. Distribuição da produção de petróleo e gás natural por operador     
-## 4 Tabela 8. Distribuição da produção de petróleo e gás natural por concessionár…
-## 5 Tabela 9. Movimentação de gás natural por destinação (Mm³/d)                  
-## 6 Tabela 10. Distribuição da produção dos campos do Pré-sal¹                    
-## 7 Tabela 11. Produção dos poços do Pré-sal¹                                     
-## 8 Tabela 11. Produção dos poços do Pré-sal¹                                     
-## 9 Tabela Adicional 1. Produção dos poços do Pré-sal¹ (antiga tabela 11 do BMP)</code></pre>
+  filtrar_titulo_tabela() |&gt;
+  distinct(...2) |&gt; 
+    mutate(grupo = &quot;ws3_2&quot;,
+         primeiro_arquivo = 4,
+         ultimo_arquivo = length(planilhas))</code></pre>
+<pre><code>## # A tibble: 8 × 4
+##   ...2                                     grupo primeiro_arquivo ultimo_arquivo
+##   &lt;chr&gt;                                    &lt;chr&gt;            &lt;dbl&gt;          &lt;int&gt;
+## 1 Tabela 5. Distribuição da produção de p… ws3_2                4             77
+## 2 Tabela 6. Distribuição da produção de p… ws3_2                4             77
+## 3 Tabela 7. Distribuição da produção de p… ws3_2                4             77
+## 4 Tabela 8. Distribuição da produção de p… ws3_2                4             77
+## 5 Tabela 9. Movimentação de gás natural p… ws3_2                4             77
+## 6 Tabela 10. Distribuição da produção dos… ws3_2                4             77
+## 7 Tabela 11. Produção dos poços do Pré-sa… ws3_2                4             77
+## 8 Tabela Adicional 1. Produção dos poços … ws3_2                4             77</code></pre>
 <p>Usando um “for loop” é possível verificar visualmente quais são os
 arquivos que têm uma tabela adicional na worksheet 4. Mudando os números
 dos arquivos verificamos quais atendem esse critério, até chegar ao
@@ -774,100 +779,245 @@ possuem uma tabela adicional os arquivos numerados de 33 a 57 (de junho
 de 2020 a março de 2022).</p>
 <pre class="r"><code>arquivos_tabela_adicional_ws3 &lt;- 33:57
 
-map_df(planilhas[arquivos_tabela_adicional_ws3], read_excel_data, sheet = 3) |&gt;
-filtrar_titulo_tabela()</code></pre>
-<pre><code>## # A tibble: 7 × 1
-##   ...2                                                                          
-##   &lt;chr&gt;                                                                         
-## 1 Tabela 5. Distribuição da produção de petróleo e gás natural por estado       
-## 2 Tabela 6. Distribuição da produção de petróleo e gás natural por bacia        
-## 3 Tabela 7. Distribuição da produção de petróleo e gás natural por operador     
-## 4 Tabela 8. Distribuição da produção de petróleo e gás natural por concessionár…
-## 5 Tabela 9. Movimentação de gás natural por destinação (Mm³/d)                  
-## 6 Tabela 10. Distribuição da produção dos campos do Pré-sal¹                    
-## 7 Tabela Adicional 1. Produção dos poços do Pré-sal¹ (antiga tabela 11 do BMP)</code></pre>
+resumo_ws3_3 &lt;-  map_df(planilhas[arquivos_tabela_adicional_ws3], read_excel_data, sheet = 3) |&gt;
+filtrar_titulo_tabela() |&gt; 
+    mutate(grupo = &quot;ws3_3&quot;,
+         primeiro_arquivo = 33,
+         ultimo_arquivo = 57)
+
+resumo_ws3_3</code></pre>
+<pre><code>## # A tibble: 7 × 4
+##   ...2                                     grupo primeiro_arquivo ultimo_arquivo
+##   &lt;chr&gt;                                    &lt;chr&gt;            &lt;dbl&gt;          &lt;dbl&gt;
+## 1 Tabela 5. Distribuição da produção de p… ws3_3               33             57
+## 2 Tabela 6. Distribuição da produção de p… ws3_3               33             57
+## 3 Tabela 7. Distribuição da produção de p… ws3_3               33             57
+## 4 Tabela 8. Distribuição da produção de p… ws3_3               33             57
+## 5 Tabela 9. Movimentação de gás natural p… ws3_3               33             57
+## 6 Tabela 10. Distribuição da produção dos… ws3_3               33             57
+## 7 Tabela Adicional 1. Produção dos poços … ws3_3               33             57</code></pre>
 <p>As planilhas de 4 a 32 e 58 até 77 têm tabelas numeradas de 5 a 11 na
 worksheet 3.</p>
 <pre class="r"><code>arquivos_sem_tabela_adicional_ws4 &lt;- c(4:32, 58:77)
   
-map_df(planilhas[arquivos_sem_tabela_adicional_ws4], read_excel_data, sheet = 3) |&gt; 
-filtrar_titulo_tabela()</code></pre>
-<pre><code>## # A tibble: 8 × 1
-##   ...2                                                                          
-##   &lt;chr&gt;                                                                         
-## 1 Tabela 5. Distribuição da produção de petróleo e gás natural por estado       
-## 2 Tabela 6. Distribuição da produção de petróleo e gás natural por bacia        
-## 3 Tabela 7. Distribuição da produção de petróleo e gás natural por operador     
-## 4 Tabela 8. Distribuição da produção de petróleo e gás natural por concessionár…
-## 5 Tabela 9. Movimentação de gás natural por destinação (Mm³/d)                  
-## 6 Tabela 10. Distribuição da produção dos campos do Pré-sal¹                    
-## 7 Tabela 11. Produção dos poços do Pré-sal¹                                     
-## 8 Tabela 11. Produção dos poços do Pré-sal¹</code></pre>
+resumo_ws3_2 &lt;- map_df(planilhas[arquivos_sem_tabela_adicional_ws4], read_excel_data, sheet = 3) |&gt; 
+filtrar_titulo_tabela() |&gt; 
+   mutate(grupo = &quot;ws3_2&quot;,
+         primeiro_arquivo = 4,
+         ultimo_arquivo = 32)
+
+resumo_ws3_2</code></pre>
+<pre><code>## # A tibble: 8 × 4
+##   ...2                                     grupo primeiro_arquivo ultimo_arquivo
+##   &lt;chr&gt;                                    &lt;chr&gt;            &lt;dbl&gt;          &lt;dbl&gt;
+## 1 Tabela 5. Distribuição da produção de p… ws3_2                4             32
+## 2 Tabela 6. Distribuição da produção de p… ws3_2                4             32
+## 3 Tabela 7. Distribuição da produção de p… ws3_2                4             32
+## 4 Tabela 8. Distribuição da produção de p… ws3_2                4             32
+## 5 Tabela 9. Movimentação de gás natural p… ws3_2                4             32
+## 6 Tabela 10. Distribuição da produção dos… ws3_2                4             32
+## 7 Tabela 11. Produção dos poços do Pré-sa… ws3_2                4             32
+## 8 Tabela 11. Produção dos poços do Pré-sa… ws3_2                4             32</code></pre>
+<pre class="r"><code>resumo_ws3_4 &lt;- map_df(planilhas[arquivos_sem_tabela_adicional_ws4], read_excel_data, sheet = 3) |&gt; 
+filtrar_titulo_tabela() |&gt; 
+   mutate(grupo = &quot;ws3_4&quot;,
+         primeiro_arquivo = 58,
+         ultimo_arquivo = length(planilhas))
+
+resumo_ws3_4</code></pre>
+<pre><code>## # A tibble: 8 × 4
+##   ...2                                     grupo primeiro_arquivo ultimo_arquivo
+##   &lt;chr&gt;                                    &lt;chr&gt;            &lt;dbl&gt;          &lt;int&gt;
+## 1 Tabela 5. Distribuição da produção de p… ws3_4               58             77
+## 2 Tabela 6. Distribuição da produção de p… ws3_4               58             77
+## 3 Tabela 7. Distribuição da produção de p… ws3_4               58             77
+## 4 Tabela 8. Distribuição da produção de p… ws3_4               58             77
+## 5 Tabela 9. Movimentação de gás natural p… ws3_4               58             77
+## 6 Tabela 10. Distribuição da produção dos… ws3_4               58             77
+## 7 Tabela 11. Produção dos poços do Pré-sa… ws3_4               58             77
+## 8 Tabela 11. Produção dos poços do Pré-sa… ws3_4               58             77</code></pre>
+<pre class="r"><code>resumo_ws3 &lt;- bind_rows(resumo_ws3_1, resumo_ws3_2, resumo_ws3_3, resumo_ws3_4)</code></pre>
+<pre><code>## New names:
+## New names:
+## New names:
+## New names:
+## • `...2` -&gt; `...1`</code></pre>
+<pre class="r"><code>resumo_ws3 </code></pre>
+<pre><code>## # A tibble: 36 × 4
+##    ...1                                    grupo primeiro_arquivo ultimo_arquivo
+##    &lt;chr&gt;                                   &lt;chr&gt;            &lt;dbl&gt;          &lt;dbl&gt;
+##  1 Tabela 4. Distribuição da Produção de … ws3_1                1              3
+##  2 Tabela 5. Distribuição da Produção de … ws3_1                1              3
+##  3 Tabela 6. Distribuição da Produção de … ws3_1                1              3
+##  4 Tabela 7. Distribuição da Produção de … ws3_1                1              3
+##  5 Tabela 8. Produção de Poços do Pré-Sal¹ ws3_1                1              3
+##  6 Tabela 9. Produção de Campos do Pré-sa… ws3_1                1              3
+##  7 Tabela 10. Histórico de Produção de Pe… ws3_1                1              3
+##  8 Tabela 11. Os 30 Poços Terrestres com … ws3_1                1              3
+##  9 Tabela 12. Os 30 Poços Perrestres com … ws3_1                1              3
+## 10 Tabela 13. Os 30 Poços com Maior Produ… ws3_1                1              3
+## # ℹ 26 more rows</code></pre>
+<pre class="r"><code>tabelas_worksheet3 &lt;- gdata::cbindX(resumo_ws3_1[,1], resumo_ws3_2[,1], resumo_ws3_3[,1], resumo_ws3_4[,1])</code></pre>
+<p>As quatro primeiras tabelas são iguais:</p>
+<pre class="r"><code>tabelas_worksheet3[1:4,]</code></pre>
+<pre><code>##                                                                              ...2
+## 1         Tabela 4. Distribuição da Produção de Petróleo e Gás Natural por Estado
+## 2          Tabela 5. Distribuição da Produção de Petróleo e Gás Natural por Bacia
+## 3       Tabela 6. Distribuição da Produção de Petróleo e Gás Natural por Operador
+## 4 Tabela 7. Distribuição da Produção de Petróleo e Gás Natural por Concessionário
+##                                                                              ...2
+## 1         Tabela 5. Distribuição da produção de petróleo e gás natural por estado
+## 2          Tabela 6. Distribuição da produção de petróleo e gás natural por bacia
+## 3       Tabela 7. Distribuição da produção de petróleo e gás natural por operador
+## 4 Tabela 8. Distribuição da produção de petróleo e gás natural por concessionário
+##                                                                              ...2
+## 1         Tabela 5. Distribuição da produção de petróleo e gás natural por estado
+## 2          Tabela 6. Distribuição da produção de petróleo e gás natural por bacia
+## 3       Tabela 7. Distribuição da produção de petróleo e gás natural por operador
+## 4 Tabela 8. Distribuição da produção de petróleo e gás natural por concessionário
+##                                                                              ...2
+## 1         Tabela 5. Distribuição da produção de petróleo e gás natural por estado
+## 2          Tabela 6. Distribuição da produção de petróleo e gás natural por bacia
+## 3       Tabela 7. Distribuição da produção de petróleo e gás natural por operador
+## 4 Tabela 8. Distribuição da produção de petróleo e gás natural por concessionário</code></pre>
+<p>Movimentação de gás natural por destinação: apenas em três das
+colunas</p>
+<pre class="r"><code>tabelas_worksheet3[5,2:4]</code></pre>
+<pre><code>##                                                           ...2
+## 5 Tabela 9. Movimentação de gás natural por destinação (Mm³/d)
+##                                                         ...2.1
+## 5 Tabela 9. Movimentação de gás natural por destinação (Mm³/d)
+##                                                         ...2.2
+## 5 Tabela 9. Movimentação de gás natural por destinação (Mm³/d)</code></pre>
+<p>Produção dos campos do Pré-Sal (com nome diferente)</p>
+<pre class="r"><code>tabelas_worksheet3[6,1]</code></pre>
+<pre><code>## [1] &quot;Tabela 9. Produção de Campos do Pré-sal¹&quot;</code></pre>
+<pre class="r"><code>tabelas_worksheet3[6,2]</code></pre>
+<pre><code>## [1] &quot;Tabela 10. Distribuição da produção dos campos do Pré-sal¹&quot;</code></pre>
+<pre class="r"><code>tabelas_worksheet3[6,3]</code></pre>
+<pre><code>## [1] &quot;Tabela 10. Distribuição da produção dos campos do Pré-sal¹&quot;</code></pre>
+<pre class="r"><code>tabelas_worksheet3[6,4]</code></pre>
+<pre><code>## [1] &quot;Tabela 10. Distribuição da produção dos campos do Pré-sal¹&quot;</code></pre>
+<p>Produção dos poços do pré-sal (com nomes diferentes)</p>
+<pre class="r"><code>tabelas_worksheet3[5,1]</code></pre>
+<pre><code>## [1] &quot;Tabela 8. Produção de Poços do Pré-Sal¹&quot;</code></pre>
+<pre class="r"><code>tabelas_worksheet3[7,2]</code></pre>
+<pre><code>## [1] &quot;Tabela 11. Produção dos poços do Pré-sal¹&quot;</code></pre>
+<pre class="r"><code>tabelas_worksheet3[7,3]</code></pre>
+<pre><code>## [1] &quot;Tabela Adicional 1. Produção dos poços do Pré-sal¹ (antiga tabela 11 do BMP)&quot;</code></pre>
+<pre class="r"><code>tabelas_worksheet3[7,4]</code></pre>
+<pre><code>## [1] &quot;Tabela 11. Produção dos poços do Pré-sal¹&quot;</code></pre>
+<pre class="r"><code>tabelas_worksheet3</code></pre>
+<pre><code>##                                                                               ...2
+## 1          Tabela 4. Distribuição da Produção de Petróleo e Gás Natural por Estado
+## 2           Tabela 5. Distribuição da Produção de Petróleo e Gás Natural por Bacia
+## 3        Tabela 6. Distribuição da Produção de Petróleo e Gás Natural por Operador
+## 4  Tabela 7. Distribuição da Produção de Petróleo e Gás Natural por Concessionário
+## 5                                          Tabela 8. Produção de Poços do Pré-Sal¹
+## 6                                         Tabela 9. Produção de Campos do Pré-sal¹
+## 7     Tabela 10. Histórico de Produção de Petróleo e Gás Natural em Terra (Mboe/d)
+## 8         Tabela 11. Os 30 Poços Terrestres com Maior Produção de Petróleo (bbl/d)
+## 9      Tabela 12. Os 30 Poços Perrestres com Maior Produção de Gás Natural (Mm³/d)
+## 10                   Tabela 13. Os 30 Poços com Maior Produção de Petróleo (bbl/d)
+## 11                Tabela 14. Os 30 Poços com Maior Produção de Gás Natural (Mm³/d)
+## 12                         Tabela 15. Os 30 Poços com Maior Produção Total (boe/d)
+## 13                                 Tabela 16. As 30 Plataformas com Maior Produção
+##                                                                               ...2
+## 1          Tabela 5. Distribuição da produção de petróleo e gás natural por estado
+## 2           Tabela 6. Distribuição da produção de petróleo e gás natural por bacia
+## 3        Tabela 7. Distribuição da produção de petróleo e gás natural por operador
+## 4  Tabela 8. Distribuição da produção de petróleo e gás natural por concessionário
+## 5                     Tabela 9. Movimentação de gás natural por destinação (Mm³/d)
+## 6                       Tabela 10. Distribuição da produção dos campos do Pré-sal¹
+## 7                                        Tabela 11. Produção dos poços do Pré-sal¹
+## 8                                        Tabela 11. Produção dos poços do Pré-sal¹
+## 9                                                                             &lt;NA&gt;
+## 10                                                                            &lt;NA&gt;
+## 11                                                                            &lt;NA&gt;
+## 12                                                                            &lt;NA&gt;
+## 13                                                                            &lt;NA&gt;
+##                                                                               ...2
+## 1          Tabela 5. Distribuição da produção de petróleo e gás natural por estado
+## 2           Tabela 6. Distribuição da produção de petróleo e gás natural por bacia
+## 3        Tabela 7. Distribuição da produção de petróleo e gás natural por operador
+## 4  Tabela 8. Distribuição da produção de petróleo e gás natural por concessionário
+## 5                     Tabela 9. Movimentação de gás natural por destinação (Mm³/d)
+## 6                       Tabela 10. Distribuição da produção dos campos do Pré-sal¹
+## 7     Tabela Adicional 1. Produção dos poços do Pré-sal¹ (antiga tabela 11 do BMP)
+## 8                                                                             &lt;NA&gt;
+## 9                                                                             &lt;NA&gt;
+## 10                                                                            &lt;NA&gt;
+## 11                                                                            &lt;NA&gt;
+## 12                                                                            &lt;NA&gt;
+## 13                                                                            &lt;NA&gt;
+##                                                                               ...2
+## 1          Tabela 5. Distribuição da produção de petróleo e gás natural por estado
+## 2           Tabela 6. Distribuição da produção de petróleo e gás natural por bacia
+## 3        Tabela 7. Distribuição da produção de petróleo e gás natural por operador
+## 4  Tabela 8. Distribuição da produção de petróleo e gás natural por concessionário
+## 5                     Tabela 9. Movimentação de gás natural por destinação (Mm³/d)
+## 6                       Tabela 10. Distribuição da produção dos campos do Pré-sal¹
+## 7                                        Tabela 11. Produção dos poços do Pré-sal¹
+## 8                                        Tabela 11. Produção dos poços do Pré-sal¹
+## 9                                                                             &lt;NA&gt;
+## 10                                                                            &lt;NA&gt;
+## 11                                                                            &lt;NA&gt;
+## 12                                                                            &lt;NA&gt;
+## 13                                                                            &lt;NA&gt;</code></pre>
+<p>Outras tabelas:</p>
+<pre class="r"><code>tabelas_worksheet3[8:10,1]</code></pre>
+<pre><code>## [1] &quot;Tabela 11. Os 30 Poços Terrestres com Maior Produção de Petróleo (bbl/d)&quot;   
+## [2] &quot;Tabela 12. Os 30 Poços Perrestres com Maior Produção de Gás Natural (Mm³/d)&quot;
+## [3] &quot;Tabela 13. Os 30 Poços com Maior Produção de Petróleo (bbl/d)&quot;</code></pre>
 </div>
 <div id="worksheet-4" class="section level4">
 <h4>Worksheet 4</h4>
 <p>Usando os grupos estabelecidos anteriormente. Arquivos de 2017:</p>
-<pre class="r"><code>map_df(planilhas[arquivos_2017], read_excel_data, sheet = 4) |&gt; 
-  filtrar_titulo_tabela()</code></pre>
-<pre><code>## # A tibble: 3 × 1
-##   ...2                                                                      
-##   &lt;chr&gt;                                                                     
-## 1 Tabela 17. Histórico de Queima de Gás Natural nos Últimos 12 Meses (Mm³/d)
-## 2 Tabela 18. Distribuição da Movimentação de Gás Natural (Mm³/d)            
-## 3 Tabela 19. Os 20 Campos que Mais Queimaram Gás Natural Neste Mês</code></pre>
+<pre class="r"><code>resumo_ws4_1 &lt;- map_df(planilhas[arquivos_2017], read_excel_data, sheet = 4) |&gt; 
+  filtrar_titulo_tabela() |&gt; 
+   mutate(grupo = &quot;ws4_1&quot;,
+         primeiro_arquivo = 1,
+         ultimo_arquivo = 3)</code></pre>
 <p>Arquivos numerados de 4 a 32 têm tabelas numeradas de 12 a 19:</p>
-<pre class="r"><code>map_df(planilhas[4:32], read_excel_data, sheet = 4) |&gt; 
-filtrar_titulo_tabela()</code></pre>
-<pre><code>## # A tibble: 8 × 1
-##   ...2                                                                        
-##   &lt;chr&gt;                                                                       
-## 1 Tabela 12. Os 30 poços com maior produção de petróleo (bbl/d)               
-## 2 Tabela 13. Os 30 poços com maior produção de gás natural (Mm³/d)            
-## 3 Tabela 14. Os 30 poços com maior produção total (boe/d)                     
-## 4 Tabela 15. Os 30 poços  terrestres com maior produção de petróleo (bbl/d)   
-## 5 Tabela 16. Os 30 poços  terrestres com maior produção de gás natural (Mm³/d)
-## 6 Tabela 17. As 30 instalações com maior produção de petróleo (bbl/d)         
-## 7 Tabela 18. As 30 instalações com maior produção de gás natural (Mm³/d)      
-## 8 Tabela 19. Os 20 campos com maior queima este mês</code></pre>
+<pre class="r"><code>resumo_ws4_2 &lt;- map_df(planilhas[4:32], read_excel_data, sheet = 4) |&gt; 
+filtrar_titulo_tabela() |&gt; 
+   mutate(grupo = &quot;ws4_2&quot;,
+         primeiro_arquivo = 4,
+         ultimo_arquivo = 32)</code></pre>
 <p>Os arquivos no intervalo 33:57 têm na worksheet 4 tabelas numeradas
 de 11 a 18, e também tabelas adicionais:</p>
-<pre class="r"><code>map_df(planilhas[arquivos_tabela_adicional_ws3], read_excel_data, sheet = 4) |&gt; 
-filtrar_titulo_tabela()</code></pre>
-<pre><code>## # A tibble: 18 × 1
-##    ...2                                                                         
-##    &lt;chr&gt;                                                                        
-##  1 Tabela 11. Os 30 poços com maior produção de petróleo (bbl/d)                
-##  2 Tabela 12. Os 30 poços com maior produção de gás natural (Mm³/d)             
-##  3 Tabela 13. Os 30 poços com maior produção total (boe/d)                      
-##  4 Tabela 14. Os 30 poços  terrestres com maior produção de petróleo (bbl/d)    
-##  5 Tabela 15. Os 30 poços  terrestres com maior produção de gás natural (Mm³/d) 
-##  6 Tabela 16. As 30 instalações com maior produção de petróleo (bbl/d)          
-##  7 Tabela 17. As 30 instalações com maior produção de gás natural (Mm³/d)       
-##  8 Tabela 18. Os 20 campos com maior queima este mês                            
-##  9 Tabela Adicional 2. Os 20 campos marítimos com maior produção acumulada de p…
-## 10 Tabela Adicional 3. Os 20 campos marítimos com maior produção acumulada de g…
-## 11 Tabela Adicional 4. Os 20 campos marítimos com maior produção total acumulad…
-## 12 Tabela Adicional 5. Os 20 campos terrestres com maior produção acumulada de …
-## 13 Tabela Adicional 6. Os 20 campos terrestres com maior produção acumulada de …
-## 14 Tabela Adicional 7. Os 20 campos terrestres com maior produção acumulada de …
-## 15 Tabela Adicional 8. Os 20 campos marítimos com maior média histórica anual d…
-## 16 Tabela Adicional 8. Os 20 campos terrestres com maior média histórica anual …
-## 17 Tabela Adicional 7. Os 20 campos terrestres com maior produção total acumula…
-## 18 Tabela Adicional 9. Os 20 campos terrestres com maior média histórica anual …</code></pre>
+<pre class="r"><code>resumo_ws4_3 &lt;- map_df(planilhas[arquivos_tabela_adicional_ws3], read_excel_data, sheet = 4) |&gt; 
+filtrar_titulo_tabela() |&gt; 
+   mutate(grupo = &quot;ws4_3&quot;,
+         primeiro_arquivo = 4,
+         ultimo_arquivo = 32)</code></pre>
 <p>Os arquivos numerados de 58 a 77 não tem as tabelas adicionais:</p>
-<pre class="r"><code>map_df(planilhas[58:77], read_excel_data, sheet = 4) |&gt; 
-filtrar_titulo_tabela()</code></pre>
-<pre><code>## # A tibble: 8 × 1
-##   ...2                                                                        
-##   &lt;chr&gt;                                                                       
-## 1 Tabela 11. Os 30 poços com maior produção de petróleo (bbl/d)               
-## 2 Tabela 12. Os 30 poços com maior produção de gás natural (Mm³/d)            
-## 3 Tabela 13. Os 30 poços com maior produção total (boe/d)                     
-## 4 Tabela 14. Os 30 poços  terrestres com maior produção de petróleo (bbl/d)   
-## 5 Tabela 15. Os 30 poços  terrestres com maior produção de gás natural (Mm³/d)
-## 6 Tabela 16. As 30 instalações com maior produção de petróleo (bbl/d)         
-## 7 Tabela 17. As 30 instalações com maior produção de gás natural (Mm³/d)      
-## 8 Tabela 18. Os 20 campos com maior queima este mês</code></pre>
+<pre class="r"><code>resumo_ws4_4 &lt;- map_df(planilhas[58:77], read_excel_data, sheet = 4) |&gt; 
+filtrar_titulo_tabela() |&gt; 
+   mutate(grupo = &quot;ws4_4&quot;,
+         primeiro_arquivo = 58,
+         ultimo_arquivo = length(planilhas))</code></pre>
+<pre class="r"><code>resumo_ws4 &lt;- bind_rows(resumo_ws4_1, resumo_ws4_2, resumo_ws4_3, resumo_ws4_4)</code></pre>
+<pre><code>## New names:
+## New names:
+## New names:
+## New names:
+## • `...2` -&gt; `...1`</code></pre>
+<pre class="r"><code>resumo_ws4</code></pre>
+<pre><code>## # A tibble: 37 × 4
+##    ...1                                    grupo primeiro_arquivo ultimo_arquivo
+##    &lt;chr&gt;                                   &lt;chr&gt;            &lt;dbl&gt;          &lt;dbl&gt;
+##  1 Tabela 17. Histórico de Queima de Gás … ws4_1                1              3
+##  2 Tabela 18. Distribuição da Movimentaçã… ws4_1                1              3
+##  3 Tabela 19. Os 20 Campos que Mais Queim… ws4_1                1              3
+##  4 Tabela 12. Os 30 poços com maior produ… ws4_2                4             32
+##  5 Tabela 13. Os 30 poços com maior produ… ws4_2                4             32
+##  6 Tabela 14. Os 30 poços com maior produ… ws4_2                4             32
+##  7 Tabela 15. Os 30 poços  terrestres com… ws4_2                4             32
+##  8 Tabela 16. Os 30 poços  terrestres com… ws4_2                4             32
+##  9 Tabela 17. As 30 instalações com maior… ws4_2                4             32
+## 10 Tabela 18. As 30 instalações com maior… ws4_2                4             32
+## # ℹ 27 more rows</code></pre>
 </div>
 <div id="worksheet-5" class="section level4">
 <h4>Worksheet 5</h4>
@@ -888,15 +1038,29 @@ arquivos_covid &lt;- do.call(rbind, lista_abas) |&gt;
 <pre><code>##  [1] 31 32 33 34 35 36 37 38 39 51</code></pre>
 <p>Esses são os títulos das tabelas da worksheet 5, com tabelas sobre a
 Covid.</p>
-<pre class="r"><code>map_df(planilhas[arquivos_covid], read_excel_data, sheet = 5) |&gt; 
+<pre class="r"><code>resumo_ws5_1 &lt;- map_df(planilhas[arquivos_covid], read_excel_data, sheet = 5) |&gt; 
   filter(if_any(2, ~ str_detect(., &quot;Tabela&quot;))) |&gt; 
-  distinct()  |&gt; 
-      select(...2)</code></pre>
-<pre><code>## # A tibble: 2 × 1
-##   ...2                                                            
-##   &lt;chr&gt;                                                           
-## 1 Tabela 20. Campos com produção interrompida temporariamente     
-## 2 Tabela 21. Plataformas com produção temporariamente interrompida</code></pre>
+  distinct()  # |&gt; 
+  #    select(...2) |&gt;
+  
+resumo_ws5_1 &lt;-  resumo_ws5_1[,2] |&gt; 
+    mutate(grupo = &quot;ws5_1&quot;,
+         primeiro_arquivo = arquivos_covid[1],
+         ultimo_arquivo = 39)
+
+resumo_ws5_2 &lt;- map_df(planilhas[arquivos_covid], read_excel_data, sheet = 5) |&gt; 
+  filter(if_any(2, ~ str_detect(., &quot;Tabela&quot;))) |&gt; 
+  distinct() 
+  # |&gt; 
+      # select(...2) |&gt; 
+resumo_ws5_2 &lt;- resumo_ws5_2[,2] |&gt; 
+  mutate(grupo = &quot;ws5_2&quot;,
+         primeiro_arquivo = 51,
+         ultimo_arquivo = 51)</code></pre>
+<pre class="r"><code>resumo_ws5 &lt;-bind_rows(resumo_ws5_1, resumo_ws5_2)</code></pre>
+<pre><code>## New names:
+## New names:
+## • `...2` -&gt; `...1`</code></pre>
 </div>
 </div>
 </div>

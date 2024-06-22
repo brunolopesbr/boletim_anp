@@ -135,56 +135,24 @@ Fazer a iteração em map, e gerar uma lista
 
 ```{r warning=FALSE}
 lista_datas <- map(1:length(planilhas), extrair_data)
-
-
 ```
 
-Transformar a lista em dataframe e parsear vetor como datas
-```{r}
-lista_datas2 <- do.call(rbind, lista_datas)
-
-df_planilhas_datas <- data.frame(arquivos = planilhas,
-           mes = as.data.frame(lista_datas2)) 
-
-df_planilhas_datas <- df_planilhas_datas |> 
-mutate(mes = year_month_day_parse(
-  V1,
-  format = "%d %B %Y",
-  locale = clock_locale("pt")
-)) |> 
-  rename(mes_escrito = V1)
-
-df_planilhas_datas  
+Transformar a lista em dataframe: 
+```{r warning=FALSE}
+lista_datas_df <- as.tibble(lista_datas, .name_repair = "unique") |> 
+  mutate(col1 = 0)
 ```
-
+Transpor valores e colocar valor como data:
 
 ```{r warning=FALSE}
-extrair_data(76)
+df_planilhas_datas <- lista_datas_df |> 
+  pivot_longer(cols = !col1, names_to = "numero", values_to = "mes") |> 
+  mutate(numero = str_remove_all(numero, "...")) |> 
+  mutate(planilha = planilhas)
 
-
-invisible(file.copy(from = paste0("data/", planilhas[76]), to = paste0("data/zip/", planilhas_zip[76]), overwrite = TRUE))
-
-unzip(zipfile = paste0("data/zip/", planilhas_zip[76]), exdir = "data/zip", overwrite = TRUE)
-
-xml_prov <- xmlParse("data/zip/xl/drawings/drawing1.xml") |> 
-  xmlToDataFrame()
-
-xml_prov[2,3] |> 
-  str_remove_all("/.*") |> 
-    str_trim() |> 
-  str_remove_all("[:punct:]") |> 
-  str_remove_all(" de")
-
-sheet1_data <- xml_prov[2,3] |> 
-  str_remove_all("/.*") |> 
-    str_trim() |> 
-  str_remove_all("[:punct:]") |> 
-  str_remove_all(" de")
-
-mes_boletim <- paste0("01 ",sheet1_data)
-
-mes_boletim
+df_planilhas_datas
 ```
 
-Uma nota: nos dois meses de 2024 a data passou a ser registrada como "Janeiro de 2024", e não "Dezembro de 2023", como era feito anteriormente. Isso levou a uma mudança na função "extrair datas", que passou a retirar o texto " de" do vetor.
+
+
 
