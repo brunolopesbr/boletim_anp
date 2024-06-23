@@ -102,6 +102,198 @@ list(df1, df2, df3, df4, df5)
 
 ```
 
+Criando uma lista para todas as worksheets 5:
+
+```{r}
+worksheet5 <- list()
+```
+
+
+```{r eval=FALSE, include=FALSE}
+# worksheet5[1] <- extrair_dados_ws3(num = 1, ajuste = 2, sheet = 3)
+
+# worksheet5[[2]] <- extrair_dados_ws3(num = 2, ajuste = 2, sheet = 3)
+
+# worksheet5[1]
+```
+
+
+
+```{r}
+i <- 1
+while (i < length(planilhas) + 1) {
+ worksheet5[[i]] <- extrair_dados_ws3(num = i, ajuste = 2, sheet = 3)  
+  i <- i + 1
+}
+```
+
+```{r}
+names(as.data.frame(worksheet5[[1]][[1]])) 
+names(as.data.frame(worksheet5[[2]][[1]]))
+names(as.data.frame(worksheet5[[3]][[1]]))
+
+# nome de uma coluna é diferente! "Nº Campos Produtores" e "Nº Campos produtores"
+```
+
+Mudando o nome do componente da lista:
+```{r}
+# nome original
+colnames(as.data.frame(worksheet5[[1]][1]))
+
+colnames(as.data.frame(worksheet5[[2]][1]))
+
+colnames(worksheet5[[1]][[1]]) <- colnames(as.data.frame(worksheet5[[2]][[1]]))
+
+colnames(as.data.frame(worksheet5[[1]][1]))
+colnames(as.data.frame(worksheet5[[2]][1]))
+```
+Renomeando colunas
+
+
+```{r}
+nomes_colunas <- colnames(as.data.frame(worksheet5[[2]][[1]]))
+
+i <- 1
+
+while (i < length(planilhas) + 1) {
+colnames(worksheet5[[i]][[1]]) <- nomes_colunas 
+  i <- i + 1
+}
+
+```
+
+
+
+```{r}
+rbind(worksheet5[[1]][[1]],
+      worksheet5[[2]][[1]],
+      worksheet5[[3]][[1]],
+      worksheet5[[4]][[1]])
+```
+
+```{r}
+# Selecionar o elemento 1 da lista:
+# lapply(worksheet5, `[[`, 1)
+```
+
+
+```{r}
+
+do.call(rbind, lapply(worksheet5, `[[`, 1))
+
+
+```
+# Criando uma função para extrair cada elemento da lista
+
+```{r}
+rbind_dfs <- function(df, i = 1)
+    do.call(rbind, lapply(df, `[[`, i))
+
+bind_rows_dfs <- function(df, i = 1)
+    do.call(bind_rows, lapply(df, `[[`, i))
+
+```
+
+```{r}
+bind_dfs(worksheet5, 1)
+```
+```{r}
+rbind_dfs(worksheet5, 2)
+
+```
+# Nome de colunas está diferente, consertando:
+
+```{r}
+nomes_colunas <- colnames(as.data.frame(worksheet5[[2]][[2]]))
+
+i <- 1
+
+while (i < length(planilhas) + 1) {
+colnames(worksheet5[[i]][[2]]) <- nomes_colunas 
+  i <- i + 1
+}
+```
+
+```{r}
+rbind_dfs(worksheet5, 2)
+```
+
+
+```{r}
+rbind_dfs(worksheet5, 3)
+```
+
+```{r}
+rbind_dfs(worksheet5, 4)
+```
+
+Algo errado, verificar:
+```{r}
+i <- 1
+
+while (i < length(planilhas) + 1) {
+worksheet5[[i]][[4]] |> 
+    ncol() |> print()
+  i <- i + 1
+}
+```
+Corrigir planilha problemática:
+```{r}
+# Elemento problemático:
+worksheet5[[73]][[4]]
+
+# Com esse range, não é importado texto que causou erro: 
+problematico <- read_excel(paste0("data/", planilhas[73]), sheet = 3, range = "B101:F175") |> 
+  mutate(data = df_planilhas_datas$mes[73]) 
+
+
+worksheet5[[73]][[4]] <- problematico
+```
+
+```{r}
+rbind_dfs(worksheet5, 4)
+
+```
+# Não consegue combinar "Campo" importado como número
+```{r}
+bind_rows_dfs(worksheet5[1:75], 5)
+
+
+```
+
+```{r}
+i <- 1
+
+while (i < length(planilhas) + 1) {
+worksheet5[[i]][[5]] |> 
+    print()  
+  i <- i + 1
+}
+```
+
+```{r}
+bind_rows_dfs(worksheet5[1:3], 5)
+```
+```{r}
+bind_rows_dfs(worksheet5[4:77], 5)
+
+# Elementos problemáticos:
+worksheet5[[76]][[5]]
+
+worksheet5[[77]][[5]]
+
+
+# Com esse range, não é importado texto que causou erro: 
+problematico1 <- read_excel(paste0("data/", planilhas[76]), sheet = 3, range = "B182:F185") |> 
+  mutate(data = df_planilhas_datas$mes[76])
+
+problematico1 <- read_excel(paste0("data/", planilhas[73]), sheet = 3, range = "B101:F175") |> 
+  mutate(data = df_planilhas_datas$mes[73])
+
+```
+
+
+= = = = 
 
 ```{r message=FALSE, warning=FALSE}
 assign(paste0("ws3_plan", 10),  extrair_dados_ws3(num = 4, sheet = 3))

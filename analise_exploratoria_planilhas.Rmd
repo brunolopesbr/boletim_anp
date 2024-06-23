@@ -392,6 +392,13 @@ resumo_ws4 <- bind_rows(resumo_ws4_1, resumo_ws4_2, resumo_ws4_3, resumo_ws4_4)
 resumo_ws4
 ```
 
+```{r}
+resumo_ws4_1 |> nrow()
+resumo_ws4_2 |> nrow()
+resumo_ws4_3 |> nrow()
+resumo_ws4_4 |> nrow()
+```
+
 
 #### Worksheet 5
 

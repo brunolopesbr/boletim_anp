@@ -150,7 +150,7 @@ df_planilhas_datas <- lista_datas_df |>
   mutate(numero = str_remove_all(numero, "...")) |> 
   mutate(planilha = planilhas)
 
-df_planilhas_datas
+df_planilhas_datas[,-1]
 ```
 
 
