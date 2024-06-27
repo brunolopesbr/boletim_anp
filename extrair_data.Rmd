@@ -142,17 +142,57 @@ Transformar a lista em dataframe:
 lista_datas_df <- as.tibble(lista_datas, .name_repair = "unique") |> 
   mutate(col1 = 0)
 ```
-Transpor valores e colocar valor como data:
+Criando uma função para extrair os dados
 
-```{r warning=FALSE}
-df_planilhas_datas <- lista_datas_df |> 
-  pivot_longer(cols = !col1, names_to = "numero", values_to = "mes") |> 
-  mutate(numero = str_remove_all(numero, "...")) |> 
-  mutate(planilha = planilhas)
+```{r}
+prov1 <- read_excel(paste0("data/", planilhas[1]), sheet = 2)
 
-df_planilhas_datas[,-1]
+names(prov1)[1] <- "col1"
+
+corte <- which(str_detect(prov1$col1, "Tabela [0-9]*"))
+
+maximo_linha <- corte - lag(corte)
+
+# Extrair tabela 1, na ws2
+df1 <- read_excel(paste0("data/", planilhas[1]), sheet = 2, skip = corte[2] + 2, n_max = maximo_linha[2] -2 )
+
+data_ws1 <- names(df1)[length(df1)]
+
+lubridate::my(data_ws1)
+planilhas[1]
 ```
 
+
+```{r}
+
+
+extrair_data_ws2 <- function(num){
+
+prov1 <- read_excel(paste0("data/", planilhas[num]), sheet = 2, .name_repair = "unique_quiet")
+
+names(prov1)[1] <- "col1"
+
+corte <- which(str_detect(prov1$col1, "Tabela [0-9]*"))
+
+maximo_linha <- corte - lag(corte)
+
+# Extrair tabela 1, na ws2
+df1 <- read_excel(paste0("data/", planilhas[num]), sheet = 2, ,skip = corte[2] + 2, n_max = maximo_linha[2] -2, .name_repair = "unique_quiet")
+
+data_ws1 <- names(df1)[length(df1)]
+
+data_ws1 <- lubridate::my(data_ws1)
+DF2 <- tibble(data_ws1)
+DF2
+}
+
+```
+
+```{r warning=FALSE}
+
+
+
+```
 
 
 
