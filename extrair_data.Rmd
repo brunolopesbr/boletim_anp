@@ -182,8 +182,8 @@ df1 <- read_excel(paste0("data/", planilhas[num]), sheet = 2, ,skip = corte[2] +
 data_ws1 <- names(df1)[length(df1)]
 
 data_ws1 <- lubridate::my(data_ws1)
-DF2 <- tibble(data_ws1)
-DF2
+df2 <- tibble(data_ws1)
+df2
 }
 
 ```
