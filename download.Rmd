@@ -1,0 +1,154 @@
+---
+title: "Download"
+author: "BML"
+date: "2024-07-03"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libraries}
+library(tidyverse)
+library(rvest)
+library(robotstxt)
+```
+
+```{r}
+url <- "https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/boletins/boletim-mensal-da-producao-de-petroleo-e-gas-natural"
+
+resultado_bots <- paths_allowed(
+  paths  = "/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/boletins/boletim-mensal-da-producao-de-petroleo-e-gas-natural", 
+  domain = "www.gov.br", 
+  bot    = "*"
+)
+
+
+
+{
+  if (resultado_bots == FALSE) {stop("Robots not allowed, so the script must end here")}
+  
+  print("Robots allowed. Continue to next line in the script.")
+}
+
+```
+
+## Iniciar o webscrapping
+
+Imprimir para o console o objeto capturado na URL
+```{r}
+boletim_anp <- read_html(url)
+
+```
+
+Podemos usar o <div class="conteudo">, e em seguida reter apenas o que está à direita do elemento "a". E em seguida obter os links pelo atributo "href". E, e 
+
+```{r}
+
+links. <- boletim_anp |> 
+  html_elements(".conteudo") |> 
+  html_elements("a") |> 
+  html_attr("href") 
+  
+```
+
+Por uma prévia análise, sabemos que devemos adicionar um link ao arquivo. Par essa análise, consultar arquivo "Verificar_links.Rmd"
+```{r}
+
+link_quebrado1 <- "https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/boletins/arquivos-bmppgn/2020/2020-06-boletim.xlsm"
+
+links <- c(links., link_quebrado1)
+
+```
+
+## Gerar arquivo de nomes
+```{r}
+caminho <- "https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/boletins/arquivos-bmppgn/"
+caminho2 <- "https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/"
+
+nomes_arquivos <- links |> 
+  str_remove_all(caminho) |>
+  str_remove_all(caminho2) |> 
+  str_replace_all("/", "_") |> 
+  str_replace_all("2021_2021", "2021") |> 
+  str_replace_all("2020_2020", "2020") |> 
+  str_replace_all("2019_2019", "2019") |>
+  str_replace_all("2018_2018", "2018") |>
+  str_replace_all("2017_2017", "2017") |>
+  str_replace_all("2016_2016", "2016") |>
+  str_replace_all("2015_2015", "2015") |>
+  str_replace_all("2014_2014", "2014") |>
+  str_replace_all("2013_2013", "2013") |>
+  str_replace_all("2012_2012", "2012") |> 
+  str_replace_all("2011_2011", "2011") |> 
+  str_replace_all("2010_2010", "2010") 
+```
+
+
+Verificar se há arquivos baixados no diretório "Data"
+```{r}
+planilhas <- dir(path = "data")
+
+# planilhas2 <- dir(path = "data2")
+```
+
+Criar elemento para baixar novos arquivos
+```{r}
+'%!in%' <- function(x,y)!('%in%'(x,y))
+
+nomes_novos <- nomes_arquivos[nomes_arquivos %!in% planilhas]
+
+links_novos <- links[nomes_arquivos %!in% planilhas]
+```
+Criar função para baixar arquivos:
+```{r}
+# criando uma função para baixar no modo binário (wb)
+
+download_arquivos <- function(x,y){download.file(url = x, destfile =y, mode = "wb")}
+
+# criando uma função lenta, para evitar o timeout
+
+atraso <- rate_delay(5)
+download_lento <- slowly(download_arquivos, atraso)
+
+# tentar de novo em caso de erro
+download_insistente <- insistently(download_lento, rate = rate_backoff(60))
+```
+
+Ponto em que é feito o download de todos os arquivos, ou apenas dos novos
+```{r}
+{ if (length(links_novos) == 0 ) {stop("Arquivos mais recentes foram baixados"}
+  
+  # Condição em que todos os arquivos são baixados
+  else if (length(planilhas) == 0) {map2(links, nomes_arquivos, download_insistente)}
+  
+  # Condição em que apenas novos arquivos são baixados
+  else {map2(links_novos, nomes_novos, download_insistente)}
+  
+}
+
+# função map equivalente ao for loop anterior, ativar para baixar todos os arquivos
+# map2(links_novos, nomes_arquivos_novos, download_lento)
+```
+Em seguida, todos os arquivos serão colocados no diretório "data"
+
+```{r}
+
+arquivos_planilhas <- list.files(pattern = "xlsm")
+arquivos_pdf <- list.files(pattern = "pdf")
+
+# custom function
+mover_arquivos <- function(x){
+  file.rename( from = file.path(x) ,
+               to = file.path("data", x) )
+}
+
+mover_arquivos(arquivos_planilhas)
+mover_arquivos(arquivos_pdf)
+```
+
