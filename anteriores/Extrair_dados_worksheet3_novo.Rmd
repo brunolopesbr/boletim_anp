@@ -1,0 +1,431 @@
+---
+title: "Extrair dados worksheet 3"
+output: html_document
+date: "2024-06-15"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(xml2)
+library(XML)
+library(clock)
+```
+
+```{r}
+planilhas <- dir(path = "data", pattern = "*xls*")
+planilhas_ws3_grupo1 <- planilhas[1:3]
+planilhas_ws3_grupo2 <- planilhas[4:32]
+planilhas_ws3_grupo3 <- planilhas[33:57]
+planilhas_ws3_grupo4 <- planilhas[58:77]
+
+planilhas_ws3 <- c(planilhas_ws3_grupo1,  planilhas_ws3_grupo2,  planilhas_ws3_grupo3, planilhas_ws3_grupo4)
+```
+
+```{r}
+filtrar_titulo_tabela <- function(df){
+df. <- df |> 
+filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
+  distinct() # |> 
+  # select(...2)  
+df.[,2]  
+}
+
+read_excel_data  <- function(x,sheet = 1, range = "A1:J1000", skip = 0){
+  read_xlsx(paste0("data/", x), col_types = "text",
+             sheet = sheet,
+              range = range,
+                skip = skip,
+               col_names = FALSE,
+               .name_repair = "unique_quiet",)
+}
+```
+
+
+
+Criando uma função para extrair os dados
+
+```{r}
+
+extrair_dados_ws3 <- function(num, ajuste = 2, ajuste2 = -2, sheet = 3){
+
+data_planilha <- df_planilhas_datas$mes[num]
+
+prov1 <- read_excel(paste0("data/", planilhas[num]), sheet = sheet)
+
+names(prov1)[1] <- "col1"
+
+corte <- which(str_detect(prov1$col1, "Tabela [0-9]*"))
+
+maximo_linha <- corte - lag(corte)
+
+df1 <- read_excel(paste0("data/", planilhas[num]), sheet = sheet, skip = corte[1] + ajuste, n_max = maximo_linha[2] + ajuste2) |> 
+  mutate(data = data_planilha) 
+
+df2 <- read_excel(paste0("data/", planilhas[num]), sheet = sheet, skip = corte[1 + 1] + ajuste, n_max = maximo_linha[3] + ajuste2) |> 
+  mutate(data = data_planilha)
+  sheet
+df3 <- read_excel(paste0("data/", planilhas[num]), sheet = sheet, skip = corte[1 + 2] + ajuste, n_max = maximo_linha[4] + ajuste2) |> 
+  mutate(data = data_planilha)
+  
+df4 <- read_excel(paste0("data/", planilhas[num]), sheet = sheet, skip = corte[1 + 3] + ajuste, n_max = maximo_linha[5] + ajuste2) |> 
+  mutate(data = data_planilha)  
+  
+df5 <- read_excel(paste0("data/", planilhas[num]), sheet = sheet, skip = corte[1 + 4] + ajuste, n_max = maximo_linha[6] + ajuste2) |> 
+  mutate(data = data_planilha)    
+  
+# df6 <- read_excel(paste0("data/", planilhas[num]), sheet = sheet, skip = corte[1 + 5] + ajuste, n_max = maximo_linha[7] + ajuste2) |> 
+#  mutate(data = data_planilha)
+
+# df7 <- read_excel(paste0("data/", planilhas[num]), sheet = sheet, skip = corte[1 + 6] + ajuste, n_max = maximo_linha[8] + ajuste2) |> 
+#  mutate(data = data_planilha)
+
+# df8 <- read_excel(paste0("data/", planilhas[num]), sheet = sheet, skip = corte[1 + 7] + ajuste, n_max = maximo_linha[9] + ajuste2) |> 
+#  mutate(data = data_planilha)
+
+# df9 <- read_excel(paste0("data/", planilhas[num]), sheet = sheet, skip = corte[1 + 8] + ajuste, n_max = maximo_linha[10] + ajuste2) |> 
+#  mutate(data = data_planilha)
+  
+# df10 <-  read_excel(paste0("data/", planilhas[1]), sheet = sheet, skip = corte[1+9] + ajuste) |> 
+#  mutate(data = data_planilha)
+
+
+
+list(df1, df2, df3, df4, df5)
+
+}
+
+```
+
+Criando uma lista para todas as worksheets 5:
+
+```{r}
+worksheet5 <- list()
+```
+
+
+```{r eval=FALSE, include=FALSE}
+# worksheet5[1] <- extrair_dados_ws3(num = 1, ajuste = 2, sheet = 3)
+
+# worksheet5[[2]] <- extrair_dados_ws3(num = 2, ajuste = 2, sheet = 3)
+
+# worksheet5[1]
+```
+
+
+
+```{r}
+i <- 1
+while (i < length(planilhas) + 1) {
+ worksheet5[[i]] <- extrair_dados_ws3(num = i, ajuste = 2, sheet = 3)  
+  i <- i + 1
+}
+```
+
+```{r}
+names(as.data.frame(worksheet5[[1]][[1]])) 
+names(as.data.frame(worksheet5[[2]][[1]]))
+names(as.data.frame(worksheet5[[3]][[1]]))
+
+# nome de uma coluna é diferente! "Nº Campos Produtores" e "Nº Campos produtores"
+```
+
+Mudando o nome do componente da lista:
+```{r}
+# nome original
+colnames(as.data.frame(worksheet5[[1]][1]))
+
+colnames(as.data.frame(worksheet5[[2]][1]))
+
+colnames(worksheet5[[1]][[1]]) <- colnames(as.data.frame(worksheet5[[2]][[1]]))
+
+colnames(as.data.frame(worksheet5[[1]][1]))
+colnames(as.data.frame(worksheet5[[2]][1]))
+```
+Renomeando colunas
+
+
+```{r}
+nomes_colunas <- colnames(as.data.frame(worksheet5[[2]][[1]]))
+
+i <- 1
+
+while (i < length(planilhas) + 1) {
+colnames(worksheet5[[i]][[1]]) <- nomes_colunas 
+  i <- i + 1
+}
+
+```
+
+
+
+```{r}
+rbind(worksheet5[[1]][[1]],
+      worksheet5[[2]][[1]],
+      worksheet5[[3]][[1]],
+      worksheet5[[4]][[1]])
+```
+
+```{r}
+# Selecionar o elemento 1 da lista:
+# lapply(worksheet5, `[[`, 1)
+```
+
+
+```{r}
+
+do.call(rbind, lapply(worksheet5, `[[`, 1))
+
+
+```
+# Criando uma função para extrair cada elemento da lista
+
+```{r}
+rbind_dfs <- function(df, i = 1)
+    do.call(rbind, lapply(df, `[[`, i))
+
+bind_rows_dfs <- function(df, i = 1)
+    do.call(bind_rows, lapply(df, `[[`, i))
+
+```
+
+```{r}
+bind_dfs(worksheet5, 1)
+```
+```{r}
+rbind_dfs(worksheet5, 2)
+
+```
+# Nome de colunas está diferente, consertando:
+
+```{r}
+nomes_colunas <- colnames(as.data.frame(worksheet5[[2]][[2]]))
+
+i <- 1
+
+while (i < length(planilhas) + 1) {
+colnames(worksheet5[[i]][[2]]) <- nomes_colunas 
+  i <- i + 1
+}
+```
+
+```{r}
+rbind_dfs(worksheet5, 2)
+```
+
+
+```{r}
+rbind_dfs(worksheet5, 3)
+```
+
+```{r}
+rbind_dfs(worksheet5, 4)
+```
+
+Algo errado, verificar:
+```{r}
+i <- 1
+
+while (i < length(planilhas) + 1) {
+worksheet5[[i]][[4]] |> 
+    ncol() |> print()
+  i <- i + 1
+}
+```
+Corrigir planilha problemática:
+```{r}
+# Elemento problemático:
+worksheet5[[73]][[4]]
+
+# Com esse range, não é importado texto que causou erro: 
+problematico <- read_excel(paste0("data/", planilhas[73]), sheet = 3, range = "B101:F175") |> 
+  mutate(data = df_planilhas_datas$mes[73]) 
+
+
+worksheet5[[73]][[4]] <- problematico
+```
+
+```{r}
+rbind_dfs(worksheet5, 4)
+
+```
+# Não consegue combinar "Campo" importado como número
+```{r}
+bind_rows_dfs(worksheet5[1:75], 5)
+
+
+```
+
+```{r}
+i <- 1
+
+while (i < length(planilhas) + 1) {
+worksheet5[[i]][[5]] |> 
+    print()  
+  i <- i + 1
+}
+```
+
+```{r}
+bind_rows_dfs(worksheet5[1:3], 5)
+```
+```{r}
+bind_rows_dfs(worksheet5[4:77], 5)
+
+# Elementos problemáticos:
+worksheet5[[76]][[5]]
+
+worksheet5[[77]][[5]]
+
+
+# Com esse range, não é importado texto que causou erro: 
+problematico1 <- read_excel(paste0("data/", planilhas[76]), sheet = 3, range = "B182:F185") |> 
+  mutate(data = df_planilhas_datas$mes[76])
+
+problematico1 <- read_excel(paste0("data/", planilhas[73]), sheet = 3, range = "B101:F175") |> 
+  mutate(data = df_planilhas_datas$mes[73])
+
+```
+
+
+= = = = 
+
+```{r message=FALSE, warning=FALSE}
+assign(paste0("ws3_plan", 10),  extrair_dados_ws3(num = 4, sheet = 3))
+
+ws3_plan4
+```
+
+
+```{r message=FALSE, warning=FALSE}
+
+i <- 1
+while (i < length(planilhas) + 1) {
+assign(paste0("ws3_plan", i),  extrair_dados_ws3(num = i, ajuste = 2, sheet = 3))  
+  i <- i + 1
+}
+
+```
+
+```{r}
+ws3_plan1
+ws3_plan2
+ws3_plan3
+ws3_plan4
+ws3_plan5
+ws3_plan6
+ws3_plan7
+ws3_plan8
+ws3_plan9
+
+
+```
+
+
+Em todas as 77 planilhas serão extraídas as quatro primeiras tabelas (numeradas de 4 a 7 ou de 5 a 8).
+
+```{r}
+map_df(planilhas[1:length(planilhas)], read_excel_data, sheet = 3) |> 
+filtrar_titulo_tabela() |> 
+  filter(str_detect(...2, "Tabela 4|Tabela 5|Tabela 6|Tabela 7|Tabela 8")) |> 
+  filter(!str_detect(...2, "Pré"))
+```
+
+Nas planilhas dos grupos 2, 3 e 4 será extraída a quinta tabela, numerada como Tabela 9 
+```{r}
+map_df(planilhas_ws3_grupo2[1:length(planilhas_ws3_grupo2)], read_excel_data, sheet = 3) |> 
+filtrar_titulo_tabela() |> 
+  filter(str_detect(...2, "Tabela 9")) 
+
+map_df(planilhas_ws3_grupo3[1:length(planilhas_ws3_grupo3)], read_excel_data, sheet = 3) |> 
+filtrar_titulo_tabela() |> 
+  filter(str_detect(...2, "Tabela 9")) 
+
+map_df(planilhas_ws3_grupo3[1:length(planilhas_ws3_grupo3)], read_excel_data, sheet = 3) |> 
+filtrar_titulo_tabela() |> 
+  filter(str_detect(...2, "Tabela 9")) 
+
+```
+
+Nas planilhas do grupo 1 são extraídas a quinta e a sexta tabela, numeradas como tabelas 8 e 9:
+```{r}
+map_df(planilhas[1:length(planilhas_ws3_grupo1)], read_excel_data, sheet = 3) |>
+filtrar_titulo_tabela() |> 
+  filter(str_detect(...2, "Pré"))
+```
+Nas planilhas do grupo 2 são extraídas a sexta e a sétima tabela, numeradas como tabelas 10 e 11:
+
+
+```{r}
+map_df(planilhas_ws3_grupo2[1:length(planilhas_ws3_grupo2)], read_excel_data, sheet = 3) |>
+filtrar_titulo_tabela() |> 
+  filter(str_detect(...2, "Pré")) |> 
+  distinct()
+```
+Nas planilhas do grupo 3 são extraídas a sexta e a sétima tabela, numeradas como as tabelas 10 e Adicional 1:
+```{r}
+map_df(planilhas_ws3_grupo3[1:length(planilhas_ws3_grupo3)], read_excel_data, sheet = 3) |>
+filtrar_titulo_tabela() |> 
+ # filter(str_detect(...2, "Pré")) |> 
+  distinct()
+```
+
+Nas planilhas do grupo 4 é extraída a sexta tabela, numerada como tabela 10:
+```{r}
+map_df(planilhas_ws3_grupo4[1:length(planilhas_ws3_grupo4)], read_excel_data, sheet = 3) |>
+filtrar_titulo_tabela() |> 
+  # filter(str_detect(...2, "Pré")) |> 
+  distinct()
+```
+
+
+
+```{r message=FALSE, warning=FALSE}
+data_planilha <- extrair_data_ws3(1)
+```
+
+```{r}
+prov1 <- read_excel(paste0("data/", planilhas[1]), sheet = 3)
+
+names(prov1)[1] <- "col1"
+
+corte <- which(str_detect(prov1$col1, "Tabela [0-9]"))
+
+corte
+
+lag(corte)
+
+maximo_linha <- corte - lag(corte)
+```
+```{r}
+prov1[38,1]
+```
+
+
+
+
+
+
+Demonstração: extraindo dados da planilha 1
+```{r}
+prov1 <- read_excel(paste0("data/", planilhas_ws5[1]), sheet = 5)
+
+names(prov1)[1] <- "col1"
+
+corte <- which(str_detect(prov1$col1, "Tabela [0-9]"))
+
+
+df1 <- read_excel(paste0("data/", planilhas_ws5[1]), sheet = 5, skip = corte[1] + 2, n_max = corte[1 + 1]) |> 
+  mutate(data = data_planilha)
+         
+df2 <- read_excel(paste0("data/", planilhas_ws5[1]), sheet = 5, skip = corte[2] + 2) |> 
+  mutate(data = data_planilha)
+  
+list(df1, df2)
+```
+

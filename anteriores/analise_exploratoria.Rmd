@@ -1,0 +1,260 @@
+---
+title: "Analise Exploratoria"
+output: html_document
+date: "2024-06-13"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libraries}
+library(tidyverse)
+library(rvest)
+library(robotstxt)
+```
+
+# Análise Exploratória
+
+O Boletim Mensal de Produção da ANP é divulgado mensalmente, com dados quantitativos da produção de petróleo e gás descrito em tabelas e gráficos. Está disponível desde 2010, e seu conteúdo será tratado aqui. Ao longo do tempo ocorreram mudanças na maneira que os dados são divulgados.
+
+### Arquivos PDF
+
+A partir de setembro de 2010 o Boletim de Produção passou a ser disponibilizado na página da ANP da Internet. Até setembro de 2019 era publicado apenas um arquivo no formato PDF, em que os relatórios são publicados junto com os dados usados na sua elaboração. São 85 itens publicados dessa maneira, que  serão tratados posteriormente, em outro arquivo.
+
+### Planilhas
+
+DE setembro de 2019 até a presente data a ANP passou a publicar, além do Boletim da Produção em PDF, arquivo com os dados usados na elaboração do relatório, disponibilizados em planilhas eletrônicas (extensão .xlsm). Esses serão os primeiros arquivos a serem analisados.
+
+
+
+### Verificar se podemos fazer o webscrapping
+
+Usando a função robotstxt() não precisamos sair do R para saber isso. A resposta "TRUE" para indica que podemos prosseguir
+
+```{r robots}
+url <- "https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/boletins/boletim-mensal-da-producao-de-petroleo-e-gas-natural"
+
+resultado_bots <- paths_allowed(
+  paths  = "/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/boletins/boletim-mensal-da-producao-de-petroleo-e-gas-natural", 
+  domain = "www.gov.br", 
+  bot    = "*"
+)
+
+
+
+{
+  if (resultado_bots == FALSE) {stop("The value is TRUE, so the script must end here")}
+  
+  print("The value is TRUE. Continue to next line in the script.")
+}
+
+
+```
+
+### Endereço inicial
+
+O endereço inicial do webscrapping é armazenado em uma variável, uma boa prática no desenvolvimento do código. A partir de agora são usadas as funções do pacotes rvest. Começamos salvando localmente o conteúdo dessa página web, no elemento "boletim_anp".
+
+```{r}
+url
+
+boletim_anp <- read_html(url)
+
+```
+
+### Inspecionar a página    
+
+Para inspecionar a página e encontrar os elementos que serão usados na elaboração do código, abrimos ela em um navegador e em seguida a janela de inspeção (atalho CTRL + Shift + C). Olhando na tela ao lado, vemos que todos os links que desejamo obter estão contidos dentro da tag <ul class = "toggable-content">. 
+
+!(img/inspecao_anp1.png) 
+
+Pela janela de inspeção podemos observar o conteúdo que está dentro dessa tag. Cada ano do boletim é publicado dentro de uma tag <li> e </li>.
+
+!(img/inspecao_anp2.png) 
+
+Na janela de inspeção, vemos que dentro de cada conteúdo definido pelas tags <li> e </li> podemos perceber a tag <div class="conteúdo">. Entre essas tags podemos encontrar os links, que são definidos na linguagem HTML por  <a href=[https://...]>. 
+
+!(img/inspecao_anp.png)
+ 
+Portanto, dentro do elemento gerado pelo pacote rvest vamos procurar pelos elementos "conteudo", dentro deles pelos elementos que comecem por "a", e em seguida capturar os atributos html que comecem por "href". O seguinte código captura todos os links que estão nessa seção da página HTML:
+
+```{r}
+links. <- boletim_anp |> 
+  html_elements(".conteudo") |> 
+  html_elements("a") |> 
+  html_attr("href") 
+  
+```
+
+### Inspeção dos links
+
+O primeiro objetivo é verificar os links das planilhas, então apenas os links delas serão analisados. Filtramos apenas os elementos que terminam por "xlsm", e criamos um dataframe (o nome da única coluna, definida por padrão, é "value").
+
+```{r}
+links_planilhas <- links. %>% 
+  as_tibble() %>%
+  filter(str_detect(value, "xlsm"))
+```
+
+Em seguida criamos uma função para inspecionar esse objeto e produzir uma tabela com o número de links por ano.
+
+```{r}
+inspecionar <- function(ano){
+num_ano <- links_planilhas %>% 
+  filter(str_detect(value, ano)) %>% 
+  nrow() 
+
+tibble(ano = ano,
+       planilhas = num_ano)  
+}
+numero_planilhas <- map_df(as.character(2017:2024), inspecionar)
+numero_planilhas
+```
+
+Há uma indicação que para o ano de 2020 há uma planilha a menos. Analisando as planilhas referentes a esse ano temos:
+
+```{r}
+links_planilhas %>% 
+  filter(str_detect(value, "2020")) |> 
+  mutate(value = str_remove_all(value, "https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/boletins/"))
+```
+Falta, portanto o link para o arquivo de junho de 2020. 
+
+A mesma verificação cabe para 2024.
+
+```{r}
+links_planilhas %>% 
+  filter(str_detect(value, "2024")) |> 
+  mutate(value = str_remove_all(value, "https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/boletins/"))
+```
+
+Faltam os links para junho de 2020 e fevereiro de 2024. Eles podem estar no servidor da ANP, e podemos tentar recriar o nome do arquivo a partir dos nomes dos arquivos dos meses seguintes.
+
+```{r}
+link_quebrado1 <- "https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/boletins/arquivos-bmppgn/2020/2020-06-boletim.xlsm"
+
+link_quebrado2 <- "https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/boletins/arquivos-bmppgn/2024/tabela-fevereiro.xlsm"
+
+# Função "try" é usada para que um erro não pare a execução do arquivo.
+try(download.file(url = link_quebrado1, destfile = "link_quebrado1", mode = "wb"), 
+    silent = TRUE)
+
+try(download.file(url = link_quebrado2, destfile = "link_quebrado2", mode = "wb"),
+  silent = TRUE
+)
+
+```
+
+Inspeção visual do arquivo comprova se tratar da planilha referente ao mês de junho de 2020, e portanto pode ser unido ao arquivo com links.
+
+```{r}
+links <- c(links., link_quebrado1)
+```
+
+### Gerar arquivo de nomes
+
+ 
+Antes de baixar os arquivos que estão nos links é preciso gerar uma lista com os nomes de todos os arquivos. 
+Ex: 
+https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/boletins/arquivos-bmppgn/2010/2010-12-boletim.pdf deve ser salvo em um arquivo chamado 2010-12-boletim.pdf
+
+
+```{r}
+caminho <- "https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/boletins/arquivos-bmppgn/"
+caminho2 <- "https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/"
+
+nomes_arquivos <- links |> 
+  str_remove_all(caminho) |>
+  str_remove_all(caminho2) |> 
+  str_replace_all("/", "_") |> 
+  str_replace_all("2021_2021", "2021") |> 
+  str_replace_all("2020_2020", "2020") |> 
+  str_replace_all("2019_2019", "2019") |>
+  str_replace_all("2018_2018", "2018") |>
+  str_replace_all("2017_2017", "2017") |>
+  str_replace_all("2016_2016", "2016") |>
+  str_replace_all("2015_2015", "2015") |>
+  str_replace_all("2014_2014", "2014") |>
+  str_replace_all("2013_2013", "2013") |>
+  str_replace_all("2012_2012", "2012") |> 
+  str_replace_all("2011_2011", "2011") |> 
+  str_replace_all("2010_2010", "2010") 
+
+```
+
+### Verificação: arquivos já foram obtidos?
+
+Antes de baixar todos os arquivos é inteligente verificar se os arquivos já foram baixados. Se já foram baixados, esse script para de ser executado. 
+
+```{r}
+ verifica_links_antigos <- file.exists("links_antigos.csv")
+
+{
+  if (verifica_links_antigos == TRUE) {stop("The value is TRUE, so the script must end here")}
+  
+  print("The value is FALSE. Continue to next line in the script.")
+}
+
+```
+
+
+### Obtenção dos arquivos
+
+Com os objetos dos links e dos nomes dos arquivos, podemos usar a função "map" para baixar, recursivamente, todos os links disponíveis.
+
+Como são muitos arquivos baixados,é recomendável fazer o R esperar entre cada download (usando a função slowly), o que diminui a chance de erro. E recomeçar automaticamente no caso de erro (com a função insistently), para o download ser recomeçado a partir do arquivo que gerou o erro (e não desde o início). 
+
+```{r}
+# criando uma função para baixar no modo binário (wb)
+
+download_arquivos <- function(x,y){download.file(url = x, destfile =y, mode = "wb")}
+
+# criando uma função lenta, para evitar o timeout
+
+atraso <- rate_delay(5)
+download_lento <- slowly(download_arquivos, atraso)
+
+# tentar de novo em caso de erro
+download_insistente <- insistently(download_lento, rate = rate_backoff(60))
+
+# função map equivalente ao for loop anterior, ativar para baixar todos os arquivos
+map2(links, nomes_arquivos, download_lento)
+
+```
+
+Em seguida, todos os arquivos serão colocados no diretório "data"
+
+```{r}
+# file.rename(from = "2010-09-boletim.pdf", 
+#            to = "data/2010-09-boletim.pdf")
+
+arquivos_planilhas <- list.files(pattern = "xlsm")
+arquivos_pdf <- list.files(pattern = "pdf")
+
+# custom function
+mover_arquivos <- function(x){
+  file.rename( from = file.path(x) ,
+               to = file.path("data", x) )
+}
+
+mover_arquivos(arquivos_planilhas)
+mover_arquivos(arquivos_pdf)
+```
+
+### Geração de arquivos para novo download
+
+Finalmente, geramos arquivos do tipo csv localmente. Eles serão usados para fazer um download incremental e para evitar que o atual script faça um novo download caso seja executado ("seção Verificação: arquivos já foram obtidos?")
+
+```{r}
+
+write.csv2(x = links, file = "links_antigos.csv")
+write.csv2(x = nomes_arquivos, file = "nomes_arquivos.csv")
+```
+
+A tabela o final do arquivo "analise_exploratoria_planilhas.Rmd" mostra que falta a planilha para o mês de fevereiro de 2024.
+
+## FIM
+
+
+

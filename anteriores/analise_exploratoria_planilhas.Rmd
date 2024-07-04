@@ -1,0 +1,449 @@
+---
+title: 'Analise Exploratória: planilhas'
+output: html_document
+date: "2024-06-13"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r include=FALSE}
+library(tidyverse)
+library(readxl)
+library(xml2)
+library(XML)
+library(clock)
+
+```
+
+
+# Análise Exploratória: planilhas
+
+Aqui vamos explorar a maneira com que os dados estão dispostos nas planilhas, guiando a maneira como esses dados serão retirados delas
+
+## Número de planilhas
+
+Os arquivos estão no diretório /data, e o elemento "planilhas" tem o nome de todas elas.
+
+```{r}
+planilhas <- dir(path = "data", pattern = "*xls*")
+qtde_planilhas <- length(planilhas) 
+```
+São `r qtde_planilhas` planilhas.
+
+Criar objeto com nomes dos arquivos .zip
+
+```{r}
+planilhas <- dir(path = "data", pattern = "*xls*")
+
+planilhas_zip <- planilhas
+
+planilhas_zip <- planilhas_zip |> 
+  str_replace_all(pattern = "xlsm", replacement = "zip")
+```
+
+
+
+## Funções personalizadas
+
+### 1) Read_excel
+Para usar o objeto "planilhas" em funções interativas, criei funções para importar para o R os dados que estão nas planilhas.
+
+```{r}
+excel_sheets_data <- function(x){
+  excel_sheets(paste0("data/", x))
+}
+# range A1:J1000 garante que todos os dataframes são importados para o R com o mesmo tamanho, condição importante para a iteração de diferenntes fontes de dados
+
+read_excel_data  <- function(x,sheet = 1, range = "A1:J1000", skip = 0){
+  read_xlsx(paste0("data/", x), col_types = "text",
+             sheet = sheet,
+              range = range,
+                skip = skip,
+               col_names = FALSE,
+               .name_repair = "unique_quiet",)
+}
+```
+
+### 2) Função: extrair data
+
+Função: extrair data
+```{r}
+extrair_data <- function(num){
+  
+invisible(file.copy(from = paste0("data/", planilhas[num]), to = paste0("data/zip/", planilhas_zip[num]), overwrite = TRUE))
+
+unzip(zipfile = paste0("data/zip/", planilhas_zip[num]), exdir = "data/zip", overwrite = TRUE)
+
+xml_prov <- xmlParse("data/zip/xl/drawings/drawing1.xml") |> 
+  xmlToDataFrame()
+
+sheet1_data <- xml_prov[2,3] |> 
+  str_remove_all("/.*") |> 
+    str_trim() |> 
+  str_remove_all("[:punct:]") |> 
+  str_remove_all(" de")
+
+mes_boletim <- paste0("01 ",sheet1_data)
+
+mes_boletim
+
+}
+```
+
+Exemplo: extração da data do arquivo expresso no primeiro item do elemento:
+
+```{r}
+planilhas[1]
+```
+```{r warning=FALSE}
+extrair_data(1)
+```
+
+### 3) Filtrar linha com palavra "tabela" 
+Função personalizada que retêm os títulos das tabelas, filtrando as linhas da coluna 2 que contenham a palavra "tabela". Elimina em seguida as instâncias duplicadas:
+
+```{r}
+filtrar_titulo_tabela <- function(df){
+df. <- df |> 
+filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
+  distinct() # |> 
+  # select(...2)  
+df.[,2]  
+}
+
+```
+
+
+
+
+## Worksheets: quantidade e conteúdo
+
+Toda planilha eletrônica contém ao menos uma worksheet (também chamado de aba). Vamos explorar o conteúdo de cada aba, começando pela primeira.
+
+### Primeira worksheet
+
+A primeira worksheet de cada planilha chama-se "Lista de Tabelas" e contém a informação do mês de referência e uma lista de tabelas. Entretanto, essa lista não foi escrita diretamente na planilha, mas em caixas de texto. Esse conteúdo não é importado diretamente pela função readxl, e é necessário realizar esses procedimentos:
+
+1 - Renomear cada planilha como um arquivo .zip
+2 - Descompactar o arquivo .zip, mostrando uma estrutura com diversos arquivos .xml
+3 - Utilizando a estrutura padronizada utilizada nas planilhas, extrair a informação da data.
+
+O detalhamento desse procedimento pode ser encontrado no arquivo "extrair_data.Rmd". Aqui será mostrada a função personalizada que retira a informação com a data da primeira worksheet de cada planilha.
+
+!(img/worksheet_1.png)
+
+
+
+Iteração de todas as planilhas, usando a função map e criando uma lista
+
+```{r warning=FALSE}
+lista_datas <- map(1:length(planilhas), extrair_data)
+```
+
+Que em seguida pode ser transformada em um dataframe, para conferência.
+
+Tabela 1:
+```{r}
+lista_datas2 <- do.call(rbind, lista_datas)
+
+df_planilhas_datas <- data.frame(arquivos = planilhas,
+           mes = as.data.frame(lista_datas2)) 
+
+df_planilhas_datas <- df_planilhas_datas |> 
+mutate(mes = year_month_day_parse(
+  V1,
+  format = "%d %B %Y",
+  locale = clock_locale("pt")
+)) |> 
+  rename(mes_escrito = V1) |> 
+  mutate(numeracao = 1:nrow(df_planilhas_datas))
+
+df_planilhas_datas
+```
+A tabela mostra a consistência entre o nome do arquivo e o mês da conta. Também mostra que falta o mês de fevereiro.
+
+Não é uma prática amigável para o usuário escrever a data a que se refere o boletim em uma caixa de texto. Ter essa informação escrita em uma célula da planilha seria uma boa prática. Ao menos ela está escrita dentro do arquivo, já que o nome local do arquivo é criado pelo usuário, no momento em que faz a transferência.
+
+### Worksheets 2 em diante
+
+Nas worksheets 2 em diante estão as tabelas com os dados de produção, que são o principal objeto de atenção deste trabalho. Os dados estão como na figura abaixo: o nome "Tabela", seguido por uma numeração, uma linha em branco e os dados propriamente ditos.
+
+Como se pode ver na imagem, o número de colunas varia conforme cada tabela. Ao longo dos anos algumas tabelas mudaram de nome ou de lugar, mas é possível fazer alguns agrupamento, utilizando uma busca pela palavra chave "tabela"
+
+#### Worksheet 2
+
+A worksheet 2 contém tabelas históricas. As três primeiras planilhas (outubro a dezembro de 2017) contém apenas três tabelas.
+
+```{r}
+arquivos_2017 <- 1:3
+
+resumo_w2_1 <- map_df(planilhas[arquivos_2017], read_excel_data, sheet = 2) |> 
+filtrar_titulo_tabela() |> 
+  mutate(grupo = "ws2_1",
+         primeiro_arquivo = 1,
+         ultimo_arquivo = 3)
+```
+
+Para as outras planilhas a worksheet 2 contém quatro tabelas. Nas tabelas 4 a 7 percebe-se uma pequena inconsistência na nomenclatura, mas o título permite a inferência de que se tratam dos mesmos dados.
+
+```{r}
+map_df(planilhas[4], read_excel_data, sheet = 2) |> 
+filtrar_titulo_tabela() 
+```
+
+```{r}
+worksheet2_outras <- map_df(planilhas[8:20], read_excel_data, sheet = 2) 
+
+worksheet2_outras |> 
+filtrar_titulo_tabela()
+```
+
+Portanto, essas são as tabelas que constam da worksheet 2:
+
+```{r}
+arquivos_2018_diante <- 4:length(planilhas)
+
+resumo_w2_2 <-  map_df(planilhas[arquivos_2018_diante], read_excel_data, sheet = 2) |> 
+    # filter(if_any(2, ~ str_detect(., "Tabela"))) |>
+  mutate(...2 = str_replace_all(...2, "MMm", "Mm"),
+         ...2 = str_replace_all(...2, "m3", "m³")) |> 
+  filtrar_titulo_tabela() |> 
+  mutate(grupo = "ws2_2",
+         primeiro_arquivo = 4,
+         ultimo_arquivo = length(planilhas))
+resumo_w2_2  
+```
+
+```{r}
+resumo_w2 <- bind_rows(resumo_w2_1, resumo_w2_2)
+resumo_w2
+```
+
+
+#### Worksheet 3
+
+A worksheet contém os dados disponibilizados mensalmente, e por isso os mais relevantes. Todas as worksheets de 2017 contém essas tabelas de dados:
+
+```{r}
+resumo_ws3_1 <- map_df(planilhas[arquivos_2017], read_excel_data, sheet = 3) |> 
+filtrar_titulo_tabela() |> 
+    mutate(grupo = "ws3_1",
+         primeiro_arquivo = 1,
+         ultimo_arquivo = 3)
+
+resumo_ws3_1
+```
+
+
+Os arquivos de 2018 em diante têm as tabelas numeradas de 5 em diante (já que têm 4 tabelas na worksheet 2). Mas alguns desses arquivos possuem tabelas adicionais.
+```{r}
+map_df(planilhas[arquivos_2018_diante], read_excel_data, sheet = 3) |> 
+  filtrar_titulo_tabela() |>
+  distinct(...2) |> 
+    mutate(grupo = "ws3_2",
+         primeiro_arquivo = 4,
+         ultimo_arquivo = length(planilhas))
+
+```
+
+
+Usando um "for loop" é possível verificar visualmente quais são os arquivos que têm uma tabela adicional na worksheet 4. Mudando os números dos arquivos verificamos quais atendem esse critério, até chegar ao intervalo 33:57 . O output não é mostrado aqui por brevidade. 
+
+```{r eval=FALSE, include=FALSE}
+planilhas[33]
+planilhas[57]
+
+for(i in 33:57){
+map_df(planilhas[i], read_excel_data, sheet = 3) |> 
+  filtrar_titulo_tabela()  |> 
+    print()
+}
+
+```
+Esse é o resultado da inspeção feita com o "for loop": vemos que possuem uma tabela adicional os arquivos numerados de 33 a 57 (de junho de 2020 a março de 2022).
+
+```{r}
+arquivos_tabela_adicional_ws3 <- 33:57
+
+resumo_ws3_3 <-  map_df(planilhas[arquivos_tabela_adicional_ws3], read_excel_data, sheet = 3) |>
+filtrar_titulo_tabela() |> 
+    mutate(grupo = "ws3_3",
+         primeiro_arquivo = 33,
+         ultimo_arquivo = 57)
+
+resumo_ws3_3
+```
+
+As planilhas de 4 a 32 e 58 até 77 têm tabelas numeradas de 5 a 11 na worksheet 3.
+
+```{r}
+arquivos_sem_tabela_adicional_ws4 <- c(4:32, 58:77)
+  
+resumo_ws3_2 <- map_df(planilhas[arquivos_sem_tabela_adicional_ws4], read_excel_data, sheet = 3) |> 
+filtrar_titulo_tabela() |> 
+   mutate(grupo = "ws3_2",
+         primeiro_arquivo = 4,
+         ultimo_arquivo = 32)
+
+resumo_ws3_2
+
+resumo_ws3_4 <- map_df(planilhas[arquivos_sem_tabela_adicional_ws4], read_excel_data, sheet = 3) |> 
+filtrar_titulo_tabela() |> 
+   mutate(grupo = "ws3_4",
+         primeiro_arquivo = 58,
+         ultimo_arquivo = length(planilhas))
+
+resumo_ws3_4
+```
+
+```{r}
+resumo_ws3 <- bind_rows(resumo_ws3_1, resumo_ws3_2, resumo_ws3_3, resumo_ws3_4)
+resumo_ws3 
+```
+```{r}
+
+tabelas_worksheet3 <- gdata::cbindX(resumo_ws3_1[,1], resumo_ws3_2[,1], resumo_ws3_3[,1], resumo_ws3_4[,1])
+
+```
+As quatro primeiras tabelas são iguais:
+
+```{r}
+tabelas_worksheet3[1:4,]
+```
+
+Movimentação de gás natural por destinação: apenas em três das colunas
+
+```{r}
+tabelas_worksheet3[5,2:4]
+```
+Produção dos campos do Pré-Sal (com nome diferente)
+```{r}
+
+tabelas_worksheet3[6,1]
+tabelas_worksheet3[6,2]
+tabelas_worksheet3[6,3]
+tabelas_worksheet3[6,4]
+```
+Produção dos poços do pré-sal (com nomes diferentes)
+```{r}
+
+tabelas_worksheet3[5,1]
+tabelas_worksheet3[7,2]
+tabelas_worksheet3[7,3]
+tabelas_worksheet3[7,4]
+```
+
+```{r}
+tabelas_worksheet3
+```
+
+Outras tabelas:
+
+```{r}
+tabelas_worksheet3[8:10,1]
+```
+
+#### Worksheet 4
+
+Usando os grupos estabelecidos anteriormente. Arquivos de 2017:
+
+```{r}
+resumo_ws4_1 <- map_df(planilhas[arquivos_2017], read_excel_data, sheet = 4) |> 
+  filtrar_titulo_tabela() |> 
+   mutate(grupo = "ws4_1",
+         primeiro_arquivo = 1,
+         ultimo_arquivo = 3)
+```
+
+Arquivos numerados de 4 a 32 têm tabelas numeradas de 12 a 19:
+
+```{r}
+resumo_ws4_2 <- map_df(planilhas[4:32], read_excel_data, sheet = 4) |> 
+filtrar_titulo_tabela() |> 
+   mutate(grupo = "ws4_2",
+         primeiro_arquivo = 4,
+         ultimo_arquivo = 32)
+```
+
+Os arquivos no intervalo 33:57 têm na worksheet 4 tabelas numeradas de 11 a 18, e também tabelas adicionais:
+
+```{r}
+resumo_ws4_3 <- map_df(planilhas[arquivos_tabela_adicional_ws3], read_excel_data, sheet = 4) |> 
+filtrar_titulo_tabela() |> 
+   mutate(grupo = "ws4_3",
+         primeiro_arquivo = 4,
+         ultimo_arquivo = 32)
+```
+Os arquivos numerados de 58 a 77 não tem as tabelas adicionais:
+
+```{r}
+resumo_ws4_4 <- map_df(planilhas[58:77], read_excel_data, sheet = 4) |> 
+filtrar_titulo_tabela() |> 
+   mutate(grupo = "ws4_4",
+         primeiro_arquivo = 58,
+         ultimo_arquivo = length(planilhas))
+```
+
+
+```{r}
+resumo_ws4 <- bind_rows(resumo_ws4_1, resumo_ws4_2, resumo_ws4_3, resumo_ws4_4)
+resumo_ws4
+```
+
+```{r}
+resumo_ws4_1 |> nrow()
+resumo_ws4_2 |> nrow()
+resumo_ws4_3 |> nrow()
+resumo_ws4_4 |> nrow()
+```
+
+
+#### Worksheet 5
+
+Nem todos os arquivos têm a sheet 5. Foi uma aba criada para a época da Covid. 
+Com a função excel_sheets podemos extrair o nome de todas as abas, e, consequentemente, identificar aquelas que têm a aba 5, sobre a Covid.
+
+```{r}
+lista_abas <- map(planilhas[1:length(planilhas)], excel_sheets_data)  
+
+arquivos_covid <- do.call(rbind, lista_abas) |> 
+  as.data.frame() |> 
+  mutate(num_linhas = 1:length(planilhas)) |> 
+  filter(str_detect(V5, "Covid")) |> 
+  pull(num_linhas)
+
+arquivos_covid
+
+```
+Esses são os títulos das tabelas da worksheet 5, com tabelas sobre a Covid.
+
+```{r}
+
+resumo_ws5_1 <- map_df(planilhas[arquivos_covid], read_excel_data, sheet = 5) |> 
+  filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
+  distinct()  # |> 
+  #    select(...2) |>
+  
+resumo_ws5_1 <-  resumo_ws5_1[,2] |> 
+    mutate(grupo = "ws5_1",
+         primeiro_arquivo = arquivos_covid[1],
+         ultimo_arquivo = 39)
+
+resumo_ws5_2 <- map_df(planilhas[arquivos_covid], read_excel_data, sheet = 5) |> 
+  filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
+  distinct() 
+  # |> 
+      # select(...2) |> 
+resumo_ws5_2 <- resumo_ws5_2[,2] |> 
+  mutate(grupo = "ws5_2",
+         primeiro_arquivo = 51,
+         ultimo_arquivo = 51)
+```
+
+```{r}
+resumo_ws5 <-bind_rows(resumo_ws5_1, resumo_ws5_2)
+
+```
+
