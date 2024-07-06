@@ -1,0 +1,77 @@
+---
+title: "Obter tabelas - guias covid"
+author: "BML"
+date: "2024-07-04"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(readxl)
+```
+
+```{r warning=FALSE}
+# Rodar o arquivo worksheets e data
+
+source(knitr::purl("worksheets_data.Rmd", quiet=TRUE))
+
+source(knitr::purl("tabelas_covid.Rmd", quiet=TRUE))
+
+```
+
+# Funções personalizadas
+
+```{r}
+datas_arquivos$planilha
+```
+
+
+Extrair tabelas
+
+```{r}
+# Extrair planilha colocando o mês
+read_excel_data_mes  <- function(num,sheet = 2, range = "A1:J1000", skip = 0, n_max = Inf)
+  {df1 <- read_xlsx(paste0("data/", planilhas[num]), 
+            col_types = "text",
+            sheet = sheet,
+            range = range,
+            skip = skip,
+            col_names = FALSE,
+            n_max = n_max,
+            .name_repair = "unique_quiet",)
+
+  # Colocando informação de data a cada planilha importada
+  data_planilha <-  datas_arquivos$planilha[num]  
+  
+  df2 <- df1 |> 
+    mutate(mes = data_planilha) 
+  
+  df2
+  }
+```
+
+Worksheet 3
+
+```{r}
+planilhas_tabs_adicionais3 <- map_df(1:length(planilhas), read_excel_data_mes, sheet = 3) |> 
+    # filtrando as tabelas adicionais
+  filter(if_any(2, ~ str_detect(., "Tabela Adi"))) |> 
+  pull(mes) |> 
+  unique()
+```
+
+Worksheet 4
+
+```{r}
+planilhas_tabs_adicionais4 <- map_df(1:length(planilhas), read_excel_data_mes, sheet = 4) |> 
+    # filtrando as tabelas adicionais
+  filter(if_any(2, ~ str_detect(., "Tabela Adi"))) |> 
+  pull(mes) |> 
+  unique()
+```
+
+

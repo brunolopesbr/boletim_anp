@@ -1,29 +1,20 @@
----
-title: "Obter tabelas - guias covid"
-author: "BML"
-date: "2024-07-04"
-output: html_document
----
-
-```{r setup, include=FALSE}
+## ----setup, include=FALSE------------------------------------------------------------------------------------------
 knitr::opts_chunk$set(echo = TRUE)
-```
 
-```{r}
+
+## ------------------------------------------------------------------------------------------------------------------
 library(tidyverse)
 library(readxl)
-```
 
-```{r warning=FALSE}
+
+## ----warning=FALSE-------------------------------------------------------------------------------------------------
 # Rodar o arquivo worksheets e data
 
 source(knitr::purl("worksheets_data.Rmd", quiet=TRUE))
 
-```
 
-# Funções personalizadas
 
-```{r}
+## ------------------------------------------------------------------------------------------------------------------
 read_excel_data  <- function(x,sheet = 2, range = "A1:J1000", skip = 0, n_max = Inf)
   {read_xlsx(paste0("data/", x), 
             col_types = "text",
@@ -34,11 +25,9 @@ read_excel_data  <- function(x,sheet = 2, range = "A1:J1000", skip = 0, n_max = 
             n_max = n_max,
             .name_repair = "unique_quiet",)}
 
-```
 
-Extrair tabelas
 
-```{r}
+## ------------------------------------------------------------------------------------------------------------------
 extrair_tabelas_covid <- function(num, ajuste = 2, ajuste2 = -2, sheet = 5){
 
   # A função que importa a data será usada na planilha
@@ -65,30 +54,26 @@ extrair_tabelas_covid <- function(num, ajuste = 2, ajuste2 = -2, sheet = 5){
   list(df1, df2)
   
 }
-```
 
 
-
-# Tabelas relativas a Covid
-```{r}
+## ------------------------------------------------------------------------------------------------------------------
 # planilhas
 guias_covid
-```
-Obter nomes de tabelas nos arquivos que contenh
-```{r}
+
+
+## ------------------------------------------------------------------------------------------------------------------
 map_df(planilhas[guias_covid], read_excel_data, sheet = 5) |> 
   filter(if_any(2, ~ str_detect(., "Tabela [0-9]+"))) |> 
   distinct() |> 
   # apagar colunas sem dados
   select_if(~all(!is.na(.)))
-```
-Portanto, duas tabelas, 20 e 21
 
-```{r}
+
+## ------------------------------------------------------------------------------------------------------------------
 extrair_tabelas_covid(31)
-```
 
-```{r}
+
+## ------------------------------------------------------------------------------------------------------------------
 i <- guias_covid[1]
 final <- guias_covid[length(guias_covid)-1]
 
@@ -101,16 +86,13 @@ while (i < (final + 1)) {
  tabelas_covid[[39]] <- extrair_tabelas_covid(guias_covid[length(guias_covid)]) 
  
  tabelas_covid
-```
 
-Unindo as tabelas que estão no arquivo
 
-```{r}
+## ------------------------------------------------------------------------------------------------------------------
 
 tabela_19 <- do.call(bind_rows, lapply(tabelas_covid, `[[`, 1))
-```
 
-```{r}
+
+## ------------------------------------------------------------------------------------------------------------------
 tabela_20 <- do.call(bind_rows, lapply(tabelas_covid, `[[`, 2))
-```
 
