@@ -62,6 +62,8 @@ Gerando elemento com todos os arquivos e suas datas
 ```{r message=FALSE, warning=FALSE}
 datas_arquivos <- map_df(seq_along(planilhas), extrair_data_ws2) |> 
   mutate(planilha = planilhas)
+
+datas_arquivos
 ```
 
 ```{r message=FALSE, warning=FALSE}

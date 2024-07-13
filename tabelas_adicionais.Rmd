@@ -51,7 +51,10 @@ read_excel_data_mes  <- function(num,sheet = 2, range = "A1:J1000", skip = 0, n_
     mutate(mes = data_planilha) 
   
   df2
-  }
+}
+
+
+
 ```
 
 Worksheet 3
@@ -62,7 +65,77 @@ planilhas_tabs_adicionais3 <- map_df(1:length(planilhas), read_excel_data_mes, s
   filter(if_any(2, ~ str_detect(., "Tabela Adi"))) |> 
   pull(mes) |> 
   unique()
+
+planilhas_tabs_adicionais3
 ```
+Nessas planilhas da worksheet 3 podem ser encontradas a Tabela adicional 1
+
+```{r}
+map_df(planilhas_tabs_adicionais3, read_excel_data, sheet = 3) |> 
+    # filtrando as tabelas adicionais
+  filter(if_any(2, ~ str_detect(., "Tabela Adi")))
+```
+Extrair as datas
+
+```{r}
+# Vetor com as planilhas que têm a Tabela adicional 1
+
+planilhas_tabs_adicionais3
+
+# Dataframe com datas e nomes das planilhas
+
+datas_tabelas_adicionais <- datas_arquivos |> 
+  filter(planilha %in% planilhas_tabs_adicionais3)
+
+datas_tabelas_adicionais
+```
+
+
+Função personalizada para extrair "Tabela Adicional 1"
+
+```{r}
+extrair_tabelas_ad_1 <- function(num, ajuste = 2, ajuste2 = -2, sheet = 3){
+
+  # A função que importa a data será usada na planilha
+  data_planilha <-  datas_tabelas_adicionais$value[num]  
+  
+  # planilha 3 é importada
+  prov1 <- read_excel(paste0("data/", planilhas_tabs_adicionais3[num]), sheet = sheet)
+  names(prov1)[1] <- "col1"
+  # a partir da palavra "Tabela" é identificada a primeira linha da tabela
+  corte <- which(str_detect(prov1$col1, "Tabela Adicional 1*"))
+  # E a a linha seguinte com a palavra tabela indica o inínio da tabela seguinte
+  maximo_linha <- corte - lag(corte)
+  
+  # Importação de três tabelas, usando os parâmetros descobertos anteriormente
+  # nos argumentos "skip" e "n_max". Dessa maneira, a função readxl identifica
+  # automaticamente o número de colunas de cada tabela e a classe dos caracteres
+  df1 <- read_excel(paste0("data/", planilhas_tabs_adicionais3[num]), sheet = sheet, skip = corte[1] + ajuste) |> 
+    mutate(data = data_planilha) 
+  
+#  df2 <- read_excel(paste0("data/", planilhas[num]), sheet = sheet, skip = corte[1 + 1] + ajuste) |> 
+#    mutate(data = data_planilha)
+#  sheet
+
+  df1
+  
+}
+```
+
+Estraindo planilha adicional 1
+```{r}
+lista_tabela_adicional_1 <- map(1:length(planilhas_tabs_adicionais3),  extrair_tabelas_ad_1)
+```
+
+
+Unindo os dataframes da lista
+
+```{r}
+lista_tabela_adicional_1
+
+```
+
+
 
 Worksheet 4
 
@@ -72,6 +145,12 @@ planilhas_tabs_adicionais4 <- map_df(1:length(planilhas), read_excel_data_mes, s
   filter(if_any(2, ~ str_detect(., "Tabela Adi"))) |> 
   pull(mes) |> 
   unique()
+
+planilhas_tabs_adicionais4
 ```
 
+
+```{r}
+map_df(1:len)
+```
 
