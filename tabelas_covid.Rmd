@@ -87,7 +87,7 @@ Portanto, duas tabelas, 20 e 21
 ```{r}
 extrair_tabelas_covid(31)
 ```
-
+Gerar lista com todas as tabelas
 ```{r}
 i <- guias_covid[1]
 final <- guias_covid[length(guias_covid)-1]
