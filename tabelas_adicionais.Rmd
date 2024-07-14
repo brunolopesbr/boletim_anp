@@ -295,7 +295,7 @@ while (i < (final + 1)) {
 
 # tabelas_covid[[39]] <- extrair_tabelas_adicionais(guias_covid[length(guias_covid)]) 
  
- tabelas_adicionais_lista
+# tabelas_adicionais_lista
 
 
 ```

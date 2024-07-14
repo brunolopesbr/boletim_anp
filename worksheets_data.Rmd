@@ -88,6 +88,50 @@ guias <- guias |>
   mutate(num_arquivo = 1:nrow(guias) )
 ```
 
+```{r}
+guias
+```
+
+Guias 2: sempre com o mesmo nome
+
+```{r}
+unique(guias$V2)
+
+```
+
+Guias 3: dois grupos ("Movimentação de Gás Natural" e "Ranking")
+
+```{r}
+planilhas_ws4_grupo1 <- guias |> 
+  filter(V4 == unique(guias$V4)[1]) |> 
+  pull(num_arquivo)
+
+planilhas_ws4_grupo2 <- guias |> 
+  filter(V4 == unique(guias$V4)[2]) |> 
+  pull(num_arquivo)
+
+```
+
+Guias 5: dois grupos (um com "4. Pandemia_Covid-19", outro sem planilhas )
+
+```{r}
+guias |> 
+  filter(V5 == unique(guias$V5)[2]) |> 
+  pull(num_arquivo)
+
+```
+
+
+```{r}
+planilhas_ws4_grupo1 <- guias |> 
+  filter(V5 == unique(guias$V5[1])) |> 
+  pull(num_arquivo)
+
+planilhas_ws4_grupo2 <- guias |> 
+  filter(V4 == unique(guias$V4[2]))
+
+```
+
 Guias que mudaram de nome:
 ```{r}
 unique(guias$V2) |> length()
@@ -98,6 +142,7 @@ unique(guias$V5) |> length()
 unique(guias$V4)
 unique(guias$V5)
 ```
+
 ## Separar as planilhas em dois grupos, de acordo com a planilha 4:
 
 ```{r}

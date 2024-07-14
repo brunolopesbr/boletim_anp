@@ -107,7 +107,7 @@ Unindo as tabelas que estão no arquivo
 
 ```{r}
 
-tabela_19 <- do.call(bind_rows, lapply(tabelas_covid, `[[`, 1))
+tabela_19 <- do.call(rbind, lapply(tabelas_covid, `[[`, 1))
 ```
 
 ```{r}
