@@ -16,35 +16,6 @@ library(readxl)
 
 # Funções personalizadas
 
-
-
-# Datas
-
-Gerando elemento com todos os arquivos e suas datas
-```{r message=FALSE, warning=FALSE}
-
-datas_arquivos
-```
-
-# Guias
-
-
-Guias 3: sempre com o mesmo nome
-
-```{r}
-unique(guias$V3)
-
-```
-
-Tabelas na guia 2:
-Planilhas 1 a 3: 13 tabelas, de 4 a 16
-```{r}
-map_df(1:3, function(x){read_excel(paste0("data/", planilhas[x]), range = "A1:Z1000", sheet = 3, col_types = "text",  .name_repair = "unique_quiet")}) |> 
-  filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
-  distinct()
-```
-
-
 Extraindo dados da guia 3 de uma planilha
 
 Criar função personalizada para extrair 13 tabelas
@@ -135,6 +106,35 @@ mylist <- list(dataf1, dataf2, dataf3, dataf4, dataf5, dataf6, dataf7, dataf8, d
 mylist
 }
 ```
+
+
+# Datas
+
+Gerando elemento com todos os arquivos e suas datas
+```{r message=FALSE, warning=FALSE}
+
+datas_arquivos
+```
+
+# Guias
+
+
+Guias 3: sempre com o mesmo nome
+
+```{r}
+unique(guias$V3)
+
+```
+
+# Tabelas na guia 3:
+Planilhas 1 a 3: 13 tabelas, de 4 a 16
+```{r}
+map_df(1:3, function(x){read_excel(paste0("data/", planilhas[x]), range = "A1:Z1000", sheet = 3, col_types = "text",  .name_repair = "unique_quiet")}) |> 
+  filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
+  distinct()
+```
+
+
 Criar lista com tabelas de 2017
 ```{r}
 tabelas_guias2_2017_lista <- map(1:3, extrair_tabelas_2017_ws3)
@@ -147,10 +147,12 @@ names(tabelas_guias2_2017_lista[[1]][[2]]) <- names(tabelas_guias2_2017_lista[[2
 ```
 
 ```{r}
-length(tabelas_guias2_2017_lista)
+do.call(rbind, lapply(tabelas_guias2_2017_lista, `[[`, 1))
 ```
 
-
+```{r}
+do.call(rbind, lapply(tabelas_guias2_2017_lista, `[[`, 2))
+```
 
 ```{r}
 do.call(rbind, lapply(tabelas_guias2_2017_lista, `[[`, 3))
@@ -159,25 +161,28 @@ do.call(rbind, lapply(tabelas_guias2_2017_lista, `[[`, 3))
 do.call(rbind, lapply(tabelas_guias2_2017_lista, `[[`, 4))
 ```
 
-
-
 ```{r}
 do.call(rbind, lapply(tabelas_guias2_2017_lista, `[[`, 5))
 ```
+
 ```{r}
 do.call(rbind, lapply(tabelas_guias2_2017_lista, `[[`, 6))
 ```
 A lista 7 não pode passar direto por um rbind. Precisa ser limpa com a função "gather' antes
 
 ```{r}
-rbind(tabelas_guias2_2017_lista[[1]][[7]][,-15] |> 
+tabela7_2017 <- rbind(tabelas_guias2_2017_lista[[1]][[7]][,-15] |> 
   tidyr::pivot_longer(cols = 2:14, names_to = "mes_ano", values_to = "valor"),
 
 tabelas_guias2_2017_lista[[2]][[7]][,-15] |> 
   tidyr::pivot_longer(cols = 2:14, names_to = "mes_ano", values_to = "valor"),
 
 tabelas_guias2_2017_lista[[3]][[7]][,-15] |> 
-  tidyr::pivot_longer(cols = 2:14, names_to = "mes_ano", values_to = "valor")) |> 
+  tidyr::pivot_longer(cols = 2:14, names_to = "mes_ano", values_to = "valor"))
+
+tabela7_2017  |>  
+  mutate(mes_ano = str_replace(pattern = "//16", replacement = "//2016"))
+  arrange(`...1`) |> 
   distinct()
 ```
 
