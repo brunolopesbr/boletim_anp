@@ -14,12 +14,18 @@ library(tidyverse)
 library(readxl)
 ```
 
+
+
+```{r}
+source(knitr::purl("worksheets_data.Rmd", quiet=TRUE))
+```
 # Funções personalizadas
 
 Extraindo dados da guia 3 de uma planilha
 
 Criar função personalizada para extrair 13 tabelas
 
+## 13 tabelas
 ```{r}
 
 extrair_tabelas_2017_ws3 <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
@@ -108,6 +114,96 @@ mylist
 ```
 
 
+## 8 tabelas
+```{r}
+
+extrair_tabelas_2018_ws3 <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
+mes_boletim <- datas_arquivos[[nume,1]]
+
+  prov <- read_excel(paste0("data/", planilhas[nume]), sheet = 3)
+
+names(prov) <- "col1"
+
+  corte <- which(str_detect(prov$col1, "Tabela [0-9]*"))
+  # E a a linha seguinte com a palavra tabela indica o início da tabela seguinte
+  maximo_linha <- lead(corte) - corte
+  
+ajuste <- 2
+ajuste2 <- -2
+
+my_list <- list()
+  
+  # Importação de três tabelas, usando os parâmetros descobertos anteriormente
+  # nos argumentos "skip" e "n_max". Dessa maneira, a função readxl identifica
+  # automaticamente o número de colunas de cada tabela e a classe dos caracteres
+
+ assign(x = paste0("dataf", 1), value = read_excel(paste0("data/", planilhas[nume]), sheet = 3, skip = corte[1] + 
+  ajuste, n_max = maximo_linha[1] + ajuste2) |> 
+          mutate(mes = mes_boletim))    
+
+ assign(x = paste0("dataf", 2), value = read_excel(paste0("data/", planilhas[nume]), sheet = 3, skip = corte[2] + 
+  ajuste, n_max = maximo_linha[2] + ajuste2) |> 
+          mutate(mes = mes_boletim))
+ 
+  assign(x = paste0("dataf", 3), value = read_excel(paste0("data/", planilhas[nume]), sheet = 3, skip = corte[3] + 
+  ajuste, n_max = maximo_linha[3] + ajuste2) |> 
+          mutate(mes = mes_boletim))
+  
+   assign(x = paste0("dataf", 4), value = read_excel(paste0("data/", planilhas[nume]), sheet = 3, skip = corte[4] + 
+  ajuste, n_max = maximo_linha[4] + ajuste2) |> 
+          mutate(mes = mes_boletim))
+ 
+   assign(x = paste0("dataf", 5), value = read_excel(paste0("data/", planilhas[nume]), sheet = 3, skip = corte[5] + 
+  ajuste, n_max = maximo_linha[5] + ajuste2) |> 
+          mutate(mes = mes_boletim))
+   
+      assign(x = paste0("dataf", 6), value = read_excel(paste0("data/", planilhas[nume]), sheet = 3, skip = corte[6] + 
+  ajuste, n_max = maximo_linha[6] + ajuste2) |> 
+          mutate(mes = mes_boletim))
+      
+      assign(x = paste0("dataf", 7), value = read_excel(paste0("data/", planilhas[nume]), sheet = 3, skip = corte[7] + 
+  ajuste, n_max = maximo_linha[7] + ajuste2) |> 
+          mutate(mes = mes_boletim))
+      
+            assign(x = paste0("dataf", 8), value = read_excel(paste0("data/", planilhas[nume]), sheet = 3, skip = corte[8] + 
+  ajuste, n_max = maximo_linha[8] + ajuste2) |> 
+          mutate(mes = mes_boletim))
+   
+               assign(x = paste0("dataf", 9), value = read_excel(paste0("data/", planilhas[nume]), sheet = 3, skip = corte[9] + 
+  ajuste, n_max = maximo_linha[9] + ajuste2) |> 
+          mutate(mes = mes_boletim))         
+            
+                  assign(x = paste0("dataf", 10), value = read_excel(paste0("data/", planilhas[nume]), sheet = 3, skip = corte[10] + 
+  ajuste, n_max = maximo_linha[10] + ajuste2) |> 
+          mutate(mes = mes_boletim))
+               
+                                    assign(x = paste0("dataf", 11), value = read_excel(paste0("data/", planilhas[nume]), sheet = 3, skip = corte[11] + 
+  ajuste, n_max = maximo_linha[11] + ajuste2) |> 
+          mutate(mes = mes_boletim))
+                  
+                                       assign(x = paste0("dataf", 12), value = read_excel(paste0("data/", planilhas[nume]), sheet = 3, skip = corte[12] + 
+  ajuste, n_max = maximo_linha[12] + ajuste2) |> 
+          mutate(mes = mes_boletim))
+                                    
+# i <- 1
+# while(i < 13){
+# assign(x = paste0("dataf", i), value = read_excel(paste0("data/", planilhas[i]), sheet = 3, skip = corte[i], n_max = maximo_linha[i]) |> 
+#          mutate(mes = mes_boletim))
+#  
+#  i <- i + 1
+#}
+
+ assign(x = paste0("dataf", 13), value = read_excel(paste0("data/", planilhas[nume]), sheet = 3, skip = corte[13] + ajuste) |> 
+          mutate(mes = mes_boletim))  
+
+mylist <- list(dataf1, dataf2, dataf3, dataf4, dataf5, dataf6, dataf7, dataf8, dataf9, dataf10, dataf11, dataf12, dataf13)
+
+mylist
+}
+```
+
+
+
 # Datas
 
 Gerando elemento com todos os arquivos e suas datas
@@ -171,27 +267,29 @@ do.call(rbind, lapply(tabelas_guias2_2017_lista, `[[`, 6))
 A lista 7 não pode passar direto por um rbind. Precisa ser limpa com a função "gather' antes
 
 ```{r}
-tabela7_2017 <- rbind(tabelas_guias2_2017_lista[[1]][[7]][,-15] |> 
-  tidyr::pivot_longer(cols = 2:14, names_to = "mes_ano", values_to = "valor"),
-
+rbind(tabelas_guias2_2017_lista[[1]][[7]][,-15] |> 
+  tidyr::pivot_longer(cols = 2:14, names_to = "mes_ano", values_to = "valor") |> 
+  mutate(mes_ano = str_replace(mes_ano, pattern = "16", replacement = "2016"),
+         mes_ano = str_replace(mes_ano, pattern = "17", replacement = "2017")),
 tabelas_guias2_2017_lista[[2]][[7]][,-15] |> 
   tidyr::pivot_longer(cols = 2:14, names_to = "mes_ano", values_to = "valor"),
 
 tabelas_guias2_2017_lista[[3]][[7]][,-15] |> 
-  tidyr::pivot_longer(cols = 2:14, names_to = "mes_ano", values_to = "valor"))
-
-tabela7_2017  |>  
-  mutate(mes_ano = str_replace(pattern = "//16", replacement = "//2016"))
-  arrange(`...1`) |> 
+  tidyr::pivot_longer(cols = 2:14, names_to = "mes_ano", values_to = "valor")) |> 
   distinct()
+
+  
 ```
 
 ```{r}
 do.call(rbind, lapply(tabelas_guias2_2017_lista, `[[`, 8))
 ```
+
+
 ```{r}
 do.call(rbind, lapply(tabelas_guias2_2017_lista, `[[`, 9))
 ```
+
 
 ```{r}
 do.call(rbind, lapply(tabelas_guias2_2017_lista, `[[`, 10))
@@ -213,9 +311,133 @@ do.call(rbind, lapply(tabelas_guias2_2017_lista, `[[`, 13))
 
 ### Planilhas 3 à última: 9 tabelas, de 5 a 11
 ```{r}
+meu_dataf <- tibble()
+
+
+i <- 1
+while(i < length(planilhas)){
+num_coluna <- read_excel(paste0("data/", planilhas[i]), range = "A1:Z1000", sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
+  nrow()  
+meu_dataf[i,1] <- num_coluna
+  i <- i + 1
+ 
+}
+
+nrow(meu_dataf)-4
+meu_dataf |> 
+  mutate(num_plan = 4:(75+3))
+```
+
+
+```{r}
 map_df(4:length(planilhas), function(x){read_excel(paste0("data/", planilhas[x]), range = "A1:Z1000", sheet = 3, col_types = "text",  .name_repair = "unique_quiet")}) |> 
   filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
   distinct()
 ```
 
 Função personalizada: extrair 8 tabelas
+
+
+
+# Apendice - para montar a função personalizada
+
+
+## 8 tabelas
+```{r}
+
+# extrair_tabelas_2018_ws3 <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
+mes_boletim <- datas_arquivos[[33,1]]
+
+# 4:length(planilhas),
+
+  prov <- read_excel(paste0("data/", planilhas[33]), sheet = 3)
+
+names(prov) <- "col1"
+
+  corte <- which(str_detect(prov$col1, "Tabela [0-9]*"))
+  corte2 <- which(str_detect(prov$col1, "Tabela"))
+  corte
+  corte2
+  
+  # E a a linha seguinte com a palavra tabela indica o início da tabela seguinte
+  maximo_linha <- lead(corte) - corte
+  
+ajuste <- 2
+ajuste2 <- -2
+
+my_list <- list()
+  
+  # Importação de três tabelas, usando os parâmetros descobertos anteriormente
+  # nos argumentos "skip" e "n_max". Dessa maneira, a função readxl identifica
+  # automaticamente o número de colunas de cada tabela e a classe dos caracteres
+
+ assign(x = paste0("dataf", 1), value = read_excel(paste0("data/", planilhas[33]), sheet = 3, skip = corte[1] + 
+  ajuste, n_max = maximo_linha[1] + ajuste2) |> 
+          mutate(mes = mes_boletim))    
+
+ assign(x = paste0("dataf", 2), value = read_excel(paste0("data/", planilhas[33]), sheet = 3, skip = corte[2] + 
+  ajuste, n_max = maximo_linha[2] + ajuste2) |> 
+          mutate(mes = mes_boletim))
+ 
+  assign(x = paste0("dataf", 3), value = read_excel(paste0("data/", planilhas[33]), sheet = 3, skip = corte[3] + 
+  ajuste, n_max = maximo_linha[3] + ajuste2) |> 
+          mutate(mes = mes_boletim))
+  
+   assign(x = paste0("dataf", 4), value = read_excel(paste0("data/", planilhas[33]), sheet = 3, skip = corte[4] + 
+  ajuste, n_max = maximo_linha[4] + ajuste2) |> 
+          mutate(mes = mes_boletim))
+ 
+   assign(x = paste0("dataf", 5), value = read_excel(paste0("data/", planilhas[33]), sheet = 3, skip = corte[5] + 
+  ajuste, n_max = maximo_linha[5] + ajuste2) |> 
+          mutate(mes = mes_boletim))
+   
+      assign(x = paste0("dataf", 6), value = read_excel(paste0("data/", planilhas[33]), sheet = 3, skip = corte[6] + 
+  ajuste, n_max = maximo_linha[6] + ajuste2) |> 
+          mutate(mes = mes_boletim))
+      
+      assign(x = paste0("dataf", 7), value = read_excel(paste0("data/", planilhas[33]), sheet = 3, skip = corte[7] + 
+  ajuste) |> 
+          mutate(mes = mes_boletim))
+      
+            #assign(x = paste0("dataf", 8), value = read_excel(paste0("data/", planilhas[33]), sheet = 3, skip = corte[8] + 
+  #ajuste, n_max = maximo_linha[8] + ajuste2) |> 
+   #       mutate(mes = mes_boletim))
+   
+               assign(x = paste0("dataf", 9), value = read_excel(paste0("data/", planilhas[33]), sheet = 3, skip = corte[9] + 
+  ajuste, n_max = maximo_linha[9] + ajuste2) |> 
+          mutate(mes = mes_boletim))         
+            
+                  assign(x = paste0("dataf", 10), value = read_excel(paste0("data/", planilhas[33]), sheet = 3, skip = corte[10] + 
+  ajuste, n_max = maximo_linha[10] + ajuste2) |> 
+          mutate(mes = mes_boletim))
+               
+                                    assign(x = paste0("dataf", 11), value = read_excel(paste0("data/", planilhas[nume]), sheet = 3, skip = corte[11] + 
+  ajuste, n_max = maximo_linha[11] + ajuste2) |> 
+          mutate(mes = mes_boletim))
+                  
+                                       assign(x = paste0("dataf", 12), value = read_excel(paste0("data/", planilhas[nume]), sheet = 3, skip = corte[12] + 
+  ajuste, n_max = maximo_linha[12] + ajuste2) |> 
+          mutate(mes = mes_boletim))
+                                    
+# i <- 1
+# while(i < 13){
+# assign(x = paste0("dataf", i), value = read_excel(paste0("data/", planilhas[i]), sheet = 3, skip = corte[i], n_max = maximo_linha[i]) |> 
+#          mutate(mes = mes_boletim))
+#  
+#  i <- i + 1
+#}
+
+ assign(x = paste0("dataf", 13), value = read_excel(paste0("data/", planilhas[nume]), sheet = 3, skip = corte[13] + ajuste) |> 
+          mutate(mes = mes_boletim))  
+
+mylist <- list(dataf1, dataf2, dataf3, dataf4, dataf5, dataf6, dataf7, dataf8, dataf9, dataf10, dataf11, dataf12, dataf13)
+
+mylist
+}
+```
+
+```{r}
+map_df(33, function(x){read_excel(paste0("data/", planilhas[x]), range = "A1:Z1000", sheet = 3, col_types = "text",  .name_repair = "unique_quiet")}) |> 
+  filter(if_any(2, ~ str_detect(., "Tabela")))
+```
