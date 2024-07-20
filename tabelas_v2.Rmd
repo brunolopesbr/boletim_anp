@@ -13,14 +13,17 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(readxl)
 ```
+```{r}
+source(knitr::purl("worksheets_data.Rmd", quiet=TRUE))
+```
+
+
 
 # Funções personalizadas
 
-
-
 # Datas
 
-Gerando elemento com todos os arquivos e suas datas
+Recupera elemento que relaciona o nome dos arquivos e suas datas
 ```{r message=FALSE, warning=FALSE}
 
 datas_arquivos
