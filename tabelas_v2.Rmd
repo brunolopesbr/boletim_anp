@@ -54,10 +54,10 @@ Tabela 4. Histórico de produção de petróleo e gás natural (Mboe/d)
 
 A guia 2 contém tabelas históricas. As três primeiras planilhas (outubro a dezembro de 2017) contém apenas três tabelas.
 
-Função personalizada (extrair 3 tabelas)
+### Função personalizada (extrair 3 tabelas)
 ```{r}
 
-extrair_dados_2017_ws2 <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 2){
+extrair_3_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 2){
 prov <- read_excel(paste0("data/", planilhas[nume]), sheet = 2)
 
 names(prov) <- "col1"
@@ -72,13 +72,13 @@ names(prov) <- "col1"
 
    
   
-df1 <-  read_excel(paste0("data/", planilhas[nume]), sheet = 2, skip = corte[1] + ajuste, n_max = maximo_linha[1] + ajuste2) |> 
+df1 <-  read_excel(paste0("data/", planilhas[nume]), sheet = sheet, skip = corte[1] + ajuste, n_max = maximo_linha[1] + ajuste2) |> 
      gather(key = "mes", value = "volume", -1)
 
-df2 <-  read_excel(paste0("data/", planilhas[nume]), sheet = 2, skip = corte[2] + ajuste, n_max = maximo_linha[2] + ajuste2) |> 
+df2 <-  read_excel(paste0("data/", planilhas[nume]), sheet = sheet, skip = corte[2] + ajuste, n_max = maximo_linha[2] + ajuste2) |> 
      gather(key = "mes", value = "volume", -1)
   
-df3 <-  read_excel(paste0("data/", planilhas[nume]), sheet = 2, skip = corte[3] + ajuste) |> 
+df3 <-  read_excel(paste0("data/", planilhas[nume]), sheet = sheet, skip = corte[3] + ajuste) |> 
      gather(key = "mes", value = "volume", -1)  
   
 
@@ -88,7 +88,7 @@ list(df1, df2, df3)
 ```
 Criar lista com tabelas de 2017
 ```{r}
-tabelas_guia2_2017_lista <- map(1:3, extrair_dados_2017_ws2)
+tabelas_guia2_2017_lista <- map(1:3, extrair_3_tabelas)
 ```
 Extraindo cada tabela da lista
 ```{r}
@@ -110,7 +110,7 @@ read_excel(paste0("data/", planilhas[length(planilhas)]), sheet = 2) |>
   filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
   distinct()
 ```
-Função personalizada (extrair 4 tabelas)
+### Função personalizada (extrair 4 tabelas)
 ```{r}
 extrair_dados_2018_ws2 <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 2){
 prov <- read_excel(paste0("data/", planilhas[nume]), sheet = 2)
