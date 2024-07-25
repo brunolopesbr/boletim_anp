@@ -1,0 +1,437 @@
+---
+title: "Tabelas versão atual"
+author: "BML"
+date: "2024-07-23"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(readxl)
+```
+
+```{r}
+source(knitr::purl("funcoes_data_e_extrair.Rmd", quiet=TRUE))
+```
+
+# Tabelas 1 a 4: 
+
+```{r}
+read_excel(paste0("data/", planilhas[76]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) 
+```
+
+## Criação de listas com as tabelas
+
+```{r}
+lista_guia2_versao_atual <- map(4:76, extrair_4_tabelas, sheet = 2)
+```
+```{r}
+lista_guia2_versao_meno3 <- map(1:3, extrair_3_tabelas, sheet = 2)
+
+# gather(key = "mes", value = "produto", -1)
+```
+
+```{r}
+lista_guia4_versao_meno3 <- map(1:3, extrair_3_tabelas_data, sheet = 4)
+```
+
+## Histórico de produção de petróleo
+
+```{r}
+read_excel(paste0("data/", planilhas[76]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(1)
+
+read_excel(paste0("data/", planilhas[4]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(1)
+```
+
+```{r}
+Histórico_petróleo. <-   rbind(
+do.call(rbind, map(lista_guia2_versao_atual, `[[`, 1)),
+do.call(rbind, map(lista_guia2_versao_meno3, `[[`, 1))) |> 
+  mutate(mes = str_replace(mes, "/16", "/2016")  ) |> 
+  mutate(mes = str_replace(mes, "/17", "/2017")  ) |> 
+  mutate(mes = str_replace(mes, "/18", "/2018")  ) 
+
+Histórico_petróleo <- rbind(
+ Histórico_petróleo. |> 
+  filter(!str_detect(mes, "/")) |> 
+   mutate(mes = as.Date(as.numeric(mes), origin = "1899-12-30")), 
+Histórico_petróleo. |> 
+  filter(str_detect(mes, "/")) |>
+   mutate(mes = lubridate::my(mes)))
+
+Histórico_petróleo
+```
+
+```{r}
+Histórico_petróleo |> 
+  distinct() |> 
+  write.csv2(file = "Histórico_petróleo.csv")
+
+ 
+```
+
+## Histórico de produção de gás natural
+
+```{r}
+read_excel(paste0("data/", planilhas[76]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(2)
+
+read_excel(paste0("data/", planilhas[4]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(2)
+
+```
+
+Unir as tabelas das diferentes listas. Depois, limpar as informações de datas
+```{r}
+Histórico_prod_gas. <-   rbind(
+do.call(rbind, map(lista_guia2_versao_atual, `[[`, 2)),
+do.call(rbind, map(lista_guia2_versao_meno3, `[[`, 2))) |> 
+  mutate(mes = str_replace(mes, "/16", "/2016")  ) |> 
+  mutate(mes = str_replace(mes, "/17", "/2017")  ) |> 
+  mutate(mes = str_replace(mes, "/18", "/2018")  ) 
+
+Histórico_prod_gas <- rbind(
+ Histórico_prod_gas. |> 
+  filter(!str_detect(mes, "/")) |> 
+   mutate(mes = as.Date(as.numeric(mes), origin = "1899-12-30")), 
+Histórico_prod_gas. |> 
+  filter(str_detect(mes, "/")) |>
+   mutate(mes = lubridate::my(mes)))
+```
+
+
+```{r}
+Histórico_prod_gas |> 
+  distinct() |> 
+  write.csv2(file = "Histórico_prod_gas.csv")
+
+ 
+```
+
+
+## movimentação da gás natural
+
+
+
+```{r}
+read_excel(paste0("data/", planilhas[76]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(3)
+
+read_excel(paste0("data/", planilhas[4]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(3)
+
+read_excel(paste0("data/", planilhas[1]), sheet = 4, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(2)
+```
+
+
+```{r}
+MOVIMENTACAO_DE_GAS_NATURAL <-   rbind(
+  do.call(bind_rows, map(lista_guia2_versao_atual, `[[`, 3))  |> 
+  filter(!is.na(Período)) |> 
+  filter(str_detect(Período, "/")) |> 
+  mutate(Período = lubridate::my(Período)),
+
+do.call(bind_rows, map(lista_guia2_versao_atual, `[[`, 3))  |> 
+  filter(!is.na(Período)) |> 
+  filter(!str_detect(Período, "/")) |>  
+ mutate(Período = as.Date(as.numeric(Período), origin = "1899-12-30")),
+
+
+do.call(bind_rows, map(lista_guia2_versao_atual, `[[`, 3))  |> 
+  filter(is.na(Período)) |> 
+  mutate(Período = lubridate::my(`Mês/Ano`))
+# problema: data está em duas colunas
+
+) |> select(!`Mês/Ano`) |> 
+ distinct() |> 
+  mutate_at(2:9, as.numeric)
+
+
+MOVIMENTACAO_DE_GAS_NATURAL 
+```
+
+```{r}
+MOVIMENTACAO_DE_GAS_NATURAL_ANTIGA <- do.call(rbind,
+map(lista_guia4_versao_meno3, `[[`, 2)  
+) |> 
+  rename(Período = mes)
+
+MOVIMENTACAO_DE_GAS_NATURAL <- bind_rows(MOVIMENTACAO_DE_GAS_NATURAL_ANTIGA, MOVIMENTACAO_DE_GAS_NATURAL) |> 
+  distinct()
+```
+
+
+
+```{r}
+MOVIMENTACAO_DE_GAS_NATURAL_ANTIGA |> 
+  distinct() |> 
+  write.csv2(file = "MOVIMENTACAO_DE_GAS_NATURAL_ANTIGA.csv")
+
+ 
+```
+
+
+## HISTÓRICO DA PRODUÇÃO NACIONAL
+
+```{r}
+read_excel(paste0("data/", planilhas[76]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(4)
+
+read_excel(paste0("data/", planilhas[4]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(4)
+
+read_excel(paste0("data/", planilhas[1]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(3)
+
+```
+
+Unir as tabelas das diferentes listas. Depois, limpar as informações de datas
+```{r}
+Historico_de_Producao_de_Petroleo_Gas_Natural <-   rbind(
+do.call(rbind, map(lista_guia2_versao_atual, `[[`, 4)),
+do.call(rbind, map(lista_guia2_versao_meno3, `[[`, 3))) |> 
+  mutate(mes = str_replace(mes, "/16", "/2016")  ) |> 
+  mutate(mes = str_replace(mes, "/17", "/2017")  ) |> 
+  mutate(mes = str_replace(mes, "/18", "/2018")  ) 
+
+Historico_de_Producao_de_Petroleo_Gas_Natural |>
+   mutate(mes = lubridate::my(mes)) |> 
+  distinct()
+
+# Histórico_prod_gas <- rbind(
+# Histórico_prod_gas. |> 
+#  filter(!str_detect(mes, "/")) |> 
+#   mutate(mes = as.Date(as.numeric(mes), origin = "1899-12-30")), 
+#Histórico_prod_gas. |> 
+#  filter(str_detect(mes, "/")) |>
+#   mutate(mes = lubridate::my(mes)))
+```
+
+
+```{r}
+Historico_de_Producao_de_Petroleo_Gas_Natural |> 
+  distinct() |> 
+  write.csv2(file = "Historico_de_Producao_de_Petroleo_Gas_Natural.csv")
+```
+
+# Tabelas 5 a 10
+```{r}
+read_excel(paste0("data/", planilhas[76]), sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) 
+```
+
+## Criação de listas com as tabelas (guia 3)
+
+```{r}
+lista_guia3_versao_atual <- map(57:76, extrair_6_tabelas, sheet = 3)
+```
+
+```{r}
+lista_guia3_versao_menos1 <- map(4:56, extrair_7_tabelas, sheet = 3)
+```
+
+```{r}
+lista_guia3_versao_menos3 <- map(1:3, extrair_13_tabelas, sheet = 3)
+```
+
+## por estado
+
+```{r}
+# Acertar nomes das colunas
+nomes <- names(lista_guia3_versao_atual[[1]][[1]] )
+
+i <- 1
+while(i <= length(lista_guia3_versao_menos1)){
+  names(lista_guia3_versao_menos1[[i]][[1]] ) <- nomes
+  i <- i + 1
+}
+
+i <- 1
+while(i <= length(lista_guia3_versao_menos3)){
+  names(lista_guia3_versao_menos3[[i]][[1]] ) <- nomes
+  i <- i + 1
+}
+```
+
+
+```{r}
+por_estado <- rbind(
+do.call(rbind, map(lista_guia3_versao_atual, `[[`, 1)),
+
+do.call(rbind, map(lista_guia3_versao_menos1, `[[`, 1)),
+
+do.call(rbind, map(lista_guia3_versao_menos3, `[[`, 1))  
+)
+```
+
+```{r}
+por_estado |> 
+  distinct() |> 
+  write.csv2(file = "por_estado.csv")
+```
+
+
+
+## por bacia
+
+```{r}
+# Acertar nomes das colunas
+nomes <- names(lista_guia3_versao_atual[[1]][[2]] )
+
+i <- 1
+while(i <= length(lista_guia3_versao_menos1)){
+  names(lista_guia3_versao_menos1[[i]][[2]] ) <- nomes
+  i <- i + 1
+}
+
+i <- 1
+while(i <= length(lista_guia3_versao_menos3)){
+  names(lista_guia3_versao_menos3[[i]][[2]] ) <- nomes
+  i <- i + 1
+}
+```
+
+
+```{r}
+por_bacia <- rbind(
+do.call(rbind, map(lista_guia3_versao_atual, `[[`, 2)),
+
+do.call(rbind, map(lista_guia3_versao_menos1, `[[`, 2)),
+
+do.call(rbind, map(lista_guia3_versao_menos3, `[[`, 2))  
+)
+```
+
+```{r}
+por_bacia |> 
+  distinct() |> 
+  write.csv2(file = "por_bacia.csv")
+```
+
+
+
+## por operador
+
+```{r eval=FALSE, include=FALSE}
+# Acertar nomes das colunas
+nomes <- names(lista_guia3_versao_atual[[1]][[3]] )
+
+i <- 1
+while(i <= length(lista_guia3_versao_menos1)){
+  names(lista_guia3_versao_menos1[[i]][[3]] ) <- nomes
+  i <- i + 1
+}
+
+i <- 1
+while(i <= length(lista_guia3_versao_menos3)){
+  names(lista_guia3_versao_menos3[[i]][[3]] ) <- nomes
+  i <- i + 1
+}
+```
+
+
+```{r}
+por_operador <- rbind(
+do.call(rbind, map(lista_guia3_versao_atual, `[[`, 3)),
+
+do.call(rbind, map(lista_guia3_versao_menos1, `[[`, 3)),
+
+do.call(rbind, map(lista_guia3_versao_menos3, `[[`, 3))  
+)
+```
+
+```{r}
+por_operador |> 
+  distinct() |> 
+  write.csv2(file = "por_operador.csv")
+```
+
+
+
+## por concessionario
+
+```{r}
+# Dataframe 16 tem colunas em branco, detectando e acertando isso
+i <- 1
+
+while(i <= length(lista_guia3_versao_atual)){
+  print(i)
+  names(lista_guia3_versao_atual[[i]][[4]])  |> 
+    print()
+
+    i <- i + 1
+}
+
+lista_guia3_versao_atual[[16]][[4]] <- lista_guia3_versao_atual[[16]][[4]][,c(1:5, 11)]
+```
+
+
+```{r}
+# Acertar nomes das colunas
+nomes <- names(lista_guia3_versao_atual[[1]][[4]] )
+
+i <- 1
+while(i <= length(lista_guia3_versao_atual)){
+  names(lista_guia3_versao_atual[[i]][[4]] ) <- nomes
+  i <- i + 1
+}
+
+i <- 1
+while(i <= length(lista_guia3_versao_menos1)){
+  names(lista_guia3_versao_menos1[[i]][[4]] ) <- nomes
+  i <- i + 1
+}
+
+i <- 1
+while(i <= length(lista_guia3_versao_menos3)){
+  names(lista_guia3_versao_menos3[[i]][[4]] ) <- nomes
+  i <- i + 1
+}
+```
+
+```{r}
+por_concessionario <- rbind(
+do.call(rbind, map(lista_guia3_versao_atual, `[[`, 4)),
+
+do.call(rbind, map(lista_guia3_versao_menos1, `[[`, 4)),
+
+do.call(rbind, map(lista_guia3_versao_menos3, `[[`, 4))  
+)
+```
+
+```{r}
+por_concessionario |> 
+  distinct() |> 
+  write.csv2(file = "por_concessionario.csv")
+```
+

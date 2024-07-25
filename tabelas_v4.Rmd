@@ -1,5 +1,5 @@
 ---
-title: "Worksheets"
+title: "Worksheets 4"
 author: "BML"
 date: "2024-07-04"
 output: html_document
@@ -346,7 +346,7 @@ tabelas_guias_33_56 <- map(33:53, extrair_16_tabelas)
 
 ## Planilhas 54, 55, 57 a 76: 8 tabelas
 ```{r}
-map_df(57:76, function(x){read_excel(paste0("data/", planilhas[x]), range = "A1:Z1000", sheet = 4, col_types = "text",  .name_repair = "unique_quiet")}) |> 
+map_df(c(54, 55, 57:76), function(x){read_excel(paste0("data/", planilhas[x]), range = "A1:Z1000", sheet = 4, col_types = "text",  .name_repair = "unique_quiet")}) |> 
   filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
   distinct() |> 
   distinct()
