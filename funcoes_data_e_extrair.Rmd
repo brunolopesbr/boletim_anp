@@ -91,7 +91,7 @@ list(df1, df2, df3)
 
 ## Extrair 3 tabelas com data
 ```{r}
-extrair_3_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = sheet){
+extrair_3_tabelas_data <- function(nume, ajuste = 2, ajuste2 = -2, sheet = sheet){
 
 mes_boletim <- datas_arquivos[[nume,1]]
 
@@ -207,9 +207,7 @@ my_list <- list()
   ajuste, n_max = maximo_linha[5] + ajuste2) |> 
           mutate(mes = mes_boletim))
    
-      assign(x = paste0("dataf", 6), value = read_excel(paste0("data/", planilhas[nume]), sheet = sheet, skip = corte[6] + 
-  ajuste) |> 
-          mutate(mes = mes_boletim))
+     
       
 # i <- 1
 # while(i < 13){
@@ -218,9 +216,9 @@ my_list <- list()
 #  
 #  i <- i + 1
 #}
-
- assign(x = paste0("dataf", 7), value = read_excel(paste0("data/", planilhas[nume]), sheet = sheet, skip = corte[7] + ajuste) |> 
-          mutate(mes = mes_boletim))  
+   
+    assign(x = paste0("dataf", 6), value = read_excel(paste0("data/", planilhas[nume]), sheet = sheet, skip = corte[6] +  ajuste) |> 
+          mutate(mes = mes_boletim))
 
 mylist <- list(dataf1, dataf2, dataf3, dataf4, dataf5, dataf6)
 
