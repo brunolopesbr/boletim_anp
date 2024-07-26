@@ -1,23 +1,23 @@
-## ----setup, include=FALSE-------------------------------------------------------------
+## ----setup, include=FALSE--------------------------------------------------------------------------------
 knitr::opts_chunk$set(echo = TRUE)
 
 
-## -------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------
 library(tidyverse)
 library(readxl)
 
 
-## -------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------
 planilhas <- dir(path = "data", pattern = "*xls*")
 
 
-## -------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------
 # 2.1 - Obter nomes de todas as guias
 extrair_guias <- function(num){
   readxl::excel_sheets(paste0("data/", planilhas[num]))}
 
 
-## -------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------
 extrair_data_ws2 <- function(num){
 
 prov1 <- read_excel(paste0("data/", planilhas[num]), sheet = 2, .name_repair = "unique_quiet")
@@ -43,7 +43,7 @@ as_tibble(data_ws2)
 }
 
 
-## -------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------
 extrair_3_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = sheet){
 prov <- read_excel(paste0("data/", planilhas[nume]), sheet = sheet)
 
@@ -74,9 +74,46 @@ list(df1, df2, df3)
 }  
 
 
-## -------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------
+extrair_3_tabelas_data <- function(nume, ajuste = 2, ajuste2 = -2, sheet = sheet){
+
+mes_boletim <- datas_arquivos[[nume,1]]
+
+  prov <- read_excel(paste0("data/", planilhas[nume]), sheet = sheet)
+
+names(prov) <- "col1"
+
+  corte <- which(str_detect(prov$col1, "Tabela [0-9]*"))
+  # E a a linha seguinte com a palavra tabela indica o início da tabela seguinte
+  maximo_linha <- lead(corte) - corte
+  
+  # Importação de três tabelas, usando os parâmetros descobertos anteriormente
+  # nos argumentos "skip" e "n_max". Dessa maneira, a função readxl identifica
+  # automaticamente o número de colunas de cada tabela e a classe dos caracteres
+
+   
+  
+df1 <-  read_excel(paste0("data/", planilhas[nume]), sheet = sheet, skip = corte[1] + ajuste, n_max = maximo_linha[1] + ajuste2) |> 
+          mutate(mes = mes_boletim)    
+
+df2 <-  read_excel(paste0("data/", planilhas[nume]), sheet = sheet, skip = corte[2] + ajuste, n_max = maximo_linha[2] + ajuste2) |> 
+          mutate(mes = mes_boletim)    
+  
+df3 <-  read_excel(paste0("data/", planilhas[nume]), sheet = sheet, skip = corte[3] + ajuste) |> 
+     gather(key = "mes", value = "volume", -1) |> 
+          mutate(mes = mes_boletim)     
+  
+
+list(df1, df2, df3)
+
+}  
+
+
+## --------------------------------------------------------------------------------------------------------
 extrair_4_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = sheet){
-prov <- read_excel(paste0("data/", planilhas[nume]), sheet = sheet)
+
+  
+  prov <- read_excel(paste0("data/", planilhas[nume]), sheet = sheet)
 
 names(prov) <- "col1"
 
@@ -107,7 +144,7 @@ list(df1, df2, df3, df4)
 }  
 
 
-## -------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------
 extrair_6_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
 mes_boletim <- datas_arquivos[[nume,1]]
 
@@ -148,9 +185,7 @@ my_list <- list()
   ajuste, n_max = maximo_linha[5] + ajuste2) |> 
           mutate(mes = mes_boletim))
    
-      assign(x = paste0("dataf", 6), value = read_excel(paste0("data/", planilhas[nume]), sheet = sheet, skip = corte[6] + 
-  ajuste) |> 
-          mutate(mes = mes_boletim))
+     
       
 # i <- 1
 # while(i < 13){
@@ -159,9 +194,9 @@ my_list <- list()
 #  
 #  i <- i + 1
 #}
-
- assign(x = paste0("dataf", 7), value = read_excel(paste0("data/", planilhas[nume]), sheet = sheet, skip = corte[7] + ajuste) |> 
-          mutate(mes = mes_boletim))  
+   
+    assign(x = paste0("dataf", 6), value = read_excel(paste0("data/", planilhas[nume]), sheet = sheet, skip = corte[6] +  ajuste) |> 
+          mutate(mes = mes_boletim))
 
 mylist <- list(dataf1, dataf2, dataf3, dataf4, dataf5, dataf6)
 
@@ -169,7 +204,7 @@ mylist
 }
 
 
-## -------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------
 extrair_7_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
 mes_boletim <- datas_arquivos[[nume,1]]
 
@@ -231,7 +266,7 @@ mylist
 }
 
 
-## -------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------
 extrair_8_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
 mes_boletim <- datas_arquivos[[nume,1]]
 
@@ -298,7 +333,7 @@ mylist
 }
 
 
-## -------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------
 extrair_13_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
 mes_boletim <- datas_arquivos[[nume,1]]
 
@@ -384,7 +419,7 @@ mylist
 }
 
 
-## -------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------
 
 extrair_16_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 4){
 mes_boletim <- datas_arquivos[[nume,1]]
@@ -483,14 +518,14 @@ mylist
 }
 
 
-## ----message=FALSE, warning=FALSE-----------------------------------------------------
+## ----message=FALSE, warning=FALSE------------------------------------------------------------------------
 datas_arquivos <- map_df(seq_along(planilhas), extrair_data_ws2) |> 
   mutate(planilha = planilhas)
 
 datas_arquivos
 
 
-## ----message=FALSE, warning=FALSE-----------------------------------------------------
+## ----message=FALSE, warning=FALSE------------------------------------------------------------------------
 # Verificando os erros
 
 {if (datas_arquivos |> 
@@ -500,7 +535,7 @@ else (print("Verificar"))  }
 
 
 
-## -------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------
 guias_lista <- map(1:length(planilhas), extrair_guias)
 
 guias <- do.call(rbind, guias_lista) |> 
@@ -511,16 +546,16 @@ guias <- guias |>
   mutate(num_arquivo = 1:nrow(guias) )
 
 
-## -------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------
 guias
 
 
-## -------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------
 unique(guias$V2)
 
 
 
-## -------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------
 planilhas_ws4_grupo1 <- guias |> 
   filter(V4 == unique(guias$V4)[1]) |> 
   pull(num_arquivo)
@@ -531,14 +566,14 @@ planilhas_ws4_grupo2 <- guias |>
 
 
 
-## -------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------
 guias |> 
   filter(V5 == unique(guias$V5)[2]) |> 
   pull(num_arquivo)
 
 
 
-## -------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------
 planilhas_ws4_grupo1 <- guias |> 
   filter(V5 == unique(guias$V5[1])) |> 
   pull(num_arquivo)
@@ -548,7 +583,7 @@ planilhas_ws4_grupo2 <- guias |>
 
 
 
-## -------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------
 unique(guias$V2) |> length()
 unique(guias$V3) |> length()
 unique(guias$V4) |> length()
@@ -558,7 +593,7 @@ unique(guias$V4)
 unique(guias$V5)
 
 
-## -------------------------------------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------
 guias_covid <- guias |> 
    filter(str_detect(V5, "Covid")) |> 
   pull(num_arquivo)
