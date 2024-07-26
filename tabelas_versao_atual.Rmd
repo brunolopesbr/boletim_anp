@@ -95,6 +95,11 @@ read_excel(paste0("data/", planilhas[4]), sheet = 2, col_types = "text",  .name_
   select(1) |> 
   slice(2)
 
+read_excel(paste0("data/", planilhas[1]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(2)
+
 ```
 
 Unir as tabelas das diferentes listas. Depois, limpar as informações de datas
@@ -264,7 +269,29 @@ lista_guia3_versao_menos1 <- map(4:56, extrair_7_tabelas, sheet = 3)
 lista_guia3_versao_menos3 <- map(1:3, extrair_13_tabelas, sheet = 3)
 ```
 
+```{r}
+lista_guia4_versao_menos3 <- map(1:3, extrair_3_tabelas_data, sheet = 4)
+```
+
 ## por estado
+
+```{r}
+read_excel(paste0("data/", planilhas[76]), sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(1)
+
+read_excel(paste0("data/", planilhas[4]), sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(1)
+
+read_excel(paste0("data/", planilhas[1]), sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(1)
+```
+
 
 ```{r}
 # Acertar nomes das colunas
@@ -305,6 +332,23 @@ por_estado |>
 ## por bacia
 
 ```{r}
+read_excel(paste0("data/", planilhas[76]), sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(2)
+
+read_excel(paste0("data/", planilhas[4]), sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(2)
+
+read_excel(paste0("data/", planilhas[1]), sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(2)
+```
+
+```{r}
 # Acertar nomes das colunas
 nomes <- names(lista_guia3_versao_atual[[1]][[2]] )
 
@@ -341,6 +385,23 @@ por_bacia |>
 
 
 ## por operador
+
+```{r}
+read_excel(paste0("data/", planilhas[76]), sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(3)
+
+read_excel(paste0("data/", planilhas[4]), sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(3)
+
+read_excel(paste0("data/", planilhas[1]), sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(3)
+```
 
 ```{r eval=FALSE, include=FALSE}
 # Acertar nomes das colunas
@@ -381,16 +442,33 @@ por_operador |>
 ## por concessionario
 
 ```{r}
+read_excel(paste0("data/", planilhas[76]), sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(4)
+
+read_excel(paste0("data/", planilhas[4]), sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(4)
+
+read_excel(paste0("data/", planilhas[1]), sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(4)
+```
+
+```{r}
 # Dataframe 16 tem colunas em branco, detectando e acertando isso
-i <- 1
+# i <- 1
 
-while(i <= length(lista_guia3_versao_atual)){
-  print(i)
-  names(lista_guia3_versao_atual[[i]][[4]])  |> 
-    print()
-
-    i <- i + 1
-}
+# while(i <= length(lista_guia3_versao_atual)){
+#  print(i)
+#  names(lista_guia3_versao_atual[[i]][[4]])  |> 
+#    print()
+#
+#    i <- i + 1
+#}
 
 lista_guia3_versao_atual[[16]][[4]] <- lista_guia3_versao_atual[[16]][[4]][,c(1:5, 11)]
 ```
@@ -434,4 +512,483 @@ por_concessionario |>
   distinct() |> 
   write.csv2(file = "por_concessionario.csv")
 ```
+
+## Movimentação de gás natural por destinação
+
+```{r}
+read_excel(paste0("data/", planilhas[76]), sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(5)
+
+read_excel(paste0("data/", planilhas[4]), sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(5)
+
+# Está na guia 5, tabela 2 
+read_excel(paste0("data/", planilhas[1]), sheet = 4, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+    select(1) |> 
+  slice(2)
+
+
+```
+
+
+  
+  
+
+
+
+```{r}
+# Dataframe 16 tem colunas em branco, detectando e acertando isso
+i <- 1
+
+while(i <= length(lista_guia3_versao_atual)){
+  print(i)
+  names(lista_guia3_versao_atual[[i]][[4]])  |> 
+    print()
+
+    i <- i + 1
+}
+
+lista_guia3_versao_atual[[16]][[4]] <- lista_guia3_versao_atual[[16]][[4]][,c(1:5, 11)]
+```
+
+
+```{r}
+# Acertar nomes das colunas
+nomes <- names(lista_guia3_versao_atual[[1]][[4]] )
+
+i <- 1
+while(i <= length(lista_guia3_versao_atual)){
+  names(lista_guia3_versao_atual[[i]][[4]] ) <- nomes
+  i <- i + 1
+}
+
+i <- 1
+while(i <= length(lista_guia3_versao_menos1)){
+  names(lista_guia3_versao_menos1[[i]][[4]] ) <- nomes
+  i <- i + 1
+}
+
+i <- 1
+while(i <= length(lista_guia3_versao_menos3)){
+  names(lista_guia3_versao_menos3[[i]][[4]] ) <- nomes
+  i <- i + 1
+}
+```
+
+```{r}
+MOVIMENTACAO_GAS_NATURAL_POR_DESTINO <- bind_rows(
+do.call(bind_rows, map(lista_guia3_versao_atual, `[[`, 5)),
+
+do.call(rbind, map(lista_guia3_versao_menos1, `[[`, 5)),
+
+do.call(rbind, map(lista_guia4_versao_menos3, `[[`, 2))  
+)
+```
+
+```{r}
+MOVIMENTACAO_GAS_NATURAL_POR_DESTINO |> 
+  distinct() |> 
+  write.csv2(file = "MOVIMENTACAO_GAS_NATURAL_POR_DESTINO.csv")
+```
+
+
+## Distribuição da produção dos campos do Pré-sal
+
+```{r}
+read_excel(paste0("data/", planilhas[76]), sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(6)
+
+read_excel(paste0("data/", planilhas[4]), sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(6)
+
+read_excel(paste0("data/", planilhas[1]), sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(6)
+```
+
+```{r}
+# Acertar nomes das colunas
+nomes <- names(lista_guia3_versao_atual[[1]][[6]] )
+
+i <- 1
+while(i <= length(lista_guia3_versao_menos1)){
+  names(lista_guia3_versao_menos1[[i]][[6]] ) <- nomes
+  i <- i + 1
+}
+
+i <- 1
+while(i <= length(lista_guia3_versao_menos3)){
+  names(lista_guia3_versao_menos3[[i]][[6]] ) <- nomes
+  i <- i + 1
+}
+```
+
+
+```{r}
+i <- 1
+while(i <= length(lista_guia3_versao_menos1)){
+  lista_guia3_versao_menos1[[i]][[6]] <- lista_guia3_versao_menos1[[i]][[6]][-1,] 
+  i <- i + 1
+}
+
+i <- 1
+while(i <= length(lista_guia3_versao_menos3)){
+ lista_guia3_versao_menos3[[i]][[6]] <- lista_guia3_versao_menos3[[i]][[6]][-1,] 
+  i <- i + 1
+}
+
+i <- 1
+while(i <= length(lista_guia3_versao_menos1)){
+  lista_guia3_versao_menos1[[i]][[6]] <- lista_guia3_versao_menos1[[i]][[6]] |> 
+  mutate_at(2:7, as.numeric) 
+  i <- i + 1
+}
+
+i <- 1
+while(i <= length(lista_guia3_versao_menos3)){
+ lista_guia3_versao_menos3[[i]][[6]] <- lista_guia3_versao_menos3[[i]][[6]] |> 
+  mutate_at(2:7, as.numeric) 
+  i <- i + 1
+}
+
+
+```
+
+
+
+
+```{r}
+DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL <- bind_rows(
+do.call(rbind, map(lista_guia3_versao_atual, `[[`, 6)),
+
+do.call(rbind, map(lista_guia3_versao_menos1, `[[`, 6)),
+
+
+
+do.call(rbind, map(lista_guia3_versao_menos3, `[[`, 6))  
+)
+```
+
+```{r}
+DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL |> 
+  distinct() |> 
+  write.csv2(file = "DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL.csv")
+```
+
+
+
+
+# Tabelas 11 a 13
+
+
+
+```{r}
+read_excel(paste0("data/", planilhas[76]), sheet = 4, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) 
+
+read_excel(paste0("data/", planilhas[56]), sheet = 4, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) 
+
+read_excel(paste0("data/", planilhas[4]), sheet = 4, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) 
+
+# Único que aparece aqui e nos outros também é o "20 Campos que Mais Queimaram Gás Natural Neste Mês"
+read_excel(paste0("data/", planilhas[1]), sheet = 4, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) 
+```
+
+```{r}
+# Acertar nomes das colunas
+nomes <- names(lista_guia3_versao_atual[[1]][[6]] )
+
+i <- 1
+while(i <= length(lista_guia3_versao_menos1)){
+  names(lista_guia3_versao_menos1[[i]][[6]] ) <- nomes
+  i <- i + 1
+}
+
+i <- 1
+while(i <= length(lista_guia3_versao_menos3)){
+  names(lista_guia3_versao_menos3[[i]][[6]] ) <- nomes
+  i <- i + 1
+}
+```
+
+
+```{r}
+i <- 1
+while(i <= length(lista_guia3_versao_menos1)){
+  lista_guia3_versao_menos1[[i]][[6]] <- lista_guia3_versao_menos1[[i]][[6]][-1,] 
+  i <- i + 1
+}
+
+i <- 1
+while(i <= length(lista_guia3_versao_menos3)){
+ lista_guia3_versao_menos3[[i]][[6]] <- lista_guia3_versao_menos3[[i]][[6]][-1,] 
+  i <- i + 1
+}
+
+i <- 1
+while(i <= length(lista_guia3_versao_menos1)){
+  lista_guia3_versao_menos1[[i]][[6]] <- lista_guia3_versao_menos1[[i]][[6]] |> 
+  mutate_at(2:7, as.numeric) 
+  i <- i + 1
+}
+
+i <- 1
+while(i <= length(lista_guia3_versao_menos3)){
+ lista_guia3_versao_menos3[[i]][[6]] <- lista_guia3_versao_menos3[[i]][[6]] |> 
+  mutate_at(2:7, as.numeric) 
+  i <- i + 1
+}
+
+
+```
+
+
+
+
+```{r}
+DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL <- bind_rows(
+do.call(rbind, map(lista_guia3_versao_atual, `[[`, 6)),
+
+do.call(rbind, map(lista_guia3_versao_menos1, `[[`, 6)),
+
+
+
+do.call(rbind, map(lista_guia3_versao_menos3, `[[`, 6))  
+)
+```
+
+```{r}
+DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL |> 
+  distinct() |> 
+  write.csv2(file = "DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL.csv")
+```
+
+
+
+
+
+
+## Criação de listas com as tabelas (guia 4)
+
+```{r}
+lista_guia4_versao_atual <- map(c(54, 55, 57:76), extrair_8_tabelas, sheet = 4)
+```
+
+
+
+```{r}
+lista_guia4_versao_menos1 <- map(c(33:53, 56), extrair_16_tabelas, sheet = 4)
+```
+
+```{r}
+lista_guia4_versao_menos2 <- map(4:32, extrair_8_tabelas, sheet = 4)
+```
+
+```{r}
+lista_guia4_versao_menos3 <- map(1:3, extrair_3_tabelas_data, sheet = 4)
+```
+
+## 30 maiores poços de petróelo
+
+```{r}
+read_excel(paste0("data/", planilhas[76]), sheet = 4, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(1)
+
+read_excel(paste0("data/", planilhas[32]), sheet = 4, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(1)
+
+read_excel(paste0("data/", planilhas[4]), sheet = 4, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(1)
+```
+
+```{r}
+# Acertar nomes das colunas
+nomes <- names(lista_guia4_versao_atual[[1]][[1]] )
+
+i <- 1
+while(i <= length(lista_guia4_versao_atual)){
+  names(lista_guia4_versao_atual[[i]][[1]] ) <- nomes
+  i <- i + 1
+}
+
+nomes <- names(lista_guia4_versao_menos2[[1]][[1]] )
+
+i <- 1
+while(i <= 13){
+  names(lista_guia4_versao_menos2[[i]][[1]] ) <- nomes
+  i <- i + 1
+}
+```
+
+
+```{r}
+maiores_pocos_de_petroleo <- bind_rows(
+do.call(rbind, map(lista_guia4_versao_atual, `[[`, 1)),
+
+do.call(rbind, map(lista_guia4_versao_menos1, `[[`, 1)),  
+
+do.call(bind_rows, map(lista_guia4_versao_menos2, `[[`, 1))  
+)
+   
+```
+
+```{r}
+maiores_pocos_de_petroleo |> 
+  distinct() |> 
+  write.csv2(file = "maiores_pocos_de_petroleo.csv")
+```
+
+
+## 30 maiores poços de gas
+
+```{r}
+read_excel(paste0("data/", planilhas[76]), sheet = 4, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(2)
+
+read_excel(paste0("data/", planilhas[32]), sheet = 4, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(2)
+
+read_excel(paste0("data/", planilhas[4]), sheet = 4, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(2)
+```
+
+```{r}
+# Acertar nomes das colunas
+nomes <- names(lista_guia4_versao_atual[[1]][[2]] )
+
+i <- 1
+while(i <= length(lista_guia4_versao_atual)){
+  names(lista_guia4_versao_atual[[i]][[2]] ) <- nomes
+  i <- i + 1
+}
+
+nomes <- names(lista_guia4_versao_menos2[[1]][[2]] )
+
+i <- 1
+while(i <= 13){
+  names(lista_guia4_versao_menos2[[i]][[2]] ) <- nomes
+  i <- i + 1
+}
+```
+
+
+```{r}
+maiores_pocos_de_gas <- bind_rows(
+do.call(rbind, map(lista_guia4_versao_atual, `[[`, 2)),
+
+do.call(rbind, map(lista_guia4_versao_menos1, `[[`, 2)),  
+
+do.call(bind_rows, map(lista_guia4_versao_menos2, `[[`, 2))  
+)
+   
+```
+
+```{r}
+maiores_pocos_de_gas |> 
+  distinct() |> 
+  write.csv2(file = "maiores_pocos_de_gas.csv")
+```
+
+
+## 30 maiores poços produção total
+
+```{r}
+read_excel(paste0("data/", planilhas[76]), sheet = 4, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(3)
+
+read_excel(paste0("data/", planilhas[32]), sheet = 4, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(3)
+
+read_excel(paste0("data/", planilhas[4]), sheet = 4, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(3)
+```
+
+```{r}
+# Retirar colunas vazias nos dataframes 10 e 20
+lista_guia4_versao_atual[[10]][[3]] <- lista_guia4_versao_atual[[10]][[3]][,c(1:6, 13)]
+lista_guia4_versao_atual[[20]][[3]] <- lista_guia4_versao_atual[[20]][[3]][,c(1:6, 13)]
+
+# Acertar nomes das colunas
+nomes <- names(lista_guia4_versao_atual[[1]][[3]] )
+
+i <- 1
+while(i <= length(lista_guia4_versao_atual)){
+  names(lista_guia4_versao_atual[[i]][[3]] ) <- nomes
+  i <- i + 1
+}
+
+nomes <- names(lista_guia4_versao_menos2[[1]][[3]] )
+
+i <- 1
+while(i <= 13){
+  names(lista_guia4_versao_menos2[[i]][[3]] ) <- nomes
+  i <- i + 1
+}
+```
+
+```{r}
+# i <- 1
+
+# for(i in 1:length(lista_guia4_versao_atual)){
+#  print(i)
+#  print(lista_guia4_versao_atual[[i]][[3]] |> ncol())
+#i <- 1 + 1
+#  }
+
+# Erro nos dataframes 10 e 20
+```
+
+
+```{r}
+maiores_pocos_producao_total <- bind_rows(
+do.call(rbind, map(lista_guia4_versao_atual, `[[`, 3)),
+
+do.call(rbind, map(lista_guia4_versao_menos1, `[[`, 3)),  
+
+do.call(bind_rows, map(lista_guia4_versao_menos2, `[[`, 3))  
+)
+   
+```
+
+```{r}
+maiores_pocos_producao_total |> 
+  distinct() |> 
+  write.csv2(file = "maiores_pocos_producao_total.csv")
+```
+
 
