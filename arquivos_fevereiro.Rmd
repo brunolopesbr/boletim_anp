@@ -12,10 +12,17 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
+```{r}
+read_tab <- function(x) {read_delim(x, 
+    delim = "\t", escape_double = FALSE, 
+    locale = locale(decimal_mark = ",", grouping_mark = "."), 
+    trim_ws = TRUE)}
+```
+
 ## Importar diretorios
 
 ```{r}
-arquivos_fev_2024 <- list.files(path = "csv", pattern = "csv")
+arquivos_fev_2024 <- list.files(path = "csv", pattern = "tsv")
 
 ```
 
@@ -26,15 +33,26 @@ for(i in seq_along(arquivos_fev_2024)){
   i <- i + 1
 }
 arquivos_fev_2024
+
+# read_tab(arquivos_fev_2024[1])
 ```
 ```{r}
-lista_tabelas_fev <- map(arquivos_fev_2024, read_csv)
+lista_tabelas_fev <- map(arquivos_fev_2024, read_tab)
 ```
 ```{r}
 lista_tabelas_fev. <- lista_tabelas_fev
+```
 
+```{r}
+lista_tabelas_fev
+```
+
+
+
+```{r}
+# Retirando linhas em branco
 i <- 1
-for(i in seq_along(lista_tabelas_fev)){
+for(i in c(3,5:10,12:21)){
 lista_tabelas_fev[[i]] <- lista_tabelas_fev[[i]][-c(1,2),]  
 i <- i + 1
 }
@@ -52,6 +70,9 @@ lista_tabelas_fev[[i]] <- lista_tabelas_fev[[i]][-4,]
 i <- i + 1
 }
 
+
+
 lista_tabelas_fev
+
 ```
 
