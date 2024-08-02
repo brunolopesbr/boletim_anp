@@ -1,0 +1,76 @@
+Poço,Campo,Bacia,Localização,Gás Natural
+"",,,,(Mm3/d)
+"",,,,
+7-LUC-42HP-AM,Leste Do Urucu,Solimões,Terra,560
+7-LUC-65HP-AM,Leste Do Urucu,Solimões,Terra,487
+7-RUC-83H-AM,Rio Urucu,Solimões,Terra,443
+7-LUC-71HP-AM,Leste Do Urucu,Solimões,Terra,443
+9-RUC-104DP-,Rio Urucu,Solimões,Terra,412
+AM,,,,
+4-SMT-3-AM,Araracanga,Solimões,Terra,408
+7-LUC-41HP-AM,Leste Do Urucu,Solimões,Terra,388
+9-RUC-97DP-AM,Rio Urucu,Solimões,Terra,387
+1-SMT-2-AM,Araracanga,Solimões,Terra,364
+9-RUC-75D-AM,Rio Urucu,Solimões,Terra,358
+7-RUC-96HP-AM,Rio Urucu,Solimões,Terra,354
+7-RUC-58HP-AM,Rio Urucu,Solimões,Terra,329
+7-RUC-107HP-,Rio Urucu,Solimões,Terra,324
+AM,,,,
+1-BRSA-769-AM,Arara Azul,Solimões,Terra,315
+7-LUC-57HP-AM,Leste Do Urucu,Solimões,Terra,300
+7-RUC-62HP-AM,Rio Urucu,Solimões,Terra,300
+7-LUC-59HP-AM,Leste Do Urucu,Solimões,Terra,274
+7-LUC-17-AM,Leste Do Urucu,Solimões,Terra,263
+3-RUC-16D-AM,Rio Urucu,Solimões,Terra,258
+3-RUC-8-AM,Rio Urucu,Solimões,Terra,257
+4-RUC-10-AM,Rio Urucu,Solimões,Terra,256
+7-LUC-80DP-AM,Leste Do Urucu,Solimões,Terra,254
+7-LUC-22DP-AM,Leste Do Urucu,Solimões,Terra,252
+7-RUC-85HP-AM,Rio Urucu,Solimões,Terra,248
+7-RUC-92DP-AM,Rio Urucu,Solimões,Terra,245
+7-RUC-103DP-,Rio Urucu,Solimões,Terra,237
+AM,,,,
+7-AZU-4DA-AM,Azulão,Amazonas,Terra,235
+7-RUC-67HPA-,Rio Urucu,Solimões,Terra,235
+AM,,,,
+7-AZU-3-AM,Azulão,Amazonas,Terra,231
+7-LUC-31HP-AM,Leste Do Urucu,Solimões,Terra,219
+Instalação,Petróleo,Gás natural,Produção,No poços,,Campos produtores
+"",(bbl/d),(Mm3/d),(boe/d),produtores,,
+"",,,,,,
+FPSO Guanabara,179.593,11.562,252.316,5,,Anc_Mero / Mero
+FPSO Carioca (Mv-30),163.438,5.949,200.859,4,,Sépia / Sépia Leste / Sépia_Eco
+Petrobras 77,153.768,6.222,192.903,5,,Búzios / Búzios_Eco / Tambuatá
+Petrobras 75 (P-75),142.875,6.862,186.033,4,,Búzios / Búzios_Eco / Tambuatá
+Petrobras 70,148.814,5.650,184.353,5,,Atapu / Atapu_Eco / Anc_Norte_Atapu / Oeste
+"",,,,,,De Atapu
+FPSO Almirante Barroso,146.751,5.727,182.773,3,,Búzios / Búzios_Eco / Tambuatá
+Petrobras 76,140.952,6.035,178.911,5,,Búzios / Búzios_Eco / Tambuatá
+Petrobras 68,150.328,4.428,178.180,10,,Berbigão / Sul De Berbigão / Sururu
+Petrobras 71,149.990,1.958,162.308,4,,Itapu / Itapu_Eco
+FPSO Cidade de Saquarema,110.205,5.716,146.160,7,,Anc_Tupi / Sul De Tupi / Tupi
+FPSO Cidade de Maricá,115.975,4.292,142.973,5,,Anc_Tupi / Sul De Tupi / Tupi
+FPSO Cidade de Mangaratiba,104.437,6.018,142.289,8,,Tupi
+FPSO Cidade de Itaguaí,102.648,6.131,141.214,8,,Tupi
+FPSO Cidade de Paraty,107.371,4.609,136.359,6,,Anc_Tupi / Sul De Tupi / Tupi
+Petrobras 66 (P-66),100.021,5.412,134.061,7,,Anc_Tupi / Sul De Tupi / Tupi
+Petrobras 69,96.085,4.771,126.096,6,,Anc_Tupi / Sul De Tupi / Tupi
+Petrobras 74 (P-74),92.238,3.624,115.030,5,,Búzios / Búzios_Eco / Tambuatá
+FPSO Cidade de Ilha Bela,78.193,3.878,102.582,6,,Nordeste De Sapinhoá / Noroeste De
+"",,,,,,Sapinhoá / Sapinhoá / Sudoeste De Sapinhoá
+Petrobras 58,71.297,2.043,84.147,13,,Jubarte
+FPSO Cidade de São Paulo,56.826,2.637,73.416,6,,Nordeste De Sapinhoá / Noroeste De
+"",,,,,,Sapinhoá / Sapinhoá / Sudoeste De Sapinhoá
+FPSO Cidade de Campos dos,64.841,723,69.387,12,,Espadarte / Tartaruga Verde / Tartaruga Verde
+Goytacazes,,,,,,Sudoeste
+Petrobras 52,52.042,995,58.300,15,,Roncador
+Peregrino C,50.482,191,51.682,6,,Peregrino / Pitangola
+Polo Arara,5.631,7.255,51.262,33,,Arara Azul / Araracanga / Carapanaúba /
+"",,,,,,Cupiúba / Rio Urucu / Sudoeste Urucu
+FPSO Pioneiro de Libra,35.771,2.451,51.190,1,,Anc_Mero / Mero
+FPSO Sepetiba,32.693,2.143,46.173,1,,Anc_Mero / Mero
+Peregrino A,44.244,46,44.531,14,,Peregrino
+FPSO Cidade de Angra dos,33.271,1.577,43.188,5,,Anc_Tupi / Sul De Tupi / Tupi
+Reis,,,,,,
+FPSO Frade,39.457,432,42.176,12,,Frade
+Petrobras 57,38.257,355,40.490,16,,Jubarte
