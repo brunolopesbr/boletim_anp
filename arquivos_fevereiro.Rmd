@@ -42,37 +42,27 @@ lista_tabelas_fev <- map(arquivos_fev_2024, read_tab)
 ```{r}
 lista_tabelas_fev. <- lista_tabelas_fev
 ```
-
+Unindo tabelas que foram publicadas separadamente
 ```{r}
-lista_tabelas_fev
+
+names(lista_tabelas_fev[[8]]) <- names(lista_tabelas_fev[[7]]) 
+
+lista_tabelas_fev[[7]] <- rbind(lista_tabelas_fev[[7]], lista_tabelas_fev[[8]])
+
+lista_tabelas_fev[[9]] <- rbind(lista_tabelas_fev[[9]], lista_tabelas_fev[[10]])
+
+
+
 ```
 
+```{r}
+lista_tabelas_fev[[8]] <- NULL
 
+lista_tabelas_fev[[9]] <- NULL
+
+```
 
 ```{r}
-# Retirando linhas em branco
-i <- 1
-for(i in c(3,5:10,12:21)){
-lista_tabelas_fev[[i]] <- lista_tabelas_fev[[i]][-c(1,2),]  
-i <- i + 1
-}
-
-i <- 1
-for(i in c(1,2,4)){
-lista_tabelas_fev[[i]] <- lista_tabelas_fev[[i]][-1,]  
-i <- i + 1
-  
-}
-
-i <- 1
-for(i in c(2,4)){
-lista_tabelas_fev[[i]] <- lista_tabelas_fev[[i]][-4,]  
-i <- i + 1
-}
-
-
-
 lista_tabelas_fev
-
 ```
 
