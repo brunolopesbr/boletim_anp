@@ -1,0 +1,57 @@
+---
+title: "importar_fevereiro"
+author: "BML"
+date: "2024-08-02"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library(tidyverse)
+```
+
+## Importar diretorios
+
+```{r}
+arquivos_fev_2024 <- list.files(path = "csv", pattern = "csv")
+
+```
+
+```{r}
+i <- 1
+for(i in seq_along(arquivos_fev_2024)){
+  arquivos_fev_2024[i] <- paste0("csv/", arquivos_fev_2024[i])
+  i <- i + 1
+}
+arquivos_fev_2024
+```
+```{r}
+lista_tabelas_fev <- map(arquivos_fev_2024, read_csv)
+```
+```{r}
+lista_tabelas_fev. <- lista_tabelas_fev
+
+i <- 1
+for(i in seq_along(lista_tabelas_fev)){
+lista_tabelas_fev[[i]] <- lista_tabelas_fev[[i]][-c(1,2),]  
+i <- i + 1
+}
+
+i <- 1
+for(i in c(1,2,4)){
+lista_tabelas_fev[[i]] <- lista_tabelas_fev[[i]][-1,]  
+i <- i + 1
+  
+}
+
+i <- 1
+for(i in c(2,4)){
+lista_tabelas_fev[[i]] <- lista_tabelas_fev[[i]][-4,]  
+i <- i + 1
+}
+
+lista_tabelas_fev
+```
+
