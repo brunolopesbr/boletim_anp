@@ -19,7 +19,12 @@ read_tab <- function(x) {read_delim(x,
     trim_ws = TRUE)}
 ```
 
-## Importar diretorios
+
+```{r include=FALSE}
+source(knitr::purl("tabelas_versao_atual.Rmd", quiet=TRUE))
+```
+
+# Preparar arquivos
 
 ```{r}
 arquivos_fev_2024 <- list.files(path = "csv", pattern = "tsv")
@@ -36,12 +41,15 @@ arquivos_fev_2024
 
 # read_tab(arquivos_fev_2024[1])
 ```
-```{r}
+# Criar lista com arquivos de fevereiro de 2024
+```{r include=FALSE}
 lista_tabelas_fev <- map(arquivos_fev_2024, read_tab)
 ```
 ```{r}
 lista_tabelas_fev. <- lista_tabelas_fev
 ```
+
+## Limpando arquivos
 Unindo tabelas que foram publicadas separadamente
 ```{r}
 
@@ -65,4 +73,21 @@ lista_tabelas_fev[[9]] <- NULL
 ```{r}
 lista_tabelas_fev
 ```
+
+# Unir arquivos de fevereiros com anteriores
+
+O conteúdo dos dataframes 1, 2 e 4 (tabelas com históricos) já está incorporado.
+
+```{r}
+lista_tabelas_fev[1]
+lista_tabelas_fev[2]
+lista_tabelas_fev[4]
+```
+
+```{r}
+tail(Historico_petroleo)
+tail(Historico_prod_gas)
+tail(Historico_de_Producao_de_Petroleo_Gas_Natural)
+```
+
 
