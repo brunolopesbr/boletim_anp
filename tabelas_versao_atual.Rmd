@@ -61,32 +61,16 @@ read_excel(paste0("data/", planilhas[1]), sheet = 2, col_types = "text",  .name_
 ```
 
 ```{r}
-Histórico_petróleo. <-   rbind(
-do.call(rbind, map(lista_guia2_versao_atual, `[[`, 1)),
-do.call(rbind, map(lista_guia2_versao_meno3, `[[`, 1))) |> 
-  mutate(mes = str_replace(mes, "/16", "/2016")  ) |> 
-  mutate(mes = str_replace(mes, "/17", "/2017")  ) |> 
-  mutate(mes = str_replace(mes, "/18", "/2018")  ) 
-
-Historico_petroleo <- rbind(
- Histórico_petróleo. |> 
-  filter(!str_detect(mes, "/")) |> 
-   mutate(mes = as.Date(as.numeric(mes), origin = "1899-12-30")), 
-Histórico_petróleo. |> 
-  filter(str_detect(mes, "/")) |>
-   mutate(mes = lubridate::my(mes)))
-
-Historico_petroleo <- Historico_petroleo |> 
+Historico_petroleo <- bind_rows(map(lista_guia2_versao_atual, `[[`, 1)) |> 
   distinct() |> 
-  arrange(mes)
+  mutate(mes = if_else(condition = str_detect(mes, "/"), true = my(mes), false = as.Date(as.numeric(mes), origin = "1899-12-30"))) 
 ```
-
+Conteúdo das tabelas das planilhas 1 a 3 não são consideradas
 ```{r}
-Historico_petroleo |> 
-  write.csv2(file = "Historico_petroleo.csv")
-
- 
+map(lista_guia2_versao_meno3, `[[`, 1)
 ```
+
+
 
 ## Histórico de produção de gás natural
 
@@ -109,40 +93,20 @@ read_excel(paste0("data/", planilhas[1]), sheet = 2, col_types = "text",  .name_
 ```
 
 Unir as tabelas das diferentes listas. Depois, limpar as informações de datas
+
 ```{r}
-Histórico_prod_gas. <-   rbind(
-do.call(rbind, map(lista_guia2_versao_atual, `[[`, 2)),
-do.call(rbind, map(lista_guia2_versao_meno3, `[[`, 2))) |> 
-  mutate(mes = str_replace(mes, "/16", "/2016")  ) |> 
-  mutate(mes = str_replace(mes, "/17", "/2017")  ) |> 
-  mutate(mes = str_replace(mes, "/18", "/2018")  ) 
-
-Historico_prod_gas <- rbind(
- Histórico_prod_gas. |> 
-  filter(!str_detect(mes, "/")) |> 
-   mutate(mes = as.Date(as.numeric(mes), origin = "1899-12-30")), 
-Histórico_prod_gas. |> 
-  filter(str_detect(mes, "/")) |>
-   mutate(mes = lubridate::my(mes))) 
-
-Historico_prod_gas <- Historico_prod_gas |> 
+Historico_prod_gas <- bind_rows(map(lista_guia2_versao_atual, `[[`, 2)) |> 
   distinct() |> 
-  arrange(mes)
+  mutate(mes = my(mes))
 ```
 
-
+Conteúdo das tabelas das planilhas 1 a 3 não são consideradas
 ```{r}
-Historico_prod_gas |> 
-  distinct() |> 
-  write.csv2(file = "Historico_prod_gas.csv")
-
- 
+map(lista_guia2_versao_meno3, `[[`, 2)
 ```
 
 
 ## movimentação da gás natural
-
-
 
 ```{r}
 read_excel(paste0("data/", planilhas[76]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
@@ -162,34 +126,29 @@ read_excel(paste0("data/", planilhas[1]), sheet = 4, col_types = "text",  .name_
 ```
 
 ```{r}
-df1 <- bind_rows( map(lista_guia2_versao_atual, `[[`, 3)) |> 
-  filter(is.na(Período)) |> 
-  filter(str_detect("Mês/Ano", "/")) |> 
-  mutate("Mês/Ano" = my(`Mês/Ano`)) |> 
-  select(!Período) |> 
-  rename(Período = "Mês/Ano")
+df1 <- bind_rows( map(lista_guia2_versao_atual, `[[`, 3))
 
-df2 <- bind_rows( map(lista_guia2_versao_atual, `[[`, 3)) |> 
-  filter(!is.na(Período)) |> 
-  filter(!str_detect(Período, "/")) |> 
-  mutate(Período = as.Date(as.numeric(Período), origin = "1899-12-30")) |> 
-  select(!`Mês/Ano`)
+i <- 1
+for(i in 1:length(lista_guia2_versao_atual)){
+  names(lista_guia2_versao_atual[[i]][[3]])[1] <- "Período"
+  i <- i + 1
+}
 
-df3 <- bind_rows( map(lista_guia2_versao_atual, `[[`, 3)) |> 
-  filter(!is.na(Período)) |> 
-  filter(str_detect(Período, "/")) |> 
-  mutate(Período = my(Período)) |> 
-  select(!`Mês/Ano`)
-
-MOVIMENTACAO_DE_GAS_NATURAL <- bind_rows(df1, df2, df3) |> 
-  distinct()
+# names(lista_guia2_versao_atual[[3]][[3]])[1]
 ```
 
 ```{r}
-MOVIMENTACAO_DE_GAS_NATURAL  |> 
-  write.csv2(file = "MOVIMENTACAO_DE_GAS_NATURAL_ANTIGA.csv")
+MOVIMENTACAO_DE_GAS_NATURAL <- bind_rows( map(lista_guia2_versao_atual, `[[`, 3)) |> 
+  mutate(Período = if_else(condition = str_detect(Período, "/"), true = my(Período), false = as.Date(as.numeric(Período), origin = "1899-12-30"))) |> 
+  distinct()
+
 ```
 
+```{r}
+MOVIMENTACAO_DE_GAS_NATURAL <- MOVIMENTACAO_DE_GAS_NATURAL |> 
+  select("Período", c(1:5,7:9)) |> 
+  mutate_at(2:9, as.numeric)
+```
 
 ## Histórico de Produção de Petróleo e Gás Natural
 
@@ -212,14 +171,12 @@ read_excel(paste0("data/", planilhas[1]), sheet = 2, col_types = "text",  .name_
 ```
 
 
-A tabela de abril de 2020 faz referência a "Mar e Terra" e não "óleo e gás". 
+A tabela de abril de 2020 faz referência a "Mar e Terra" e não "óleo e gás". Não será considerada.
 ```{r}
 prov_df <- lista_guia2_versao_atual[[28]][[4]] 
 
 ```
 Alguns meses são gravados como MM/AA e outros como MM/AAAA. Para manter a consistência duas novas listas são criadas.
-
-
 ```{r}
 lista_guia2_nova <- list()
 i <- i 
@@ -233,7 +190,6 @@ prd_boe1 <- bind_rows(lista_guia2_nova) |>
   mutate(mes = my(mes))
 
 ```
-
 
 ```{r}
 lista_guia2_nova2 <- list()
@@ -255,11 +211,12 @@ Historico_de_Producao_de_Petroleo_Gas_Natural <- prd_boe1 |>
   distinct()
 ```
 
-
+Conteúdo das tabelas das planilhas 1 a 3 não são consideradas
 ```{r}
-Historico_de_Producao_de_Petroleo_Gas_Natural |> 
-    write.csv2(file = "Historico_de_Producao_de_Petroleo_Gas_Natural.csv")
+map(lista_guia2_versao_meno3, `[[`, 3)
 ```
+
+
 
 # Tabelas 5 a 10
 ```{r}
@@ -331,15 +288,8 @@ do.call(rbind, map(lista_guia3_versao_atual, `[[`, 1)),
 do.call(rbind, map(lista_guia3_versao_menos1, `[[`, 1)),
 
 do.call(rbind, map(lista_guia3_versao_menos3, `[[`, 1))  
-)
+) |> distinct()
 ```
-
-```{r}
-por_estado |> 
-  distinct() |> 
-  write.csv2(file = "por_estado.csv")
-```
-
 
 
 ## por bacia
@@ -386,16 +336,8 @@ do.call(rbind, map(lista_guia3_versao_atual, `[[`, 2)),
 do.call(rbind, map(lista_guia3_versao_menos1, `[[`, 2)),
 
 do.call(rbind, map(lista_guia3_versao_menos3, `[[`, 2))  
-)
+) |> distinct()  
 ```
-
-```{r}
-por_bacia |> 
-  distinct() |> 
-  write.csv2(file = "por_bacia.csv")
-```
-
-
 
 ## por operador
 
@@ -441,15 +383,10 @@ do.call(rbind, map(lista_guia3_versao_atual, `[[`, 3)),
 do.call(rbind, map(lista_guia3_versao_menos1, `[[`, 3)),
 
 do.call(rbind, map(lista_guia3_versao_menos3, `[[`, 3))  
-)
-```
+) |> distinct() 
 
-```{r}
-por_operador |> 
-  distinct() |> 
-  write.csv2(file = "por_operador.csv")
+por_operador <- por_operador[,-1]
 ```
-
 
 
 ## por concessionario
@@ -543,14 +480,11 @@ do.call(rbind, map(lista_guia3_versao_atual, `[[`, 4)),
 do.call(rbind, map(lista_guia3_versao_menos1, `[[`, 4)),
 
 do.call(rbind, map(lista_guia3_versao_menos3, `[[`, 4))  
-)
+) |> distinct() 
+
+por_concessionario <- por_concessionario[,-1]
 ```
 
-```{r}
-por_concessionario |> 
-  distinct() |> 
-  write.csv2(file = "por_concessionario.csv")
-```
 
 ## Movimentação de gás natural por destinação
 
@@ -575,15 +509,15 @@ read_excel(paste0("data/", planilhas[1]), sheet = 4, col_types = "text",  .name_
 
 ```{r}
 # Dataframe 16 tem colunas em branco, detectando e acertando isso
-i <- 1
+#i <- 1
 
-while(i <= length(lista_guia3_versao_atual)){
-  print(i)
-  names(lista_guia3_versao_atual[[i]][[4]])  |> 
-    print()
+#while(i <= length(lista_guia3_versao_atual)){
+#  print(i)
+#  names(lista_guia3_versao_atual[[i]][[4]])  |> 
+#    print()
 
-    i <- i + 1
-}
+#    i <- i + 1
+#}
 
 # lista_guia3_versao_atual[[16]][[4]] <- lista_guia3_versao_atual[[16]][[4]][,c(1:5, 11)]
 ```
@@ -619,13 +553,18 @@ do.call(bind_rows, map(lista_guia3_versao_atual, `[[`, 5)),
 do.call(rbind, map(lista_guia3_versao_menos1, `[[`, 5)),
 
 do.call(rbind, map(lista_guia4_versao_menos3, `[[`, 2))  
-)
+) |> distinct()
+```
+
+
+```{r}
+MOVIMENTACAO_GAS_NATURAL_POR_DESTINO <- MOVIMENTACAO_GAS_NATURAL_POR_DESTINO |> 
+  select(c(1:5, 8, 6, 9, 7))
 ```
 
 ```{r}
-MOVIMENTACAO_GAS_NATURAL_POR_DESTINO |> 
-  distinct() |> 
-  write.csv2(file = "MOVIMENTACAO_GAS_NATURAL_POR_DESTINO.csv")
+names(MOVIMENTACAO_GAS_NATURAL_POR_DESTINO)
+names(tabela9)
 ```
 
 
@@ -703,14 +642,9 @@ do.call(rbind, map(lista_guia3_versao_menos1, `[[`, 6)),
 
 
 do.call(rbind, map(lista_guia3_versao_menos3, `[[`, 6))  
-)
+) |> distinct()
 ```
 
-```{r}
-DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL |> 
-  distinct() |> 
-  write.csv2(file = "DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL.csv")
-```
 
 # Tabelas 11 a 18
 
@@ -781,25 +715,6 @@ while(i <= length(lista_guia3_versao_menos3)){
 
 ```
 
-```{r}
-DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL <- bind_rows(
-do.call(rbind, map(lista_guia3_versao_atual, `[[`, 6)),
-
-do.call(rbind, map(lista_guia3_versao_menos1, `[[`, 6)),
-
-
-
-do.call(rbind, map(lista_guia3_versao_menos3, `[[`, 6))  
-)
-```
-
-```{r}
-DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL |> 
-  distinct() |> 
-  write.csv2(file = "DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL.csv")
-```
-
-
 ## Criação de listas com as tabelas (guia 4)
 
 ```{r  message=FALSE}
@@ -864,14 +779,10 @@ do.call(rbind, map(lista_guia4_versao_atual, `[[`, 1)),
 do.call(rbind, map(lista_guia4_versao_menos1, `[[`, 1)),  
 
 do.call(bind_rows, map(lista_guia4_versao_menos2, `[[`, 1))  
-)
-   
-```
+) |> distinct() 
 
-```{r}
-maiores_pocos_de_petroleo |> 
-  distinct() |> 
-  write.csv2(file = "maiores_pocos_de_petroleo.csv")
+
+maiores_pocos_de_petroleo <- maiores_pocos_de_petroleo[,-1]
 ```
 
 
@@ -921,14 +832,9 @@ do.call(rbind, map(lista_guia4_versao_atual, `[[`, 2)),
 do.call(rbind, map(lista_guia4_versao_menos1, `[[`, 2)),  
 
 do.call(bind_rows, map(lista_guia4_versao_menos2, `[[`, 2))  
-)
-   
-```
+) |> distinct() 
 
-```{r}
-maiores_pocos_de_gas |> 
-  distinct() |> 
-  write.csv2(file = "maiores_pocos_de_gas.csv")
+maiores_pocos_de_gas <- maiores_pocos_de_gas[,-1]   
 ```
 
 
@@ -994,18 +900,11 @@ do.call(rbind, map(lista_guia4_versao_atual, `[[`, 3)),
 do.call(rbind, map(lista_guia4_versao_menos1, `[[`, 3)),  
 
 do.call(bind_rows, map(lista_guia4_versao_menos2, `[[`, 3))  
-)
+) |> distinct() 
+
+maiores_pocos_producao_total <- maiores_pocos_producao_total[,-1]
    
 ```
-
-```{r}
-maiores_pocos_producao_total |> 
-  distinct() |> 
-  write.csv2(file = "maiores_pocos_producao_total.csv")
-```
-
-
-
 
 
 ## 30 maiores poços terrestres
@@ -1070,18 +969,10 @@ do.call(rbind, map(lista_guia4_versao_atual, `[[`, 4)),
 do.call(rbind, map(lista_guia4_versao_menos1, `[[`, 4)),  
 
 do.call(bind_rows, map(lista_guia4_versao_menos2, `[[`, 4))  
-)
-   
+) |> distinct() 
+
+maiores_pocos_terrestres_petroleo <- maiores_pocos_terrestres_petroleo[,-1]   
 ```
-
-```{r}
-maiores_pocos_terrestres_petroleo |> 
-  distinct() |> 
-  write.csv2(file = "maiores_pocos_terrestres_petroleo.csv")
-```
-
-
-
 
 
 ## 30 maiores poços terrestres gás natural
@@ -1146,18 +1037,11 @@ do.call(rbind, map(lista_guia4_versao_atual, `[[`, 5)),
 do.call(rbind, map(lista_guia4_versao_menos1, `[[`, 5)),  
 
 do.call(bind_rows, map(lista_guia4_versao_menos2, `[[`, 5))  
-)
+) |> distinct()
+
+maiores_pocos_terrestres_gas_natural <- maiores_pocos_terrestres_gas_natural[,-1]
    
 ```
-
-```{r}
-maiores_pocos_terrestres_gas_natural |> 
-  distinct() |> 
-  write.csv2(file = "maiores_pocos_terrestres_gas_natural.csv")
-```
-
-
-
 
 
 ## 30 maiores instalações de produção de petróleo
@@ -1212,21 +1096,29 @@ while(i <= length(lista_guia4_versao_menos2)){
 ```
 
 ```{r}
+#Acertando os nomes das colunas
+bind_rows(map(lista_guia4_versao_menos2, `[[`, 6))
+
+
+instalacao <- names(lista_guia4_versao_menos2[[1]][[6]])[1]
+
+i <- 1
+for(i in 1:length(lista_guia4_versao_menos2)){
+names(lista_guia4_versao_menos2[[i]][[6]])[1]  <- instalacao
+  i <- i + 1
+}
+```
+
+
+```{r}
 maiores_instalacoes <- bind_rows(
 bind_rows(map(lista_guia4_versao_atual, `[[`, 6)),
 bind_rows(map(lista_guia4_versao_menos1, `[[`, 6)), 
 bind_rows(map(lista_guia4_versao_menos2, `[[`, 6)) 
-)
+) |> distinct() 
 
+maiores_instalacoes <- maiores_instalacoes[,-1]
 ```
-
-```{r}
-maiores_instalacoes |> 
-  distinct() |> 
-  write.csv2(file = "maiores_instalacoes.csv")
-```
-
-
 
 
 ## 30 maiores instalações de produção de gás
@@ -1300,15 +1192,11 @@ maiores_instalacoes_gas <- bind_rows(
 bind_rows(map(lista_guia4_versao_atual, `[[`, 7)),
 bind_rows(map(lista_guia4_versao_menos1, `[[`, 7)), 
 bind_rows(map(lista_guia4_versao_menos2, `[[`, 7)) 
-)
+) |> distinct() 
 
+maiores_instalacoes_gas <- maiores_instalacoes_gas[,-1]
 ```
 
-```{r}
-maiores_instalacoes_gas |> 
-  distinct() |> 
-  write.csv2(file = "maiores_instalacoes_gas.csv")
-```
 
 
 
@@ -1406,15 +1294,9 @@ maiores_queimas <- bind_rows(
 bind_rows(map(lista_guia4_versao_atual, `[[`, 8)),
 bind_rows(map(lista_guia4_versao_menos1, `[[`, 8)), 
 bind_rows(map(lista_guia4_versao_menos2, `[[`, 8)) 
-)
-
+) |> distinct() 
+maiores_queimas <- maiores_queimas[,-1]
 ```
 
-
-```{r}
-maiores_queimas |> 
-  distinct() |> 
-  write.csv2(file = "maiores_queimas.csv")
-```
 
 

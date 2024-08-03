@@ -76,12 +76,11 @@ lista_tabelas_fev
 
 # Unir arquivos de fevereiros com anteriores
 
-O conteúdo dos dataframes 1, 2 e 4 (tabelas com históricos) já está incorporado.
+## O conteúdo dos dataframes 1 e 2 (tabelas com históricos) já está incorporado.
 
 ```{r}
 lista_tabelas_fev[1]
 lista_tabelas_fev[2]
-lista_tabelas_fev[4]
 ```
 
 ```{r}
@@ -90,4 +89,195 @@ tail(Historico_prod_gas)
 tail(Historico_de_Producao_de_Petroleo_Gas_Natural)
 ```
 
+```{r}
+Historico_petroleo
+```
+
+```{r}
+Historico_prod_gas
+```
+
+## Dataframe 3
+
+```{r}
+# adequar nome da coluna
+names(lista_tabelas_fev[[3]]) <- names(lista_tabelas_fev[[3]]) |> 
+  str_replace(pattern = "Mês/Ano", replacement = "Período")
+
+#Período deve ser uma data
+historico_disponibilidade_gas <- lista_tabelas_fev[[3]] |> 
+  mutate(Período = my(Período)) |> 
+  # Aproveitamento deve ser uma porcentagem
+  mutate(Aproveitamento = str_remove_all(Aproveitamento, "%")) |> 
+  mutate(Aproveitamento = str_replace_all(Aproveitamento, pattern = ",", replacement = ".")) |> 
+  mutate(Aproveitamento = as.numeric(Aproveitamento)) |> 
+  mutate(Aproveitamento = Aproveitamento/100) |> 
+  # unindo com tabela prévia
+  bind_rows(MOVIMENTACAO_DE_GAS_NATURAL) |> 
+  distinct() |> 
+  arrange(Período)
+
+historico_disponibilidade_gas 
+```
+### é preciso corrigir os NAs da tabela de movimentação de gás
+
+
+## Dataframe 5
+
+```{r}
+tabela5 <- lista_tabelas_fev[[5]] |> 
+  mutate(mes = as.Date("2024-02-01")) 
+
+names(tabela5) <- names(por_estado)
+
+por_estado <- bind_rows(por_estado, tabela5)
+por_estado
+```
+
+## Dataframe 6
+
+```{r}
+tabela6 <- lista_tabelas_fev[[6]] |> 
+  mutate(mes = as.Date("2024-02-01")) 
+
+names(tabela6) <- names(por_bacia)
+
+por_bacia <- bind_rows(por_bacia, tabela6)
+por_bacia
+```
+
+## Dataframe 7
+
+```{r}
+tabela7 <- lista_tabelas_fev[[7]] |> 
+  mutate(mes = as.Date("2024-02-01")) 
+
+tabela7 <- tabela7[,-1]
+
+names(tabela7) <- names(por_operador)
+
+por_bacia <- bind_rows(por_bacia, tabela7)
+por_bacia
+```
+
+## Dataframe 8
+
+```{r}
+tabela8 <- lista_tabelas_fev[[8]] |> 
+  mutate(mes = as.Date("2024-02-01")) 
+
+names(tabela8) <- names(por_concessionario)
+
+por_concessionario <- bind_rows(por_concessionario, tabela8)
+por_concessionario
+```
+
+## Dataframe 9
+
+```{r}
+tabela9 <- lista_tabelas_fev[[9]] |> 
+  mutate(mes = as.Date("2024-02-01")) 
+
+names(tabela9) <- names(MOVIMENTACAO_GAS_NATURAL_POR_DESTINO)
+
+MOVIMENTACAO_GAS_NATURAL_POR_DESTINO <- bind_rows(MOVIMENTACAO_GAS_NATURAL_POR_DESTINO, tabela9)
+MOVIMENTACAO_GAS_NATURAL_POR_DESTINO
+```
+
+
+## Dataframe 10
+
+```{r}
+tabela10 <- lista_tabelas_fev[[10]] |> 
+  mutate(mes = as.Date("2024-02-01"))
+
+names(tabela10) <- names(DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL)
+
+DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL <- bind_rows(DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL, tabela10)
+DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL
+```
+
+## Dataframe 11
+
+```{r}
+tabela11 <- lista_tabelas_fev[[11]] |> 
+  mutate(mes = as.Date("2024-02-01"))
+
+names(tabela11) <- names(maiores_pocos_de_petroleo)
+
+maiores_pocos_de_petroleo <- bind_rows(maiores_pocos_de_petroleo, tabela11)
+maiores_pocos_de_petroleo
+```
+
+## Dataframe 12
+
+```{r}
+tabela12 <- lista_tabelas_fev[[12]] |> 
+  mutate(mes = as.Date("2024-02-01"))
+
+names(tabela12) <- names(maiores_pocos_de_gas)
+
+maiores_pocos_de_gas <- bind_rows(maiores_pocos_de_gas, tabela12)
+maiores_pocos_de_gas
+```
+
+## Dataframe 13
+
+```{r}
+tabela13 <- lista_tabelas_fev[[13]] |> 
+  mutate(mes = as.Date("2024-02-01"))
+
+names(tabela13) <- names(maiores_pocos_producao_total)
+
+maiores_pocos_producao_total <- bind_rows(maiores_pocos_producao_total, tabela13)
+maiores_pocos_producao_total
+```
+
+## Dataframe 14
+
+```{r}
+tabela14 <- lista_tabelas_fev[[14]] |> 
+  mutate(mes = as.Date("2024-02-01"))
+
+names(tabela14) <- names(maiores_pocos_terrestres_petroleo)
+
+maiores_pocos_terrestres_petroleo <- bind_rows(maiores_pocos_terrestres_petroleo, tabela14)
+maiores_pocos_terrestres_petroleo
+```
+
+## Dataframe 15
+
+```{r}
+tabela15 <- lista_tabelas_fev[[15]] |> 
+  mutate(mes = as.Date("2024-02-01"))
+
+names(tabela15) <- names(maiores_pocos_terrestres_gas_natural)
+
+maiores_pocos_terrestres_gas_natural <- bind_rows(maiores_pocos_terrestres_gas_natural, tabela15)
+maiores_pocos_terrestres_gas_natural
+```
+
+## Dataframe 16
+
+```{r}
+tabela16 <- lista_tabelas_fev[[16]] |> 
+  mutate(mes = as.Date("2024-02-01"))
+
+names(tabela16) <- names(maiores_instalacoes)
+
+maiores_instalacoes <- bind_rows(maiores_instalacoes, tabela16)
+maiores_instalacoes
+```
+
+## Dataframe 17
+
+```{r}
+tabela17 <- lista_tabelas_fev[[17]] |> 
+  mutate(mes = as.Date("2024-02-01"))
+
+names(tabela17) <- names(maiores_queimas)
+
+maiores_queimas <- bind_rows(maiores_queimas, tabela17)
+maiores_queimas
+```
 
