@@ -171,7 +171,7 @@ read_excel(paste0("data/", planilhas[1]), sheet = 2, col_types = "text",  .name_
 ```
 
 
-A tabela de abril de 2020 faz referência a "Mar e Terra" e não "óleo e gás". Não será considerada.
+A tabela de abril de 2020 faz referência a "Mar e Terra" e não "óleo e gás". Não será considerada. 
 ```{r}
 prov_df <- lista_guia2_versao_atual[[28]][[4]] 
 
