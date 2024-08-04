@@ -1,0 +1,166 @@
+---
+title: "Download"
+author: "BML"
+date: "2024-07-03"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libraries}
+library(tidyverse)
+library(rvest)
+library(robotstxt)
+library(readxl)
+```
+
+Planilhas baixadas por último
+
+```{r}
+planilhas_novas <- c("2024_tabela-abril.xlsm", "2024_tabela-maio.xlsm", "2024_tabela-junho.xlsm", "2020-06-boletim.xlsm")
+  
+```
+
+```{r}
+planilhas_novas_caminho <- paste0("data/", planilhas_novas)
+planilhas_novas_caminho
+
+```
+
+# Importar dados das novas planilhas
+
+# Guia 1
+
+## Criação de lista para a guia 1
+
+```{r}
+lista_guia2_novos_arquivos <- map(1:4, extrair_4_tabelas_novo, sheet = 2)
+```
+
+```{r}
+i <- 1
+
+for(i in seq_along(planilhas_novas_caminho)){
+read_excel(paste0("data/", planilhas_novas[i]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(1)  |> 
+  print()  
+    
+i <- i + 1
+  }
+
+
+```
+
+```{r}
+tabela1_historico_petroleo_novo <- bind_rows(bind_rows(map(lista_guia2_novos_arquivos, `[[`, 1)) |> 
+ filter(str_detect(mes, "/")) |> 
+  mutate(mes = my(mes)),
+
+bind_rows(map(lista_guia2_novos_arquivos, `[[`, 1)) |> 
+  filter(!str_detect(mes, "/")) |> 
+  mutate(mes = as.Date(as.numeric(mes), origin = "1899-12-30"))
+)  |> distinct()
+
+```
+```{r}
+i <- 1
+
+for(i in seq_along(planilhas_novas_caminho)){
+read_excel(paste0("data/", planilhas_novas[i]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(2)  |> 
+  print()  
+    
+i <- i + 1
+  }
+
+
+```
+
+```{r}
+tabela2_historico_gas_novo <- bind_rows(bind_rows(map(lista_guia2_novos_arquivos, `[[`, 2)) |> 
+ filter(str_detect(mes, "/")) |> 
+  mutate(mes = my(mes)),
+
+bind_rows(map(lista_guia2_novos_arquivos, `[[`, 2)) |> 
+  filter(!str_detect(mes, "/")) |> 
+  mutate(mes = as.Date(as.numeric(mes), origin = "1899-12-30"))
+)  |> distinct()
+
+```
+
+
+```{r}
+i <- 1
+
+for(i in seq_along(planilhas_novas_caminho)){
+read_excel(paste0("data/", planilhas_novas[i]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(3)  |> 
+  print()  
+    
+i <- i + 1
+  }
+
+
+```
+
+```{r}
+# acertar nomes das colunas
+i <- 1
+
+for(i in seq_along(lista_guia2_novos_arquivos)){
+  names(lista_guia2_novos_arquivos[[i]][[3]])[1] <- names(lista_guia2_novos_arquivos[[4]][[3]])[1]
+  i <- 1 + i
+}
+
+
+
+```
+
+
+```{r}
+tabela3_historico_movimentacao_gas <- rbind(bind_rows(map(lista_guia2_novos_arquivos, `[[`, 3)) |> 
+ filter(str_detect(Período, "/")) |> 
+  mutate(Período = my(Período)),
+
+bind_rows(map(lista_guia2_novos_arquivos, `[[`, 3)) |> 
+  filter(!str_detect(Período, "/")) |> 
+  mutate(Período = as.Date(as.numeric(Período), origin = "1899-12-30"))
+)  |> distinct()
+
+```
+
+```{r}
+i <- 1
+
+for(i in seq_along(planilhas_novas_caminho)){
+read_excel(paste0("data/", planilhas_novas[i]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  select(1) |> 
+  slice(4)  |> 
+  print()  
+    
+i <- i + 1
+  }
+```
+
+```{r}
+tabela4_historico_petrole_gas_novo <- bind_rows(bind_rows(map(lista_guia2_novos_arquivos, `[[`, 4)) |> 
+ filter(str_detect(mes, "/")) |> 
+  mutate(mes = my(mes)),
+
+bind_rows(map(lista_guia2_novos_arquivos, `[[`, 4)) |> 
+  filter(!str_detect(mes, "/")) |> 
+  mutate(mes = as.Date(as.numeric(mes), origin = "1899-12-30"))
+)  |> distinct()
+
+```
+
+## ta
