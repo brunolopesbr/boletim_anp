@@ -138,8 +138,16 @@ for(i in 1:length(lista_guia2_versao_atual)){
 ```
 
 ```{r}
-MOVIMENTACAO_DE_GAS_NATURAL <- bind_rows( map(lista_guia2_versao_atual, `[[`, 3)) |> 
-  mutate(Período = if_else(condition = str_detect(Período, "/"), true = my(Período), false = as.Date(as.numeric(Período), origin = "1899-12-30"))) |> 
+
+
+MOVIMENTACAO_DE_GAS_NATURAL <-  rbind(bind_rows( map(lista_guia2_versao_atual, `[[`, 3)) |>
+  filter(str_detect(Período, "/")) |> 
+  mutate(Período = my(Período)),
+
+bind_rows( map(lista_guia2_versao_atual, `[[`, 3)) |>
+  filter(!str_detect(Período, "/")) |> 
+  mutate(Período = as.Date(as.numeric(Período), origin = "1899-12-30"))
+) |> 
   distinct()
 
 ```
@@ -147,7 +155,7 @@ MOVIMENTACAO_DE_GAS_NATURAL <- bind_rows( map(lista_guia2_versao_atual, `[[`, 3)
 ```{r}
 MOVIMENTACAO_DE_GAS_NATURAL <- MOVIMENTACAO_DE_GAS_NATURAL |> 
   select("Período", c(1:5,7:9)) |> 
-  mutate_at(2:9, as.numeric)
+  mutate_at(2:8, as.numeric)
 ```
 
 ## Histórico de Produção de Petróleo e Gás Natural
@@ -563,8 +571,8 @@ MOVIMENTACAO_GAS_NATURAL_POR_DESTINO <- MOVIMENTACAO_GAS_NATURAL_POR_DESTINO |>
 ```
 
 ```{r}
-names(MOVIMENTACAO_GAS_NATURAL_POR_DESTINO)
-names(tabela9)
+# names(MOVIMENTACAO_GAS_NATURAL_POR_DESTINO)
+# names(tabela9)
 ```
 
 
