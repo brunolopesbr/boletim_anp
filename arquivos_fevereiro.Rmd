@@ -27,14 +27,14 @@ source(knitr::purl("tabelas_versao_atual.Rmd", quiet=TRUE))
 # Preparar arquivos
 
 ```{r}
-arquivos_fev_2024 <- list.files(path = "csv", pattern = "tsv")
+arquivos_fev_2024 <- list.files(path = "data", pattern = "tsv")
 
 ```
 
 ```{r}
 i <- 1
 for(i in seq_along(arquivos_fev_2024)){
-  arquivos_fev_2024[i] <- paste0("csv/", arquivos_fev_2024[i])
+  arquivos_fev_2024[i] <- paste0("data/", arquivos_fev_2024[i])
   i <- i + 1
 }
 arquivos_fev_2024
