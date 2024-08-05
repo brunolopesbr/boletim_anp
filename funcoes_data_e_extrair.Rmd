@@ -99,7 +99,7 @@ list(df1, df2, df3)
 ```{r}
 extrair_3_tabelas_data <- function(nume, ajuste = 2, ajuste2 = -2, sheet = sheet){
 
-mes_boletim <- data_arquivos_novo[[nume,1]]
+mes_boletim <- datas_arquivos[[nume,1]]
 
   prov <- read_excel(paste0("data/", planilhas[nume]), sheet = sheet)
 

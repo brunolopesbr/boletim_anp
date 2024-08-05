@@ -441,10 +441,10 @@ read_excel(paste0("data/", planilhas[1]), sheet = 3, col_types = "text",  .name_
 #  i <- i + 1
 #}
 
-lista_guia3_versao_atual[[16]][[4]] <- lista_guia3_versao_atual[[16]][[4]] |> 
-  select(!6:10)
+#lista_guia3_versao_atual[[16]][[4]] <- lista_guia3_versao_atual[[16]][[4]] |> 
+#  select(!6:10)
 
-lista_guia3_versao_atual[[16]][[4]]
+#lista_guia3_versao_atual[[16]][[4]]
 ```
 
 
@@ -480,6 +480,16 @@ while(i <= length(lista_guia3_versao_atual)){
 
 
 ```
+
+```{r}
+map_df(lista_guia3_versao_atual, `[[`, 4)
+
+map_df(lista_guia3_versao_menos1, `[[`, 4)
+
+map(lista_guia3_versao_menos3, `[[`, 4)
+
+```
+
 
 ```{r}
 por_concessionario <- rbind(
