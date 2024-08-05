@@ -19,7 +19,9 @@ library(readxl)
 Planilhas baixadas por último
 
 ```{r}
-planilhas_novas <- c("2024_tabela-abril.xlsm", "2024_tabela-maio.xlsm", "2024_tabela-junho.xlsm", "2020-06-boletim.xlsm")
+planilhas_novas <- c("2024_tabela-abril.xlsm", "2024_tabela-maio.xlsm", "2024_tabela-junho.xlsm")
+
+planilha_2020_junho <- "2020-06-boletim.xlsm"
   
 ```
 
@@ -29,14 +31,52 @@ planilhas_novas_caminho
 
 ```
 
+# Criar arquivo com a data dos arquivos
+
+```{r}
+extrair_data_novo <- function(num){
+
+prov1 <- read_excel(paste0("data/", planilhas_novas[num]), sheet = 2, .name_repair = "unique_quiet")
+
+names(prov1)[1] <- "col1"
+
+corte <- which(str_detect(prov1$col1, "Tabela [0-9]*"))
+
+maximo_linha <- corte - lag(corte)
+
+# Extrair tabela 1, na ws2
+df1 <- read_excel(paste0("data/", planilhas_novas[num]), sheet = 2, ,skip = corte[2] + 2, n_max = maximo_linha[2] -2, .name_repair = "unique_quiet")
+
+data_ws1 <- names(df1)[length(df1)]
+
+{
+  if (str_detect(data_ws1, "/") == TRUE) {data_ws2 <- lubridate::my(data_ws1)}
+  
+  else {data_ws2 <- as.Date(as.numeric(data_ws1), origin = "1899-12-30")} 
+}
+
+as_tibble(data_ws2) 
+}
+```
+
+
 # Importar dados das novas planilhas
+
+```{r}
+
+data_arquivos_novo <- map_df(1:3, extrair_data_novo) |> 
+  bind_cols(1:3)
+
+data_arquivos_novo
+```
+
 
 # Guia 1
 
 ## Criação de lista para a guia 1
 
 ```{r}
-lista_guia2_novos_arquivos <- map(1:4, extrair_4_tabelas_novo, sheet = 2)
+lista_guia2_novos_arquivos <- map(planilhas_novas[1:3], extrair_4_tabelas_novo, sheet = 2)
 ```
 
 ```{r}
@@ -82,85 +122,132 @@ i <- i + 1
 
 ```
 
+
+
 ```{r}
-tabela2_historico_gas_novo <- bind_rows(bind_rows(map(lista_guia2_novos_arquivos, `[[`, 2)) |> 
- filter(str_detect(mes, "/")) |> 
-  mutate(mes = my(mes)),
-
-bind_rows(map(lista_guia2_novos_arquivos, `[[`, 2)) |> 
-  filter(!str_detect(mes, "/")) |> 
-  mutate(mes = as.Date(as.numeric(mes), origin = "1899-12-30"))
-)  |> distinct()
-
+tabela2_historico_gas_novo <- map_df(lista_guia2_novos_arquivos, `[[`, 2)
 ```
 
 
 ```{r}
-i <- 1
-
-for(i in seq_along(planilhas_novas_caminho)){
-read_excel(paste0("data/", planilhas_novas[i]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
-  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
-  select(1) |> 
-  slice(3)  |> 
-  print()  
-    
-i <- i + 1
-  }
-
+tabela3_historico_movimentacao_gas <- map_df(lista_guia2_novos_arquivos, `[[`, 3)
 
 ```
 
 ```{r}
-# acertar nomes das colunas
+tabela4_historico_petrole_gas_novo <- map_df(lista_guia2_novos_arquivos, `[[`, 4)
+
+```
+
+
+
+
+## Guia 3
+
+### Criar lista
+
+
+```{r}
+lista_guia3_novos_arquivos <- map(1:4, extrair_6_tabelas_novo, sheet = 3)
+```
+
+```{r}
+tabela5 <- map_df(lista_guia3_novos_arquivos, `[[`, 1)
+```
+
+```{r}
+tabela6 <- map_df(lista_guia3_novos_arquivos, `[[`, 2)
+```
+
+```{r}
+tabela7<- map_df(lista_guia3_novos_arquivos, `[[`, 3)
+```
+
+```{r}
+tabela8 <- map_df(lista_guia3_novos_arquivos, `[[`, 4)
+```
+
+```{r}
+tabela9 <- map_df(lista_guia3_novos_arquivos, `[[`, 5)
+```
+
+
+```{r}
+tabela10 <- map_df(lista_guia3_novos_arquivos, `[[`, 6)
+
+```
+
+
+
+## Guia 4
+
+### Criar lista
+
+
+```{r}
+lista_guia4_novos_arquivos <- map(1:4, extrair_8_tabelas_novo, sheet = 4)
+```
+
+```{r}
 i <- 1
 
-for(i in seq_along(lista_guia2_novos_arquivos)){
-  names(lista_guia2_novos_arquivos[[i]][[3]])[1] <- names(lista_guia2_novos_arquivos[[4]][[3]])[1]
-  i <- 1 + i
+for(i in seq_along(lista_guia4_novos_arquivos)){
+names(lista_guia4_novos_arquivos[[i]][[1]]) <-  names(lista_guia4_novos_arquivos[[1]][[1]])
+  i <- i + 1
 }
 
 
+```
 
+
+
+```{r}
+tabela11 <- map_df(lista_guia4_novos_arquivos, `[[`, 1)
 ```
 
 
 ```{r}
-tabela3_historico_movimentacao_gas <- rbind(bind_rows(map(lista_guia2_novos_arquivos, `[[`, 3)) |> 
- filter(str_detect(Período, "/")) |> 
-  mutate(Período = my(Período)),
-
-bind_rows(map(lista_guia2_novos_arquivos, `[[`, 3)) |> 
-  filter(!str_detect(Período, "/")) |> 
-  mutate(Período = as.Date(as.numeric(Período), origin = "1899-12-30"))
-)  |> distinct()
-
+tabela12 <- map_df(lista_guia4_novos_arquivos, `[[`, 2)
 ```
+
+
+
 
 ```{r}
-i <- 1
-
-for(i in seq_along(planilhas_novas_caminho)){
-read_excel(paste0("data/", planilhas_novas[i]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
-  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
-  select(1) |> 
-  slice(4)  |> 
-  print()  
-    
-i <- i + 1
-  }
+tabela13 <- map_df(lista_guia4_novos_arquivos, `[[`, 3)
 ```
+
 
 ```{r}
-tabela4_historico_petrole_gas_novo <- bind_rows(bind_rows(map(lista_guia2_novos_arquivos, `[[`, 4)) |> 
- filter(str_detect(mes, "/")) |> 
-  mutate(mes = my(mes)),
-
-bind_rows(map(lista_guia2_novos_arquivos, `[[`, 4)) |> 
-  filter(!str_detect(mes, "/")) |> 
-  mutate(mes = as.Date(as.numeric(mes), origin = "1899-12-30"))
-)  |> distinct()
-
+tabela14 <- map_df(lista_guia4_novos_arquivos, `[[`, 3)
 ```
 
-## ta
+
+
+```{r}
+tabela15 <- map_df(lista_guia4_novos_arquivos, `[[`, 4)
+```
+
+
+
+```{r}
+tabela16 <- map_df(lista_guia4_novos_arquivos, `[[`, 5)
+```
+
+
+```{r}
+tabela17 <- map_df(lista_guia4_novos_arquivos, `[[`, 6)
+```
+
+# consertar tabela 17
+```{r}
+tabela18 <- map_df(lista_guia4_novos_arquivos, `[[`, 7)
+```
+
+
+
+```{r}
+map_df(lista_guia4_novos_arquivos, `[[`, 8)
+```
+
+
