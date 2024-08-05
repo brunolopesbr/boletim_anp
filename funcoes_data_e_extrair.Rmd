@@ -16,6 +16,12 @@ library(readxl)
 
 ```{r}
 planilhas <- dir(path = "data", pattern = "*xls*")
+
+planilhas_novas <- c("2024_tabela-abril.xlsm", "2024_tabela-maio.xlsm", "2024_tabela-junho.xlsm")
+
+
+
+planilhas <- planilhas[!planilhas %in% planilhas_novas]
 ```
 
 # Funções personalizadas
@@ -129,10 +135,10 @@ list(df1, df2, df3)
 ## Extrair 4 tabelas
 
 ```{r}
-extrair_4_tabelas <- function(x, ajuste = 2, ajuste2 = -2, sheet = sheet){
+extrair_4_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = sheet){
 
   
-  prov <- read_excel(paste0("data/", x), sheet = sheet)
+  prov <- read_excel(paste0("data/", planilhas[nume]), sheet = sheet)
 
 names(prov) <- "col1"
 
@@ -146,15 +152,15 @@ names(prov) <- "col1"
 
    
   
-df1 <-  read_excel(paste0("data/", x), sheet = sheet, skip = corte[1] + ajuste, n_max = maximo_linha[1] + ajuste2, col_types = "text")  |> 
+df1 <-  read_excel(paste0("data/", planilhas[nume]), sheet = sheet, skip = corte[1] + ajuste, n_max = maximo_linha[1] + ajuste2, col_types = "text")  |> 
      gather(key = "mes", value = "volume", -1)
 
-df2 <-  read_excel(paste0("data/", x), sheet = sheet, skip = corte[2] + ajuste, n_max = maximo_linha[2] + ajuste2, col_types = "text")  |> 
+df2 <-  read_excel(paste0("data/", planilhas[nume]), sheet = sheet, skip = corte[2] + ajuste, n_max = maximo_linha[2] + ajuste2, col_types = "text")  |> 
      gather(key = "mes", value = "volume", -1)
 
-df3 <-  read_excel(paste0("data/", x), sheet = sheet, skip = corte[3] + ajuste, n_max = maximo_linha[3] + ajuste2, col_types = "text") 
+df3 <-  read_excel(paste0("data/", planilhas[nume]), sheet = sheet, skip = corte[3] + ajuste, n_max = maximo_linha[3] + ajuste2, col_types = "text") 
   
-df4 <-  read_excel(paste0("data/", x), sheet = sheet, skip = corte[4] + ajuste)  |> 
+df4 <-  read_excel(paste0("data/", planilhas[nume]), sheet = sheet, skip = corte[4] + ajuste)  |> 
      gather(key = "mes", value = "volume", -1)  
   
 
