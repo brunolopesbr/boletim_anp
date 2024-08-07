@@ -482,27 +482,29 @@ while(i <= length(lista_guia3_versao_atual)){
 ```
 
 ```{r}
-map_df(lista_guia3_versao_atual, `[[`, 4)
+dfa <-  map_df(lista_guia3_versao_atual, `[[`, 4) |> 
+  select(!`Nº`)
 
-map_df(lista_guia3_versao_menos1, `[[`, 4)
+i <- 1
+for(i in seq_along(lista_guia3_versao_menos1)){
+lista_guia3_versao_menos1[[i]][[4]] <- lista_guia3_versao_menos1[[i]][[4]] |> 
+  select(!`Nº`)  
+i <- 1 + 1
+}
 
-map(lista_guia3_versao_menos3, `[[`, 4)
+dfb <- map_df(lista_guia3_versao_menos3, `[[`, 4)
 
+i <- 1
+for(i in seq_along(lista_guia3_versao_menos3)){
+lista_guia3_versao_menos3[[i]][[4]] <- lista_guia3_versao_menos3[[i]][[4]] |> 
+  select(!`Nº`)  
+i <- 1 + 1
+}
+
+dfc <- map_df(lista_guia3_versao_menos3, `[[`, 4) 
+
+por_concessionario <- bind_rows(dfa, dfb, dfc)
 ```
-
-
-```{r}
-por_concessionario <- rbind(
-do.call(rbind, map(lista_guia3_versao_atual, `[[`, 4)),
-
-do.call(rbind, map(lista_guia3_versao_menos1, `[[`, 4)),
-
-do.call(rbind, map(lista_guia3_versao_menos3, `[[`, 4))  
-) |> distinct() 
-
-por_concessionario <- por_concessionario[,-1]
-```
-
 
 ## Movimentação de gás natural por destinação
 
