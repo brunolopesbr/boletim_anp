@@ -1272,12 +1272,20 @@ read_excel(paste0("data/", planilhas[1]), sheet = 4, col_types = "text",  .name_
 ```{r}
 # Verificar número de colunas
 
-#i <- 1
-#while(i <= length(lista_guia4_versao_atual)){
-#  print(ncol(lista_guia4_versao_atual[[i]][[8]])) 
-#  i <- i + 1
-#}
+i <- 1
+while(i <= length(lista_guia4_versao_atual)){
+  print(ncol(lista_guia4_versao_atual[[i]][[8]])) 
+  i <- i + 1
+}
+# corrigir o df 20
 
+lista_guia4_versao_atual[[20]][[8]] <- lista_guia4_versao_atual[[20]][[8]] |> 
+  select(!7:12)
+
+```
+
+
+```{r}
 #i <- 1
 #while(i <= length(lista_guia4_versao_menos1)){
 #  print(ncol(lista_guia4_versao_menos1[[i]][[8]])) 
@@ -1328,7 +1336,7 @@ bind_rows(map(lista_guia4_versao_atual, `[[`, 8)),
 bind_rows(map(lista_guia4_versao_menos1, `[[`, 8)), 
 bind_rows(map(lista_guia4_versao_menos2, `[[`, 8)) 
 ) |> distinct() 
-maiores_queimas <- maiores_queimas[,-1]
+
 ```
 
 # Tabelas geradas
@@ -1338,31 +1346,31 @@ Todas as tabelas são exportadas como arquivos csv, no diretório "saida":
 
 ```{r}
 Historico_petroleo |> 
-  write_csv("csv/tabela1_Historico_petroleo.csv", )
+  write_csv("csv/tabela01_Historico_petroleo.csv", )
 
 Historico_prod_gas |> 
-  write_csv("csv/tabela2_Historico_prod_gas.csv")
+  write_csv("csv/tabela02_Historico_prod_gas.csv")
 
 MOVIMENTACAO_DE_GAS_NATURAL |> 
-  write_csv("csv/tabela3_MOVIMENTACAO_DE_GAS_NATURAL.csv")
+  write_csv("csv/tabela03_MOVIMENTACAO_DE_GAS_NATURAL.csv")
 
 Historico_de_Producao_de_Petroleo_Gas_Natural |> 
-  write_csv("csv/tabela4_Historico_de_Producao_de_Petroleo_Gas_Natural.csv")
+  write_csv("csv/tabela04_Historico_de_Producao_de_Petroleo_Gas_Natural.csv")
 
 por_estado |> 
-  write_csv("csv/tabela5_Producao_por_estado.csv")
+  write_csv("csv/tabela05_Producao_por_estado.csv")
 
 por_bacia |> 
-  write_csv("csv/tabela6_Producao_por_bacia.csv")
+  write_csv("csv/tabela06_Producao_por_bacia.csv")
 
 por_operador |> 
-  write_csv("csv/tabela7_Producao_por_operador.csv")
+  write_csv("csv/tabela07_Producao_por_operador.csv")
 
 por_concessionario |> 
-  write_csv("csv/tabela8_Producao_por_concessionario.csv")
+  write_csv("csv/tabela08_Producao_por_concessionario.csv")
 
 MOVIMENTACAO_GAS_NATURAL_POR_DESTINO |> 
-  write_csv("csv/tabela9_MOVIMENTACAO_GAS_NATURAL_POR_DESTINO.csv")
+  write_csv("csv/tabela09_MOVIMENTACAO_GAS_NATURAL_POR_DESTINO.csv")
 
 DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL |> 
   write_csv("csv/tabela10_DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL.csv")
