@@ -1277,27 +1277,17 @@ read_excel(paste0("data/", planilhas[1]), sheet = 4, col_types = "text",  .name_
 #  print(ncol(lista_guia4_versao_atual[[i]][[8]])) 
 #  i <- i + 1
 #}
-```
 
-```{r}
-# Corrigindo dataframe 20, com colunas sem conteúdo
-lista_guia4_versao_atual[[20]][[8]] <- lista_guia4_versao_atual[[20]][[8]][,c(1:6,13)] 
-```
-```{r}
-# Verificar número de colunas
-
-# i <- 1
-# while(i <= length(lista_guia4_versao_menos1)){
-#  print(i)
+#i <- 1
+#while(i <= length(lista_guia4_versao_menos1)){
 #  print(ncol(lista_guia4_versao_menos1[[i]][[8]])) 
 #  i <- i + 1
 #}
+# corrigindo dataframe 17
+lista_guia4_versao_menos1[[18]][[8]] <- lista_guia4_versao_menos1[[18]][[8]] |> 
+  select(!7:11)
 ```
 
-```{r}
-# Corrigindo dataframe 17, com colunas sem conteúdo
-#lista_guia4_versao_menos1[[17]][[8]] <- lista_guia4_versao_menos1[[17]][[8]][,c(1:6,12)] 
-```
 
 ```{r}
 # Corrigir os nomes das colunas
