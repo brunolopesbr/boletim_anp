@@ -61,6 +61,28 @@ as_tibble(data_ws2)
 }
 ```
 
+## Contar quantas tabelas tem aquela guia
+```{r}
+contar_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = sheet){
+prov <- read_excel(paste0("data/", planilhas[nume]), sheet = sheet)
+
+names(prov) <- "col1"
+
+corte <- which(str_detect(prov$col1, "Tabela [0-9]*"))
+
+print(length(corte))
+}
+
+i <- 1
+for(i in 51:60){
+contar_tabelas(i, sheet = 4)  
+  i <- 1 + 1
+}
+
+
+
+```
+
 
 ## Extrair 3 tabelas
 
