@@ -1335,7 +1335,8 @@ maiores_queimas <- bind_rows(
 bind_rows(map(lista_guia4_versao_atual, `[[`, 8)),
 bind_rows(map(lista_guia4_versao_menos1, `[[`, 8)), 
 bind_rows(map(lista_guia4_versao_menos2, `[[`, 8)) 
-) |> distinct() 
+) |> distinct() |> 
+  select(!`Nº`)
 
 ```
 

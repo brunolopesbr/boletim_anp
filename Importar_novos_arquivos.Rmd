@@ -18,6 +18,16 @@ library(readxl)
 
 Esse arquivo importa novas planilhas para a base de dados previamente instalada
 
+# Importar dados da base existente
+
+```{r}
+arquivos_base_atual <- list.files(path = "csv", pattern = "csv")
+
+base_atual <- map(paste0("csv/", arquivos_base_atual), read_csv)
+```
+
+# Importar dados das novas planilhas
+
 ```{r}
 planilhas_novas <- c("2024_tabela-abril.xlsm", "2024_tabela-maio.xlsm")
 
@@ -28,16 +38,6 @@ planilhas_novas_caminho <- paste0("data/", planilhas_novas)
 planilhas_novas_caminho
 
 ```
-# Importar dados da base existente
-
-```{r}
-base_atual <- list.files(path = "csv", pattern = "csv")
-
-map(paste0("csv/", base_atual), read_csv)
-```
-
-
-# Importar dados das novas planilhas
 
 ## Criar arquivo com a data dos arquivos
 
@@ -69,49 +69,83 @@ as_tibble(data_ws2)
 ```
 ```{r}
 
-data_arquivos_novo <- map_df(1:3, extrair_data_novo) |> 
-  bind_cols(1:3)
+data_arquivos_novo <- map_df(1:2, extrair_data_novo) 
 
 data_arquivos_novo
 ```
 
-## Extrair dados da guia 2
+## Função para extrair dados da guia 2
 ```{r}
-extrair_4_tabelas_novo <- function(nume, ajuste = 2, ajuste2 = -2, sheet = sheet){
-
+extrair_4_tabelas_novo <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 2){
+  mes_boletim <- data_arquivos_novo[[nume,1]]
   
-   prov <- read_excel(paste0("data/", planilhas_novas[nume]), sheet = sheet)
-
-names(prov) <- "col1"
-
+  prov <- read_excel(paste0("data/", planilhas_novas[nume]), sheet = sheet)
+  
+  names(prov) <- "col1"
+  
   corte <- which(str_detect(prov$col1, "Tabela [0-9]*"))
-  # E a a linha seguinte com a palavra tabela indica o inínio da tabela seguinte
+  # E a a linha seguinte com a palavra tabela indica o início da tabela seguinte
   maximo_linha <- lead(corte) - corte
   
+  ajuste <- 2
+  ajuste2 <- -2
+  
+  my_list <- list()
+  
   # Importação de três tabelas, usando os parâmetros descobertos anteriormente
-  # nos argumentos "skip" e "n_max". Dessa maneira, a função readxl identifica ,mm
+  # nos argumentos "skip" e "n_max". Dessa maneira, a função readxl identifica
   # automaticamente o número de colunas de cada tabela e a classe dos caracteres
-
-   
   
-df1 <-  read_excel(paste0("data/", planilhas_novas[nume]), sheet = sheet, skip = corte[1] + ajuste, n_max = maximo_linha[1] + ajuste2, col_types = "text")  |> 
-     gather(key = "mes", value = "volume", -1)
-
-df2 <-  read_excel(paste0("data/", planilhas_novas[nume]), sheet = sheet, skip = corte[2] + ajuste, n_max = maximo_linha[2] + ajuste2, col_types = "text")  |> 
-     gather(key = "mes", value = "volume", -1)
-
-df3 <-  read_excel(paste0("data/", planilhas_novas[nume]), sheet = sheet, skip = corte[3] + ajuste, n_max = maximo_linha[3] + ajuste2, col_types = "text") 
+  assign(x = paste0("dataf", 1), value = read_excel(paste0("data/", planilhas_novas[nume]), sheet = sheet, skip = corte[1] + 
+                                                      ajuste, n_max = maximo_linha[1] + ajuste2) )    
   
-df4 <-  read_excel(paste0("data/", planilhas_novas[nume]), sheet = sheet, skip = corte[4] + ajuste)  |> 
-     gather(key = "mes", value = "volume", -1)  
+  assign(x = paste0("dataf", 2), value = read_excel(paste0("data/", planilhas_novas[nume]), sheet = sheet, skip = corte[2] + 
+                                                      ajuste, n_max = maximo_linha[2] + ajuste2) )
+  
+  assign(x = paste0("dataf", 3), value = read_excel(paste0("data/", planilhas_novas[nume]), sheet = sheet, skip = corte[3] + 
+                                                      ajuste, n_max = maximo_linha[3] + ajuste2) |> 
+           mutate(mes = mes_boletim))
   
 
-list(df1, df2, df3, df4)
+  
+  
+  
+  # i <- 1
+  # while(i < 13){
+  # assign(x = paste0("dataf", i), value = read_excel(paste0("data/", planilhas[i]), sheet = sheet, skip = corte[i], n_max = maximo_linha[i]) |> 
+  #          mutate(mes = mes_boletim))
+  #  
+  #  i <- i + 1
+  #}
+  
+  assign(x = paste0("dataf", 4), value = read_excel(paste0("data/", planilhas_novas[nume]), sheet = sheet, skip = corte[4] +  ajuste) )
+  
+  
+  dataf1 <- dataf1 |> 
+     gather(key = "mes", value = "volume", -1) |> 
+    mutate(mes = as.Date(as.numeric(mes), origin = "1899-12-30"))
+  
+  dataf2 <- dataf2 |> 
+     gather(key = "mes", value = "volume", -1) |> 
+    mutate(mes = as.Date(as.numeric(mes), origin = "1899-12-30"))
+  
+  dataf4 <- dataf4 |> 
+     gather(key = "mes", value = "volume", -1) |> 
+    mutate(mes = as.Date(as.numeric(mes), origin = "1899-12-30"))
+  
+  mylist <- list(dataf1, dataf2, dataf3, dataf4)
+  
+  mylist
 
 }  
 ```
 
-## Extrair dados da guia 3
+```{r}
+extrair_4_tabelas_novo(1)
+```
+
+
+## Função para extrair dados da guia 3
 
 Contar quantas tabelas há nas guias 3 e 4
 ```{r}
@@ -214,7 +248,7 @@ contar_tabelas(i, sheet = 4)
 ## Função para extrair 8 tabelas da guia
 
 ```{r}
-extrair_8_tabelas_novo <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
+extrair_8_tabelas_novo <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 4){
 mes_boletim <- data_arquivos_novo[[nume,1]]
 
   prov <- read_excel(paste0("data/", planilhas_novas[nume]), sheet = sheet)
@@ -285,73 +319,39 @@ mylist
 
 
 
-
-# Guia 1
+# Guia 2
 
 ## Criação de lista para a guia 1
 
-```{r}
-lista_guia2_novos_arquivos <- map(planilhas_novas[1:3], extrair_4_tabelas_novo, sheet = 2)
-```
 
 ```{r}
+
+lista_guia2_novos_arquivos <- map(1:2, extrair_4_tabelas_novo, sheet = 2)
+```
+Unir dataframes
+```{r}
+nova_base <- list()
+
+nova_base[[1]] <- map_df(lista_guia2_novos_arquivos, `[[`, 1) |> 
+  bind_rows(base_atual[[1]]) |> 
+  distinct() |> 
+  arrange(desc(mes))
+
+nova_base
+```
+```{r}
+nova_base <- list()
 i <- 1
 
-for(i in seq_along(planilhas_novas_caminho)){
-read_excel(paste0("data/", planilhas_novas[i]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
-  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
-  select(1) |> 
-  slice(1)  |> 
-  print()  
-    
-i <- i + 1
-  }
+for(i in 1:4){
+  nova_base[[i]] <- map_df(lista_guia2_novos_arquivos, `[[`, i) |> 
+  bind_rows(base_atual[[i]]) |> 
+  distinct() |> 
+  arrange(desc(mes))
+i <- 1 + 1
+}
 
-
-```
-
-```{r}
-tabela1_historico_petroleo_novo <- bind_rows(bind_rows(map(lista_guia2_novos_arquivos, `[[`, 1)) |> 
- filter(str_detect(mes, "/")) |> 
-  mutate(mes = my(mes)),
-
-bind_rows(map(lista_guia2_novos_arquivos, `[[`, 1)) |> 
-  filter(!str_detect(mes, "/")) |> 
-  mutate(mes = as.Date(as.numeric(mes), origin = "1899-12-30"))
-)  |> distinct()
-
-```
-```{r}
-i <- 1
-
-for(i in seq_along(planilhas_novas_caminho)){
-read_excel(paste0("data/", planilhas_novas[i]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
-  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
-  select(1) |> 
-  slice(2)  |> 
-  print()  
-    
-i <- i + 1
-  }
-
-
-```
-
-
-
-```{r}
-tabela2_historico_gas_novo <- map_df(lista_guia2_novos_arquivos, `[[`, 2)
-```
-
-
-```{r}
-tabela3_historico_movimentacao_gas <- map_df(lista_guia2_novos_arquivos, `[[`, 3)
-
-```
-
-```{r}
-tabela4_historico_petrole_gas_novo <- map_df(lista_guia2_novos_arquivos, `[[`, 4)
-
+nova_base
 ```
 
 
@@ -363,34 +363,55 @@ tabela4_historico_petrole_gas_novo <- map_df(lista_guia2_novos_arquivos, `[[`, 4
 
 
 ```{r}
-lista_guia3_novos_arquivos <- map(1:4, extrair_6_tabelas_novo, sheet = 3)
+lista_guia3_novos_arquivos <- map(1:2, extrair_6_tabelas_novo, sheet = 3)
 ```
 
 ```{r}
-tabela5 <- map_df(lista_guia3_novos_arquivos, `[[`, 1)
+# Retirar coluna "Nº'
+i <- 1
+
+for(i in 1:6){
+  if(names(lista_guia3_novos_arquivos[[1]][[i]])[1]== "Nº"){lista_guia3_novos_arquivos[[1]][[i]] <- lista_guia3_novos_arquivos[[1]][[i]][,-1]}
+  i <- i + 1
+  i <- 1
+ #iteração na segunda lista, dois arquivos foram importados 
+  if(names(lista_guia3_novos_arquivos[[2]][[i]])[1]== "Nº"){lista_guia3_novos_arquivos[[2]][[i]] <- lista_guia3_novos_arquivos[[2]][[i]][,-1]}
+}
+
 ```
 
 ```{r}
-tabela6 <- map_df(lista_guia3_novos_arquivos, `[[`, 2)
-```
+i <- 1
 
-```{r}
-tabela7<- map_df(lista_guia3_novos_arquivos, `[[`, 3)
-```
+for(i in 1:6){
+lista_guia3_novos_arquivos[[1]][[i]] <- lista_guia3_novos_arquivos[[1]][[i]] |> 
+  mutate_at(2, as.numeric)  
+}
 
-```{r}
-tabela8 <- map_df(lista_guia3_novos_arquivos, `[[`, 4)
-```
-
-```{r}
-tabela9 <- map_df(lista_guia3_novos_arquivos, `[[`, 5)
 ```
 
 
 ```{r}
-tabela10 <- map_df(lista_guia3_novos_arquivos, `[[`, 6)
+nova_lista <- list()
+i <- 1
+for(i in 1:6){
+nova_lista[[i]] <-  map_df(lista_guia3_novos_arquivos, `[[`, i)  
+i <- 1 + 1
+}
 
+lista_guia3 <- list()
+
+i <- 1
+for(i in 1:6){
+  lista_guia3[[i]] <- nova_lista[i] |> 
+  bind_rows(base_atual[i + 4])
+i <- 1 + 1}
+
+lista_guia3
 ```
+
+
+
 
 
 
@@ -400,69 +421,62 @@ tabela10 <- map_df(lista_guia3_novos_arquivos, `[[`, 6)
 
 
 ```{r}
-lista_guia4_novos_arquivos <- map(1:4, extrair_8_tabelas_novo, sheet = 4)
+lista_guia4_novos_arquivos <- map(1:2, extrair_8_tabelas_novo, sheet = 4)
 ```
 
 ```{r}
+# Retirar coluna "Nº'
 i <- 1
 
-for(i in seq_along(lista_guia4_novos_arquivos)){
-names(lista_guia4_novos_arquivos[[i]][[1]]) <-  names(lista_guia4_novos_arquivos[[1]][[1]])
+for(i in 1:8){
+  if(names(lista_guia4_novos_arquivos[[1]][[i]])[1]== "Nº"){lista_guia4_novos_arquivos[[1]][[i]] <- lista_guia4_novos_arquivos[[1]][[i]][,-1]}
   i <- i + 1
+  i <- 1
+ #iteração na segunda lista, dois arquivos foram importados 
+  if(names(lista_guia4_novos_arquivos[[2]][[i]])[1]== "Nº"){lista_guia4_novos_arquivos[[2]][[i]] <- lista_guia4_novos_arquivos[[2]][[i]][,-1]}
 }
 
-
 ```
 
-
-
 ```{r}
-tabela11 <- map_df(lista_guia4_novos_arquivos, `[[`, 1)
+
+#i <- 1
+#
+#for(i in 1:6){
+#lista_guia3_novos_arquivos[[1]][[i]] <- lista_guia3_novos_arquivos[[1]][[i]] |> 
+#  mutate_at(2, as.numeric)  
+#}
+lista_guia4_novos_arquivos
 ```
-
-
 ```{r}
-tabela12 <- map_df(lista_guia4_novos_arquivos, `[[`, 2)
-```
-
-
-
-
-```{r}
-tabela13 <- map_df(lista_guia4_novos_arquivos, `[[`, 3)
+lista_guia4_novos_arquivos[[1]][[8]] <- lista_guia4_novos_arquivos[[1]][[8]] |> 
+mutate_at(5, as.numeric) 
 ```
 
 
 ```{r}
-tabela14 <- map_df(lista_guia4_novos_arquivos, `[[`, 3)
+nova_lista <- list()
+i <- 1
+for(i in 1:8){
+nova_lista[[i]] <-  map_df(lista_guia4_novos_arquivos, `[[`, i)  
+i <- 1 + 1
+}
+
+nova_lista
+
+lista_guia4 <- list()
+
+i <- 1
+for(i in 1:8){
+  lista_guia4[[i]] <- nova_lista[i] |> 
+  bind_rows(base_atual[i + 12])
+i <- 1 + 1}
+
+lista_guia4
+
 ```
 
 
 
-```{r}
-tabela15 <- map_df(lista_guia4_novos_arquivos, `[[`, 4)
-```
-
-
-
-```{r}
-tabela16 <- map_df(lista_guia4_novos_arquivos, `[[`, 5)
-```
-
-
-```{r}
-tabela17 <- map_df(lista_guia4_novos_arquivos, `[[`, 6)
-```
-
-# consertar tabela 17
-```{r}
-tabela18 <- map_df(lista_guia4_novos_arquivos, `[[`, 7)
-```
-
-
-
-```{r}
-map_df(lista_guia4_novos_arquivos, `[[`, 8)
-```
 
 
