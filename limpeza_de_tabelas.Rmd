@@ -1,0 +1,133 @@
+---
+title: "limpeza de tabelas"
+author: "BML"
+date: "2024-08-13"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Limpeza de tabelas
+
+Esse arquivo lista os principais pontos a serem feitas para limpar as tabelas, na sua união.
+
+## 1. Retirar a coluna `Nº`
+
+
+```{r}
+i <- 1
+for(i in seq_along(lista_guia4_todas)){
+names(lista_guia4_todas[[i]][[1]]) |> print()
+  i <- 1 + 1
+}
+
+# Se a coluna N não aparece em todos os dataframes da lista:
+
+i <- 1
+for(i in seq_along(lista_guia4_todas)){
+
+  if( names(lista_guia4_todas[[i]][[1]]) |> 
+  str_detect("Nº") |> sum() > 0 ) {lista_guia4_todas[[i]][[1]] <- lista_guia4_todas[[i]][[1]] 
+  |> select(!"Nº")}
+  
+  i <- 1 + 1
+}
+```
+
+
+```{r}
+
+
+lista_guia4_todas[[4]][[1]] 
+
+if( names(lista_guia4_todas[[4]][[1]]) |> 
+  str_detect("Nº") |> sum() > 0 ) {lista_guia4_todas[[4]][[1]] <- lista_guia4_todas[[4]][[1]] |> select(!"Nº")}
+  
+  lista_guia4_todas[[4]][[1]] 
+  
+```
+
+```{r}
+i <- 1
+for(i in seq_along(lista_guia3_todas)){
+lista_guia3_todas[[i]][[3]] <- select(lista_guia3_todas[[i]][[3]], !"Nº")
+  i <- 1 + 1
+}
+
+map_df(lista_guia3_todas, `[[`, 3) 
+```
+
+## 2. Verificar qual DF tem colunas demais 
+
+```{r}
+meu_dataframe <- data.frame()
+
+i <- 1
+for(i in 71:75){
+meu_dataframe[i,1] <- ncol(lista_guia3_todas[[i]][[4]]) 
+  i <- 1 + 1
+}
+
+meu_dataframe
+
+# Apagar colunas que não fazem sentido
+lista_guia3_todas[[73]][[4]] <- lista_guia3_todas[[73]][[4]] |> 
+  select(!6:10)
+```
+
+## Verificar nomes das colunas (talvez sejam tabelas com conteúdos diferentes)
+
+```{r}
+i <- 1
+for(i in seq_along(lista_guia3_todas)){
+names(lista_guia3_todas[[i]][[5]]) |> print()
+  i <- 1 + 1
+}
+```
+
+
+## Verificando o início da tabela, considerando três números aleatórios
+
+```{r}
+# gerando números aleatórios
+set.seed(100)
+aleatorios <- runif(3, min= 1, max = 70)
+
+i <- 1
+for(i in aleatorios){
+head(lista_guia3_todas[[i]][[6]]) |> print()
+  i <- 1 + 1
+}
+```
+Problema: primeira linha de algumas tabelas tem caracteres, ao invés de números.
+
+Solução: apagar primeira linha, se ela existir.
+
+```{r}
+# Se a primeira linha da primeira coluna for nula, apagar linha e converter as colunas 2 a 7 para valores numéricos
+i <- 1
+
+for(i in seq_along(lista_guia3_todas)) {
+if(is.na(lista_guia3_todas[[i]][[6]][1,1])) {lista_guia3_todas[[i]][[6]] <- lista_guia3_todas[[i]][[6]][-1,] |> 
+  mutate_at(2:7, as.numeric)}    
+  i <- 1 + i
+}
+```
+
+## 6 . Acertar nomes
+```{r}
+
+## 3. Acertar Nomes
+
+```{r}
+# Acertar nomes
+
+i <- 1
+for(i in seq_along(lista_guia3_todas)){
+names(lista_guia3_todas[[i]][[4]]) <- names(lista_guia3_todas[[1]][[4]])
+  i <- 1 + 1
+}
+```
+

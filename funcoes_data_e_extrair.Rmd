@@ -14,6 +14,8 @@ library(tidyverse)
 library(readxl)
 ```
 
+
+# Elementos de apoio
 ```{r}
 planilhas <- dir(path = "data", pattern = "*xls*")
 
@@ -23,6 +25,8 @@ planilhas_novas <- c("2024_tabela-abril.xlsm", "2024_tabela-maio.xlsm", "2024_ta
 
 planilhas <- planilhas[!planilhas %in% planilhas_novas]
 ```
+
+
 
 # Funções personalizadas
 
@@ -61,6 +65,187 @@ as_tibble(data_ws2)
 }
 ```
 
+# Criar arquivo 
+
+# Gerar elemento com datas
+
+Gerando elemento (dataframe) com todos os arquivos e suas datas
+```{r message=FALSE, warning=FALSE}
+datas_arquivos <- map_df(seq_along(planilhas), extrair_data_ws2) |> 
+  mutate(planilha = planilhas)
+
+datas_arquivos
+```
+
+```{r message=FALSE, warning=FALSE}
+# Verificando os erros
+
+{if (datas_arquivos |> 
+  filter(is.na(value))  |> 
+  nrow()  == 0 ) {print("Sem erros")}
+else (print("Verificar"))  } 
+
+```
+
+# Guias
+```{r}
+guias_lista <- map(1:length(planilhas), extrair_guias)
+
+guias <- do.call(rbind, guias_lista) |> 
+  as_tibble() 
+
+guias <- guias |> 
+  mutate(V5 = str_remove_all(V5, "Lista de Tabelas")) |> 
+  mutate(num_arquivo = 1:nrow(guias) )
+```
+
+```{r}
+guias
+```
+
+Guias 2: sempre com o mesmo nome
+
+```{r}
+unique(guias$V2)
+
+```
+
+Guias 3: dois grupos ("Movimentação de Gás Natural" e "Ranking")
+
+```{r}
+planilhas_ws4_grupo1 <- guias |> 
+  filter(V4 == unique(guias$V4)[1]) |> 
+  pull(num_arquivo)
+
+planilhas_ws4_grupo2 <- guias |> 
+  filter(V4 == unique(guias$V4)[2]) |> 
+  pull(num_arquivo)
+
+```
+
+Guias 5: dois grupos (um com "4. Pandemia_Covid-19", outro sem planilhas )
+
+```{r}
+guias |> 
+  filter(V5 == unique(guias$V5)[2]) |> 
+  pull(num_arquivo)
+
+```
+
+
+```{r}
+planilhas_ws4_grupo1 <- guias |> 
+  filter(V5 == unique(guias$V5[1])) |> 
+  pull(num_arquivo)
+
+planilhas_ws4_grupo2 <- guias |> 
+  filter(V4 == unique(guias$V4[2]))
+
+```
+
+Guias que mudaram de nome:
+```{r}
+unique(guias$V2) |> length()
+unique(guias$V3) |> length()
+unique(guias$V4) |> length()
+unique(guias$V5) |> length()
+
+unique(guias$V4)
+unique(guias$V5)
+```
+
+# Covid
+
+Identificar as planilhas onde há guias com tabelas da Covid 19, e quantas tabelas há nelas:
+
+```{r}
+guias_covid <- guias |> 
+   filter(str_detect(V5, "Covid")) |> 
+  pull(num_arquivo)
+
+```
+
+# Função 3: extrair tabelas de planilhas (qualquer número de tabelas)
+
+```{r}
+extrair_todas_tabelas <- function(nume, sheet = sheet){
+  mes_boletim <- datas_arquivos[[nume,1]]
+  
+  prov <- read_excel(paste0("data/", planilhas[nume]), sheet = sheet)
+  
+  names(prov)[1] <- "col1"
+  
+  corte <- which(str_detect(prov$col1, "Tabela [0-9]*"))
+  # E a a linha seguinte com a palavra tabela indica o início da tabela seguinte
+  maximo_linha <- lead(corte) - corte
+  
+  # tamanho da última tabela: número total de linhas do DF - linha da última tabela do DF
+  # substituir esse valor no vetor, que aparece como "NA"
+  ultima_n_max <- nrow(prov) - corte[length(corte)]
+  
+  maximo_linha[length(maximo_linha)] <- ultima_n_max + 2
+  
+  ajuste <- 2
+  ajuste2 <- -2
+  
+  maximo_linha
+  
+  minha_lista <- list()
+  
+  
+  i <- 1
+  for(i in seq_along(corte)){
+    minha_lista[[i]] <- read_excel(paste0("data/", planilhas[nume]), sheet = sheet, skip = corte[i] + 
+                                     ajuste, n_max = maximo_linha[i] + ajuste2) |> 
+      mutate(mes = mes_boletim)
+    i <- i + 1
+  }
+  
+  minha_lista
+}
+
+```
+
+```{r}
+extrair_todas_tabelas_novo <- function(x, nume, sheet = sheet){
+  mes_boletim <- datas_arquivos[[nume,1]]
+  
+  prov <- read_excel(paste0("data/", x), sheet = sheet)
+  
+  names(prov)[1] <- "col1"
+  
+  corte <- which(str_detect(prov$col1, "Tabela [0-9]*"))
+  # E a a linha seguinte com a palavra tabela indica o início da tabela seguinte
+  maximo_linha <- lead(corte) - corte
+  
+  # tamanho da última tabela: número total de linhas do DF - linha da última tabela do DF
+  # substituir esse valor no vetor, que aparece como "NA"
+  ultima_n_max <- nrow(prov) - corte[length(corte)]
+  
+  maximo_linha[length(maximo_linha)] <- ultima_n_max + 2
+  
+  ajuste <- 2
+  ajuste2 <- -2
+  
+  maximo_linha
+  
+  minha_lista <- list()
+  
+  
+  i <- 1
+  for(i in seq_along(corte)){
+    minha_lista[[i]] <- read_excel(paste0("data/", x), sheet = sheet, skip = corte[i] + 
+                                     ajuste, n_max = maximo_linha[i] + ajuste2) |> 
+      mutate(mes = mes_boletim)
+    i <- i + 1
+  }
+  
+  minha_lista
+}
+```
+
+
+# Outras
 ## Contar quantas tabelas há aquela guia
 ```{r}
 contar_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = sheet){
@@ -81,7 +266,8 @@ contar_tabelas(i, sheet = 4)
 ```
 
 
-## Extrair 3 tabelas
+## Extrair tabelas - número exato por guia
+### Extrair 3 tabelas
 
 ```{r}
 extrair_3_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = sheet){
@@ -114,7 +300,7 @@ list(df1, df2, df3)
 }  
 ```
 
-## Extrair 3 tabelas com data
+### Extrair 3 tabelas com data
 ```{r}
 extrair_3_tabelas_data <- function(nume, ajuste = 2, ajuste2 = -2, sheet = sheet){
 
@@ -151,7 +337,7 @@ list(df1, df2, df3)
 ```
 
 
-## Extrair 4 tabelas
+### Extrair 4 tabelas
 
 ```{r}
 extrair_4_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = sheet){
@@ -225,7 +411,7 @@ list(df1, df2, df3, df4)
 ```
 
 
-## Extrair 6 tabelas
+### Extrair 6 tabelas
 
 ```{r}
 extrair_6_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
@@ -289,7 +475,7 @@ mylist
 
 
 
-## Extrair 6 tabelas novo
+### Extrair 6 tabelas novo
 
 ```{r}
 
@@ -354,7 +540,7 @@ mylist
 
 
 
-## Extrair 7 tabelas
+### Extrair 7 tabelas
 
 ```{r}
 extrair_7_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
@@ -419,7 +605,7 @@ mylist
 ```
 
 
-## Extrair 8 tabelas
+### Extrair 8 tabelas
 
 ```{r}
 extrair_8_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
@@ -490,7 +676,7 @@ mylist
 
 
 
-## Extrair 8 tabelas novo
+### Extrair 8 tabelas novo
 
 ```{r}
 extrair_8_tabelas_novo <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
@@ -561,7 +747,7 @@ mylist
 
 
 
-## Extrair 13 tabelas
+### Extrair 13 tabelas
 
 ```{r}
 extrair_13_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
@@ -652,7 +838,7 @@ mylist
 
 
 
-## Extrair 13 tabelas novo
+### Extrair 13 tabelas novo
 
 ```{r}
 extrair_13_tabelas_novo <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
@@ -743,7 +929,7 @@ mylist
 
 
 
-## 16 tabelas
+### 16 tabelas
 ```{r}
 
 extrair_16_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 4){
@@ -850,101 +1036,11 @@ mylist
 
 
 
-# Gerar elemento com datas
-
-Gerando elemento (dataframe) com todos os arquivos e suas datas
-```{r message=FALSE, warning=FALSE}
-datas_arquivos <- map_df(seq_along(planilhas), extrair_data_ws2) |> 
-  mutate(planilha = planilhas)
-
-datas_arquivos
-```
-
-```{r message=FALSE, warning=FALSE}
-# Verificando os erros
-
-{if (datas_arquivos |> 
-  filter(is.na(value))  |> 
-  nrow()  == 0 ) {print("Sem erros")}
-else (print("Verificar"))  } 
-
-```
-
-# Guias
-```{r}
-guias_lista <- map(1:length(planilhas), extrair_guias)
-
-guias <- do.call(rbind, guias_lista) |> 
-  as_tibble() 
-
-guias <- guias |> 
-  mutate(V5 = str_remove_all(V5, "Lista de Tabelas")) |> 
-  mutate(num_arquivo = 1:nrow(guias) )
-```
-
-```{r}
-guias
-```
-
-Guias 2: sempre com o mesmo nome
-
-```{r}
-unique(guias$V2)
-
-```
-
-Guias 3: dois grupos ("Movimentação de Gás Natural" e "Ranking")
-
-```{r}
-planilhas_ws4_grupo1 <- guias |> 
-  filter(V4 == unique(guias$V4)[1]) |> 
-  pull(num_arquivo)
-
-planilhas_ws4_grupo2 <- guias |> 
-  filter(V4 == unique(guias$V4)[2]) |> 
-  pull(num_arquivo)
-
-```
-
-Guias 5: dois grupos (um com "4. Pandemia_Covid-19", outro sem planilhas )
-
-```{r}
-guias |> 
-  filter(V5 == unique(guias$V5)[2]) |> 
-  pull(num_arquivo)
-
-```
 
 
-```{r}
-planilhas_ws4_grupo1 <- guias |> 
-  filter(V5 == unique(guias$V5[1])) |> 
-  pull(num_arquivo)
 
-planilhas_ws4_grupo2 <- guias |> 
-  filter(V4 == unique(guias$V4[2]))
 
-```
 
-Guias que mudaram de nome:
-```{r}
-unique(guias$V2) |> length()
-unique(guias$V3) |> length()
-unique(guias$V4) |> length()
-unique(guias$V5) |> length()
 
-unique(guias$V4)
-unique(guias$V5)
-```
 
-# Covid
-
-Identificar as planilhas onde há guias com tabelas da Covid 19, e quantas tabelas há nelas:
-
-```{r}
-guias_covid <- guias |> 
-   filter(str_detect(V5, "Covid")) |> 
-  pull(num_arquivo)
-
-```
 
