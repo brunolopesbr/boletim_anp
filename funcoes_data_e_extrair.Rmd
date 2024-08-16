@@ -206,6 +206,9 @@ extrair_todas_tabelas <- function(nume, sheet = sheet){
 
 ```
 
+Função 4: extrair 
+
+
 ```{r}
 extrair_todas_tabelas_novo <- function(x, nume, sheet = sheet){
   mes_boletim <- datas_arquivos[[nume,1]]

@@ -28,26 +28,15 @@ names(lista_guia4_todas[[i]][[1]]) |> print()
 i <- 1
 for(i in seq_along(lista_guia4_todas)){
 
-  if( names(lista_guia4_todas[[i]][[1]]) |> 
-  str_detect("Nº") |> sum() > 0 ) {lista_guia4_todas[[i]][[1]] <- lista_guia4_todas[[i]][[1]] 
-  |> select(!"Nº")}
+  if( names(lista_guia4_todas[[i]][[7]]) |> 
+  str_detect("Nº") |> sum() > 1 ) {lista_guia4_todas[[i]][[7]] <- lista_guia4_todas[[i]][[7]] |> select(!"Nº")}
   
   i <- 1 + 1
 }
 ```
 
 
-```{r}
 
-
-lista_guia4_todas[[4]][[1]] 
-
-if( names(lista_guia4_todas[[4]][[1]]) |> 
-  str_detect("Nº") |> sum() > 0 ) {lista_guia4_todas[[4]][[1]] <- lista_guia4_todas[[4]][[1]] |> select(!"Nº")}
-  
-  lista_guia4_todas[[4]][[1]] 
-  
-```
 
 ```{r}
 i <- 1
@@ -77,7 +66,7 @@ lista_guia3_todas[[73]][[4]] <- lista_guia3_todas[[73]][[4]] |>
   select(!6:10)
 ```
 
-## Verificar nomes das colunas (talvez sejam tabelas com conteúdos diferentes)
+## 3. Verificar nomes das colunas (talvez sejam tabelas com conteúdos diferentes)
 
 ```{r}
 i <- 1
@@ -87,8 +76,21 @@ names(lista_guia3_todas[[i]][[5]]) |> print()
 }
 ```
 
+## 6 . Acertar nomes
+```{r}
+# copiar todos os nomes de um df:
+i <- 1
+for(i in seq_along(lista_guia3_todas)){
+names(lista_guia3_todas[[i]][[4]]) <- names(lista_guia3_todas[[1]][[4]])
+  i <- 1 + 1
+}
 
-## Verificando o início da tabela, considerando três números aleatórios
+# Substituir uma palavra específica
+
+
+```
+
+## Verificando o início de cada tabela
 
 ```{r}
 # gerando números aleatórios
@@ -116,18 +118,5 @@ if(is.na(lista_guia3_todas[[i]][[6]][1,1])) {lista_guia3_todas[[i]][[6]] <- list
 }
 ```
 
-## 6 . Acertar nomes
-```{r}
 
-## 3. Acertar Nomes
-
-```{r}
-# Acertar nomes
-
-i <- 1
-for(i in seq_along(lista_guia3_todas)){
-names(lista_guia3_todas[[i]][[4]]) <- names(lista_guia3_todas[[1]][[4]])
-  i <- 1 + 1
-}
-```
 
