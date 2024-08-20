@@ -64,16 +64,17 @@ tabela_1. <- try(map_df(lista_guia2_todas, `[[`, 1)  ) |>
   select(!mes) |> 
   gather(key = "Período", value = "produto", -1)
   
-tabela_1 <- rbind(tabela_1. |> 
+Historico_petroleo <- rbind(tabela_1. |> 
        filter(str_detect(Período, "/")) |> 
   mutate(Período = my(Período)) |> 
   filter(!is.na(produto)),
-
 tabela_1. |> 
   filter(!str_detect(Período, "/")) |> 
   mutate(Período = as.Date(as.numeric(Período), origin = "1899-12-30")) |> 
-  filter(!is.na(produto))) |> 
+  filter(!is.na(produto))
+) |> 
   distinct()
+
 
 ```
 
@@ -833,6 +834,7 @@ for(i in seq_along(lista_guia4_todas)) {
   str_replace_all(pattern = "natural  (Mm³/d)", replacement = "natural (Mm³/d)") |>
     str_replace_all(pattern = "Operador/Concessionário", replacement = "Operador") |> 
     str_replace_all(pattern = "Gás natural (Mm³/d)", replacement = "Gás natural  (Mm³/d)") |>
+    str_replace_all(pattern = "Gás natural  (Mm³/d)", replacement = "Gás natural (Mm³/d)") |> 
     str_remove_all("Nome ANP do ") |> 
     str_trim()
   i <- i + 1
@@ -840,11 +842,29 @@ for(i in seq_along(lista_guia4_todas)) {
 ```
 
 ```{r}
-maiores_pocos_terrestres_gas_natural <- map_df(lista_guia4_todas, `[[`, 5) 
+prov <- map_df(lista_guia4_todas, `[[`, 5) 
+
+prov1 <- prov |> 
+  filter(!is.na(`Gás natural  (Mm³/d)`)) |> 
+  select(!`Gás natural (Mm³/d)`) 
+
+prov2 <- prov |> 
+  filter(!is.na(`Gás natural (Mm³/d)`)) |> 
+  select(!`Gás natural  (Mm³/d)`) 
+
+names(prov1)[8] <- names(prov2)[7]
+
+maiores_pocos_terrestres_gas_natural <- bind_rows(prov2, prov1)
+
+
+
 ```
 
 
 
+
+
+## 30 maiores poços terrestres gás natural
 
 ```{r}
 try(map_df(lista_guia4_todas, `[[`, 6))
@@ -866,7 +886,7 @@ for(i in seq_along(lista_guia4_todas)) {
 
 
 ```{r}
-try(map_df(lista_guia4_todas, `[[`, 6))
+maiores_instalacoes <- map_df(lista_guia4_todas, `[[`, 6)
 ```
 
 ## 30 maiores instalações de produção de petróleo

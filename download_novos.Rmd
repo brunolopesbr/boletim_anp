@@ -47,21 +47,14 @@ Podemos usar o <div class="conteudo">, e em seguida reter apenas o que está à 
 
 ```{r}
 
-links. <- boletim_anp |> 
+links <- boletim_anp |> 
   html_elements(".conteudo") |> 
   html_elements("a") |> 
   html_attr("href") 
   
 ```
 
-Por uma prévia análise, sabemos que devemos adicionar um link ao arquivo. Par essa análise, consultar arquivo "Verificar_links.Rmd"
-```{r}
 
-link_quebrado1 <- "https://www.gov.br/anp/pt-br/centrais-de-conteudo/publicacoes/boletins-anp/boletins/arquivos-bmppgn/2020/2020-06-boletim.xlsm"
-
-links <- c(links., link_quebrado1)
-
-```
 
 ## Gerar arquivo de nomes
 ```{r}
@@ -91,7 +84,7 @@ Verificar se há arquivos baixados no diretório "Data"
 ```{r}
 planilhas <- dir(path = "data")
 
-# planilhas2 <- dir(path = "data2")
+
 ```
 
 Criar elemento para baixar novos arquivos
@@ -102,6 +95,17 @@ nomes_novos <- nomes_arquivos[nomes_arquivos %!in% planilhas]
 
 links_novos <- links[nomes_arquivos %!in% planilhas]
 ```
+
+```{r}
+nomes_novos
+```
+
+
+```{r}
+links_novos
+```
+
+
 Criar função para baixar arquivos:
 
 
@@ -121,19 +125,10 @@ download_insistente <- insistently(download_lento, rate = rate_backoff(60))
 
 Ponto em que é feito o download de todos os arquivos, ou apenas dos novos
 ```{r}
-{ if (length(links_novos) == 0 ) {stop("Arquivos mais recentes foram baixados"}
-  
-  # Condição em que todos os arquivos são baixados
-  else if (length(planilhas) == 0) {map2(links, nomes_arquivos, download_insistente)}
-  
-  # Condição em que apenas novos arquivos são baixados
-  else {map2(links_novos, nomes_novos, download_insistente)}
-  
-}
-
 # função map equivalente ao for loop anterior, ativar para baixar todos os arquivos
  map2(links_novos, nomes_novos, download_insistente)
 ```
+
 Em seguida, todos os arquivos serão colocados no diretório "data"
 
 ```{r}
@@ -149,90 +144,5 @@ mover_arquivos <- function(x){
 
 mover_arquivos(arquivos_planilhas)
 mover_arquivos(arquivos_pdf)
-```
-Planilhas baixadas agora
-
-```{r}
-planilhas_novas <- nomes_novos[str_detect(nomes_novos, "xlsm")]
-planilhas_novas
-```
-
-```{r}
-planilhas_novas_caminho <- paste0("data/", planilhas_novas)
-planilhas_novas_caminho
-
-```
-
-# Importar dados das novas planilhas
-
-# Guia 1
-
-```{r}
-i <- 1
-
-for(i in seq_along(planilhas_novas_caminho)){
-read_excel(paste0("data/", planilhas_novas[i]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
-  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
-  select(1) |> 
-  slice(1)  |> 
-  print()  
-    
-i <- i + 1
-  }
-
-
-```
-
-```{r}
-i <- 1
-
-for(i in seq_along(planilhas_novas_caminho)){
-read_excel(paste0("data/", planilhas_novas[i]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
-  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
-  select(1) |> 
-  slice(2)  |> 
-  print()  
-    
-i <- i + 1
-  }
-
-
-```
-
-```{r}
-i <- 1
-
-for(i in seq_along(planilhas_novas_caminho)){
-read_excel(paste0("data/", planilhas_novas[i]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
-  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
-  select(1) |> 
-  slice(3)  |> 
-  print()  
-    
-i <- i + 1
-  }
-
-
-```
-
-
-```{r}
-i <- 1
-
-for(i in seq_along(planilhas_novas_caminho)){
-read_excel(paste0("data/", planilhas_novas[i]), sheet = 2, col_types = "text",  .name_repair = "unique_quiet") |> 
-  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
-  select(1) |> 
-  slice(4)  |> 
-  print()  
-    
-i <- i + 1
-  }
-```
-
-## Criação de lista para a guia 1
-
-```{r}
-map(1:4, extrair_4_tabelas_novo, sheet = 2)
 ```
 
