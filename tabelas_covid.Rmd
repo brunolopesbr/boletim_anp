@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmç{r}
+```{r}
 library(tidyverse)
 library(readxl)
 ```
@@ -36,81 +36,102 @@ read_excel_data  <- function(x,sheet = 2, range = "A1:J1000", skip = 0, n_max = 
 
 ```
 
-Extrair tabelas
 
+# Tabelas na guia 5
+
+Criar dataframe com o número de guias em todos os arquivos baixados
 ```{r}
-extrair_tabelas_covid <- function(num, ajuste = 2, ajuste2 = -2, sheet = 5){
-
-  # A função que importa a data será usada na planilha
-  data_planilha <-  datas_arquivos$value[num]  
-  
-  # planilha 3 é importada
-  prov1 <- read_excel(paste0("data/", planilhas[num]), sheet = sheet)
-  names(prov1)[1] <- "col1"
-  # a partir da palavra "Tabela" é identificada a primeira linha da tabela
-  corte <- which(str_detect(prov1$col1, "Tabela [0-9]*"))
-  # E a a linha seguinte com a palavra tabela indica o inínio da tabela seguinte
-  maximo_linha <- corte - lag(corte)
-  
-  # Importação de três tabelas, usando os parâmetros descobertos anteriormente
-  # nos argumentos "skip" e "n_max". Dessa maneira, a função readxl identifica
-  # automaticamente o número de colunas de cada tabela e a classe dos caracteres
-  df1 <- read_excel(paste0("data/", planilhas[num]), sheet = sheet, skip = corte[1] + ajuste, n_max = maximo_linha[2] + ajuste2) |> 
-    mutate(data = data_planilha) 
-  
-  df2 <- read_excel(paste0("data/", planilhas[num]), sheet = sheet, skip = corte[1 + 1] + ajuste) |> 
-    mutate(data = data_planilha)
-  sheet
-
-  list(df1, df2)
-  
+i <- 1
+numero_guias <- integer()
+for(i in seq_along(planilhas)){
+numero_guias[i] <- excel_sheets(paste0("data/", planilhas[i])) |> length()  
+i <- i + 1
 }
+
+numero_guias_df <- tibble(planilha = seq_along(lista_guias),
+           "numero de guias" =  numero_guias)
+
+numero_guias_df
+```
+```{r}
+numero_guias_df |> 
+  count(`numero de guias`)
 ```
 
+Temos planilhas com 4 guias, e 10 com 5 guias.
 
-
-# Tabelas relativas a Covid
+Em seguida, vamos verificar quais planilhas têm 5 guias.
 ```{r}
-# planilhas
-guias_covid
+planilhas_com_5_guias <- numero_guias_df |> 
+  filter(`numero de guias` > 4) |> 
+  pull(planilha)
+
+planilhas_com_5_guias
+
 ```
-Obter nomes de tabelas nos arquivos que contenh
+Verificar o nome das planilhas com mais de quatro guias, e o nome da quinta guia:
+
 ```{r}
-map_df(planilhas[guias_covid], read_excel_data, sheet = 5) |> 
-  filter(if_any(2, ~ str_detect(., "Tabela [0-9]+"))) |> 
+i <- min(planilhas_com_5_guias)
+
+nome_guia <- character()
+
+for(i in planilhas_com_5_guias){
+  nome_guia[i] <- excel_sheets(paste0("data/", planilhas[i]))[5]   
+  i <- i +1
+}
+
+# Filtrar vetor, para mostrar apenas linhas que contenham valores
+nome_guia[!is.na(nome_guia)]
+
+```
+Assim, quando a planilha tem 5 guias, ela trata de dados relativos à pandemia da Covid.
+
+## Obter dados
+
+Vamos obter os nomes das tabelas que estão na guia 5. 
+```{r}
+map_df(planilhas[planilhas_com_5_guias], read_excel_data, sheet = 5) |> 
+  filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
   distinct() |> 
   # apagar colunas sem dados
   select_if(~all(!is.na(.)))
 ```
-Portanto, duas tabelas, 20 e 21
+Portanto, há duas tabelas, de número 20 e 21, nas guias de número 5.
 
 ```{r}
-extrair_tabelas_covid(31)
+extrair_todas_tabelas(planilhas_com_5_guias[1], sheet = 5)
 ```
+
+As duas tabelas importadas precisam ser limpas.
+
+20: criar cópia da tabela, apagar as linhas após a linha "TOTAL DE CAMPOS INTERROMPIDOS" 
+Na tabela copiada, manter as três linhas chamadas de "TOTAL DE CAMPOS"
+
+21: criar cópia da tabela, apagar as linhas após a linha "* Antecipou parada programada" (verificar se essa frase aparece sempre)
+Na tabela copiada, manter as três linhas chamadas de "Total de UEPs" e "Unidades"
+
+
 Gerar lista com todas as tabelas
+
 ```{r}
-i <- guias_covid[1]
-final <- guias_covid[length(guias_covid)-1]
-
-tabelas_covid <- list()
-while (i < (final + 1)) {
-  tabelas_covid[[i]] <- extrair_tabelas_covid(num = i)  
-  i <- i + 1
-}
-
- tabelas_covid[[39]] <- extrair_tabelas_covid(guias_covid[length(guias_covid)]) 
- 
- tabelas_covid
+lista_guia5 <- map(planilhas_com_5_guias, extrair_todas_tabelas, sheet = 5)
+lista_guia5
 ```
-
-Unindo as tabelas que estão no arquivo
-
+Limpeza da primeira tabela
 ```{r}
+teste <-lista_guia5
 
-tabela_19 <- do.call(rbind, lapply(tabelas_covid, `[[`, 1))
-```
+# copiar dataframe
+teste[[1]][[3]] <- teste[[1]][[1]]
 
-```{r}
-tabela_20 <- do.call(bind_rows, lapply(tabelas_covid, `[[`, 2))
+# apagar a partir de determinada linha
+teste[[1]][[1]] |> 
+  select(1) |> 
+  str_detect("TOTAL") 
+
+
+
+which(str_detect(prov1$col1, "Tabela [0-9]*"))
 ```
 

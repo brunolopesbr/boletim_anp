@@ -18,12 +18,15 @@ library(readxl)
 # Elementos de apoio
 ```{r}
 planilhas <- dir(path = "data", pattern = "*xls*")
+```
 
+
+```{r eval=FALSE, include=FALSE}
 planilhas_novas <- c("2024_tabela-abril.xlsm", "2024_tabela-maio.xlsm", "2024_tabela-junho.xlsm")
 
 
 
-planilhas <- planilhas[!planilhas %in% planilhas_novas]
+planilhas <- try(planilhas[!planilhas %in% planilhas_novas])
 ```
 
 
@@ -272,7 +275,7 @@ contar_tabelas(i, sheet = 4)
 ## Extrair tabelas - número exato por guia
 ### Extrair 3 tabelas
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 extrair_3_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = sheet){
 prov <- read_excel(paste0("data/", planilhas[nume]), sheet = sheet)
 
@@ -304,7 +307,7 @@ list(df1, df2, df3)
 ```
 
 ### Extrair 3 tabelas com data
-```{r}
+```{r  eval=FALSE, include=FALSE}
 extrair_3_tabelas_data <- function(nume, ajuste = 2, ajuste2 = -2, sheet = sheet){
 
 mes_boletim <- datas_arquivos[[nume,1]]
@@ -342,7 +345,7 @@ list(df1, df2, df3)
 
 ### Extrair 4 tabelas
 
-```{r}
+```{r  eval=FALSE, include=FALSE}
 extrair_4_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = sheet){
 
   
@@ -378,7 +381,7 @@ list(df1, df2, df3, df4)
 ```
 
 
-```{r}
+```{r  eval=FALSE, include=FALSE}
 extrair_4_tabelas_novo <- function(x, ajuste = 2, ajuste2 = -2, sheet = sheet){
 
   
@@ -416,7 +419,7 @@ list(df1, df2, df3, df4)
 
 ### Extrair 6 tabelas
 
-```{r}
+```{r  eval=FALSE, include=FALSE}
 extrair_6_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
 mes_boletim <- datas_arquivos[[nume,1]]
 
@@ -480,7 +483,7 @@ mylist
 
 ### Extrair 6 tabelas novo
 
-```{r}
+```{r  eval=FALSE, include=FALSE}
 
 extrair_6_tabelas_novo <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
 mes_boletim <- data_arquivos_novo[[nume,1]]
@@ -545,7 +548,7 @@ mylist
 
 ### Extrair 7 tabelas
 
-```{r}
+```{r  eval=FALSE, include=FALSE}
 extrair_7_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
 mes_boletim <- datas_arquivos[[nume,1]]
 
@@ -610,7 +613,7 @@ mylist
 
 ### Extrair 8 tabelas
 
-```{r}
+```{r  eval=FALSE, include=FALSE}
 extrair_8_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
 mes_boletim <- datas_arquivos[[nume,1]]
 
@@ -681,7 +684,7 @@ mylist
 
 ### Extrair 8 tabelas novo
 
-```{r}
+```{r  eval=FALSE, include=FALSE}
 extrair_8_tabelas_novo <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
 mes_boletim <- data_arquivos_novo[[nume,1]]
 
@@ -752,7 +755,7 @@ mylist
 
 ### Extrair 13 tabelas
 
-```{r}
+```{r  eval=FALSE, include=FALSE}
 extrair_13_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
 mes_boletim <- datas_arquivos[[nume,1]]
 
@@ -843,7 +846,7 @@ mylist
 
 ### Extrair 13 tabelas novo
 
-```{r}
+```{r  eval=FALSE, include=FALSE}
 extrair_13_tabelas_novo <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
 mes_boletim <- data_arquivos_novo[[nume,1]]
 
@@ -933,7 +936,7 @@ mylist
 
 
 ### 16 tabelas
-```{r}
+```{r  eval=FALSE, include=FALSE}
 
 extrair_16_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 4){
 mes_boletim <- datas_arquivos[[nume,1]]
@@ -1031,19 +1034,3 @@ mylist <- list(dataf1, dataf2, dataf3, dataf4, dataf5, dataf6, dataf7, dataf8, d
 mylist
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
