@@ -14,10 +14,10 @@ library(tidyverse)
 library(readxl)
 ```
 
-```{r warning=FALSE}
+```{r warning=FALSE, include=FALSE}
 # Rodar o arquivo worksheets e data
 
-source(knitr::purl("worksheets_data.Rmd", quiet=TRUE))
+source(knitr::purl("funcoes_data_e_extrair.Rmd", quiet=TRUE))
 
 ```
 
@@ -48,11 +48,12 @@ numero_guias[i] <- excel_sheets(paste0("data/", planilhas[i])) |> length()
 i <- i + 1
 }
 
-numero_guias_df <- tibble(planilha = seq_along(lista_guias),
+numero_guias_df <- tibble(planilha = seq_along(numero_guias),
            "numero de guias" =  numero_guias)
 
 numero_guias_df
 ```
+Resumindo essa tabela de dados:
 ```{r}
 numero_guias_df |> 
   count(`numero de guias`)
@@ -97,12 +98,15 @@ map_df(planilhas[planilhas_com_5_guias], read_excel_data, sheet = 5) |>
   # apagar colunas sem dados
   select_if(~all(!is.na(.)))
 ```
+# Criar lista 
+
 Portanto, há duas tabelas, de número 20 e 21, nas guias de número 5.
 
 ```{r}
 extrair_todas_tabelas(planilhas_com_5_guias[1], sheet = 5)
 ```
 
+# Limpar lista
 As duas tabelas importadas precisam ser limpas.
 
 20: criar cópia da tabela, apagar as linhas após a linha "TOTAL DE CAMPOS INTERROMPIDOS" 
@@ -119,19 +123,186 @@ lista_guia5 <- map(planilhas_com_5_guias, extrair_todas_tabelas, sheet = 5)
 lista_guia5
 ```
 Limpeza da primeira tabela
-```{r}
+```{r eval=FALSE, include=FALSE}
 teste <-lista_guia5
 
 # copiar dataframe
-teste[[1]][[3]] <- teste[[1]][[1]]
+my_df1 <- teste[[1]][[1]]
 
-# apagar a partir de determinada linha
-teste[[1]][[1]] |> 
-  select(1) |> 
-  str_detect("TOTAL") 
+# identificar linhas que aparecem com a palavra "Total"
+linhas_total <- which(str_detect(my_df1$Campos, "TOTAL"))
+
+# Selecionar linhas com total e limpar colunas que não fazem sentido
+my_df1 <- my_df1[c(linhas_total),c(1,3)] 
+  
+my_df1[,c(1,3, ncol(my_df1))] 
+
+names(my_df1)[1] <- "Total"
+names(my_df1)[2] <- "n"
+my_df1
+
+# copiar dataframe
+my_df <- teste[[2]][[1]]
+
+# identificar linhas que aparecem com a palavra "Total"
+linhas_total <- which(str_detect(my_df$Campos, "TOTAL"))
+
+# Selecionar linhas com total e limpar colunas que não fazem sentido
+my_df[c(linhas_total),]
+my_df <- my_df[c(linhas_total),c(1,3)] 
+  
+my_df[,c(1,3, ncol(my_df))] 
+
+names(my_df)[1] <- "Total"
+names(my_df)[2] <- "n"
 
 
+# Copiar para a lista
+teste[[2]][[3]] <- data.frame()
+teste[[2]][[3]] <- my_df
 
-which(str_detect(prov1$col1, "Tabela [0-9]*"))
+# apagar linhas do df original
+
+ultima_linha <- linhas_total[1]-1
+
+teste[[2]][[1]] <- teste[[2]][[1]][1:ultima_linha,] |> 
+  filter(!is.na(Campos))
+
+
 ```
 
+Iteração da primeira tabela
+
+```{r}
+i <- 1
+for(i in seq_along(lista_guia5)){
+
+  # copiar dataframe
+my_df <- lista_guia5[[i]][[1]]
+
+# identificar linhas que aparecem com a palavra "Total"
+linhas_total <- which(str_detect(my_df$Campos, "TOTAL"))
+
+# Selecionar linhas com total e limpar colunas que não fazem sentido
+my_df <- my_df[c(linhas_total),c(1,3, ncol(my_df))] 
+
+  
+names(my_df)[1] <- "Total"
+names(my_df)[2] <- "n"
+
+# Copiar para a lista
+lista_guia5[[i]][[3]] <- data.frame()
+lista_guia5[[i]][[3]] <- my_df
+
+# apagar linhas do df original
+
+ultima_linha <- linhas_total[1]-1
+
+lista_guia5[[i]][[1]] <- lista_guia5[[i]][[1]][1:ultima_linha,] |> 
+  filter(!is.na(Campos)) 
+
+i <- i + 1
+}
+```
+
+```{r eval=FALSE, include=FALSE}
+lista_guia5
+```
+
+Limpeza da segunda tabela
+
+```{r eval=FALSE, include=FALSE}
+teste <-lista_guia5
+
+# copiar dataframe
+
+my_df <- teste[[2]][[2]]
+
+names(my_df)[1] <- "Total"
+names(my_df)[3] <- "n"
+
+linhas_total <- which(str_detect(my_df$Total, "Total"))
+
+# Selecionar linhas com total e limpar colunas que não fazem sentido
+my_df <-  my_df[linhas_total:nrow(my_df),] |> 
+  filter(!is.na(Total)) |> 
+    select(c(1,3,ncol(my_df)))
+  
+# Colocar no dataframe 4 da lista
+
+teste[[2]][[4]] <- data.frame()
+teste[[2]][[4]] <- my_df
+
+# apagar linhas do df original
+
+teste[[2]][[2]] <- teste[[2]][[2]][1:(linhas_total -1),] |> 
+  filter(!is.na(Campo))
+
+teste[[2]][[2]]  
+teste[[2]][[4]]
+```
+
+
+Iteração da segunda tabela
+
+```{r}
+i <- 1
+for(i in seq_along(lista_guia5)){
+
+  # copiar dataframe
+
+my_df <- lista_guia5[[i]][[2]]
+
+names(my_df)[1] <- "Total"
+names(my_df)[3] <- "n"
+
+linhas_total <- which(str_detect(my_df$Total, "Total"))
+
+# Selecionar linhas com total e limpar colunas que não fazem sentido
+my_df <-  my_df[linhas_total:nrow(my_df),] |> 
+  filter(!is.na(Total)) |> 
+    select(c(1,3,ncol(my_df)))
+  
+# Colocar no dataframe 4 da lista
+
+lista_guia5[[i]][[4]] <- data.frame()
+lista_guia5[[i]][[4]] <- my_df
+
+# apagar linhas do df original
+
+lista_guia5[[i]][[2]] <- lista_guia5[[i]][[2]][1:(linhas_total -1),] |> 
+  filter(!is.na(Campo))
+  
+  i <- i + 1  
+}
+  
+```
+
+```{r}
+lista_guia5
+```
+
+# Separa lista
+
+
+Tabela 1
+
+```{r}
+try(map_df(lista_guia5, `[[`, 1))
+
+```
+```{r}
+map_df(lista_guia5, `[[`, 2)
+
+```
+```{r}
+map_df(lista_guia5, `[[`, 3)
+
+```
+
+```{r}
+map_df(lista_guia5, `[[`, 4)
+
+```
+
+Resultado mostra que primeira tabela deve ter dados extraídos de outra coluna
