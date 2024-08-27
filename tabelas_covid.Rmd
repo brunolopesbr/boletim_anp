@@ -70,7 +70,7 @@ planilhas_com_5_guias <- numero_guias_df |>
 planilhas_com_5_guias
 
 ```
-Verificar o nome das planilhas com mais de quatro guias, e o nome da quinta guia:
+Em seguida verificamos o nome das planilhas com mais de quatro guias, e o nome da quinta guia:
 
 ```{r}
 i <- min(planilhas_com_5_guias)
@@ -86,11 +86,11 @@ for(i in planilhas_com_5_guias){
 nome_guia[!is.na(nome_guia)]
 
 ```
-Assim, quando a planilha tem 5 guias, ela trata de dados relativos à pandemia da Covid.
+Todas as guias têm o mesmo nome, "4. Pandemia_Covid-19".  Podemos supor que têm conteúdos iguais, com dados relativos à pandemia da Covid.
 
 ## Obter dados
 
-Vamos obter os nomes das tabelas que estão na guia 5. 
+Vamos obter os nomes das tabelas que estão na guia 5. Em seguida, eliminar os nomes duplicados
 ```{r}
 map_df(planilhas[planilhas_com_5_guias], read_excel_data, sheet = 5) |> 
   filter(if_any(2, ~ str_detect(., "Tabela"))) |> 
@@ -98,15 +98,17 @@ map_df(planilhas[planilhas_com_5_guias], read_excel_data, sheet = 5) |>
   # apagar colunas sem dados
   select_if(~all(!is.na(.)))
 ```
-# Criar lista 
 
 Portanto, há duas tabelas, de número 20 e 21, nas guias de número 5.
 
+# Criar lista 
+
 ```{r}
-extrair_todas_tabelas(planilhas_com_5_guias[1], sheet = 5)
+lista_guia5 <- map(planilhas_com_5_guias, extrair_todas_tabelas, sheet = 5)
+lista_guia5
 ```
 
-# Limpar lista
+
 As duas tabelas importadas precisam ser limpas.
 
 20: criar cópia da tabela, apagar as linhas após a linha "TOTAL DE CAMPOS INTERROMPIDOS" 
@@ -115,31 +117,31 @@ Na tabela copiada, manter as três linhas chamadas de "TOTAL DE CAMPOS"
 21: criar cópia da tabela, apagar as linhas após a linha "* Antecipou parada programada" (verificar se essa frase aparece sempre)
 Na tabela copiada, manter as três linhas chamadas de "Total de UEPs" e "Unidades"
 
+# Limpar tabelas
 
 Gerar lista com todas as tabelas
 
+
+## Limpeza da primeira tabela
+
+
 ```{r}
-lista_guia5 <- map(planilhas_com_5_guias, extrair_todas_tabelas, sheet = 5)
-lista_guia5
-```
-Limpeza da primeira tabela
-```{r eval=FALSE, include=FALSE}
 teste <-lista_guia5
 
-# copiar dataframe
-my_df1 <- teste[[1]][[1]]
+i <- 1
 
-# identificar linhas que aparecem com a palavra "Total"
-linhas_total <- which(str_detect(my_df1$Campos, "TOTAL"))
-
-# Selecionar linhas com total e limpar colunas que não fazem sentido
-my_df1 <- my_df1[c(linhas_total),c(1,3)] 
+for(i in seq_along(teste)){
+  tail(teste[[i]][[1]], 10) |> print()
   
-my_df1[,c(1,3, ncol(my_df1))] 
+  i <- i + 1
+}
 
-names(my_df1)[1] <- "Total"
-names(my_df1)[2] <- "n"
-my_df1
+tail(teste[[1]][[1]], 10)
+```
+Testando a limpeza da primeira tabela:
+
+```{r eval=FALSE, include=FALSE}
+teste <-lista_guia5
 
 # copiar dataframe
 my_df <- teste[[2]][[1]]
@@ -148,10 +150,8 @@ my_df <- teste[[2]][[1]]
 linhas_total <- which(str_detect(my_df$Campos, "TOTAL"))
 
 # Selecionar linhas com total e limpar colunas que não fazem sentido
-my_df[c(linhas_total),]
-my_df <- my_df[c(linhas_total),c(1,3)] 
-  
-my_df[,c(1,3, ncol(my_df))] 
+
+my_df <- my_df[c(linhas_total),c(1,3,ncol(my_df))] 
 
 names(my_df)[1] <- "Total"
 names(my_df)[2] <- "n"
@@ -168,12 +168,86 @@ ultima_linha <- linhas_total[1]-1
 teste[[2]][[1]] <- teste[[2]][[1]][1:ultima_linha,] |> 
   filter(!is.na(Campos))
 
+teste[[2]][[1]]
+teste[[2]][[3]]
+```
+
+
+Testando a limpeza da primeira tabela:
+
+```{r}
+i <- 1
+for(i in seq_along(lista_guia5)){
+tail(lista_guia5[[i]][[2]]) |> print()
+  i <- i + 1
+}
 
 ```
+No primeiro df as colunas a serem escolhidas são 1, 2 e a última.
+Do segundo em diante, as colunas a serem escolhidas são 1, 3 e a última
+
+
+```{r eval=FALSE, include=FALSE}
+teste <-lista_guia5
+
+# primeiro dataframe:
+my_df1 <- teste[[1]][[2]]
+
+names(my_df1)[1] <- "Total"
+names(my_df1)[2] <- "n"
+
+linhas_total_todas <- which(str_detect(my_df1$Total, "Total"))
+
+linhas_total <- linhas_total_todas[1]
+
+my_df1
+
+# Selecionar linhas com total e limpar colunas que não fazem sentido
+# no primeiro df, as colunas escolhidas são 1, 2 e a última
+my_df1 <-  my_df1[linhas_total:nrow(my_df1),c(1,2,ncol(my_df1))] |> 
+  filter(!is.na(Total)) 
+
+# copiar dataframe
+
+my_df <- teste[[2]][[2]]
+
+names(my_df)[1] <- "Total"
+names(my_df)[3] <- "n"
+
+linhas_total_todas <- which(str_detect(my_df$Total, "Total"))
+
+linhas_total <- linhas_total_todas[1]
+
+my_df
+
+# Selecionar linhas com total e limpar colunas que não fazem sentido
+# no segundo df, as colunas escolhidas são 1, 3 e a última
+my_df <-  my_df[linhas_total:nrow(my_df),c(1,3,ncol(my_df))] |> 
+  filter(!is.na(Total)) 
+
+
+# Colocar no dataframe 4 da lista
+
+teste[[2]][[4]] <- data.frame()
+teste[[2]][[4]] <- my_df
+
+# apagar linhas do df original
+
+teste[[2]][[2]] <- teste[[2]][[2]][1:(linhas_total -1),] |> 
+  filter(!is.na(Campo))
+
+my_df1
+teste[[2]][[2]]  
+teste[[2]][[4]]
+```
+
 
 Iteração da primeira tabela
 
 ```{r}
+
+lista_guia5_original <- lista_guia5
+
 i <- 1
 for(i in seq_along(lista_guia5)){
 
@@ -186,7 +260,6 @@ linhas_total <- which(str_detect(my_df$Campos, "TOTAL"))
 # Selecionar linhas com total e limpar colunas que não fazem sentido
 my_df <- my_df[c(linhas_total),c(1,3, ncol(my_df))] 
 
-  
 names(my_df)[1] <- "Total"
 names(my_df)[2] <- "n"
 
@@ -205,58 +278,22 @@ i <- i + 1
 }
 ```
 
-```{r eval=FALSE, include=FALSE}
-lista_guia5
-```
-
-Limpeza da segunda tabela
-
-```{r eval=FALSE, include=FALSE}
-teste <-lista_guia5
-
-# copiar dataframe
-
-my_df <- teste[[2]][[2]]
-
-names(my_df)[1] <- "Total"
-names(my_df)[3] <- "n"
-
-linhas_total <- which(str_detect(my_df$Total, "Total"))
-
-# Selecionar linhas com total e limpar colunas que não fazem sentido
-my_df <-  my_df[linhas_total:nrow(my_df),] |> 
-  filter(!is.na(Total)) |> 
-    select(c(1,3,ncol(my_df)))
-  
-# Colocar no dataframe 4 da lista
-
-teste[[2]][[4]] <- data.frame()
-teste[[2]][[4]] <- my_df
-
-# apagar linhas do df original
-
-teste[[2]][[2]] <- teste[[2]][[2]][1:(linhas_total -1),] |> 
-  filter(!is.na(Campo))
-
-teste[[2]][[2]]  
-teste[[2]][[4]]
-```
-
-
 Iteração da segunda tabela
 
 ```{r}
 i <- 1
 for(i in seq_along(lista_guia5)){
 
-  # copiar dataframe
+# copiar dataframe
 
 my_df <- lista_guia5[[i]][[2]]
 
 names(my_df)[1] <- "Total"
 names(my_df)[3] <- "n"
 
-linhas_total <- which(str_detect(my_df$Total, "Total"))
+linhas_total_todas <- which(str_detect(my_df$Total, "Total"))
+
+linhas_total <- linhas_total_todas[1]
 
 # Selecionar linhas com total e limpar colunas que não fazem sentido
 my_df <-  my_df[linhas_total:nrow(my_df),] |> 
@@ -274,13 +311,38 @@ lista_guia5[[i]][[2]] <- lista_guia5[[i]][[2]][1:(linhas_total -1),] |>
   filter(!is.na(Campo))
   
   i <- i + 1  
+  
 }
   
 ```
+Corrigir  o dataframe [[1]][[2]], que irá para o elemento [[1]][[4]]:
+
+```{r}
+my_df <- lista_guia5_original[[1]][[2]]
+
+names(my_df)[1] <- "Total"
+names(my_df)[2] <- "n"
+
+linhas_total_todas <- which(str_detect(my_df$Total, "Total"))
+
+linhas_total <- linhas_total_todas[1]
+
+# Selecionar linhas com total e limpar colunas que não fazem sentido
+my_df <-  my_df[linhas_total:nrow(my_df),c(1,2,ncol(my_df))] |> 
+  filter(!is.na(Total) )
+
+my_df
+
+lista_guia5[[1]][[4]] <- my_df
+
+```
+
 
 ```{r}
 lista_guia5
 ```
+
+
 
 # Separa lista
 
@@ -291,6 +353,40 @@ Tabela 1
 try(map_df(lista_guia5, `[[`, 1))
 
 ```
+Corrigir os dataframes com uma coluna classificada como double
+```{r}
+teste <- lista_guia5[[1]][[1]][,5] 
+teste2 <- lista_guia5[[1]][[1]][,6]
+
+pull(teste)
+teste2
+
+typeof(pull(teste))
+typeof(pull(teste2))
+
+is.POSIXct(pull(teste))
+
+```
+```{r}
+i <- 1
+for(i in seq_along(lista_guia5)){
+  is.POSIXct(pull(lista_guia5[[i]][[1]][,5])) |> print()
+  i <- i + 1
+}
+
+```
+```{r}
+lista_guia5[[9]][[1]][,5] <- lista_guia5[[9]][[1]][,5] |> 
+  mutate("Dada de início da interrupção" = as.Date(as.numeric(`Dada de início da interrupção`), origin = "1899-12-30"))
+```
+
+
+```{r}
+map_df(lista_guia5, `[[`, 1)
+```
+
+
+
 ```{r}
 map_df(lista_guia5, `[[`, 2)
 
@@ -305,4 +401,4 @@ map_df(lista_guia5, `[[`, 4)
 
 ```
 
-Resultado mostra que primeira tabela deve ter dados extraídos de outra coluna
+Resultado mostra que totais do DF2 devem estar em outro local.
