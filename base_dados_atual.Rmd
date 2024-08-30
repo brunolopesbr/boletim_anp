@@ -289,7 +289,27 @@ for(i in seq_along(lista_guia3_todas)){
 names(lista_guia3_todas[[i]][[1]]) <- names(lista_guia3_todas[[1]][[1]])
   i <- 1 + 1
 }
+```
 
+## Remediar coluna importada como "character", já que número foi armazenado como texto na planilha.
+
+```{r}
+i <- 1
+for(i in seq_along(lista_guia3_todas)){
+  
+  {
+  if (pull(lista_guia3_todas[[i]][[1]][,2]) |> is.character() == TRUE) {lista_guia3_todas[[i]][[1]] <- lista_guia3_todas[[i]][[1]] |> 
+  mutate_at(2, as.numeric)}
+  
+}
+  i <- 1 + i
+  
+}
+
+
+```
+
+```{r}
 por_estado <- map_df(lista_guia3_todas, `[[`, 1) 
 ```
 
@@ -324,7 +344,27 @@ for(i in seq_along(lista_guia3_todas)){
 names(lista_guia3_todas[[i]][[2]]) <- names(lista_guia3_todas[[1]][[2]])
   i <- 1 + 1
 }
+```
 
+## Remediar coluna importada como "character", já que número foi armazenado como texto na planilha.
+
+```{r}
+i <- 1
+for(i in seq_along(lista_guia3_todas)){
+  
+  {
+  if (pull(lista_guia3_todas[[i]][[2]][,2]) |> is.character() == TRUE) {lista_guia3_todas[[i]][[2]] <- lista_guia3_todas[[i]][[2]] |> 
+  mutate_at(2, as.numeric)}
+  
+}
+  i <- 1 + i
+  
+}
+
+
+```
+
+```{r}
 por_bacia <- map_df(lista_guia3_todas, `[[`, 2) 
 ```
 
@@ -348,8 +388,6 @@ read_excel(paste0("data/", planilhas[1]), sheet = 3, col_types = "text",  .name_
 ```
 
 ```{r}
-
-
 # Retirar a coluna `Nº`
 
 i <- 1
@@ -357,7 +395,32 @@ for(i in seq_along(lista_guia3_todas)){
 lista_guia3_todas[[i]][[3]] <- select(lista_guia3_todas[[i]][[3]], !"Nº")
   i <- 1 + 1
 }
+```
 
+```{r}
+lista_guia3_todas[[1]][[3]]
+```
+
+
+## Remediar coluna importada como "character", já que número foi armazenado como texto na planilha.
+
+```{r}
+i <- 1
+for(i in seq_along(lista_guia3_todas)){
+  
+  {
+  if (pull(lista_guia3_todas[[i]][[3][,2]) |> is.character() == TRUE) {lista_guia3_todas[[i]][[3]] <- lista_guia3_todas[[i]][[3]] |> 
+  mutate_at(2, as.numeric)}
+  
+}
+  i <- 1 + i
+  
+}
+
+
+```
+
+```{r}
 por_operador <- map_df(lista_guia3_todas, `[[`, 3) 
 
 ```
@@ -406,13 +469,6 @@ lista_guia3_todas[[73]][[4]] <- lista_guia3_todas[[73]][[4]] |>
 
 
 ```{r}
-# Retirar a coluna `Nº`
-
-i <- 1
-for(i in seq_along(lista_guia3_todas)){
-lista_guia3_todas[[i]][[4]] <- select(lista_guia3_todas[[i]][[4]], !"Nº")
-  i <- 1 + 1
-}
 
 # Acertar nomes
 
@@ -422,6 +478,39 @@ names(lista_guia3_todas[[i]][[4]]) <- names(lista_guia3_todas[[1]][[4]])
   i <- 1 + 1
 }
 ```
+
+
+
+
+```{r}
+i <- 1
+for(i in seq_along(lista_guia3_todas)){
+  
+  {
+  if (pull(lista_guia3_todas[[i]][[4]][,3]) |> is.character() == TRUE) {lista_guia3_todas[[i]][[4]] <- lista_guia3_todas[[i]][[4]] |> 
+  mutate_at(3, as.numeric)}
+  
+}
+  i <- 1 + i
+  
+}
+
+```
+
+
+## Retirar a coluna "N"
+```{r}
+i <- 1
+for(i in seq_along(lista_guia3_todas)){
+
+  if( names(lista_guia3_todas[[i]][[4]]) |> 
+  str_detect("Nº") |> sum() > 1 ) {lista_guia3_todas[[i]][[4]] <- lista_guia3_todas[[i]][[4]] |> select(!"Nº")}
+  
+  i <- 1 + 1
+}
+```
+
+
 
 ```{r}
 por_concessionario <- map_df(lista_guia3_todas, `[[`, 4)
