@@ -55,12 +55,23 @@ mes_planilha <- pull(mes_planilha)
   else {mes_planilha_f <- as.Date(as.numeric(mes_planilha), origin = "1899-12-30")} 
 }
 
+mes_planilha_f <- as.character(mes_planilha_f)
 mes_planilha_f
 }
 
 
 ## ----------------------------------------------------------------------------------------------------------------------------------
-extrair_data_novo(75)
+extrair_data_novo(1) |> class()
+
+
+## ----------------------------------------------------------------------------------------------------------------------------------
+i <- 1
+for(i in seq_along(planilhas)){
+  extrair_data_novo(i) |> print()
+  i <- 1 + i
+}
+
+
 
 
 ## ----warning=FALSE-----------------------------------------------------------------------------------------------------------------

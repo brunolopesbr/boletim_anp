@@ -45,7 +45,7 @@ lista_guia3_todas[[i]][[3]] <- select(lista_guia3_todas[[i]][[3]], !"Nº")
   i <- 1 + 1
 }
 
-map_df(lista_guia3_todas, `[[`, 3) 
+
 ```
 
 ## 2. Verificar qual DF tem colunas demais 
