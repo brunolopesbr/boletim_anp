@@ -344,7 +344,7 @@ lista_guia5
 
 
 
-# Separa lista
+# Gerar dataframes a partir da lista
 
 
 Tabela 1
@@ -382,23 +382,51 @@ lista_guia5[[9]][[1]][,5] <- lista_guia5[[9]][[1]][,5] |>
 
 
 ```{r}
-map_df(lista_guia5, `[[`, 1)
+pandemia_1_campos_com_producao_interrompida <- map_df(lista_guia5, `[[`, 1) |> 
+    mutate(`Data do fim da interrupção` = str_remove_all(`Data do fim da interrupção`, "-")) |> 
+  mutate(`Data do fim da interrupção` = str_remove_all(`Data do fim da interrupção`, "\\*")) |> 
+  # maneira mais simples de fazer uma mudança, já que essa base de dados é estática e não terá novos valores 
+  mutate(`Data do fim da interrupção` = str_replace_all(`Data do fim da interrupção`, "28/04/2020", "43949")) |> 
+  mutate(`Data do fim da interrupção` = as.Date(as.numeric(`Data do fim da interrupção`), origin = "1899-12-30"))
 ```
 
 
 
 ```{r}
-map_df(lista_guia5, `[[`, 2)
-
+pandemia_2_plataformas_com_producao_interrompida <- map_df(lista_guia5, `[[`, 2) |> 
+  mutate(`Data do fim da interrupção` = str_remove_all(`Data do fim da interrupção`, "-")) |> 
+  mutate(`Data do fim da interrupção` = str_remove_all(`Data do fim da interrupção`, "\\*")) |> 
+  # maneira mais simples de fazer uma mudança, já que essa base de dados é estática e não terá novos valores 
+  mutate(`Data do fim da interrupção` = str_replace_all(`Data do fim da interrupção`, "28/04/2020", "43949")) |> 
+  mutate(`Data do fim da interrupção` = as.Date(as.numeric(`Data do fim da interrupção`), origin = "1899-12-30"))
 ```
+
+
 ```{r}
-map_df(lista_guia5, `[[`, 3)
+pandemia_3_plataformas_com_producao_interrompida_totais <- map_df(lista_guia5, `[[`, 3)
 
 ```
 
 ```{r}
-map_df(lista_guia5, `[[`, 4)
+pandemia_4_plataformas_com_producao_interrompida_totais <- map_df(lista_guia5, `[[`, 4)
 
 ```
 
-Resultado mostra que totais do DF2 devem estar em outro local.
+# Gerar arquivos csv a partir dos dataframes
+
+```{r}
+
+pandemia_1_campos_com_producao_interrompida |> 
+  write_csv("csv/pandemia_1_campos_com_producao_interrompida.csv", )
+
+pandemia_2_plataformas_com_producao_interrompida |> 
+  write_csv("csv/pandemia_2_plataformas_com_producao_interrompida.csv", )
+
+pandemia_3_plataformas_com_producao_interrompida_totais |> 
+  write_csv("csv/pandemia_3_plataformas_com_producao_interrompida_totais.csv", )
+
+pandemia_4_plataformas_com_producao_interrompida_totais |> 
+  write_csv("csv/pandemia_4_plataformas_com_producao_interrompida_totais.csv", )
+
+```
+

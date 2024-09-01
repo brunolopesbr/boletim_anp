@@ -22,11 +22,11 @@ planilhas <- dir(path = "data", pattern = "*xls*")
 
 
 ```{r eval=FALSE, include=FALSE}
-planilhas_novas <- c("2024_tabela-abril.xlsm", "2024_tabela-maio.xlsm", "2024_tabela-junho.xlsm")
+# planilhas_novas <- c("2024_tabela-abril.xlsm", "2024_tabela-maio.xlsm", "2024_tabela-junho.xlsm")
 
 
 
-planilhas <- try(planilhas[!planilhas %in% planilhas_novas])
+# planilhas <- try(planilhas[!planilhas %in% planilhas_novas])
 ```
 
 
@@ -41,6 +41,111 @@ extrair_guias <- function(num){
 ```
 
 ## Função 2: extrair a data da planilha, usando a informação da guia 2
+
+```{r}
+planilhas[1]
+x2017_10 <- read_excel(paste0("data/", planilhas[1]), 
+    sheet = 2, 
+    range = "O8", col_names = FALSE)
+x2017_10 <- pull(x2017_10) 
+
+
+{
+  if (str_detect(x2017_10, "/") == TRUE) {x2017_10 <- lubridate::my(x2017_10)}
+  
+  else {x2017_10 <- as.Date(as.numeric(x2017_10), origin = "1899-12-30")} 
+}
+
+x2017_10
+```
+```{r}
+extrair_data_novo <- function(x){
+    mes_planilha <- read_excel(paste0("data/", planilhas[x]), 
+    sheet = 2, 
+    range = "O8", col_names = FALSE, col_types = "text")
+  
+mes_planilha <- pull(mes_planilha) 
+
+{
+  if (str_detect(mes_planilha, "/") == TRUE) {mes_planilha_f <- lubridate::my(mes_planilha)}
+  
+  else {mes_planilha_f <- as.Date(as.numeric(mes_planilha), origin = "1899-12-30")} 
+}
+
+mes_planilha_f <- as.character(mes_planilha_f)
+mes_planilha_f
+}
+```
+
+```{r}
+extrair_data_novo(1) |> class()
+```
+
+
+```{r}
+i <- 1
+for(i in seq_along(planilhas)){
+  extrair_data_novo(i) |> print()
+  i <- 1 + i
+}
+
+
+```
+
+Verificar se números são corretos
+```{r warning=FALSE}
+
+datas_boletins <- data.frame("boletim" = NA, "mês" = NA)
+
+colunas_datas <- as.Date(NA)
+i <- 1
+for(i in seq_along(planilhas)){
+
+datas_boletins[i,1] <- planilhas[i]
+    
+  mes_planilha <- read_excel(paste0("data/", planilhas[i]), 
+    sheet = 2, 
+    range = "O8", col_names = FALSE, col_types = "text")
+  
+mes_planilha <- pull(mes_planilha) 
+
+{
+  if (str_detect(mes_planilha, "/") == TRUE) {mes_planilha_f <- lubridate::my(mes_planilha)}
+  
+  else {mes_planilha_f <- as.Date(as.numeric(mes_planilha), origin = "1899-12-30")} 
+}
+
+colunas_datas[i] <- mes_planilha_f
+    
+    i <- 1 + i
+}
+datas_boletins[,2] <- colunas_datas
+
+
+```
+
+```{r}
+datas_boletins <- data.frame("boletim" = NA, "mês" = NA)
+
+colunas_datas <- as.Date(NA)
+i <- 1
+for(i in seq_along(planilhas)){
+
+datas_boletins[i,1] <- planilhas[i]
+    
+colunas_datas[i] <- extrair_data_novo(i)
+    
+    i <- 1 + i
+}
+datas_boletins[,2] <- colunas_datas
+```
+
+
+```{r}
+colunas_datas
+datas_boletins
+```
+
 
 ```{r}
 extrair_data_ws2 <- function(num){
@@ -172,7 +277,7 @@ guias_covid <- guias |>
 
 ```{r}
 extrair_todas_tabelas <- function(nume, sheet = sheet){
-  mes_boletim <- datas_arquivos[[nume,1]]
+  mes_boletim <- extrair_data_novo(nume) 
   
   prov <- read_excel(paste0("data/", planilhas[nume]), sheet = sheet)
   
@@ -214,7 +319,7 @@ Função 4: extrair
 
 ```{r}
 extrair_todas_tabelas_novo <- function(x, nume, sheet = sheet){
-  mes_boletim <- datas_arquivos[[nume,1]]
+  mes_boletim <- extrair_data_novo(nume)
   
   prov <- read_excel(paste0("data/", x), sheet = sheet)
   
@@ -310,7 +415,7 @@ list(df1, df2, df3)
 ```{r  eval=FALSE, include=FALSE}
 extrair_3_tabelas_data <- function(nume, ajuste = 2, ajuste2 = -2, sheet = sheet){
 
-mes_boletim <- datas_arquivos[[nume,1]]
+mes_boletim <- extrair_data_novo(nume)
 
   prov <- read_excel(paste0("data/", planilhas[nume]), sheet = sheet)
 
@@ -421,7 +526,7 @@ list(df1, df2, df3, df4)
 
 ```{r  eval=FALSE, include=FALSE}
 extrair_6_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
-mes_boletim <- datas_arquivos[[nume,1]]
+mes_boletim <- extrair_data_novo(nume)
 
   prov <- read_excel(paste0("data/", planilhas[nume]), sheet = sheet)
 
@@ -550,7 +655,7 @@ mylist
 
 ```{r  eval=FALSE, include=FALSE}
 extrair_7_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
-mes_boletim <- datas_arquivos[[nume,1]]
+mes_boletim <- extrair_data_novo(nume)
 
   prov <- read_excel(paste0("data/", planilhas[nume]), sheet = sheet)
 
@@ -615,7 +720,7 @@ mylist
 
 ```{r  eval=FALSE, include=FALSE}
 extrair_8_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
-mes_boletim <- datas_arquivos[[nume,1]]
+mes_boletim <- extrair_data_novo(nume)
 
   prov <- read_excel(paste0("data/", planilhas[nume]), sheet = sheet)
 
@@ -757,7 +862,7 @@ mylist
 
 ```{r  eval=FALSE, include=FALSE}
 extrair_13_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 3){
-mes_boletim <- datas_arquivos[[nume,1]]
+mes_boletim <- extrair_data_novo(nume)
 
   prov <- read_excel(paste0("data/", planilhas[nume]), sheet = 3)
 
@@ -939,7 +1044,7 @@ mylist
 ```{r  eval=FALSE, include=FALSE}
 
 extrair_16_tabelas <- function(nume, ajuste = 2, ajuste2 = -2, sheet = 4){
-mes_boletim <- datas_arquivos[[nume,1]]
+mes_boletim <- extrair_data_novo(nume)
 
   prov <- read_excel(paste0("data/", planilhas[nume]), sheet = sheet)
 

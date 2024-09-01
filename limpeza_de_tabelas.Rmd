@@ -45,7 +45,7 @@ lista_guia3_todas[[i]][[3]] <- select(lista_guia3_todas[[i]][[3]], !"Nº")
   i <- 1 + 1
 }
 
-map_df(lista_guia3_todas, `[[`, 3) 
+
 ```
 
 ## 2. Verificar qual DF tem colunas demais 
@@ -119,4 +119,20 @@ if(is.na(lista_guia3_todas[[i]][[6]][1,1])) {lista_guia3_todas[[i]][[6]] <- list
 ```
 
 
+## Remediar coluna importada como "character", já que número foi armazenado como texto na planilha.
 
+```{r}
+i <- 1
+for(i in seq_along(lista_guia3_todas)){
+  
+  {
+  if (pull(lista_guia3_todas[[i]][[1]][,2]) |> is.character() == TRUE) {lista_guia3_todas[[i]][[1]] <- lista_guia3_todas[[i]][[1]] |> 
+  mutate_at(2, as.numeric)}
+  
+}
+  i <- 1 + i
+  
+}
+
+
+```
