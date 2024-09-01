@@ -601,7 +601,7 @@ read_excel(paste0("data/", planilhas[76]), sheet = 4, col_types = "text",  .name
 ```
 Para as tabelas 12 a 19 será usada a lista que não contém as planilhas de 2017. A "Tabela 19. Os 20 campos com maior queima este mês" une dados de todas as planilhas do período.
 
-## 30 maiores poços de petróelo
+## 30 maiores poços de petróleo
 
 ```{r}
 try(map_df(lista_guia4_restantes, `[[`, 1))
@@ -677,7 +677,7 @@ ncol(lista_guia4_restantes[[i]][[3]]) |> print()
   i <- 1 + 1
 }
 ```
-# DFs 62 e 72
+## DFs 62 e 72
 
 ```{r}
 # Apagar colunas que não fazem sentido
@@ -931,7 +931,22 @@ lista_guia4_restantes[[72]][[8]] <- lista_guia4_restantes[[72]][[8]] |>
 
 
 ```{r}
-tabela18_campos_com_maior_queimas <- map_df(lista_guia4_restantes, `[[`, 8)
+maiores_queimas1 <- map_df(lista_guia4_restantes, `[[`, 8)
+```
+
+Recuperando as tabelaspublicadas em 2017 relativas a queima:
+
+```{r}
+maiores_queimas2 <- map_df(lista_guia4_3_primeiras, `[[`, 3)
+```
+
+
+
+```{r}
+tabela18_campos_com_maior_queimas <- rbind(maiores_queimas1, maiores_queimas2)
+
+tabela18_campos_com_maior_queimas |> 
+  arrange(mes)
 ```
 
 
