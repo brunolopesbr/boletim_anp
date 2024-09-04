@@ -20,264 +20,99 @@ read_tab <- function(x) {read_delim(x,
 ```
 
 
-```{r include=FALSE}
-source(knitr::purl("tabelas_versao_atual.Rmd", quiet=TRUE))
-```
-
 # Preparar arquivos
 
 ```{r}
-arquivos_fev_2024 <- list.files(path = "data", pattern = "tsv")
-
+arquivos_fev_2024 <- list.files(path = "fevereiro", pattern = "tsv")
+arquivos_fev_2024 <- paste0("fevereiro/", arquivos_fev_2024)
+```
+ Criar lista com arquivos de fevereiro de 2024
+```{r}
+lista_fev_2024 <- map(arquivos_fev_2024, read_tab)  
 ```
 
 ```{r}
-i <- 1
-for(i in seq_along(arquivos_fev_2024)){
-  arquivos_fev_2024[i] <- paste0("data/", arquivos_fev_2024[i])
-  i <- i + 1
-}
-arquivos_fev_2024
+length(lista_fev_2024)
 
-# read_tab(arquivos_fev_2024[1])
 ```
-# Criar lista com arquivos de fevereiro de 2024
-```{r include=FALSE}
-lista_tabelas_fev <- map(arquivos_fev_2024, read_tab)
-```
-```{r}
-lista_tabelas_fev. <- lista_tabelas_fev
-```
+
 
 ## Limpando arquivos
-Unindo tabelas que foram publicadas separadamente
+
+### Data do boletim
+
+Ao importar cada planilha do boletim é inserida a sua data em cada linha de cada tabela, dentro de uma coluna com o nome "mes". Isso também será feito com todos os dataframes do mês de fevereiro ("2024-01-01").
+
 ```{r}
+# mutate(mes = mes_boletim)
 
-names(lista_tabelas_fev[[8]]) <- names(lista_tabelas_fev[[7]]) 
+boletim_fev <- as.Date("2024-01-01")
+boletim_fev
+```
+```{r}
+lista_fev_2024[[5]] |> 
+  mutate(mes = boletim_fev)
+```
+```{r}
+i <- 1
 
-lista_tabelas_fev[[7]] <- rbind(lista_tabelas_fev[[7]], lista_tabelas_fev[[8]])
+for(i in seq_along(lista_fev_2024)){
+lista_fev_2024[[i]] <- lista_fev_2024[[i]] |> 
+  mutate(mes = as.Date(boletim_fev))
 
-lista_tabelas_fev[[9]] <- rbind(lista_tabelas_fev[[9]], lista_tabelas_fev[[10]])
+i <- 1 + 1  
+}
 
+```
+
+## Apagar coluna "Nº"
+
+
+
+### Tabelas 1, 2, 3 e 4 (histórico)
+A cada mês o conteúdo dos dataframes numerados de 1 a 4 é acrescido de apenas uma linha. Logo, o conteúdo publicado em fevereiro foi divulgado em março. Portanto, não é preciso importar esse conteúdo à base de dados.
+
+
+
+## Importar base atual
+
+```{r}
+arquivos_base_atual <- list.files(path = "csv", pattern = ".csv")
+arquivos_base_atual <- paste0("csv/", arquivos_base_atual)
+```
+ Criar lista com arquivos de fevereiro de 2024
+```{r}
+base_atual <- map(arquivos_base_atual, read_csv)  
+```
+
+
+## Incorporar conteúdo de fevereiro à base de dados atuais
+
+Os nomes de fevereiro estão na mesma ordem da base atual, mas não exatamente iguais. Então, copiamos os nomes da base atual para a lista com as tabelas de fevereiro.
+
+
+
+```{r}
+bind_rows(base_atual[[5]],lista_fev_2024[[5]])
 
 
 ```
 
+
+
+length(lista_fev_2024)
+Em seguida são incorporados os dataframes de 5 em diante à base atual:
 ```{r}
-lista_tabelas_fev[[8]] <- NULL
-
-lista_tabelas_fev[[9]] <- NULL
-
-```
-
-```{r}
-lista_tabelas_fev
-```
-
-# Unir arquivos de fevereiros com anteriores
-
-## O conteúdo dos dataframes 1 e 2 (tabelas com históricos) já está incorporado.
-
-```{r}
-lista_tabelas_fev[1]
-lista_tabelas_fev[2]
-```
-
-```{r}
-tail(Historico_petroleo)
-tail(Historico_prod_gas)
-tail(Historico_de_Producao_de_Petroleo_Gas_Natural)
-```
-
-```{r}
-Historico_petroleo
-```
-
-```{r}
-Historico_prod_gas
-```
-
-## Dataframe 3
-
-```{r}
-# adequar nome da coluna
-names(lista_tabelas_fev[[3]]) <- names(lista_tabelas_fev[[3]]) |> 
-  str_replace(pattern = "Mês/Ano", replacement = "Período")
-
-#Período deve ser uma data
-historico_disponibilidade_gas <- lista_tabelas_fev[[3]] |> 
-  mutate(Período = my(Período)) |> 
-  # Aproveitamento deve ser uma porcentagem
-  mutate(Aproveitamento = str_remove_all(Aproveitamento, "%")) |> 
-  mutate(Aproveitamento = str_replace_all(Aproveitamento, pattern = ",", replacement = ".")) |> 
-  mutate(Aproveitamento = as.numeric(Aproveitamento)) |> 
-  mutate(Aproveitamento = Aproveitamento/100) |> 
-  # unindo com tabela prévia
-  bind_rows(MOVIMENTACAO_DE_GAS_NATURAL) |> 
-  distinct() |> 
-  arrange(Período)
-
-historico_disponibilidade_gas 
-```
-### é preciso corrigir os NAs da tabela de movimentação de gás
-
-
-## Dataframe 5
-
-```{r}
-tabela5 <- lista_tabelas_fev[[5]] |> 
-  mutate(mes = as.Date("2024-02-01")) 
-
-names(tabela5) <- names(por_estado)
-
-por_estado <- bind_rows(por_estado, tabela5)
-por_estado
-```
-
-## Dataframe 6
-
-```{r}
-tabela6 <- lista_tabelas_fev[[6]] |> 
-  mutate(mes = as.Date("2024-02-01")) 
-
-names(tabela6) <- names(por_bacia)
-
-por_bacia <- bind_rows(por_bacia, tabela6)
-por_bacia
-```
-
-## Dataframe 7
-
-```{r}
-tabela7 <- lista_tabelas_fev[[7]] |> 
-  mutate(mes = as.Date("2024-02-01")) 
-
-tabela7 <- tabela7[,-1]
-
-names(tabela7) <- names(por_operador)
-
-por_bacia <- bind_rows(por_bacia, tabela7)
-por_bacia
-```
-
-## Dataframe 8
-
-```{r}
-tabela8 <- lista_tabelas_fev[[8]] |> 
-  mutate(mes = as.Date("2024-02-01")) 
-
-names(tabela8) <- names(por_concessionario)
-
-por_concessionario <- bind_rows(por_concessionario, tabela8)
-por_concessionario
-```
-
-## Dataframe 9
-
-```{r}
-tabela9 <- lista_tabelas_fev[[9]] |> 
-  mutate(mes = as.Date("2024-02-01")) 
-
-names(tabela9) <- names(MOVIMENTACAO_GAS_NATURAL_POR_DESTINO)
-
-MOVIMENTACAO_GAS_NATURAL_POR_DESTINO <- bind_rows(MOVIMENTACAO_GAS_NATURAL_POR_DESTINO, tabela9)
-MOVIMENTACAO_GAS_NATURAL_POR_DESTINO
+i <- 5
+for(i in 6:length(base_atual)){
+  base_atual[[i]] <- bind_rows(base_atual[[i]],lista_fev_2024[[i]])  
+  
+  i <- i + 1
+}
 ```
 
 
-## Dataframe 10
-
 ```{r}
-tabela10 <- lista_tabelas_fev[[10]] |> 
-  mutate(mes = as.Date("2024-02-01"))
-
-names(tabela10) <- names(DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL)
-
-DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL <- bind_rows(DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL, tabela10)
-DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL
-```
-
-## Dataframe 11
-
-```{r}
-tabela11 <- lista_tabelas_fev[[11]] |> 
-  mutate(mes = as.Date("2024-02-01"))
-
-names(tabela11) <- names(maiores_pocos_de_petroleo)
-
-maiores_pocos_de_petroleo <- bind_rows(maiores_pocos_de_petroleo, tabela11)
-maiores_pocos_de_petroleo
-```
-
-## Dataframe 12
-
-```{r}
-tabela12 <- lista_tabelas_fev[[12]] |> 
-  mutate(mes = as.Date("2024-02-01"))
-
-names(tabela12) <- names(maiores_pocos_de_gas)
-
-maiores_pocos_de_gas <- bind_rows(maiores_pocos_de_gas, tabela12)
-maiores_pocos_de_gas
-```
-
-## Dataframe 13
-
-```{r}
-tabela13 <- lista_tabelas_fev[[13]] |> 
-  mutate(mes = as.Date("2024-02-01"))
-
-names(tabela13) <- names(maiores_pocos_producao_total)
-
-maiores_pocos_producao_total <- bind_rows(maiores_pocos_producao_total, tabela13)
-maiores_pocos_producao_total
-```
-
-## Dataframe 14
-
-```{r}
-tabela14 <- lista_tabelas_fev[[14]] |> 
-  mutate(mes = as.Date("2024-02-01"))
-
-names(tabela14) <- names(maiores_pocos_terrestres_petroleo)
-
-maiores_pocos_terrestres_petroleo <- bind_rows(maiores_pocos_terrestres_petroleo, tabela14)
-maiores_pocos_terrestres_petroleo
-```
-
-## Dataframe 15
-
-```{r}
-tabela15 <- lista_tabelas_fev[[15]] |> 
-  mutate(mes = as.Date("2024-02-01"))
-
-names(tabela15) <- names(maiores_pocos_terrestres_gas_natural)
-
-maiores_pocos_terrestres_gas_natural <- bind_rows(maiores_pocos_terrestres_gas_natural, tabela15)
-maiores_pocos_terrestres_gas_natural
-```
-
-## Dataframe 16
-
-```{r}
-tabela16 <- lista_tabelas_fev[[16]] |> 
-  mutate(mes = as.Date("2024-02-01"))
-
-names(tabela16) <- names(maiores_instalacoes)
-
-maiores_instalacoes <- bind_rows(maiores_instalacoes, tabela16)
-maiores_instalacoes
-```
-
-## Dataframe 17
-
-```{r}
-tabela17 <- lista_tabelas_fev[[17]] |> 
-  mutate(mes = as.Date("2024-02-01"))
-
-names(tabela17) <- names(maiores_queimas)
-
-maiores_queimas <- bind_rows(maiores_queimas, tabela17)
-maiores_queimas
+base_atual
 ```
 

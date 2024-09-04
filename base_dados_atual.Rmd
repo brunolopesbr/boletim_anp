@@ -42,7 +42,8 @@ names(tabs1) <- "TABELAS"
 names(tabs2) <- "TABELAS"
 names(tabs3) <- "TABELAS"
 
-tabs1 |> bind_rows(tabs2) |> bind_rows(tabs3)
+nomes <- tabs1 |> bind_rows(tabs2) |> bind_rows(tabs3)
+nomes
 ```
 
 No total, 18 tabelas a serem montadas. Versões antigas do Boletim da Produção comportam dados cuja divulgação foi descontinuada, e serão armazenados na seção "descontinuados"
@@ -129,6 +130,14 @@ tabela01_historico_prod_petroleo <- map_df(lista_guia2_todas, `[[`, 1)   |>
   filter(!is.na(produto)) 
 ```
 
+```{r}
+k <- 1
+base_consolidada <- list()
+base_consolidada[[k]] <- tabela01_historico_prod_petroleo
+k <- k + 1
+```
+
+
 ## Histórico de produção de gás natural
 
 ```{r}
@@ -140,7 +149,11 @@ tabela02_historico_prod__gas <- map_df(lista_guia2_todas, `[[`, 2)   |>
    mutate(Período = my(Período)) |> 
   filter(!is.na(produto)) 
 ```
+```{r}
 
+base_consolidada[[k]] <- tabela02_historico_prod__gas
+k <- k + 1
+```
 ## Histórico da movimentação da gás natural 
 
 ```{r}
@@ -194,7 +207,11 @@ A coluna "mes", criada durante a importação de dados, aqui representa o mês d
 tabela03_historico_movimentação__gas_natural <- map_df(lista_guia2_restantes, `[[`, 3)  
 ```
 
+```{r}
 
+base_consolidada[[k]] <- tabela03_historico_movimentação__gas_natural
+k <- k + 1
+```
 
 ## Histórico de Produção de Petróleo e Gás Natural
 
@@ -224,7 +241,10 @@ tabela04_historico_produção_petroleo_gas_natural <- parcial_tab4 |>
   unique()
 ```
 
-
+```{r}
+base_consolidada[[k]] <- tabela04_historico_produção_petroleo_gas_natural
+k <- k + 1
+```
 
 # Guia 3 
 
@@ -302,6 +322,10 @@ for(i in seq_along(lista_guia3_todas)){
 tabela05_produção_petroleo_gas_natural_por_estado <- map_df(lista_guia3_todas, `[[`, 1) 
 ```
 
+```{r}
+base_consolidada[[k]] <- tabela05_produção_petroleo_gas_natural_por_estado
+k <- k + 1
+```
 
 ## por Bacia
 
@@ -339,6 +363,11 @@ for(i in seq_along(lista_guia3_todas)){
 
 ```{r}
 tabela06_produção_petroleo_gas_natural_por_bacia <- map_df(lista_guia3_todas, `[[`, 2) 
+```
+
+```{r}
+base_consolidada[[k]] <- tabela06_produção_petroleo_gas_natural_por_bacia
+k <- k + 1
 ```
 
 ## por operador
@@ -380,6 +409,10 @@ lista_guia3_todas[[i]][[3]] <- select(lista_guia3_todas[[i]][[3]], !"Nº")
 tabela07_produção_petroleo_gas_natural_por_operador <- map_df(lista_guia3_todas, `[[`, 3)
 ```
 
+```{r}
+base_consolidada[[k]] <- tabela07_produção_petroleo_gas_natural_por_operador
+k <- k + 1
+```
 
 ## por concessionario
 
@@ -442,6 +475,11 @@ lista_guia3_todas[[i]][[4]] <- select(lista_guia3_todas[[i]][[4]], !"Nº")
 ```{r}
 tabela08_produção_petroleo_gas_natural_por_concessionario <- map_df(lista_guia3_todas, `[[`, 4)
 ```
+
+```{r}
+base_consolidada[[k]] <- tabela08_produção_petroleo_gas_natural_por_concessionario
+k <- k + 1
+```
  
 ## Movimentação de gás natural por destinação
 ```{r}
@@ -472,6 +510,10 @@ tabela09_movimentacao_gas_natural_destinacao <- tab9_prov1 |>
   bind_rows(tab9_prov2)
 ```
 
+```{r}
+base_consolidada[[k]] <- tabela09_movimentacao_gas_natural_destinacao
+k <- k + 1
+```
 
 ## Distribuição da produção dos campos do Pré-sal
 
@@ -565,6 +607,10 @@ for(i in seq_along(lista_guia3_todas)){
 tabela10_distribuicao_producao_campos_pre_sal <- map_df(lista_guia3_todas, `[[`, 6)
 ```
 
+```{r}
+base_consolidada[[k]] <- tabela10_distribuicao_producao_campos_pre_sal
+k <- k + 1
+```
 
 ## Produção dos poços do Pré-sal 
 
@@ -583,8 +629,6 @@ planilhas[55]
 # Guia 4
 
 ## Criar lista
-
-
 
 
 ```{r}
@@ -626,6 +670,12 @@ for(i in seq_along(lista_guia4_restantes)){
 tabela11_30_pocos_maior_prodcao_petroleo <- map_df(lista_guia4_restantes, `[[`, 1)
 ```
 
+```{r}
+base_consolidada[[k]] <- tabela11_30_pocos_maior_prodcao_petroleo
+k <- k + 1
+```
+
+
 ## 30 maiores poços de gas
 
 ```{r}
@@ -645,6 +695,11 @@ for(i in seq_along(lista_guia4_restantes)) {
 
 ```{r}
 tabela12_30_pocos_maior_producao_gas <- map_df(lista_guia4_restantes, `[[`, 2)
+```
+
+```{r}
+base_consolidada[[k]] <- tabela12_30_pocos_maior_producao_gas
+k <- k + 1
 ```
 
 ## 30 maiores poços produção total
@@ -689,7 +744,10 @@ lista_guia4_restantes[[72]][[3]] <- lista_guia4_restantes[[72]][[3]] |> select(!
 tabela13_30_maiores_pocos_producao_total <- map_df(lista_guia4_restantes, `[[`, 3)
 ```
 
-
+```{r}
+base_consolidada[[k]] <- tabela13_30_maiores_pocos_producao_total
+k <- k + 1
+```
 
 ## 30 maiores poços terrestres
 
@@ -717,6 +775,11 @@ for(i in seq_along(lista_guia4_restantes)) {
 
 ```{r}
 tabela14_maiores_pocos_terrestres_petroleo <- map_df(lista_guia4_restantes, `[[`, 4)
+```
+
+```{r}
+base_consolidada[[k]] <- tabela14_maiores_pocos_terrestres_petroleo
+k <- k + 1
 ```
 
 ## 30 maiores poços terrestres gás natural
@@ -777,6 +840,10 @@ tabela15_maiores_pocos_terrestres_gas_natural <- bind_rows(prov2, prov1)
 
 ```
 
+```{r}
+base_consolidada[[k]] <- tabela15_maiores_pocos_terrestres_gas_natural
+k <- k + 1
+```
 
 ## 30 maiores poços terrestres gás natural
 
@@ -803,6 +870,12 @@ for(i in seq_along(lista_guia4_restantes)) {
 ```{r}
 tabela16_maiores_instalacoes_petroleo <- map_df(lista_guia4_restantes, `[[`, 6) 
 ```
+
+```{r}
+base_consolidada[[k]] <- tabela16_maiores_instalacoes_petroleo
+k <- k + 1
+```
+
 
 ## 30 maiores instalações de produção de gás natural
 
@@ -866,7 +939,10 @@ for(i in seq_along(lista_guia4_restantes)){
 tabela17_maiores_instalacoes_gas <- map_df(lista_guia4_restantes, `[[`, 7)
 ```
 
-
+```{r}
+base_consolidada[[k]] <- tabela17_maiores_instalacoes_gas
+k <- k + 1
+```
 
 
 ## Campos com maior queima
@@ -949,6 +1025,83 @@ tabela18_campos_com_maior_queimas |>
   arrange(mes)
 ```
 
+```{r}
+base_consolidada[[k]] <- tabela18_campos_com_maior_queimas
+k <- k + 1
+```
+
+```{r}
+names(base_consolidada[[12]]) |> 
+  str_detect("Nº")  |> sum()
+
+names(base_consolidada[[1]]) |> 
+  str_detect("Nº")  |> sum()
+
+base_consolidada[[12]] |> 
+  select(!`Nº`)
+```
+Retirar as colunas "Nº".
+
+```{r}
+i <- 1
+for(i in c(11:15, 18)){
+  
+  base_consolidada[[i]] <- base_consolidada[[i]] |> 
+  select(!`Nº`)
+  
+}
+
+```
+
+# Nomes das colunas
+
+Para manter a consistência, os nomes das colunas são os da edição 76 (maio/2024) do boletim
+
+```{r}
+planilha76 <- c(extrair_todas_tabelas(nume = 76, sheet = 2), extrair_todas_tabelas(nume = 76, sheet = 3), extrair_todas_tabelas(nume = 76, sheet = 4))
+```
+Retirar colunas "Nº":
+```{r}
+i <- 7
+for(i in 7:length(planilha76)){
+
+  if(names(planilha76[[i]])[1] |> str_detect("Nº") |> sum() > 0) {
+  
+    planilha76[[i]] <- planilha76[[i]] |> 
+  select(!"Nº")
+  }
+  i <- 1 + 1
+}
+planilha76[[7]]
+```
+
+
+
+```{r}
+i <- 5
+for(i in 5:14){
+ordem_colunas <- names(planilha76[[i]])  
+ordem_colunas
+
+base_atual[[i]] <- base_atual[[i]] |> 
+  select(ordem_colunas)   
+
+i <- 1 + 1
+}
+```
+
+
+```{r}
+i <- 5
+for(i in 5:14){
+names1 <- names(planilha76[[i]])  
+names2 <- names(base_atual[[i]]) 
+
+(names1 == names2) |> print()
+
+i <- 1 + 1
+}
+```
 
 # Tabelas geradas
 
@@ -956,58 +1109,58 @@ Todas as tabelas são exportadas como arquivos csv, no diretório "saida":
 
 
 ```{r}
-tabela01_historico_prod_petroleo |> 
-  write_csv("csv/tabela01_historico_prod_petroleo", )
+base_consolidada[[1]] |> 
+  write_csv("csv/tabela01_historico_prod_petroleo.csv")
 
-tabela02_historico_prod__gas |> 
-  write_csv("csv/tabela02_historico_prod__gas")
+base_consolidada[[2]] |> 
+  write_csv("csv/tabela02_historico_prod__gas.csv")
 
-tabela03_historico_movimentação__gas_natural |> 
-  write_csv("csv/tabela03_historico_movimentação__gas_natural")
+base_consolidada[[3]] |> 
+  write_csv("csv/tabela03_historico_movimentação__gas_natural.csv")
 
-tabela04_historico_produção_petroleo_gas_natural |> 
+base_consolidada[[4]] |> 
   write_csv("csv/tabela04_historico_produção_petroleo_gas_natural.csv")
 
-tabela05_produção_petroleo_gas_natural_por_estado |> 
+base_consolidada[[5]] |> 
   write_csv("csv/tabela05_produção_petroleo_gas_natural_por_estado.csv")
 
-tabela06_produção_petroleo_gas_natural_por_bacia |> 
+base_consolidada[[6]] |> 
   write_csv("csv/tabela06_produção_petroleo_gas_natural_por_bacia.csv")
 
-tabela07_produção_petroleo_gas_natural_por_operador |> 
+base_consolidada[[7]] |> 
   write_csv("csv/tabela07_produção_petroleo_gas_natural_por_operador.csv")
 
-tabela08_produção_petroleo_gas_natural_por_concessionario |> 
+base_consolidada[[8]] |> 
   write_csv("csv/tabela08_produção_petroleo_gas_natural_por_concessionario.csv")
 
-tabela09_movimentacao_gas_natural_destinacao |> 
+base_consolidada[[9]] |> 
   write_csv("csv/tabela09_MOVIMENTACAO_GAS_NATURAL_POR_DESTINO.csv")
 
-tabela10_distribuicao_producao_campos_pre_sal |> 
+base_consolidada[[10]] |> 
   write_csv("csv/tabela10_DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL.csv")
 
-tabela11_30_pocos_maior_prodcao_petroleo |> 
+base_consolidada[[11]] |> 
   write_csv("csv/tabela11_maiores_pocos_de_petroleo.csv")
 
-tabela12_30_pocos_maior_producao_gas |> 
+base_consolidada[[12]] |> 
   write_csv("csv/tabela12_maiores_pocos_de_gas.csv")
 
-tabela13_30_maiores_pocos_producao_total |> 
+base_consolidada[[13]] |> 
   write_csv("csv/tabela13_maiores_pocos_producao_total.csv")
 
-tabela14_maiores_pocos_terrestres_petroleo |> 
+base_consolidada[[14]] |> 
   write_csv("csv/tabela14_maiores_pocos_terrestres_petroleo.csv")
 
-tabela15_maiores_pocos_terrestres_gas_natural |> 
+base_consolidada[[15]] |> 
   write_csv("csv/tabela15_maiores_pocos_terrestres_gas_natural.csv")
 
-tabela16_maiores_instalacoes_petroleo |> 
+base_consolidada[[16]] |> 
   write_csv("csv/tabela16_maiores_instalações.csv")
   
-tabela17_maiores_instalacoes_gas |> 
+base_consolidada[[17]] |> 
   write_csv("csv/tabela17_maiores_instalacoes_gas.csv")
 
-tabela18_campos_com_maior_queimas |> 
+base_consolidada[[18]] |> 
 write_csv("csv/tabela18_maiores_queimas.csv")
 ```
 

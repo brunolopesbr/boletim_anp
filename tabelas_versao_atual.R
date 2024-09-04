@@ -115,8 +115,16 @@ for(i in 1:length(lista_guia2_versao_atual)){
 
 
 ## ----------------------------------------------------------------------------------
-MOVIMENTACAO_DE_GAS_NATURAL <- bind_rows( map(lista_guia2_versao_atual, `[[`, 3)) |> 
-  mutate(Período = if_else(condition = str_detect(Período, "/"), true = my(Período), false = as.Date(as.numeric(Período), origin = "1899-12-30"))) |> 
+
+
+MOVIMENTACAO_DE_GAS_NATURAL <-  rbind(bind_rows( map(lista_guia2_versao_atual, `[[`, 3)) |>
+  filter(str_detect(Período, "/")) |> 
+  mutate(Período = my(Período)),
+
+bind_rows( map(lista_guia2_versao_atual, `[[`, 3)) |>
+  filter(!str_detect(Período, "/")) |> 
+  mutate(Período = as.Date(as.numeric(Período), origin = "1899-12-30"))
+) |> 
   distinct()
 
 
@@ -124,7 +132,7 @@ MOVIMENTACAO_DE_GAS_NATURAL <- bind_rows( map(lista_guia2_versao_atual, `[[`, 3)
 ## ----------------------------------------------------------------------------------
 MOVIMENTACAO_DE_GAS_NATURAL <- MOVIMENTACAO_DE_GAS_NATURAL |> 
   select("Período", c(1:5,7:9)) |> 
-  mutate_at(2:9, as.numeric)
+  mutate_at(2:8, as.numeric)
 
 
 ## ----------------------------------------------------------------------------------
@@ -362,78 +370,54 @@ read_excel(paste0("data/", planilhas[1]), sheet = 3, col_types = "text",  .name_
 
 
 ## ----------------------------------------------------------------------------------
-# Dataframe 16 tem colunas em branco, detectando e acertando isso
-# i <- 1
 
-# while(i <= length(lista_guia3_versao_atual)){
-#  print(i)
-#  names(lista_guia3_versao_atual[[i]][[4]])  |> 
-#    print()
-#
-#    i <- i + 1
-#}
+# Retirar coluna Nº, que não tem informação e só prejudica
 
-# lista_guia3_versao_atual[[16]][[4]] <- lista_guia3_versao_atual[[16]][[4]][,c(1:5, 11)]
+
+
+i <- 1
+for(i in seq_along(lista_guia3_versao_atual)){
+lista_guia3_versao_atual[[i]][[4]] <- select(lista_guia3_versao_atual[[i]][[4]], !"Nº")
+i <- i + 1
+}
+  
+i <- 1
+for(i in seq_along(lista_guia3_versao_menos1)){
+lista_guia3_versao_menos1[[i]][[4]] <- select(lista_guia3_versao_menos1[[i]][[4]], !"Nº")
+i <- i + 1
+}
+
+
+i <- 1
+for(i in seq_along(lista_guia3_versao_menos3)){
+lista_guia3_versao_menos3[[i]][[4]] <- select(lista_guia3_versao_menos3[[i]][[4]], !"Nº")
+i <- i + 1
+}
+
 
 
 ## ----------------------------------------------------------------------------------
 # Apagar colunas que estão sobrando (do dataframe 16)
-# i <- 1
-# while(i <= length(lista_guia3_versao_atual)){
-#  print(i)
-#  print(ncol(lista_guia3_versao_atual[[i]][[4]]))
-#  i <- i + 1
-#}
-
-lista_guia3_versao_atual[[16]][[4]] <- lista_guia3_versao_atual[[16]][[4]] |> 
-  select(!6:10)
-
-lista_guia3_versao_atual[[16]][[4]]
-
-
-## ----------------------------------------------------------------------------------
-# Acertar nomes das colunas
-nomes <- names(lista_guia3_versao_atual[[1]][[4]] )
-
-i <- 1
-while(i <= length(lista_guia3_versao_atual)){
-  names(lista_guia3_versao_atual[[i]][[4]] ) <- nomes
+ i <- 1
+ while(i <= length(lista_guia3_versao_atual)){
+  print(ncol(lista_guia3_versao_atual[[i]][[4]]))
   i <- i + 1
 }
 
-i <- 1
-while(i <= length(lista_guia3_versao_menos1)){
-  names(lista_guia3_versao_menos1[[i]][[4]] ) <- nomes
-  i <- i + 1
-}
+lista_guia3_versao_atual[[17]][[4]] <- lista_guia3_versao_atual[[17]][[4]] |> 
+  select(!5:9)
 
-i <- 1
-while(i <= length(lista_guia3_versao_menos3)){
-  names(lista_guia3_versao_menos3[[i]][[4]] ) <- nomes
-  i <- i + 1
-}
-
-# Transformar coluna double em character
-i <- 1
-while(i <= length(lista_guia3_versao_atual)){
-  lista_guia3_versao_atual[[i]][[4]][,1] <- pull(lista_guia3_versao_atual[[i]][[4]][,1]) |> 
-  as.character()
-  i <- i + 1
-}
-
-
+# Acertar nomes de colunas
+names(lista_guia3_versao_atual[[17]][[4]]) <- names(lista_guia3_versao_atual[[16]][[4]])
 
 
 ## ----------------------------------------------------------------------------------
 por_concessionario <- rbind(
-do.call(rbind, map(lista_guia3_versao_atual, `[[`, 4)),
+map_df(lista_guia3_versao_atual, `[[`, 4),
+map_df(lista_guia3_versao_menos1, `[[`, 4),
+map_df(lista_guia3_versao_menos3, `[[`, 4)
+)
 
-do.call(rbind, map(lista_guia3_versao_menos1, `[[`, 4)),
-
-do.call(rbind, map(lista_guia3_versao_menos3, `[[`, 4))  
-) |> distinct() 
-
-por_concessionario <- por_concessionario[,-1]
 
 
 ## ----------------------------------------------------------------------------------
@@ -509,8 +493,8 @@ MOVIMENTACAO_GAS_NATURAL_POR_DESTINO <- MOVIMENTACAO_GAS_NATURAL_POR_DESTINO |>
 
 
 ## ----------------------------------------------------------------------------------
-names(MOVIMENTACAO_GAS_NATURAL_POR_DESTINO)
-names(tabela9)
+# names(MOVIMENTACAO_GAS_NATURAL_POR_DESTINO)
+# names(tabela9)
 
 
 ## ----------------------------------------------------------------------------------
@@ -577,14 +561,72 @@ while(i <= length(lista_guia3_versao_menos3)){
 
 
 ## ----------------------------------------------------------------------------------
+# i <- 1
+  
+# for(i in seq_along(lista_guia3_versao_atual)){
+#lista_guia3_versao_atual[[i]][[6]] |> 
+#  ncol() |> print()
+#
+#i <- 1 + 1  
+#}
+
+# apagando colunas vazias
+lista_guia3_versao_atual[[1]][[6]] <- lista_guia3_versao_atual[[1]][[6]] |> 
+  select(c(1:7, 11))
+
+# Colocando em todos os dfs os mesmos nomes de colunas
+
+i <- 1
+for( i in seq_along(lista_guia3_versao_atual)){
+  names(lista_guia3_versao_atual[[i]][[6]]) <- names(lista_guia3_versao_atual[[20]][[6]])
+  i <- 1
+}
+
+
+
+## ----------------------------------------------------------------------------------
+
+# Se a primeira linha da primeira coluna for nula, apagar linha e converter todas as colunas para valores numéricos
+i <- 1
+
+for(i in seq_along(lista_guia3_versao_atual)) {
+if(is.na(lista_guia3_versao_atual[[i]][[6]][1,1])) {lista_guia3_versao_atual[[i]][[6]] <- lista_guia3_versao_atual[[i]][[6]][-1,] |> 
+  mutate_at(2:7, as.numeric)}    
+  i <- 1 + i
+}
+
+
+
+## ----------------------------------------------------------------------------------
+
+# Colocando em todos os dfs os mesmos nomes de colunas
+
+i <- 1
+for( i in seq_along(lista_guia3_versao_menos1)){
+  names(lista_guia3_versao_menos1[[i]][[6]]) <- names(lista_guia3_versao_atual[[20]][[6]])
+  i <- 1
+}
+
+map_df(lista_guia3_versao_menos1, `[[`, 6)
+
+
+## ----------------------------------------------------------------------------------
+# Colocando em todos os dfs os mesmos nomes de colunas
+
+i <- 1
+for( i in seq_along(lista_guia3_versao_menos3)){
+  names(lista_guia3_versao_menos3[[i]][[6]]) <- names(lista_guia3_versao_atual[[20]][[6]])
+  i <- 1
+}
+
+map_df(lista_guia3_versao_menos3, `[[`, 6)
+
+
+## ----------------------------------------------------------------------------------
 DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL <- bind_rows(
-do.call(rbind, map(lista_guia3_versao_atual, `[[`, 6)),
-
-do.call(rbind, map(lista_guia3_versao_menos1, `[[`, 6)),
-
-
-
-do.call(rbind, map(lista_guia3_versao_menos3, `[[`, 6))  
+map_df(lista_guia3_versao_atual, `[[`, 6),
+map_df(lista_guia3_versao_menos1, `[[`, 6),
+map_df(lista_guia3_versao_menos3, `[[`, 6)  
 ) |> distinct()
 
 
@@ -655,11 +697,11 @@ while(i <= length(lista_guia3_versao_menos3)){
 
 
 ## ----message=FALSE-----------------------------------------------------------------
-lista_guia4_versao_atual <- map(c(54, 55, 57:76), extrair_8_tabelas, sheet = 4)
+lista_guia4_versao_atual <- map(c(55,56, 58:76), extrair_8_tabelas, sheet = 4)
 
 
 ## ----------------------------------------------------------------------------------
-lista_guia4_versao_menos1 <- map(c(33:53, 56), extrair_16_tabelas, sheet = 4)
+lista_guia4_versao_menos1 <- map(c(33:54, 57), extrair_16_tabelas, sheet = 4)
 
 
 ## ----message=FALSE-----------------------------------------------------------------
@@ -1133,31 +1175,27 @@ read_excel(paste0("data/", planilhas[1]), sheet = 4, col_types = "text",  .name_
 ## ----------------------------------------------------------------------------------
 # Verificar número de colunas
 
+i <- 1
+while(i <= length(lista_guia4_versao_atual)){
+  print(ncol(lista_guia4_versao_atual[[i]][[8]])) 
+  i <- i + 1
+}
+# corrigir o df 20
+
+lista_guia4_versao_atual[[20]][[8]] <- lista_guia4_versao_atual[[20]][[8]] |> 
+  select(!7:12)
+
+
+
+## ----------------------------------------------------------------------------------
 #i <- 1
-#while(i <= length(lista_guia4_versao_atual)){
-#  print(ncol(lista_guia4_versao_atual[[i]][[8]])) 
-#  i <- i + 1
-#}
-
-
-## ----------------------------------------------------------------------------------
-# Corrigindo dataframe 20, com colunas sem conteúdo
-lista_guia4_versao_atual[[20]][[8]] <- lista_guia4_versao_atual[[20]][[8]][,c(1:6,13)] 
-
-## ----------------------------------------------------------------------------------
-# Verificar número de colunas
-
-# i <- 1
-# while(i <= length(lista_guia4_versao_menos1)){
-#  print(i)
+#while(i <= length(lista_guia4_versao_menos1)){
 #  print(ncol(lista_guia4_versao_menos1[[i]][[8]])) 
 #  i <- i + 1
 #}
-
-
-## ----------------------------------------------------------------------------------
-# Corrigindo dataframe 17, com colunas sem conteúdo
-lista_guia4_versao_menos1[[17]][[8]] <- lista_guia4_versao_menos1[[17]][[8]][,c(1:6,12)] 
+# corrigindo dataframe 17
+lista_guia4_versao_menos1[[18]][[8]] <- lista_guia4_versao_menos1[[18]][[8]] |> 
+  select(!7:11)
 
 
 ## ----------------------------------------------------------------------------------
@@ -1198,6 +1236,63 @@ maiores_queimas <- bind_rows(
 bind_rows(map(lista_guia4_versao_atual, `[[`, 8)),
 bind_rows(map(lista_guia4_versao_menos1, `[[`, 8)), 
 bind_rows(map(lista_guia4_versao_menos2, `[[`, 8)) 
-) |> distinct() 
-maiores_queimas <- maiores_queimas[,-1]
+) |> distinct() |> 
+  select(!`Nº`)
+
+
+
+## ----------------------------------------------------------------------------------
+Historico_petroleo |> 
+  write_csv("csv/tabela01_Historico_petroleo.csv", )
+
+Historico_prod_gas |> 
+  write_csv("csv/tabela02_Historico_prod_gas.csv")
+
+MOVIMENTACAO_DE_GAS_NATURAL |> 
+  write_csv("csv/tabela03_MOVIMENTACAO_DE_GAS_NATURAL.csv")
+
+Historico_de_Producao_de_Petroleo_Gas_Natural |> 
+  write_csv("csv/tabela04_Historico_de_Producao_de_Petroleo_Gas_Natural.csv")
+
+por_estado |> 
+  write_csv("csv/tabela05_Producao_por_estado.csv")
+
+por_bacia |> 
+  write_csv("csv/tabela06_Producao_por_bacia.csv")
+
+por_operador |> 
+  write_csv("csv/tabela07_Producao_por_operador.csv")
+
+por_concessionario |> 
+  write_csv("csv/tabela08_Producao_por_concessionario.csv")
+
+MOVIMENTACAO_GAS_NATURAL_POR_DESTINO |> 
+  write_csv("csv/tabela09_MOVIMENTACAO_GAS_NATURAL_POR_DESTINO.csv")
+
+DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL |> 
+  write_csv("csv/tabela10_DISTRIBUICAO_DA_PRODUCAO_CAMPOS_PRE_SAL.csv")
+
+maiores_pocos_de_petroleo |> 
+  write_csv("csv/tabela11_maiores_pocos_de_petroleo.csv")
+
+maiores_pocos_de_gas |> 
+  write_csv("csv/tabela12_maiores_pocos_de_gas.csv")
+
+maiores_pocos_producao_total |> 
+  write_csv("csv/tabela13_maiores_pocos_producao_total.csv")
+
+maiores_pocos_terrestres_petroleo |> 
+  write_csv("csv/tabela14_maiores_pocos_terrestres_petroleo.csv")
+
+maiores_pocos_terrestres_gas_natural |> 
+  write_csv("csv/tabela15_maiores_pocos_terrestres_gas_natural.csv")
+
+maiores_instalacoes |> 
+  write_csv("csv/tabela16_maiores_instalações.csv")
+  
+maiores_instalacoes_gas |> 
+  write_csv("csv/tabela17_maiores_instalacoes_gas.csv")
+
+maiores_queimas |> 
+write_csv("csv/tabela18_maiores_queimas.csv")
 

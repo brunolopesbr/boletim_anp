@@ -1,1582 +1,1582 @@
-Nº,Bacia,Campo,Localização,Operador,Queima de Gás (Mm³/d),mes
-1,Santos,Mero,Mar,Petrobras,802,2018-01-01
-2,Santos,Lula,Mar,Petrobras,720,2018-01-01
-3,Campos,Roncador,Mar,Petrobras,511,2018-01-01
-4,Campos,Marlim,Mar,Petrobras,398,2018-01-01
-5,Santos,Sapinhoá,Mar,Petrobras,233,2018-01-01
-6,Campos,Marlim Sul,Mar,Petrobras,207,2018-01-01
-7,Campos,Jubarte³,Mar,Petrobras,144,2018-01-01
-8,Solimões,Leste Do Urucu,Terra,Petrobras,124,2018-01-01
-9,Solimões,Rio Urucu,Terra,Petrobras,75,2018-01-01
-10,Campos,Marlim Leste,Mar,Petrobras,69,2018-01-01
-11,Campos,Barracuda,Mar,Petrobras,67,2018-01-01
-12,Campos,Albacora Leste,Mar,Petrobras,60,2018-01-01
-13,Campos,Albacora,Mar,Petrobras,44,2018-01-01
-14,Campos,Baleia Azul³,Mar,Petrobras,38,2018-01-01
-15,Sergipe,Piranema,Mar,Petrobras,35,2018-01-01
-16,Campos,Caratinga,Mar,Petrobras,32,2018-01-01
-17,Campos,Baleia Franca³,Mar,Petrobras,22,2018-01-01
-18,Campos,Cherne,Mar,Petrobras,22,2018-01-01
-19,Campos,Namorado,Mar,Petrobras,21,2018-01-01
-20,Campos,Tubarão Martelo,Mar,Dommo Energia,21,2018-01-01
-1,Santos,Mero,Mar,Petrobras,623,2018-02-01
-2,Santos,Lula,Mar,Petrobras,566,2018-02-01
-3,Campos,Roncador,Mar,Petrobras,397,2018-02-01
-4,Campos,Marlim,Mar,Petrobras,395,2018-02-01
-5,Santos,Sururu,Mar,Petrobras,360,2018-02-01
-6,Campos,Marlim Sul,Mar,Petrobras,161,2018-02-01
-7,Solimões,Leste Do Urucu,Terra,Petrobras,102,2018-02-01
-8,Santos,Sapinhoá,Mar,Petrobras,95,2018-02-01
-9,Campos,Jubarte³,Mar,Petrobras,92,2018-02-01
-10,Campos,Marlim Leste,Mar,Petrobras,68,2018-02-01
-11,Solimões,Rio Urucu,Terra,Petrobras,67,2018-02-01
-12,Campos,Barracuda,Mar,Petrobras,55,2018-02-01
-13,Campos,Albacora Leste,Mar,Petrobras,52,2018-02-01
-14,Campos,Albacora,Mar,Petrobras,43,2018-02-01
-15,Sergipe,Piranema,Mar,Petrobras,41,2018-02-01
-16,Campos,Caratinga,Mar,Petrobras,27,2018-02-01
-17,Santos,Lapa,Mar,Total E&P do Brasil,22,2018-02-01
-18,Potiguar,Canto Do Amaro,Terra,Petrobras,22,2018-02-01
-19,Campos,Tubarão Martelo,Mar,Dommo Energia,21,2018-02-01
-20,Campos,Marimbá,Mar,Petrobras,21,2018-02-01
-1,Santos,Lula,Mar,Petrobras,631.666413870968,2018-03-01
-2,Santos,Sururu,Mar,Petrobras,478.288160967742,2018-03-01
-3,Campos,Roncador,Mar,Petrobras,373.374070322581,2018-03-01
-4,Campos,Marlim,Mar,Petrobras,291.699377419355,2018-03-01
-5,Santos,Sapinhoá,Mar,Petrobras,205.793225483871,2018-03-01
-6,Campos,Jubarte³,Mar,Petrobras,148.456850645161,2018-03-01
-7,Campos,Marlim Sul,Mar,Petrobras,131.646603870968,2018-03-01
-8,Solimões,Leste Do Urucu,Terra,Petrobras,129.577256451613,2018-03-01
-9,Santos,Mero,Mar,Petrobras,82.1637096774193,2018-03-01
-10,Solimões,Rio Urucu,Terra,Petrobras,81.5682525806452,2018-03-01
-11,Campos,Albacora,Mar,Petrobras,59.9533551612903,2018-03-01
-12,Campos,Albacora Leste,Mar,Petrobras,59.5639983870968,2018-03-01
-13,Campos,Barracuda,Mar,Petrobras,59.3285435483871,2018-03-01
-14,Campos,Marlim Leste,Mar,Petrobras,40.5572832258065,2018-03-01
-15,Sergipe,Piranema,Mar,Petrobras,35.7375806451613,2018-03-01
-16,Campos,Baleia Azul³,Mar,Petrobras,33.1326706451613,2018-03-01
-17,Campos,Caratinga,Mar,Petrobras,27.6141325806452,2018-03-01
-18,Campos,Baleia Franca³,Mar,Petrobras,26.6153558064516,2018-03-01
-19,Santos,Lapa,Mar,Total E&P do Brasil,22.65477,2018-03-01
-20,Campos,Pampo,Mar,Petrobras,21.868464516129,2018-03-01
-1,Santos,Lula,Mar,Petrobras,634.956094333333,2018-04-01
-2,Santos,Sururu,Mar,Petrobras,463.183133333333,2018-04-01
-3,Santos,Búzios,Mar,Petrobras,338.201466666667,2018-04-01
-4,Campos,Marlim,Mar,Petrobras,264.515839333333,2018-04-01
-5,Campos,Roncador,Mar,Petrobras,257.959134333333,2018-04-01
-6,Campos,Marlim Sul,Mar,Petrobras,184.617107666667,2018-04-01
-7,Santos,Sapinhoá,Mar,Petrobras,183.675732333333,2018-04-01
-8,Solimões,Leste Do Urucu,Terra,Petrobras,105.318437,2018-04-01
-9,Campos,Jubarte³,Mar,Petrobras,81.912539,2018-04-01
-10,Campos,Marlim Leste,Mar,Petrobras,79.231581,2018-04-01
-11,Santos,Mero,Mar,Petrobras,77.6672333333333,2018-04-01
-12,Solimões,Rio Urucu,Terra,Petrobras,72.493354,2018-04-01
-13,Campos,Barracuda,Mar,Petrobras,67.768115,2018-04-01
-14,Campos,Albacora,Mar,Petrobras,37.9480223333333,2018-04-01
-15,Sergipe,Piranema,Mar,Petrobras,36.6204,2018-04-01
-16,Campos,Albacora Leste,Mar,Petrobras,36.3010436666667,2018-04-01
-17,Campos,Caratinga,Mar,Petrobras,33.2774166666667,2018-04-01
-18,Campos,Marimbá,Mar,Petrobras,29.2294666666667,2018-04-01
-19,Campos,Baleia Franca³,Mar,Petrobras,24.7481586666667,2018-04-01
-20,Campos,Cherne,Mar,Petrobras,23.6608883333333,2018-04-01
-1,Santos,Búzios,Mar,Petrobras,943.88535483871,2018-05-01
-2,Santos,Lula,Mar,Petrobras,502.302801290323,2018-05-01
-3,Santos,Sururu,Mar,Petrobras,460.280419032258,2018-05-01
-4,Campos,Marlim,Mar,Petrobras,399.787344193548,2018-05-01
-5,Campos,Roncador,Mar,Petrobras,355.632842258065,2018-05-01
-6,Santos,Sapinhoá,Mar,Petrobras,221.68022483871,2018-05-01
-7,Campos,Marlim Sul,Mar,Petrobras,123.321861612903,2018-05-01
-8,Campos,Jubarte³,Mar,Petrobras,92.3962380645161,2018-05-01
-9,Solimões,Leste Do Urucu,Terra,Petrobras,90.9024838709677,2018-05-01
-10,Campos,Albacora Leste,Mar,Petrobras,64.0471374193548,2018-05-01
-11,Solimões,Rio Urucu,Terra,Petrobras,61.5967219354839,2018-05-01
-12,Campos,Barracuda,Mar,Petrobras,60.5678941935484,2018-05-01
-13,Campos,Marlim Leste,Mar,Petrobras,51.3496370967742,2018-05-01
-14,Santos,Mero,Mar,Petrobras,48.5822580645161,2018-05-01
-15,Santos,Atlanta,Mar,Queiroz Galvão,48.2816129032258,2018-05-01
-16,Sergipe,Piranema,Mar,Petrobras,44.4219677419355,2018-05-01
-17,Campos,Albacora,Mar,Petrobras,43.9381841935484,2018-05-01
-18,Santos,Lapa,Mar,Total E&P do Brasil,30.3064996774193,2018-05-01
-19,Campos,Namorado,Mar,Petrobras,29.9410019354839,2018-05-01
-20,Campos,Cherne,Mar,Petrobras,26.7632064516129,2018-05-01
-1,Santos,Búzios,Mar,Petrobras,950.983466666667,2018-06-01
-2,Santos,Lula,Mar,Petrobras,595.203194666667,2018-06-01
-3,Santos,Sururu,Mar,Petrobras,446.170166333333,2018-06-01
-4,Campos,Marlim,Mar,Petrobras,344.302729,2018-06-01
-5,Campos,Roncador,Mar,Petrobras,286.546547333333,2018-06-01
-6,Santos,Sapinhoá,Mar,Petrobras,176.536432666667,2018-06-01
-7,Solimões,Leste Do Urucu,Terra,Petrobras,129.807814666667,2018-06-01
-8,Campos,Marlim Sul,Mar,Petrobras,121.441254,2018-06-01
-9,Campos,Jubarte³,Mar,Petrobras,98.2014426666667,2018-06-01
-10,Solimões,Rio Urucu,Terra,Petrobras,84.6808113333333,2018-06-01
-11,Campos,Marlim Leste,Mar,Petrobras,83.7909826666667,2018-06-01
-12,Campos,Tartaruga Verde,Mar,Petrobras,69.4639666666667,2018-06-01
-13,Campos,Albacora Leste,Mar,Petrobras,65.9403323333333,2018-06-01
-14,Campos,Barracuda,Mar,Petrobras,57.853617,2018-06-01
-15,Santos,Atlanta,Mar,Queiroz Galvão,47.468,2018-06-01
-16,Sergipe,Piranema,Mar,Petrobras,37.8839,2018-06-01
-17,Campos,Albacora,Mar,Petrobras,29.753666,2018-06-01
-18,Campos,Pampo,Mar,Petrobras,28.322191,2018-06-01
-19,Potiguar,Canto Do Amaro,Terra,Petrobras,27.3448643333333,2018-06-01
-20,Campos,Cherne,Mar,Petrobras,26.9749256666667,2018-06-01
-1,Santos,Búzios,Mar,Petrobras,814.416677419355,2018-07-01
-2,Santos,Lula,Mar,Petrobras,379.179640967742,2018-07-01
-3,Campos,Marlim,Mar,Petrobras,334.859226774194,2018-07-01
-4,Santos,Sapinhoá,Mar,Petrobras,314.176740967742,2018-07-01
-5,Campos,Tartaruga Verde,Mar,Petrobras,286.727240645161,2018-07-01
-6,Santos,Sururu,Mar,Petrobras,248.265806451613,2018-07-01
-7,Campos,Roncador,Mar,Petrobras,215.430774193548,2018-07-01
-8,Campos,Marlim Leste,Mar,Petrobras,101.717917096774,2018-07-01
-9,Campos,Marlim Sul,Mar,Petrobras,99.6498929032258,2018-07-01
-10,Solimões,Leste Do Urucu,Terra,Petrobras,96.2883793548387,2018-07-01
-11,Campos,Jubarte³,Mar,Petrobras,77.5672077419355,2018-07-01
-12,Campos,Albacora Leste,Mar,Petrobras,71.2854990322581,2018-07-01
-13,Solimões,Rio Urucu,Terra,Petrobras,63.2545390322581,2018-07-01
-14,Campos,Barracuda,Mar,Petrobras,59.6803793548387,2018-07-01
-15,Santos,Mexilhão,Mar,Petrobras,55.7264838709677,2018-07-01
-16,Santos,Mero,Mar,Petrobras,47.9026129032258,2018-07-01
-17,Sergipe,Piranema,Mar,Petrobras,40.951064516129,2018-07-01
-18,Campos,AnC Tartaruga Verde⁴,Mar,Petrobras,30.7627590322581,2018-07-01
-19,Campos,Pampo,Mar,Petrobras,30.3015990322581,2018-07-01
-20,Santos,Atlanta,Mar,Queiroz Galvão,29.1767741935484,2018-07-01
-1,Santos,Lula,Mar,Petrobras,423.401961935484,2018-08-01
-2,Santos,Búzios,Mar,Petrobras,391.516129032258,2018-08-01
-3,Campos,Marlim,Mar,Petrobras,294.734782258065,2018-08-01
-4,Campos,Roncador,Mar,Petrobras,274.952401612903,2018-08-01
-5,Campos,Tartaruga Verde,Mar,Petrobras,228.226063225806,2018-08-01
-6,Santos,Sapinhoá,Mar,Petrobras,201.57922483871,2018-08-01
-7,Campos,Marlim Sul,Mar,Petrobras,140.311209354839,2018-08-01
-8,Campos,Marlim Leste,Mar,Petrobras,126.924338064516,2018-08-01
-9,Campos,Jubarte³,Mar,Petrobras,111.041066774194,2018-08-01
-10,Solimões,Leste Do Urucu,Terra,Petrobras,89.7322722580645,2018-08-01
-11,Campos,Albacora Leste,Mar,Petrobras,61.2933041935484,2018-08-01
-12,Solimões,Rio Urucu,Terra,Petrobras,60.6979906451613,2018-08-01
-13,Campos,Barracuda,Mar,Petrobras,58.8086203225806,2018-08-01
-14,Sergipe,Piranema,Mar,Petrobras,51.7356129032258,2018-08-01
-15,Santos,Sururu,Mar,Petrobras,36.7323225806452,2018-08-01
-16,Campos,Marimbá,Mar,Petrobras,32.416,2018-08-01
-17,Campos,Baleia Franca³,Mar,Petrobras,30.189344516129,2018-08-01
-18,Santos,Mero,Mar,Petrobras,30.1727741935484,2018-08-01
-19,Campos,AnC Tartaruga Verde⁴,Mar,Petrobras,27.1624203225806,2018-08-01
-20,Campos,Cherne,Mar,Petrobras,26.913664516129,2018-08-01
-1,Santos,Lula,Mar,Petrobras,483.255994666667,2018-09-01
-2,Campos,Marlim,Mar,Petrobras,303.919809666667,2018-09-01
-3,Campos,Tartaruga Verde,Mar,Petrobras,299.082949666667,2018-09-01
-4,Santos,Búzios,Mar,Petrobras,266.459733333333,2018-09-01
-5,Campos,Roncador,Mar,Petrobras,251.092519,2018-09-01
-6,Campos,Jubarte³,Mar,Petrobras,158.579023666667,2018-09-01
-7,Campos,Marlim Sul,Mar,Petrobras,136.759262333333,2018-09-01
-8,Solimões,Leste Do Urucu,Terra,Petrobras,117.538635666667,2018-09-01
-9,Campos,Marlim Leste,Mar,Petrobras,99.8106126666667,2018-09-01
-10,Solimões,Rio Urucu,Terra,Petrobras,75.8921443333333,2018-09-01
-11,Campos,Anc_Tartaruga_Verde⁴,Mar,Petrobras,66.0090833333333,2018-09-01
-12,Campos,Barracuda,Mar,Petrobras,63.5346146666667,2018-09-01
-13,Campos,Albacora Leste,Mar,Petrobras,56.0073053333333,2018-09-01
-14,Santos,Sapinhoá,Mar,Petrobras,55.6742326666667,2018-09-01
-15,Campos,Albacora,Mar,Petrobras,48.104992,2018-09-01
-16,Santos,Lapa,Mar,Total E&P do Brasil,35.558343,2018-09-01
-17,Sergipe,Piranema,Mar,Petrobras,34.9452666666667,2018-09-01
-18,Campos,Baleia Franca³,Mar,Petrobras,31.275983,2018-09-01
-19,Campos,Marimbá,Mar,Petrobras,30.8082,2018-09-01
-20,Campos,Argonauta,Mar,Shell Brasil,29.409908,2018-09-01
-1,Santos,Lula,Mar,Petrobras,629.342897419355,2018-10-01
-2,Campos,Marlim,Mar,Petrobras,336.834857419355,2018-10-01
-3,Campos,Roncador,Mar,Petrobras,261.704602580645,2018-10-01
-4,Santos,Búzios,Mar,Petrobras,209.861548387097,2018-10-01
-5,Campos,Tartaruga Verde,Mar,Petrobras,196.137836129032,2018-10-01
-6,Campos,Jubarte³,Mar,Petrobras,139.516229032258,2018-10-01
-7,Campos,Marlim Sul,Mar,Petrobras,115.692646129032,2018-10-01
-8,Solimões,Leste Do Urucu,Terra,Petrobras,95.8481432258064,2018-10-01
-9,Campos,Marlim Leste,Mar,Petrobras,89.0279106451613,2018-10-01
-10,Santos,Sapinhoá,Mar,Petrobras,81.1677732258064,2018-10-01
-11,Campos,Barracuda,Mar,Petrobras,63.980965483871,2018-10-01
-12,Campos,Albacora Leste,Mar,Petrobras,57.928194516129,2018-10-01
-13,Solimões,Rio Urucu,Terra,Petrobras,55.9739325806452,2018-10-01
-14,Campos,AnC Tartaruga Verde⁴,Mar,Petrobras,43.5333893548387,2018-10-01
-15,Santos,Lapa,Mar,Total E&P do Brasil,42.65318,2018-10-01
-16,Campos,Albacora,Mar,Petrobras,42.5692229032258,2018-10-01
-17,Sergipe,Piranema,Mar,Petrobras,38.3529677419355,2018-10-01
-18,Campos,Baleia Franca³,Mar,Petrobras,32.5365332258065,2018-10-01
-19,Campos,Marimbá,Mar,Petrobras,27.763064516129,2018-10-01
-20,Campos,Cherne,Mar,Petrobras,26.8604351612903,2018-10-01
-1,Santos,Lula,Mar,Petrobras,1403.245795,2018-11-01
-2,Santos,Búzios,Mar,Petrobras,815.707733333333,2018-11-01
-3,Campos,Roncador,Mar,Petrobras,264.169766666667,2018-11-01
-4,Campos,Marlim,Mar,Petrobras,263.458308,2018-11-01
-5,Campos,Marlim Sul,Mar,Petrobras,174.337823333333,2018-11-01
-6,Santos,Sapinhoá,Mar,Petrobras,110.324399,2018-11-01
-7,Campos,Jubarte³,Mar,Petrobras,95.9118583333333,2018-11-01
-8,Solimões,Leste Do Urucu,Terra,Petrobras,92.8023416666667,2018-11-01
-9,Campos,Tartaruga Verde,Mar,Petrobras,90.6632323333333,2018-11-01
-10,Campos,Marlim Leste,Mar,Petrobras,78.629931,2018-11-01
-11,Campos,Barracuda,Mar,Petrobras,68.6228193333333,2018-11-01
-12,Solimões,Rio Urucu,Terra,Petrobras,61.8883156666667,2018-11-01
-13,Campos,Albacora Leste,Mar,Petrobras,53.1239796666667,2018-11-01
-14,Campos,Albacora,Mar,Petrobras,41.708318,2018-11-01
-15,Sergipe,Piranema,Mar,Petrobras,38.4971333333333,2018-11-01
-16,Campos,Baleia Franca³,Mar,Petrobras,31.766718,2018-11-01
-17,Campos,Marimbá,Mar,Petrobras,27.3440333333333,2018-11-01
-18,Campos,Namorado,Mar,Petrobras,24.3579383333333,2018-11-01
-19,Campos,Pampo,Mar,Petrobras,24.2332636666667,2018-11-01
-20,Campos,Caratinga,Mar,Petrobras,24.0741793333333,2018-11-01
-1,Santos,LULA,Mar,Petrobras,1174.72589709677,2018-12-01
-2,Santos,BÚZIOS,Mar,Petrobras,1167.15174193548,2018-12-01
-3,Campos,MARLIM,Mar,Petrobras,341.593428709677,2018-12-01
-4,Campos,RONCADOR,Mar,Petrobras,231.282964516129,2018-12-01
-5,Santos,SAPINHOÁ,Mar,Petrobras,164.655579677419,2018-12-01
-6,Solimões,LESTE DO URUCU,Terra,Petrobras,139.123603225806,2018-12-01
-7,Santos,LAPA,Mar,Total E&P do Brasil,128.70347,2018-12-01
-8,Campos,MARLIM SUL,Mar,Petrobras,117.479195483871,2018-12-01
-9,Santos,MERO,Mar,Petrobras,106.759870967742,2018-12-01
-10,Campos,JUBARTE³,Mar,Petrobras,99.6031925806452,2018-12-01
-11,Campos,ALBACORA,Mar,Petrobras,97.1937796774193,2018-12-01
-12,Solimões,RIO URUCU,Terra,Petrobras,91.8140603225806,2018-12-01
-13,Campos,BARRACUDA,Mar,Petrobras,59.6604774193548,2018-12-01
-14,Campos,ALBACORA LESTE,Mar,Petrobras,55.9796703225806,2018-12-01
-15,Campos,MARLIM LESTE,Mar,Petrobras,51.0620977419355,2018-12-01
-16,Campos,TARTARUGA VERDE,Mar,Petrobras,47.2977867741935,2018-12-01
-17,Campos,MARIMBÁ,Mar,Petrobras,35.2070322580645,2018-12-01
-18,Sergipe,PIRANEMA,Mar,Petrobras,32.6943870967742,2018-12-01
-19,Espírito Santo,GOLFINHO,Mar,Petrobras,28.656064516129,2018-12-01
-20,Campos,BALEIA FRANCA³,Mar,Petrobras,27.4526006451613,2018-12-01
-1,Santos,Lula,Mar,Petrobras,1376.72892806452,2019-01-01
-2,Santos,Lapa,Mar,Total E&P do Brasil,1095.76823,2019-01-01
-3,Santos,Búzios,Mar,Petrobras,1004.22158064516,2019-01-01
-4,Campos,Marlim,Mar,Petrobras,343.36504,2019-01-01
-5,Campos,Roncador,Mar,Petrobras,305.016900322581,2019-01-01
-6,Santos,Sapinhoá,Mar,Petrobras,167.621082903226,2019-01-01
-7,Campos,Marlim Sul,Mar,Petrobras,122.441406451613,2019-01-01
-8,Solimões,Leste Do Urucu,Terra,Petrobras,120.989228387097,2019-01-01
-9,Campos,Jubarte³,Mar,Petrobras,103.893563225806,2019-01-01
-10,Solimões,Rio Urucu,Terra,Petrobras,94.2957580645161,2019-01-01
-11,Campos,Albacora,Mar,Petrobras,68.2780832258064,2019-01-01
-12,Santos,Mero,Mar,Petrobras,66.4485161290322,2019-01-01
-13,Campos,Albacora Leste,Mar,Petrobras,64.9317212903226,2019-01-01
-14,Campos,Barracuda,Mar,Petrobras,60.7293519354839,2019-01-01
-15,Campos,Marlim Leste,Mar,Petrobras,56.6892590322581,2019-01-01
-16,Campos,Tartaruga Verde,Mar,Petrobras,44.463054516129,2019-01-01
-17,Campos,Baleia Franca³,Mar,Petrobras,28.881944516129,2019-01-01
-18,Campos,Namorado,Mar,Petrobras,28.1081741935484,2019-01-01
-19,Sergipe,Piranema,Mar,Petrobras,27.1413870967742,2019-01-01
-20,Campos,Marimbá,Mar,Petrobras,27.1353548387097,2019-01-01
-1,Santos,Lula,Mar,Petrobras,1521.26768857143,2019-02-01
-2,Santos,Búzios,Mar,Petrobras,816.934785714286,2019-02-01
-3,Santos,Lapa,Mar,Total E&P do Brasil,744.978627857143,2019-02-01
-4,Campos,Roncador,Mar,Petrobras,284.219753928571,2019-02-01
-5,Campos,Marlim,Mar,Petrobras,262.767823214286,2019-02-01
-6,Campos,Marlim Sul,Mar,Petrobras,150.742113214286,2019-02-01
-7,Campos,Jubarte³,Mar,Petrobras,117.32438,2019-02-01
-8,Solimões,Leste Do Urucu,Terra,Petrobras,104.406341428571,2019-02-01
-9,Solimões,Rio Urucu,Terra,Petrobras,84.4778382142857,2019-02-01
-10,Santos,Mero,Mar,Petrobras,71.7801428571428,2019-02-01
-11,Santos,Sul De Lula,Mar,Petrobras,68.8775889285714,2019-02-01
-12,Campos,Marlim Leste,Mar,Petrobras,66.1013517857143,2019-02-01
-13,Campos,Barracuda,Mar,Petrobras,58.2947314285714,2019-02-01
-14,Sergipe,Piranema,Mar,Petrobras,54.8315357142857,2019-02-01
-15,Santos,Sapinhoá,Mar,Petrobras,54.5461060714286,2019-02-01
-16,Campos,Albacora,Mar,Petrobras,51.5593007142857,2019-02-01
-17,Campos,Albacora Leste,Mar,Petrobras,37.7711253571429,2019-02-01
-18,Campos,Marimbá,Mar,Petrobras,27.5328214285714,2019-02-01
-19,Campos,Baleia Franca³,Mar,Petrobras,26.6947525,2019-02-01
-20,Campos,Tartaruga Verde,Mar,Petrobras,22.7394146428571,2019-02-01
-1,Santos,Búzios,Mar,Petrobras,2015.83403225806,2019-03-01
-2,Santos,Lula,Mar,Petrobras,1682.69050580645,2019-03-01
-3,Campos,Roncador,Mar,Petrobras,268.95254516129,2019-03-01
-4,Campos,Marlim,Mar,Petrobras,187.002503225806,2019-03-01
-5,Santos,Sapinhoá,Mar,Petrobras,163.721585483871,2019-03-01
-6,Campos,Marlim Sul,Mar,Petrobras,151.765283548387,2019-03-01
-7,Solimões,Leste Do Urucu,Terra,Petrobras,131.216018709677,2019-03-01
-8,Santos,Sul De Lula,Mar,Petrobras,117.667261612903,2019-03-01
-9,Campos,Jubarte,Mar,Petrobras,117.571832903226,2019-03-01
-10,Santos,Mero,Mar,Petrobras,108.135483870968,2019-03-01
-11,Solimões,Rio Urucu,Terra,Petrobras,103.776437096774,2019-03-01
-12,Campos,Marlim Leste,Mar,Petrobras,60.7762274193548,2019-03-01
-13,Campos,Albacora,Mar,Petrobras,52.9381693548387,2019-03-01
-14,Campos,Barracuda,Mar,Petrobras,50.8734477419355,2019-03-01
-15,Sergipe,Piranema,Mar,Petrobras,47.737064516129,2019-03-01
-16,Campos,Albacora Leste,Mar,Petrobras,41.2944096774193,2019-03-01
-17,Espírito Santo,Golfinho,Mar,Petrobras,32.4172903225806,2019-03-01
-18,Campos,Baleia Franca,Mar,Petrobras,29.0667496774193,2019-03-01
-19,Campos,Marimbá,Mar,Petrobras,26.7536129032258,2019-03-01
-20,Campos,Cherne,Mar,Petrobras,26.1147867741935,2019-03-01
-1,Santos,Búzios,Mar,Petrobras,2252.05236666667,2019-04-01
-2,Santos,Lula,Mar,Petrobras,1477.736728,2019-04-01
-3,Campos,Roncador,Mar,Petrobras,377.426348333333,2019-04-01
-4,Santos,Sapinhoá,Mar,Petrobras,246.425245666667,2019-04-01
-5,Campos,Marlim,Mar,Petrobras,194.960361333333,2019-04-01
-6,Campos,Marlim Sul,Mar,Petrobras,138.884815,2019-04-01
-7,Solimões,Leste Do Urucu,Terra,Petrobras,112.485473333333,2019-04-01
-8,Santos,Sul De Lula,Mar,Petrobras,110.167526,2019-04-01
-9,Campos,Albacora Leste,Mar,Petrobras,102.944779666667,2019-04-01
-10,Solimões,Rio Urucu,Terra,Petrobras,96.654994,2019-04-01
-11,Campos,Jubarte,Mar,Petrobras,95.1356006666667,2019-04-01
-12,Campos,Marlim Leste,Mar,Petrobras,74.411716,2019-04-01
-13,Santos,Mero,Mar,Petrobras,71.277,2019-04-01
-14,Campos,Barracuda,Mar,Petrobras,53.6877123333333,2019-04-01
-15,Campos,Albacora,Mar,Petrobras,48.8789846666667,2019-04-01
-16,Campos,Marimbá,Mar,Petrobras,36.4470666666667,2019-04-01
-17,Sergipe,Piranema,Mar,Petrobras,30.3704,2019-04-01
-18,Campos,Baleia Azul,Mar,Petrobras,28.2370206666667,2019-04-01
-19,Campos,Baleia Franca,Mar,Petrobras,23.587738,2019-04-01
-20,Campos,Tartaruga Verde,Mar,Petrobras,22.2448723333333,2019-04-01
-1,Santos,Búzios,Mar,Petrobras,2007.04270967742,2019-05-01
-2,Santos,Lula,Mar,Petrobras,996.275850645161,2019-05-01
-3,Campos,Roncador,Mar,Petrobras,246.05325483871,2019-05-01
-4,Campos,Marlim,Mar,Petrobras,201.518817419355,2019-05-01
-5,Campos,Jubarte,Mar,Petrobras,176.205893870968,2019-05-01
-6,Solimões,Leste Do Urucu,Terra,Petrobras,141.673707419355,2019-05-01
-7,Campos,Marlim Sul,Mar,Petrobras,140.688675806452,2019-05-01
-8,Solimões,Rio Urucu,Terra,Petrobras,112.119772258065,2019-05-01
-9,Campos,Marlim Leste,Mar,Petrobras,74.8658719354839,2019-05-01
-10,Santos,Sul De Lula,Mar,Petrobras,73.7556093548387,2019-05-01
-11,Santos,Sapinhoá,Mar,Petrobras,58.161315483871,2019-05-01
-12,Campos,Albacora Leste,Mar,Petrobras,41.277594516129,2019-05-01
-13,Campos,Barracuda,Mar,Petrobras,40.3518687096774,2019-05-01
-14,Santos,Mero,Mar,Petrobras,33.3914193548387,2019-05-01
-15,Parnaíba,Gavião Branco,Terra,Eneva,30.2267032258064,2019-05-01
-16,Sergipe,Piranema,Mar,Petrobras,29.9748387096774,2019-05-01
-17,Campos,Albacora,Mar,Petrobras,29.6516948387097,2019-05-01
-18,Campos,Namorado,Mar,Petrobras,29.0414570967742,2019-05-01
-19,Campos,Marimbá,Mar,Petrobras,25.5170967741935,2019-05-01
-20,Santos,Lapa,Mar,Total E&P do Brasil,25.3130541935484,2019-05-01
-1,Santos,Búzios,Mar,Petrobras,1451.78973333333,2019-06-01
-2,Santos,Lula,Mar,Petrobras,694.869952333333,2019-06-01
-3,Campos,Roncador,Mar,Petrobras,245.6278,2019-06-01
-4,Campos,Jubarte,Mar,Petrobras,165.215363666667,2019-06-01
-5,Santos,Sapinhoá,Mar,Petrobras,157.617578666667,2019-06-01
-6,Solimões,Leste Do Urucu,Terra,Petrobras,144.427777666667,2019-06-01
-7,Campos,Marlim,Mar,Petrobras,142.589146333333,2019-06-01
-8,Solimões,Rio Urucu,Terra,Petrobras,119.438377333333,2019-06-01
-9,Campos,Marlim Sul,Mar,Petrobras,102.969536666667,2019-06-01
-10,Campos,Marlim Leste,Mar,Petrobras,64.064965,2019-06-01
-11,Santos,Mero,Mar,Petrobras,51.4036666666667,2019-06-01
-12,Campos,Albacora Leste,Mar,Petrobras,48.4878123333333,2019-06-01
-13,Santos,Sul De Lula,Mar,Petrobras,45.481181,2019-06-01
-14,Campos,Barracuda,Mar,Petrobras,43.7435053333333,2019-06-01
-15,Sergipe,Piranema,Mar,Petrobras,38.0560333333333,2019-06-01
-16,Santos,Lapa,Mar,Total E&P do Brasil,33.615193,2019-06-01
-17,Campos,Tartaruga Verde,Mar,Petrobras,30.3237933333333,2019-06-01
-18,Campos,Marimbá,Mar,Petrobras,26.4623666666667,2019-06-01
-19,Espírito Santo,Golfinho,Mar,Petrobras,24.1787666666667,2019-06-01
-20,Campos,Caratinga,Mar,Petrobras,18.4334266666667,2019-06-01
-1,Santos,Búzios,Mar,Petrobras,953.486935483871,2019-07-01
-2,Santos,Lula,Mar,Petrobras,646.653042903226,2019-07-01
-3,Campos,Roncador,Mar,Petrobras,290.05658,2019-07-01
-4,Campos,Marlim,Mar,Petrobras,165.81733516129,2019-07-01
-5,Campos,Jubarte,Mar,Petrobras,132.365495806452,2019-07-01
-6,Solimões,Leste Do Urucu,Terra,Petrobras,130.638875806452,2019-07-01
-7,Campos,Marlim Sul,Mar,Petrobras,119.567520967742,2019-07-01
-8,Solimões,Rio Urucu,Terra,Petrobras,104.663103548387,2019-07-01
-9,Santos,Sapinhoá,Mar,Petrobras,85.2179806451613,2019-07-01
-10,Campos,Marlim Leste,Mar,Petrobras,73.821844516129,2019-07-01
-11,Campos,Albacora Leste,Mar,Petrobras,67.0682590322581,2019-07-01
-12,Sergipe,Piranema,Mar,Petrobras,54.3917096774193,2019-07-01
-13,Campos,Barracuda,Mar,Petrobras,47.8081241935484,2019-07-01
-14,Santos,Sul De Lula,Mar,Petrobras,45.0613980645161,2019-07-01
-15,Santos,Mero,Mar,Petrobras,36.802935483871,2019-07-01
-16,Santos,Atlanta,Mar,Enauta Energia S.A.,26.9538064516129,2019-07-01
-17,Espírito Santo,Golfinho,Mar,Petrobras,23.9609677419355,2019-07-01
-18,Campos,Cherne,Mar,Petrobras,23.846354516129,2019-07-01
-19,Campos,Albacora,Mar,Petrobras,22.4134164516129,2019-07-01
-20,Campos,Marimbá,Mar,Petrobras,18.9405483870968,2019-07-01
-1,Santos,Lula,Mar,Petrobras,788.945432258065,2019-08-01
-2,Santos,Búzios,Mar,Petrobras,731.269548387097,2019-08-01
-3,Campos,Roncador,Mar,Petrobras,224.797482580645,2019-08-01
-4,Campos,Jubarte,Mar,Petrobras,175.27484516129,2019-08-01
-5,Campos,Marlim,Mar,Petrobras,162.564546774194,2019-08-01
-6,Campos,Marlim Sul,Mar,Petrobras,118.568805483871,2019-08-01
-7,Solimões,Leste Do Urucu,Terra,Petrobras,113.294441290323,2019-08-01
-8,Santos,Sapinhoá,Mar,Petrobras,106.051274193548,2019-08-01
-9,Solimões,Rio Urucu,Terra,Petrobras,96.3125116129032,2019-08-01
-10,Campos,Marlim Leste,Mar,Petrobras,84.9821283870968,2019-08-01
-11,Santos,Sul De Lula,Mar,Petrobras,56.7425903225806,2019-08-01
-12,Campos,Albacora Leste,Mar,Petrobras,50.9983051612903,2019-08-01
-13,Santos,Mero,Mar,Petrobras,44.5017096774193,2019-08-01
-14,Campos,Barracuda,Mar,Petrobras,37.5970522580645,2019-08-01
-15,Sergipe,Piranema,Mar,Petrobras,33.8663548387097,2019-08-01
-16,Campos,Albacora,Mar,Petrobras,27.1236929032258,2019-08-01
-17,Santos,Atlanta,Mar,Enauta Energia S.A.,23.640064516129,2019-08-01
-18,Recôncavo,Tiê,Terra,Maha Energy,22.348,2019-08-01
-19,Campos,Cherne,Mar,Petrobras,21.8201864516129,2019-08-01
-20,Espírito Santo,Golfinho,Mar,Petrobras,20.1823548387097,2019-08-01
-1,Santos,Lula,Mar,Petrobras,895.303301333333,2019-09-01
-2,Santos,Búzios,Mar,Petrobras,614.4,2019-09-01
-3,Campos,Marlim,Mar,Petrobras,198.135556333333,2019-09-01
-4,Campos,Roncador,Mar,Petrobras,131.801965666667,2019-09-01
-5,Campos,Jubarte,Mar,Petrobras,127.507975,2019-09-01
-6,Solimões,Leste Do Urucu,Terra,Petrobras,125.488942333333,2019-09-01
-7,Solimões,Rio Urucu,Terra,Petrobras,112.486631,2019-09-01
-8,Campos,Marlim Sul,Mar,Petrobras,112.187120333333,2019-09-01
-9,Santos,Sapinhoá,Mar,Petrobras,106.121989,2019-09-01
-10,Santos,Sul De Lula,Mar,Petrobras,63.429903666666704,2019-09-01
-11,Campos,Marlim Leste,Mar,Petrobras,61.745886,2019-09-01
-12,Campos,Albacora,Mar,Petrobras,56.6464313333333,2019-09-01
-13,Campos,Albacora Leste,Mar,Petrobras,50.3674,2019-09-01
-14,Santos,Mero,Mar,Petrobras,43.4028333333333,2019-09-01
-15,Campos,Tartaruga Verde,Mar,Petrobras,40.9018263333333,2019-09-01
-16,Sergipe,Piranema,Mar,Petrobras,38.5838666666667,2019-09-01
-17,Santos,Atlanta,Mar,Enauta Energia S.A.,33.4100333333333,2019-09-01
-18,Campos,Cherne,Mar,Petrobras,25.8906843333333,2019-09-01
-19,Campos,Barracuda,Mar,Petrobras,25.5727546666667,2019-09-01
-20,Campos,Marimbá,Mar,Petrobras,23.6375333333333,2019-09-01
-1,Santos,Lula,Mar,Petrobras,828.805529354839,2019-10-01
-2,Santos,Búzios,Mar,Petrobras,828.72136483871,2019-10-01
-3,Campos,Jubarte,Mar,Petrobras,202.238542903226,2019-10-01
-4,Campos,Roncador,Mar,Petrobras,175.10522483871,2019-10-01
-5,Campos,Marlim,Mar,Petrobras,151.798356129032,2019-10-01
-6,Campos,Marlim Sul,Mar,Petrobras,123.641118709677,2019-10-01
-7,Solimões,Leste Do Urucu,Terra,Petrobras,113.216003225806,2019-10-01
-8,Solimões,Rio Urucu,Terra,Petrobras,95.4828835483871,2019-10-01
-9,Santos,Sapinhoá,Mar,Petrobras,77.0294364516129,2019-10-01
-10,Campos,Marlim Leste,Mar,Petrobras,75.2974896774193,2019-10-01
-11,Santos,Atlanta,Mar,Enauta Energia S.A.,72.6716451612903,2019-10-01
-12,Santos,Sul De Lula,Mar,Petrobras,56.9299406451613,2019-10-01
-13,Campos,Barracuda,Mar,Petrobras,53.5386125806452,2019-10-01
-14,Campos,Albacora,Mar,Petrobras,51.3229677419355,2019-10-01
-15,Santos,Mero,Mar,Petrobras,42.2333225806452,2019-10-01
-16,Campos,Albacora Leste,Mar,Petrobras,41.7399335483871,2019-10-01
-17,Campos,Cherne,Mar,Petrobras,25.4903867741935,2019-10-01
-18,Sergipe,Piranema,Mar,Petrobras,25.006,2019-10-01
-19,Santos,Lapa,Mar,Total E&P do Brasil,23.7374658064516,2019-10-01
-20,Campos,Caratinga,Mar,Petrobras,23.0949674193548,2019-10-01
-1,Santos,Lula,Mar,Petrobras,679.848385,2019-11-01
-2,Santos,Búzios,Mar,Petrobras,520.324156666667,2019-11-01
-3,Santos,Berbigão,Mar,Petrobras,217.306633,2019-11-01
-4,Campos,Marlim,Mar,Petrobras,209.087625666667,2019-11-01
-5,Campos,Roncador,Mar,Petrobras,205.685732,2019-11-01
-6,Santos,Sapinhoá,Mar,Petrobras,189.041970333333,2019-11-01
-7,Campos,Jubarte,Mar,Petrobras,162.799346666667,2019-11-01
-8,Campos,Marlim Sul,Mar,Petrobras,148.001343,2019-11-01
-9,Solimões,Leste Do Urucu,Terra,Petrobras,118.684956333333,2019-11-01
-10,Solimões,Rio Urucu,Terra,Petrobras,96.59225,2019-11-01
-11,Campos,Albacora Leste,Mar,Petrobras,76.271287,2019-11-01
-12,Santos,Atlanta,Mar,Enauta Energia S.A.,67.4688333333333,2019-11-01
-13,Santos,Sul De Lula,Mar,Petrobras,46.8855103333333,2019-11-01
-14,Santos,Mero,Mar,Petrobras,44.9009,2019-11-01
-15,Campos,Barracuda,Mar,Petrobras,42.797947,2019-11-01
-16,Sergipe,Piranema,Mar,Petrobras,38.3956333333333,2019-11-01
-17,Campos,Marlim Leste,Mar,Petrobras,33.2684333333333,2019-11-01
-18,Campos,Cherne,Mar,Petrobras,28.7212993333333,2019-11-01
-19,Campos,Albacora,Mar,Petrobras,28.0161436666667,2019-11-01
-20,Campos,Tartaruga Verde,Mar,Petrobras,25.698827,2019-11-01
-1,Santos,Lula,Mar,Petrobras,754.399015806452,2019-12-01
-2,Santos,Búzios,Mar,Petrobras,466.501916451613,2019-12-01
-3,Santos,Berbigão,Mar,Petrobras,360.680387096774,2019-12-01
-4,Campos,Roncador,Mar,Petrobras,307.613676129032,2019-12-01
-5,Campos,Jubarte,Mar,Petrobras,200.353226129032,2019-12-01
-6,Campos,Marlim,Mar,Petrobras,171.758265483871,2019-12-01
-7,Santos,Sapinhoá,Mar,Petrobras,157.152092258065,2019-12-01
-8,Campos,Marlim Sul,Mar,Petrobras,127.603187096774,2019-12-01
-9,Solimões,Leste Do Urucu,Terra,Petrobras,109.371514516129,2019-12-01
-10,Solimões,Rio Urucu,Terra,Petrobras,95.702375483871,2019-12-01
-11,Santos,Atlanta,Mar,Enauta Energia S.A.,75.096129032258,2019-12-01
-12,Campos,Albacora Leste,Mar,Petrobras,59.5129974193548,2019-12-01
-13,Campos,Marlim Leste,Mar,Petrobras,50.7412316129032,2019-12-01
-14,Santos,Sul De Lula,Mar,Petrobras,50.4680919354839,2019-12-01
-15,Campos,Barracuda,Mar,Petrobras,44.9206087096774,2019-12-01
-16,Campos,Frade,Mar,Petro Rio Jaguar,38.1307419354839,2019-12-01
-17,Campos,Albacora,Mar,Petrobras,37.5603874193548,2019-12-01
-18,Sergipe,Piranema,Mar,Petrobras,34.7892258064516,2019-12-01
-19,Santos,Mero,Mar,Petrobras,34.2505483870968,2019-12-01
-20,Campos,Cherne,Mar,Petrobras,29.5336874193548,2019-12-01
-1,Santos,Lula,Mar,Petrobras,856.928412258065,2020-01-01
-2,Santos,Berbigão,Mar,Petrobras,614.674774193548,2020-01-01
-3,Santos,Búzios,Mar,Petrobras,580.067307741935,2020-01-01
-4,Campos,Roncador,Mar,Petrobras,303.797676451613,2020-01-01
-5,Campos,Jubarte,Mar,Petrobras,187.784965483871,2020-01-01
-6,Campos,Marlim,Mar,Petrobras,146.762178709677,2020-01-01
-7,Solimões,Leste Do Urucu,Terra,Petrobras,138.936997741935,2020-01-01
-8,Solimões,Rio Urucu,Terra,Petrobras,129.499143870968,2020-01-01
-9,Campos,Marlim Sul,Mar,Petrobras,121.963834516129,2020-01-01
-10,Santos,Sapinhoá,Mar,Petrobras,112.193848064516,2020-01-01
-11,Santos,Atlanta,Mar,Enauta Energia S.A.,69.1844516129032,2020-01-01
-12,Campos,Marlim Leste,Mar,Petrobras,66.5654574193548,2020-01-01
-13,Santos,Sul De Lula,Mar,Petrobras,62.2213606451613,2020-01-01
-14,Campos,Barracuda,Mar,Petrobras,50.3129306451613,2020-01-01
-15,Campos,Albacora Leste,Mar,Petrobras,36.9544158064516,2020-01-01
-16,Campos,Cherne,Mar,Petrobras,34.1631264516129,2020-01-01
-17,Campos,Tartaruga Verde,Mar,Petrobras,28.9529748387097,2020-01-01
-18,Campos,Peregrino,Mar,Equinor Brasil,24.4225806451613,2020-01-01
-19,Sergipe,Piranema,Mar,Petrobras,23.1917741935484,2020-01-01
-20,Espírito Santo,Golfinho,Mar,Petrobras,22.4551612903226,2020-01-01
-1,Santos,Lula,Mar,Petrobras,827.570710689655,2020-02-01
-2,Santos,Búzios,Mar,Petrobras,471.46611,2020-02-01
-3,Santos,Berbigão,Mar,Petrobras,411.188,2020-02-01
-4,Campos,Roncador,Mar,Petrobras,269.432895517241,2020-02-01
-5,Campos,Marlim,Mar,Petrobras,173.446271724138,2020-02-01
-6,Campos,Marlim Sul,Mar,Petrobras,148.425748965517,2020-02-01
-7,Campos,Jubarte,Mar,Petrobras,143.006188275862,2020-02-01
-8,Solimões,Leste Do Urucu,Terra,Petrobras,137.933292068966,2020-02-01
-9,Solimões,Rio Urucu,Terra,Petrobras,102.697343103448,2020-02-01
-10,Sergipe,Pa-1Brsa1083Ses-Seal-M-426,Mar,Petrobras,88.2336896551724,2020-02-01
-11,Santos,Atlanta,Mar,Enauta Energia S.A.,67.5143448275862,2020-02-01
-12,Campos,Albacora Leste,Mar,Petrobras,64.9993251724138,2020-02-01
-13,Santos,Sapinhoá,Mar,Petrobras,61.9982713793103,2020-02-01
-14,Santos,Sul De Lula,Mar,Petrobras,60.1822737931034,2020-02-01
-15,Campos,Barracuda,Mar,Petrobras,53.7283793103448,2020-02-01
-16,Campos,Marlim Leste,Mar,Petrobras,42.8895717241379,2020-02-01
-17,Sergipe,Piranema,Mar,Petrobras,32.1042413793103,2020-02-01
-18,Campos,Tartaruga Verde,Mar,Petrobras,28.6162944827586,2020-02-01
-19,Santos,Mero,Mar,Petrobras,28.1717931034483,2020-02-01
-20,Campos,Cherne,Mar,Petrobras,26.6915168965517,2020-02-01
-1,Santos,Lula,Mar,Petrobras,827.570710689655,2020-03-01
-2,Santos,Búzios,Mar,Petrobras,471.46611,2020-03-01
-3,Santos,Berbigão,Mar,Petrobras,411.188,2020-03-01
-4,Campos,Roncador,Mar,Petrobras,269.432895517241,2020-03-01
-5,Campos,Marlim,Mar,Petrobras,173.446271724138,2020-03-01
-6,Campos,Marlim Sul,Mar,Petrobras,148.425748965517,2020-03-01
-7,Campos,Jubarte,Mar,Petrobras,143.006188275862,2020-03-01
-8,Solimões,Leste Do Urucu,Terra,Petrobras,137.933292068966,2020-03-01
-9,Solimões,Rio Urucu,Terra,Petrobras,102.697343103448,2020-03-01
-10,Sergipe,Tld-Seal –M 426,Mar,Petrobras,88.2336896551724,2020-03-01
-11,Santos,Atlanta,Mar,Enauta Energia S.A.,67.5143448275862,2020-03-01
-12,Campos,Albacora Leste,Mar,Petrobras,64.9993251724138,2020-03-01
-13,Santos,Sapinhoá,Mar,Petrobras,61.9982713793103,2020-03-01
-14,Santos,Sul De Lula,Mar,Petrobras,60.1822737931034,2020-03-01
-15,Campos,Barracuda,Mar,Petrobras,53.7283793103448,2020-03-01
-16,Campos,Marlim Leste,Mar,Petrobras,42.8895717241379,2020-03-01
-17,Sergipe,Piranema,Mar,Petrobras,32.1042413793103,2020-03-01
-18,Campos,Tartaruga Verde,Mar,Petrobras,28.6162944827586,2020-03-01
-19,Santos,Mero,Mar,Petrobras,28.1717931034483,2020-03-01
-20,Campos,Cherne,Mar,Petrobras,26.6915168965517,2020-03-01
-1,Santos,Búzios,Mar,Petrobras,473.911191,2020-04-01
-2,Santos,Lula,Mar,Petrobras,445.461338333333,2020-04-01
-3,Campos,Roncador,Mar,Petrobras,200.756198333333,2020-04-01
-4,Santos,Berbigão,Mar,Petrobras,159.683066666667,2020-04-01
-5,Santos,Sapinhoá,Mar,Petrobras,155.566614333333,2020-04-01
-6,Campos,Marlim,Mar,Petrobras,151.482177,2020-04-01
-7,Campos,Marlim Sul,Mar,Petrobras,127.387423,2020-04-01
-8,Solimões,Leste Do Urucu,Terra,Petrobras,108.524699333333,2020-04-01
-9,Solimões,Rio Urucu,Terra,Petrobras,87.0649543333333,2020-04-01
-10,Santos,Atlanta,Mar,Enauta Energia S.A.,79.5817,2020-04-01
-11,Campos,Jubarte,Mar,Petrobras,61.1097656666667,2020-04-01
-12,Campos,Marlim Leste,Mar,Petrobras,39.8923993333333,2020-04-01
-13,Santos,Mero,Mar,Petrobras,35.8582666666667,2020-04-01
-14,Campos,Barracuda,Mar,Petrobras,35.4469116666667,2020-04-01
-15,Campos,Albacora Leste,Mar,Petrobras,34.7957393333333,2020-04-01
-16,Santos,Sul De Lula,Mar,Petrobras,28.033491,2020-04-01
-17,Recôncavo,Tiê,Terra,Maha Energy,24.832637,2020-04-01
-18,Sergipe,Carmópolis,Terra,Petrobras,21.0457563333333,2020-04-01
-19,Campos,Caratinga,Mar,Petrobras,18.744021,2020-04-01
-20,Campos,Albacora,Mar,Petrobras,18.407026,2020-04-01
-1,Santos,Lula,Mar,Petrobras,642.418991612903,2020-05-01
-2,Santos,Búzios,Mar,Petrobras,527.877772580645,2020-05-01
-3,Campos,Roncador,Mar,Petrobras,192.224030967742,2020-05-01
-4,Santos,Berbigão,Mar,Petrobras,171.500999677419,2020-05-01
-5,Campos,Marlim,Mar,Petrobras,137.566906129032,2020-05-01
-6,Solimões,Leste Do Urucu,Terra,Petrobras,97.1008829032258,2020-05-01
-7,Campos,Marlim Sul,Mar,Petrobras,90.8835122580645,2020-05-01
-8,Campos,Jubarte,Mar,Petrobras,83.1186770967742,2020-05-01
-9,Santos,Atlanta,Mar,Enauta Energia S.A.,58.8917096774193,2020-05-01
-10,Solimões,Rio Urucu,Terra,Petrobras,57.6570812903226,2020-05-01
-11,Campos,Albacora Leste,Mar,Petrobras,51.4274335483871,2020-05-01
-12,Campos,Albacora,Mar,Petrobras,48.6514687096774,2020-05-01
-13,Santos,Sul De Lula,Mar,Petrobras,45.8728538709677,2020-05-01
-14,Parnaíba,Gavião Preto,Terra,Eneva,41.3009670967742,2020-05-01
-15,Campos,Barracuda,Mar,Petrobras,35.6327835483871,2020-05-01
-16,Campos,Marlim Leste,Mar,Petrobras,31.7514387096774,2020-05-01
-17,Santos,Mero,Mar,Petrobras,29.544935483871,2020-05-01
-18,Santos,Sapinhoá,Mar,Petrobras,26.2107151612903,2020-05-01
-19,Campos,Caratinga,Mar,Petrobras,23.3271825806452,2020-05-01
-20,Campos,Marimbá,Mar,Petrobras,20.1173225806452,2020-05-01
-1,Santos,Lula,Mar,Petrobras,614.820256666667,2020-06-01
-2,Santos,Búzios,Mar,Petrobras,575.971155333333,2020-06-01
-3,Campos,Roncador,Mar,Petrobras,152.682298333333,2020-06-01
-4,Campos,Marlim,Mar,Petrobras,143.767879,2020-06-01
-5,Santos,Atapu,Mar,Petrobras,129.639947,2020-06-01
-6,Campos,Jubarte,Mar,Petrobras,128.091632666667,2020-06-01
-7,Santos,Sururu,Mar,Petrobras,123.290429666667,2020-06-01
-8,Santos,Berbigão,Mar,Petrobras,95.7557363333333,2020-06-01
-9,Santos,Sapinhoá,Mar,Petrobras,90.4097446666667,2020-06-01
-10,Solimões,Leste Do Urucu,Terra,Petrobras,89.641706,2020-06-01
-11,Campos,Marlim Sul,Mar,Petrobras,85.5881476666667,2020-06-01
-12,Campos,Albacora,Mar,Petrobras,79.7692793333333,2020-06-01
-13,Campos,Albacora Leste,Mar,Petrobras,77.926819,2020-06-01
-14,Solimões,Rio Urucu,Terra,Petrobras,69.004017,2020-06-01
-15,Santos,Mero,Mar,Petrobras,57.4163,2020-06-01
-16,Campos,Barracuda,Mar,Petrobras,51.8916006666667,2020-06-01
-17,Santos,Sul De Lula,Mar,Petrobras,40.975427,2020-06-01
-18,Santos,Atlanta,Mar,Enauta Energia S.A.,30.3825333333333,2020-06-01
-19,Campos,Marlim Leste,Mar,Petrobras,27.1010056666667,2020-06-01
-20,Santos,Oeste De Atapu,Mar,Petrobras,26.9212553333333,2020-06-01
-1,Santos,Atapu,Mar,Petrobras,815.954485483871,2020-07-01
-2,Santos,Lula,Mar,Petrobras,648.182178387097,2020-07-01
-3,Santos,Búzios,Mar,Petrobras,627.772144193548,2020-07-01
-4,Campos,Roncador,Mar,Petrobras,230.890869354839,2020-07-01
-5,Santos,Oeste De Atapu,Mar,Petrobras,169.442521612903,2020-07-01
-6,Campos,Marlim,Mar,Petrobras,127.677615806452,2020-07-01
-7,Campos,Marlim Sul,Mar,Petrobras,105.142970967742,2020-07-01
-8,Solimões,Leste Do Urucu,Terra,Petrobras,103.403412580645,2020-07-01
-9,Santos,Sapinhoá,Mar,Petrobras,99.2303758064516,2020-07-01
-10,Santos,Sururu,Mar,Petrobras,88.193484516129,2020-07-01
-11,Campos,Jubarte,Mar,Petrobras,86.9770335483871,2020-07-01
-12,Solimões,Rio Urucu,Terra,Petrobras,79.4732551612903,2020-07-01
-13,Santos,Berbigão,Mar,Petrobras,64.3549661290322,2020-07-01
-14,Campos,Albacora Leste,Mar,Petrobras,58.8004587096774,2020-07-01
-15,Campos,Marlim Leste,Mar,Petrobras,51.7042777419355,2020-07-01
-16,Santos,Lapa,Mar,Total E&P do Brasil,47.8468938709677,2020-07-01
-17,Campos,Albacora,Mar,Petrobras,46.77841,2020-07-01
-18,Santos,Sul De Lula,Mar,Petrobras,43.7522103225806,2020-07-01
-19,Campos,Barracuda,Mar,Petrobras,38.3983148387097,2020-07-01
-20,Santos,Atlanta,Mar,Enauta Energia S.A.,33.4007096774193,2020-07-01
-1,Santos,Búzios,Mar,Petrobras,848.626085483871,2020-08-01
-2,Santos,Atapu,Mar,Petrobras,763.47820483871,2020-08-01
-3,Santos,Tupi,Mar,Petrobras,515.561665806452,2020-08-01
-4,Campos,Roncador,Mar,Petrobras,209.570256774194,2020-08-01
-5,Santos,Oeste De Atapu,Mar,Petrobras,158.545206451613,2020-08-01
-6,Campos,Jubarte,Mar,Petrobras,153.792446774194,2020-08-01
-7,Campos,Marlim,Mar,Petrobras,143.292249032258,2020-08-01
-8,Campos,Marlim Sul,Mar,Petrobras,109.145223225806,2020-08-01
-9,Solimões,Leste Do Urucu,Terra,Petrobras,102.289860322581,2020-08-01
-10,Santos,Sapinhoá,Mar,Petrobras,86.2861958064516,2020-08-01
-11,Solimões,Rio Urucu,Terra,Petrobras,80.9132877419355,2020-08-01
-12,Campos,Marlim Leste,Mar,Petrobras,63.9680235483871,2020-08-01
-13,Campos,Albacora,Mar,Petrobras,49.5913790322581,2020-08-01
-14,Campos,Albacora Leste,Mar,Petrobras,46.0509093548387,2020-08-01
-15,Santos,Sururu,Mar,Petrobras,41.8597783870968,2020-08-01
-16,Campos,Barracuda,Mar,Petrobras,41.05059,2020-08-01
-17,Santos,Sul De Tupi,Mar,Petrobras,34.4983625806452,2020-08-01
-18,Campos,Marimbá,Mar,Trident Energy,34.2588106451613,2020-08-01
-19,Santos,Berbigão,Mar,Petrobras,30.4791883870968,2020-08-01
-20,Campos,Pampo,Mar,Trident Energy,26.9177132258064,2020-08-01
-1,Santos,Búzios,Mar,Petrobras,697.487707,2020-09-01
-2,Santos,Atapu,Mar,Petrobras,620.644805,2020-09-01
-3,Santos,Tupi,Mar,Petrobras,560.430141333333,2020-09-01
-4,Campos,Roncador,Mar,Petrobras,217.046265333333,2020-09-01
-5,Santos,Oeste De Atapu,Mar,Petrobras,128.884175,2020-09-01
-6,Campos,Jubarte,Mar,Petrobras,121.792207,2020-09-01
-7,Solimões,Leste Do Urucu,Terra,Petrobras,109.968948,2020-09-01
-8,Campos,Marlim Sul,Mar,Petrobras,89.6633993333333,2020-09-01
-9,Campos,Marlim,Mar,Petrobras,76.017994,2020-09-01
-10,Solimões,Rio Urucu,Terra,Petrobras,75.881828,2020-09-01
-11,Campos,Barracuda,Mar,Petrobras,44.0821016666667,2020-09-01
-12,Santos,Sul De Tupi,Mar,Petrobras,38.7335573333333,2020-09-01
-13,Santos,Sapinhoá,Mar,Petrobras,37.9102266666667,2020-09-01
-14,Campos,Marimbá,Mar,Trident Energy,37.837685,2020-09-01
-15,Santos,Lapa,Mar,Total E&P do Brasil,36.7658503333333,2020-09-01
-16,Campos,Albacora Leste,Mar,Petrobras,34.5726693333333,2020-09-01
-17,Campos,Albacora,Mar,Petrobras,31.947095,2020-09-01
-18,Santos,Atlanta,Mar,Enauta Energia S.A.,31.3175313333333,2020-09-01
-19,Campos,Marlim Leste,Mar,Petrobras,26.9987373333333,2020-09-01
-20,Santos,Mero,Mar,Petrobras,24.4734666666667,2020-09-01
-1,Santos,Tupi,Mar,Petrobras,730.263067333333,2020-11-01
-2,Santos,Búzios,Mar,Petrobras,478.283371333333,2020-11-01
-3,Campos,Roncador,Mar,Petrobras,259.861732,2020-11-01
-4,Santos,Atapu,Mar,Petrobras,136.860100666667,2020-11-01
-5,Santos,Sapinhoá,Mar,Petrobras,120.671602333333,2020-11-01
-6,Campos,Marlim,Mar,Petrobras,117.43837,2020-11-01
-7,Campos,Jubarte,Mar,Petrobras,114.067946,2020-11-01
-8,Campos,Marlim Sul,Mar,Petrobras,98.616671,2020-11-01
-9,Solimões,Leste do Urucu,Terra,Petrobras,87.963258,2020-11-01
-10,Solimões,Rio Urucu,Terra,Petrobras,68.3235443333333,2020-11-01
-11,Campos,Barracuda,Mar,Petrobras,57.3217236666667,2020-11-01
-12,Campos,Albacora Leste,Mar,Petrobras,55.6439666666667,2020-11-01
-13,Recôncavo,Araçás,Terra,Petrobras,48.586511,2020-11-01
-14,Santos,Sul de Tupi,Mar,Petrobras,43.219004,2020-11-01
-15,Campos,Albacora,Mar,Petrobras,36.341764,2020-11-01
-16,Campos,Frade,Mar,Petro Rio Jaguar,35.0610666666667,2020-11-01
-17,Campos,Marlim Leste,Mar,Petrobras,34.352823,2020-11-01
-18,Campos,Pampo,Mar,Trident Energy,34.319631,2020-11-01
-19,Recôncavo,Massapê,Terra,Petrobras,30.382758,2020-11-01
-20,Santos,Mero,Mar,Petrobras,30.2645666666667,2020-11-01
-1,Santos,Tupi,Mar,Petrobras,595.299733870968,2020-12-01
-2,Santos,Búzios,Mar,Petrobras,467.487265806452,2020-12-01
-3,Campos,Roncador,Mar,Petrobras,267.470901935484,2020-12-01
-4,Santos,Sapinhoá,Mar,Petrobras,159.989649677419,2020-12-01
-5,Campos,Jubarte,Mar,Petrobras,139.407894193548,2020-12-01
-6,Campos,Marlim,Mar,Petrobras,136.617900645161,2020-12-01
-7,Santos,Atapu,Mar,Petrobras,136.098472903226,2020-12-01
-8,Campos,Marlim Sul,Mar,Petrobras,120.358569032258,2020-12-01
-9,Campos,Marlim Leste,Mar,Petrobras,78.7669751612903,2020-12-01
-10,Solimões,Leste Do Urucu,Terra,Petrobras,73.1794764516129,2020-12-01
-11,Solimões,Rio Urucu,Terra,Petrobras,61.0402432258064,2020-12-01
-12,Campos,Albacora,Mar,Petrobras,59.8446206451613,2020-12-01
-13,Santos,Lapa,Mar,Total E&P do Brasil,46.9926783870968,2020-12-01
-14,Campos,Barracuda,Mar,Petrobras,44.9841306451613,2020-12-01
-15,Recôncavo,Araçás,Terra,Petrobras,38.7469083870968,2020-12-01
-16,Santos,Sul De Tupi,Mar,Petrobras,38.5446212903226,2020-12-01
-17,Campos,Albacora Leste,Mar,Petrobras,38.333344516129,2020-12-01
-18,Espírito Santo,Golfinho,Mar,Petrobras,29.5298387096774,2020-12-01
-19,Santos,Oeste De Atapu,Mar,Petrobras,28.2624441935484,2020-12-01
-20,Santos,Mero,Mar,Petrobras,26.3094838709677,2020-12-01
-1,Santos,Búzios,Mar,Petrobras,640.687749354839,2020-10-01
-2,Santos,Tupi,Mar,Petrobras,520.399320322581,2020-10-01
-3,Santos,Atapu,Mar,Petrobras,236.975639032258,2020-10-01
-4,Campos,Roncador,Mar,Petrobras,180.627869677419,2020-10-01
-5,Campos,Jubarte,Mar,Petrobras,168.39004,2020-10-01
-6,Campos,Marlim Sul,Mar,Petrobras,105.338169354839,2020-10-01
-7,Santos,Sapinhoá,Mar,Petrobras,94.695764516129,2020-10-01
-8,Campos,Marlim,Mar,Petrobras,75.3496609677419,2020-10-01
-9,Solimões,Leste Do Urucu,Terra,Petrobras,70.4172119354839,2020-10-01
-10,Campos,Barracuda,Mar,Petrobras,65.4832780645161,2020-10-01
-11,Campos,Albacora,Mar,Petrobras,60.9283641935484,2020-10-01
-12,Solimões,Rio Urucu,Terra,Petrobras,56.7551251612903,2020-10-01
-13,Santos,Oeste De Atapu,Mar,Petrobras,49.2107712903226,2020-10-01
-14,Campos,Albacora Leste,Mar,Petrobras,43.3747629032258,2020-10-01
-15,Campos,Marlim Leste,Mar,Petrobras,37.3579090322581,2020-10-01
-16,Campos,Garoupa,Mar,Petrobras,36.6881935483871,2020-10-01
-17,Santos,Lapa,Mar,Total E&P do Brasil,32.3504548387097,2020-10-01
-18,Santos,Atlanta,Mar,Enauta Energia,29.7498287096774,2020-10-01
-19,Santos,Sul De Tupi,Mar,Petrobras,25.3163835483871,2020-10-01
-20,Santos,Sururu,Mar,Petrobras,24.5481809677419,2020-10-01
-1,Santos,Búzios,Mar,Petrobras,615.036730645161,2021-01-01
-2,Santos,Tupi,Mar,Petrobras,495.551908709677,2021-01-01
-3,Campos,Roncador,Mar,Petrobras,259.481192258065,2021-01-01
-4,Santos,Sapinhoá,Mar,Petrobras,124.572156129032,2021-01-01
-5,Campos,Marlim,Mar,Petrobras,123.264541935484,2021-01-01
-6,Campos,Jubarte,Mar,Petrobras,101.370757419355,2021-01-01
-7,Campos,Marlim Sul,Mar,Petrobras,100.535983870968,2021-01-01
-8,Santos,Atapu,Mar,Petrobras,86.2621667741935,2021-01-01
-9,Solimões,Leste do Urucu,Terra,Petrobras,81.0481270967742,2021-01-01
-10,Campos,Marlim Leste,Mar,Petrobras,76.3338477419355,2021-01-01
-11,Solimões,Rio Urucu,Terra,Petrobras,68.8188393548387,2021-01-01
-12,Campos,Albacora Leste,Mar,Petrobras,63.6282396774194,2021-01-01
-13,Campos,Barracuda,Mar,Petrobras,58.0570974193548,2021-01-01
-14,Campos,Albacora,Mar,Petrobras,41.9232741935484,2021-01-01
-15,Santos,Sul de Tupi,Mar,Petrobras,36.0235696774193,2021-01-01
-16,Santos,Mero,Mar,Petrobras,34.2437419354839,2021-01-01
-17,Campos,Tartaruga Verde,Mar,Petrobras,30.5899793548387,2021-01-01
-18,Campos,Pampo,Mar,Trident Energy,29.1047570967742,2021-01-01
-19,Campos,Enchova Oeste,Mar,Trident Energy,21.7554009677419,2021-01-01
-20,Campos,Marimbá,Mar,Trident Energy,21.4543322580645,2021-01-01
-1,Santos,Tupi,Mar,Petrobras,675.930619354839,2021-03-01
-2,Santos,Búzios,Mar,Petrobras,578.264780645161,2021-03-01
-3,Campos,Roncador,Mar,Petrobras,288.57038483871,2021-03-01
-4,Campos,Marlim,Mar,Petrobras,215.956986451613,2021-03-01
-5,Campos,Jubarte,Mar,Petrobras,135.248138064516,2021-03-01
-6,Campos,Marlim Sul,Mar,Petrobras,125.495138709677,2021-03-01
-7,Campos,Albacora,Mar,Petrobras,92.9227577419355,2021-03-01
-8,Solimões,Leste do Urucu,Terra,Petrobras,83.4252167741935,2021-03-01
-9,Santos,Sapinhoá,Mar,Petrobras,73.6765525806452,2021-03-01
-10,Solimões,Rio Urucu,Terra,Petrobras,73.3043196774193,2021-03-01
-11,Campos,Barracuda,Mar,Petrobras,67.6645525806452,2021-03-01
-12,Santos,Lapa,Mar,Total E&P do Brasil,55.055065483871,2021-03-01
-13,Santos,Atapu,Mar,Petrobras,52.318435483871,2021-03-01
-14,Santos,Sul de Tupi,Mar,Petrobras,50.3355474193548,2021-03-01
-15,Campos,Albacora Leste,Mar,Petrobras,46.9047238709677,2021-03-01
-16,Santos,Sururu,Mar,Petrobras,24.9566503225806,2021-03-01
-17,Espírito Santo,Golfinho,Mar,Petrobras,23.572064516129,2021-03-01
-18,Campos,Marlim Leste,Mar,Petrobras,22.288875483871,2021-03-01
-19,Campos,Tartaruga Verde,Mar,Petrobras,21.3819735483871,2021-03-01
-20,Santos,Atlanta,Mar,Enauta Energia,17.0774516129032,2021-03-01
-1,Santos,Búzios,Mar,Petrobras,577.491939666667,2021-04-01
-2,Santos,Tupi,Mar,Petrobras,533.152202333333,2021-04-01
-3,Campos,Roncador,Mar,Petrobras,212.267199,2021-04-01
-4,Campos,Marlim,Mar,Petrobras,192.052335666667,2021-04-01
-5,Campos,Marlim Sul,Mar,Petrobras,120.352381666667,2021-04-01
-6,Solimões,Leste Do Urucu,Terra,Petrobras,119.680063666667,2021-04-01
-7,Santos,Sapinhoá,Mar,Petrobras,109.328826333333,2021-04-01
-8,Solimões,Rio Urucu,Terra,Petrobras,106.629237333333,2021-04-01
-9,Campos,Jubarte,Mar,Petrobras,103.155534,2021-04-01
-10,Santos,Mero,Mar,Petrobras,63.6143,2021-04-01
-11,Campos,Albacora Leste,Mar,Petrobras,44.3674626666667,2021-04-01
-12,Campos,Marlim Leste,Mar,Petrobras,40.0606426666667,2021-04-01
-13,Espírito Santo,Golfinho,Mar,Petrobras,39.6741666666667,2021-04-01
-14,Campos,Barracuda,Mar,Petrobras,36.6803303333333,2021-04-01
-15,Santos,Sul De Tupi,Mar,Petrobras,35.0311626666667,2021-04-01
-16,Campos,Marimbá,Mar,Trident Energy,27.3215593333333,2021-04-01
-17,Campos,Albacora,Mar,Petrobras,26.7183353333333,2021-04-01
-18,Recôncavo,Araçás,Terra,Petrobras,23.83529,2021-04-01
-19,Campos,Tartaruga Verde,Mar,Petrobras,23.1039306666667,2021-04-01
-20,Campos,Caratinga,Mar,Petrobras,23.0800353333333,2021-04-01
-1,Santos,Búzios,Mar,Petrobras,621.384180967742,2021-05-01
-2,Santos,Tupi,Mar,Petrobras,489.694216774194,2021-05-01
-3,Campos,Roncador,Mar,Petrobras,180.33722483871,2021-05-01
-4,Campos,Marlim,Mar,Petrobras,146.174199354839,2021-05-01
-5,Solimões,Leste do Urucu,Terra,Petrobras,143.184208064516,2021-05-01
-6,Solimões,Rio Urucu,Terra,Petrobras,126.772285483871,2021-05-01
-7,Santos,Sapinhoá,Mar,Petrobras,124.491433870968,2021-05-01
-8,Campos,Jubarte,Mar,Petrobras,121.387727741935,2021-05-01
-9,Campos,Marlim Sul,Mar,Petrobras,112.45604516129,2021-05-01
-10,Campos,Albacora Leste,Mar,Petrobras,72.5690648387097,2021-05-01
-11,Santos,Mero,Mar,Petrobras,69.5582903225806,2021-05-01
-12,Campos,Marlim Leste,Mar,Petrobras,60.5663422580645,2021-05-01
-13,Campos,Barracuda,Mar,Petrobras,37.2578787096774,2021-05-01
-14,Santos,Sururu,Mar,Petrobras,37.1027138709677,2021-05-01
-15,Campos,Albacora,Mar,Petrobras,37.0001909677419,2021-05-01
-16,Santos,Atlanta,Mar,Enauta Energia,35.1445806451613,2021-05-01
-17,Santos,Sul De Tupi,Mar,Petrobras,34.479785483871,2021-05-01
-18,Campos,Marimbá,Mar,Trident Energy,32.6410587096774,2021-05-01
-19,Campos,Pampo,Mar,Trident Energy,30.4122180645161,2021-05-01
-20,Santos,Atapu,Mar,Petrobras,23.1663806451613,2021-05-01
-1,Santos,Búzios,Mar,Petrobras,710.279907666667,2021-06-01
-2,Santos,Tupi,Mar,Petrobras,670.976378333333,2021-06-01
-3,Campos,Roncador,Mar,Petrobras,223.152299,2021-06-01
-4,Solimões,Leste do Urucu,Terra,Petrobras,117.407846,2021-06-01
-5,Solimões,Rio Urucu,Terra,Petrobras,108.193863666667,2021-06-01
-6,Campos,Jubarte,Mar,Petrobras,108.048752666667,2021-06-01
-7,Campos,Marlim Sul,Mar,Petrobras,105.824258333333,2021-06-01
-8,Campos,Marlim,Mar,Petrobras,101.274333,2021-06-01
-9,Santos,Sapinhoá,Mar,Petrobras,98.259349,2021-06-01
-10,Campos,Albacora Leste,Mar,Petrobras,94.7992353333333,2021-06-01
-11,Campos,Albacora,Mar,Petrobras,65.1500623333333,2021-06-01
-12,Santos,Mero,Mar,Petrobras,57.5006333333333,2021-06-01
-13,Santos,Sul de Tupi,Mar,Petrobras,46.281314,2021-06-01
-14,Campos,Marlim Leste,Mar,Petrobras,44.2121216666667,2021-06-01
-15,Santos,Sururu,Mar,Petrobras,34.7063446666667,2021-06-01
-16,Campos,Pampo,Mar,Trident Energy,34.6204736666667,2021-06-01
-17,Santos,Atlanta,Mar,Enauta Energia,29.2149546666667,2021-06-01
-18,Campos,Barracuda,Mar,Petrobras,27.412746,2021-06-01
-19,Santos,Atapu,Mar,Petrobras,26.050557,2021-06-01
-20,Campos,Marimbá,Mar,Trident Energy,23.616455,2021-06-01
-1,Santos,Tupi,Mar,Petrobras,778.244285483871,2021-07-01
-2,Santos,Búzios,Mar,Petrobras,613.985803870968,2021-07-01
-3,Campos,Jubarte,Mar,Petrobras,311.318329677419,2021-07-01
-4,Campos,Roncador,Mar,Petrobras,223.725482258065,2021-07-01
-5,Santos,Sapinhoá,Mar,Petrobras,179.602542903226,2021-07-01
-6,Campos,Marlim,Mar,Petrobras,145.274143548387,2021-07-01
-7,Campos,Marlim Sul,Mar,Petrobras,106.635794516129,2021-07-01
-8,Solimões,Leste Do Urucu,Terra,Petrobras,92.6338293548387,2021-07-01
-9,Campos,Albacora Leste,Mar,Petrobras,91.0231970967742,2021-07-01
-10,Solimões,Rio Urucu,Terra,Petrobras,84.929554516129,2021-07-01
-11,Santos,Mero,Mar,Petrobras,67.3146451612903,2021-07-01
-12,Campos,Albacora,Mar,Petrobras,66.5546396774193,2021-07-01
-13,Santos,Sururu,Mar,Petrobras,53.7317264516129,2021-07-01
-14,Campos,Marlim Leste,Mar,Petrobras,47.2900332258065,2021-07-01
-15,Santos,Sul De Tupi,Mar,Petrobras,46.3858983870968,2021-07-01
-16,Campos,Pampo,Mar,Trident Energy,37.9226387096774,2021-07-01
-17,Santos,Atapu,Mar,Petrobras,37.2628409677419,2021-07-01
-18,Santos,Lapa,Mar,TotalEnergies EP,31.9664535483871,2021-07-01
-19,Campos,Argonauta,Mar,Shell Brasil,28.4311767741935,2021-07-01
-20,Campos,Marimbá,Mar,Trident Energy,25.2069425806452,2021-07-01
-1,Santos,Tupi,Mar,Petrobras,587.095623870968,2021-08-01
-2,Santos,Búzios,Mar,Petrobras,471.789786129032,2021-08-01
-3,Santos,Sépia,Mar,Petrobras,204.728153870968,2021-08-01
-4,Campos,Roncador,Mar,Petrobras,174.970289354839,2021-08-01
-5,Campos,Jubarte,Mar,Petrobras,121.076315483871,2021-08-01
-6,Solimões,Leste Do Urucu,Terra,Petrobras,105.507933548387,2021-08-01
-7,Campos,Marlim Sul,Mar,Petrobras,101.572407741935,2021-08-01
-8,Solimões,Rio Urucu,Terra,Petrobras,97.9733377419355,2021-08-01
-9,Santos,Sapinhoá,Mar,Petrobras,93.1267577419355,2021-08-01
-10,Santos,Sururu,Mar,Petrobras,93.0113948387097,2021-08-01
-11,Santos,Atapu,Mar,Petrobras,91.4550435483871,2021-08-01
-12,Campos,Albacora,Mar,Petrobras,83.9455225806452,2021-08-01
-13,Campos,Marlim,Mar,Petrobras,79.8022661290322,2021-08-01
-14,Campos,Albacora Leste,Mar,Petrobras,63.831055483871,2021-08-01
-15,Campos,Marlim Leste,Mar,Petrobras,46.3737432258065,2021-08-01
-16,Santos,Atlanta,Mar,Enauta Energia,44.5288593548387,2021-08-01
-17,Santos,Sul De Tupi,Mar,Petrobras,41.0287016129032,2021-08-01
-18,Campos,Namorado,Mar,Petrobras,36.0288387096774,2021-08-01
-19,Espírito Santo,Golfinho,Mar,Petrobras,35.9660967741935,2021-08-01
-20,Campos,Polvo,Mar,Petro Rio O&G,33.6195658064516,2021-08-01
-1,Santos,Sépia,Mar,Petrobras,1065.097606,2021-09-01
-2,Santos,Tupi,Mar,Petrobras,542.839061,2021-09-01
-3,Santos,Búzios_Eco,Mar,Petrobras,319.352011,2021-09-01
-4,Campos,Roncador,Mar,Petrobras,209.000631333333,2021-09-01
-5,Santos,Sépia Leste,Mar,Petrobras,146.217893666667,2021-09-01
-6,Campos,Jubarte,Mar,Petrobras,139.950055333333,2021-09-01
-7,Santos,Sapinhoá,Mar,Petrobras,139.792352666667,2021-09-01
-8,Campos,Marlim,Mar,Petrobras,116.758778333333,2021-09-01
-9,Santos,Búzios,Mar,Petrobras,112.908707333333,2021-09-01
-10,Solimões,Leste Do Urucu,Terra,Petrobras,110.496073333333,2021-09-01
-11,Campos,Marlim Sul,Mar,Petrobras,110.364890666667,2021-09-01
-12,Solimões,Rio Urucu,Terra,Petrobras,99.34337,2021-09-01
-13,Campos,Albacora Leste,Mar,Petrobras,73.0638066666667,2021-09-01
-14,Santos,Sururu,Mar,Petrobras,66.8565696666667,2021-09-01
-15,Campos,Marlim Leste,Mar,Petrobras,58.2308626666667,2021-09-01
-16,Santos,Atapu,Mar,Petrobras,53.2273303333333,2021-09-01
-17,Camamu,Manati,Mar,Petrobras,35.5642333333333,2021-09-01
-18,Santos,Sul De Tupi,Mar,Petrobras,35.2923066666667,2021-09-01
-19,Campos,Pampo,Mar,Trident Energy,33.997397,2021-09-01
-20,Santos,Atlanta,Mar,Enauta Energia,33.5065333333333,2021-09-01
-1,Santos,Sépia,Mar,Petrobras,1090.68807903226,2021-10-01
-2,Santos,Tupi,Mar,Petrobras,608.197389677419,2021-10-01
-3,Santos,Búzios,Mar,Petrobras,516.607480645161,2021-10-01
-4,Campos,Roncador,Mar,Petrobras,239.766579032258,2021-10-01
-5,Santos,Sépia Leste,Mar,Petrobras,149.73098483871,2021-10-01
-6,Santos,Sapinhoá,Mar,Petrobras,139.239857419355,2021-10-01
-7,Campos,Jubarte,Mar,Petrobras,131.254836451613,2021-10-01
-8,Campos,Marlim Sul,Mar,Petrobras,109.267642258065,2021-10-01
-9,Solimões,Leste Do Urucu,Terra,Petrobras,100.626282258065,2021-10-01
-10,Solimões,Rio Urucu,Terra,Petrobras,95.384005483871,2021-10-01
-11,Campos,Marlim,Mar,Petrobras,89.5168303225806,2021-10-01
-12,Campos,Albacora Leste,Mar,Petrobras,78.9159790322581,2021-10-01
-13,Santos,Sururu,Mar,Petrobras,54.9406693548387,2021-10-01
-14,Campos,Marlim Leste,Mar,Petrobras,54.8576661290322,2021-10-01
-15,Potiguar,Lorena,Terra,Potiguar E&P S.A.,47.5136303225806,2021-10-01
-16,Santos,Atapu,Mar,Petrobras,46.2156877419355,2021-10-01
-17,Campos,Barracuda,Mar,Petrobras,42.9747429032258,2021-10-01
-18,Amazonas,Azulão,Terra,Eneva,39.7251716129032,2021-10-01
-19,Santos,Sul De Tupi,Mar,Petrobras,38.5077583870968,2021-10-01
-20,Campos,Pampo,Mar,Trident Energy,37.39,2021-10-01
-1,Santos,Búzios,Mar,Petrobras,600,2021-12-01
-2,Santos,Tupi,Mar,Petrobras,585.266248387097,2021-12-01
-3,Campos,Roncador,Mar,Petrobras,196.672191612903,2021-12-01
-4,Santos,Mero,Mar,Petrobras,161.836032258065,2021-12-01
-5,Campos,Jubarte,Mar,Petrobras,147.047856129032,2021-12-01
-6,Santos,Sépia,Mar,Petrobras,144.136109677419,2021-12-01
-7,Campos,Marlim,Mar,Petrobras,141.02758,2021-12-01
-8,Campos,Marlim Sul,Mar,Petrobras,131.599638064516,2021-12-01
-9,Santos,Sapinhoá,Mar,Petrobras,117.354688064516,2021-12-01
-10,Solimões,Leste Do Urucu,Terra,Petrobras,100.447056129032,2021-12-01
-11,Solimões,Rio Urucu,Terra,Petrobras,93.6856287096774,2021-12-01
-12,Santos,Lapa,Mar,TotalEnergies EP,84.5467987096774,2021-12-01
-13,Campos,Tubarão Martelo,Mar,Petro Rio O&G,65.7841687096774,2021-12-01
-14,Campos,Polvo,Mar,Petro Rio O&G,57.8384541935484,2021-12-01
-15,Santos,Sururu,Mar,Petrobras,56.72171,2021-12-01
-16,Campos,Barracuda,Mar,Petrobras,46.7836467741935,2021-12-01
-17,Campos,Marlim Leste,Mar,Petrobras,41.331984516129,2021-12-01
-18,Santos,Sul De Tupi,Mar,Petrobras,35.9784474193548,2021-12-01
-19,Campos,Cherne,Mar,Petrobras,32.6242903225806,2021-12-01
-20,Campos,Albacora Leste,Mar,Petrobras,27,2021-12-01
-1,Santos,Tupi,Mar,Petrobras,634,2021-11-01
-2,Santos,Búzios,Mar,Petrobras,579,2021-11-01
-3,Santos,Sépia,Mar,Petrobras,523,2021-11-01
-4,Campos,Roncador,Mar,Petrobras,254,2021-11-01
-5,Campos,Jubarte,Mar,Petrobras,142,2021-11-01
-6,Santos,Sapinhoá,Mar,Petrobras,140,2021-11-01
-7,Campos,Marlim,Mar,Petrobras,133,2021-11-01
-8,Santos,Sururu,Mar,Petrobras,101,2021-11-01
-9,Campos,Marlim Sul,Mar,Petrobras,100,2021-11-01
-10,Campos,Albacora Leste,Mar,Petrobras,84,2021-11-01
-11,Solimões,Leste do Urucu,Terra,Petrobras,82,2021-11-01
-12,Solimões,Rio Urucu,Terra,Petrobras,76,2021-11-01
-13,Santos,Atapu,Mar,Petrobras,73,2021-11-01
-14,Santos,Sépia Leste,Mar,Petrobras,72,2021-11-01
-15,Campos,Tubarão Martelo,Mar,Petro Rio O&G,63,2021-11-01
-16,Campos,Polvo,Mar,Petro Rio O&G,48,2021-11-01
-17,Campos,Barracuda,Mar,Petrobras,46,2021-11-01
-18,Campos,Marlim Leste,Mar,Petrobras,42,2021-11-01
-19,Santos,Sul De Tupi,Mar,Petrobras,42,2021-11-01
-20,Campos,Cherne,Mar,Petrobras,30,2021-11-01
-1,Santos,Tupi,Mar,Petrobras,812.663306428571,2021-02-01
-2,Santos,Búzios,Mar,Petrobras,585.906294285714,2021-02-01
-3,Campos,Roncador,Mar,Petrobras,296.636355357143,2021-02-01
-4,Santos,Sapinhoá,Mar,Petrobras,175.273308571429,2021-02-01
-5,Campos,Jubarte,Mar,Petrobras,129.673223571429,2021-02-01
-6,Solimões,Leste do Urucu,Terra,Petrobras,127.091243214286,2021-02-01
-7,Campos,Marlim Sul,Mar,Petrobras,122.772835714286,2021-02-01
-8,Campos,Marlim,Mar,Petrobras,114.059272142857,2021-02-01
-9,Solimões,Rio Urucu,Terra,Petrobras,96.5009142857143,2021-02-01
-10,Campos,Albacora,Mar,Petrobras,69.372805,2021-02-01
-11,Parnaíba,Gavião Preto,Terra,Eneva,67.7271428571429,2021-02-01
-12,Campos,Barracuda,Mar,Petrobras,62.5287792857143,2021-02-01
-13,Campos,Albacora Leste,Mar,Petrobras,55.8138353571428,2021-02-01
-14,Santos,Sul de Tupi,Mar,Petrobras,53.1360332142857,2021-02-01
-15,Santos,Mero,Mar,Petrobras,36.6569285714286,2021-02-01
-16,Campos,Pampo,Mar,Trident Energy,36.1254532142857,2021-02-01
-17,Campos,Marlim Leste,Mar,Petrobras,33.9095714285714,2021-02-01
-18,Campos,Bonito,Mar,Trident Energy,31.9366242857143,2021-02-01
-19,Santos,Atapu,Mar,Petrobras,28.7747260714286,2021-02-01
-20,Campos,Enchova,Mar,Trident Energy,28.3363685714286,2021-02-01
-1,Santos,Tupi,Mar,Petrobras,554.931528333333,2022-04-01
-2,Santos,Búzios,Mar,Petrobras,437,2022-04-01
-3,Campos,Roncador,Mar,Petrobras,176.433500333333,2022-04-01
-4,Campos,Jubarte,Mar,Petrobras,168.986627,2022-04-01
-5,Campos,Marlim Sul,Mar,Petrobras,146.036362333333,2022-04-01
-6,Campos,Marlim,Mar,Petrobras,144.620422666667,2022-04-01
-7,Solimões,Leste do Urucu,Terra,Petrobras,110.007202666667,2022-04-01
-8,Solimões,Rio Urucu,Terra,Petrobras,108.546798666667,2022-04-01
-9,Santos,Mero,Mar,Petrobras,74.320665,2022-04-01
-10,Campos,Tubarão Martelo,Mar,Petro Rio O&G,51.1727393333333,2022-04-01
-11,Santos,Atapu,Mar,Petrobras,49.969193,2022-04-01
-12,Campos,Barracuda,Mar,Petrobras,44.9184373333333,2022-04-01
-13,Santos,Lapa,Mar,TotalEnergies EP,40.6210343333333,2022-04-01
-14,Santos,Sépia,Mar,Petrobras,39.9780923333333,2022-04-01
-15,Campos,Albacora Leste,Mar,Petrobras,39.0071436666667,2022-04-01
-16,Santos,Sapinhoá,Mar,Petrobras,36.703108,2022-04-01
-17,Santos,Sul de Tupi,Mar,Petrobras,35.305368,2022-04-01
-18,Campos,Marlim Leste,Mar,Petrobras,34.2109983333333,2022-04-01
-19,Campos,Sururu,Mar,Petrobras,34.162428,2022-04-01
-20,Espírito Santo,Golfinho,Mar,Petrobras,22,2022-04-01
-1,Santos,Tupi,Mar,Petrobras,669.678756428571,2022-02-01
-2,Santos,Búzios,Mar,Petrobras,466,2022-02-01
-3,Campos,Roncador,Mar,Petrobras,196.116640714286,2022-02-01
-4,Solimões,Leste Do Urucu,Terra,Petrobras,144.703801428571,2022-02-01
-5,Solimões,Rio Urucu,Terra,Petrobras,121.914087142857,2022-02-01
-6,Campos,Albacora,Mar,Petrobras,112.729643214286,2022-02-01
-7,Campos,Marlim,Mar,Petrobras,105.120438214286,2022-02-01
-8,Santos,Sapinhoá,Mar,Petrobras,95.3620357142857,2022-02-01
-9,Campos,Jubarte,Mar,Petrobras,92.8313775,2022-02-01
-10,Campos,Marlim Sul,Mar,Petrobras,76.6818978571428,2022-02-01
-11,Santos,Sururu,Mar,Petrobras,76.2132517857143,2022-02-01
-12,Santos,Atapu,Mar,Petrobras,72.5939264285714,2022-02-01
-13,Campos,Albacora Leste,Mar,Petrobras,53.5764971428571,2022-02-01
-14,Campos,Barracuda,Mar,Petrobras,52.6605721428571,2022-02-01
-15,Campos,Marlim Leste,Mar,Petrobras,51.0360082142857,2022-02-01
-16,Santos,Sul De Tupi,Mar,Petrobras,47.0733725,2022-02-01
-17,Santos,Sépia,Mar,Petrobras,45.9999307142857,2022-02-01
-18,Campos,Tubarão Martelo,Mar,Petro Rio O&G,35.0856575,2022-02-01
-19,Campos,Cherne,Mar,Petrobras,34.7113571428571,2022-02-01
-20,Espírito Santos,Golfinho,Mar,Petrobras,34,2022-02-01
-1,Santos,Búzios,Mar,Petrobras,537,2022-01-01
-2,Santos,Tupi,Mar,Petrobras,499.856809032258,2022-01-01
-3,Campos,Roncador,Mar,Petrobras,255.71874,2022-01-01
-4,Campos,Marlim,Mar,Petrobras,168.327555806452,2022-01-01
-5,Santos,Sapinhoá,Mar,Petrobras,167.343489677419,2022-01-01
-6,Campos,Albacora,Mar,Petrobras,132.004725483871,2022-01-01
-7,Campos,Jubarte,Mar,Petrobras,104.968647419355,2022-01-01
-8,Campos,Marlim Sul,Mar,Petrobras,100.392828709677,2022-01-01
-9,Solimões,Leste Do Urucu,Terra,Petrobras,82.1832203225806,2022-01-01
-10,Santos,Mero,Mar,Petrobras,80.7575480645161,2022-01-01
-11,Solimões,Rio Urucu,Terra,Petrobras,76.9567335483871,2022-01-01
-12,Santos,Atapu,Mar,Petrobras,76.9492341935484,2022-01-01
-13,Santos,Sépia,Mar,Petrobras,74.4606312903226,2022-01-01
-14,Campos,Albacora Leste,Mar,Petrobras,57.1877574193548,2022-01-01
-15,Campos,Tubarão Martelo,Mar,Petro Rio O&G,55.1300338709677,2022-01-01
-16,Campos,Barracuda,Mar,Petrobras,53.3053425806452,2022-01-01
-17,Santos,Sururu,Mar,Petrobras,51.2923164516129,2022-01-01
-18,Santos,Lapa,Mar,TotalEnergies EP,42.7541351612903,2022-01-01
-19,Campos,Polvo,Mar,Petro Rio O&G,42.5910890322581,2022-01-01
-20,Campos,Marlim Leste,Mar,Petrobras,40.071,2022-01-01
-1,Santos,Mero,Mar,Petrobras,1575.52468433333,2022-06-01
-2,Santos,Búzios,Mar,Petrobras,568,2022-06-01
-3,Santos,Tupi,Mar,Petrobras,530.115696333333,2022-06-01
-4,Campos,Roncador,Mar,Petrobras,216.310133333333,2022-06-01
-5,Campos,Marlim Sul,Mar,Petrobras,105.174721,2022-06-01
-6,Solimões,Leste Do Urucu,Terra,Petrobras,96.4220473333333,2022-06-01
-7,Campos,Marlim,Mar,Petrobras,92.7461813333333,2022-06-01
-8,Solimões,Rio Urucu,Terra,Petrobras,87.1755526666667,2022-06-01
-9,Santos,Sapinhoá,Mar,Petrobras,79.4607893333333,2022-06-01
-10,Campos,Jubarte,Mar,Petrobras,75.074354,2022-06-01
-11,Campos,Albacora,Mar,Petrobras,68.2082136666667,2022-06-01
-12,Campos,Marlim Leste,Mar,Petrobras,57.244302,2022-06-01
-13,Santos,Anc_Mero,Mar,Petrobras,57.1433823333333,2022-06-01
-14,Campos,Tubarão Martelo,Mar,Petro Rio O&G,47.5205703333333,2022-06-01
-15,Campos,Albacora Leste,Mar,Petrobras,47.0378196666667,2022-06-01
-16,Campos,Pampo,Mar,Trident Energy,42.8251163333333,2022-06-01
-17,Santos,Sururu,Mar,Petrobras,41.3967226666667,2022-06-01
-18,Campos,Barracuda,Mar,Petrobras,38.3660043333333,2022-06-01
-19,Santos,Lapa,Mar,TotalEnergies EP,35.2181866666667,2022-06-01
-20,Santos,Atapu,Mar,Petrobras,32,2022-06-01
-1,Santos,Mero,Mar,Petrobras,1565.78409709677,2022-05-01
-2,Santos,Tupi,Mar,Petrobras,641.528486774194,2022-05-01
-3,Santos,Búzios,Mar,Petrobras,525,2022-05-01
-4,Campos,Roncador,Mar,Petrobras,202.977806451613,2022-05-01
-5,Campos,Jubarte,Mar,Petrobras,123.256267419355,2022-05-01
-6,Campos,Marlim,Mar,Petrobras,108.100648064516,2022-05-01
-7,Campos,Marlim Sul,Mar,Petrobras,105.479939354839,2022-05-01
-8,Santos,Sépia,Mar,Petrobras,85,2022-05-01
-9,Solimões,Leste Do Urucu,Terra,Petrobras,82.1808393548387,2022-05-01
-10,Solimões,Rio Urucu,Terra,Petrobras,76.4358861290322,2022-05-01
-11,Santos,Atapu,Mar,Petrobras,66,2022-05-01
-12,Santos,Sururu,Mar,Petrobras,63.7892841935484,2022-05-01
-13,Campos,Albacora,Mar,Petrobras,57.7886790322581,2022-05-01
-14,Santos,Anc_Mero,Mar,Petrobras,56.7900967741935,2022-05-01
-15,Santos,Sapinhoá,Mar,Petrobras,54.9238048387097,2022-05-01
-16,Campos,Barracuda,Mar,Petrobras,53.8061296774193,2022-05-01
-17,Campos,Pargo,Mar,Perenco Brasil,52.5198664516129,2022-05-01
-18,Campos,Albacora Leste,Mar,Petrobras,52.2640306451613,2022-05-01
-19,Campos,Tubarão Martelo,Mar,Petro Rio O&G,47.3917983870968,2022-05-01
-20,Santos,Sul De Tupi,Mar,Petrobras,42.3749003225806,2022-05-01
-1,Santos,Tupi,Mar,Petrobras,587.437061935484,2022-03-01
-2,Santos,Búzios,Mar,Petrobras,520,2022-03-01
-3,Campos,Roncador,Mar,Petrobras,223.160126451613,2022-03-01
-4,Campos,Marlim Sul,Mar,Petrobras,141.852381935484,2022-03-01
-5,Solimões,Leste Do Urucu,Terra,Petrobras,121.600784193548,2022-03-01
-6,Solimões,Rio Urucu,Terra,Petrobras,120.058490967742,2022-03-01
-7,Campos,Jubarte,Mar,Petrobras,102.986260645161,2022-03-01
-8,Campos,Marlim,Mar,Petrobras,102.109986129032,2022-03-01
-9,Santos,Sururu,Mar,Petrobras,72.6769767741935,2022-03-01
-10,Santos,Lapa,Mar,TotalEnergies EP,63.9051135483871,2022-03-01
-11,Santos,Sapinhoá,Mar,Petrobras,63.2895693548387,2022-03-01
-12,Campos,Albacora,Mar,Petrobras,56.7097209677419,2022-03-01
-13,Santos,Mero,Mar,Petrobras,53.9531790322581,2022-03-01
-14,Campos,Albacora Leste,Mar,Petrobras,52.3062767741935,2022-03-01
-15,Santos,Atapu,Mar,Petrobras,51.3074441935484,2022-03-01
-16,Campos,Barracuda,Mar,Petrobras,47.8086687096774,2022-03-01
-17,Campos,Marlim Leste,Mar,Petrobras,45.5229806451613,2022-03-01
-18,Campos,Tubarão Martelo,Mar,Petro Rio O&G,42.4150541935484,2022-03-01
-19,Santos,Sépia,Mar,Petrobras,41.5990961290322,2022-03-01
-20,Santos,Sul De Tupi,Mar,Petrobras,41,2022-03-01
-1,Santos,Búzios,Mar,PETROBRAS,566.3625070967742,2022-08-01
-2,Santos,Tupi,Mar,PETROBRAS,558.4618648387097,2022-08-01
-3,Santos,Mero,Mar,PETROBRAS,382.3364551612903,2022-08-01
-4,Campos,Roncador,Mar,PETROBRAS,183.02029032258065,2022-08-01
-5,Campos,Marlim Sul,Mar,PETROBRAS,138.58656741935482,2022-08-01
-6,Campos,Marlim,Mar,PETROBRAS,115.24186967741936,2022-08-01
-7,Santos,Sapinhoá,Mar,PETROBRAS,93.73643193548386,2022-08-01
-8,Campos,Peregrino,Mar,EQUINOR BRASIL,93.5324422580645,2022-08-01
-9,Santos,Sépia,Mar,PETROBRAS,92.84471322580644,2022-08-01
-10,Campos,Albacora,Mar,PETROBRAS,79.23534806451613,2022-08-01
-11,Santos,Atapu,Mar,PETROBRAS,75.61390225806451,2022-08-01
-12,Campos,Jubarte,Mar,PETROBRAS,74.6874135483871,2022-08-01
-13,Solimões,Leste do Urucu,Terra,PETROBRAS,57.80232161290322,2022-08-01
-14,Campos,Barracuda,Mar,PETROBRAS,52.52881419354839,2022-08-01
-15,Solimões,Rio Urucu,Terra,PETROBRAS,45.210311612903226,2022-08-01
-16,Campos,Marlim Leste,Mar,PETROBRAS,44.02382096774194,2022-08-01
-17,Campos,Albacora Leste,Mar,PETROBRAS,43.80684580645161,2022-08-01
-18,Santos,Sul de Tupi,Mar,PETROBRAS,36.21084967741936,2022-08-01
-19,Santos,Sururu,Mar,PETROBRAS,30.666230967741935,2022-08-01
-20,Santos,Lapa,Mar,TOTALENERGIES EP,28.827224516129032,2022-08-01
-1,Santos,Búzios,Mar,PETROBRAS,702.3248551612902,2022-12-01
-2,Santos,Tupi,Mar,PETROBRAS,699.3244267741935,2022-12-01
-3,Santos,Mero,Mar,PETROBRAS,226.84941580645162,2022-12-01
-4,Campos,Marlim Sul,Mar,PETROBRAS,168.50648419354837,2022-12-01
-5,Campos,Jubarte,Mar,PETROBRAS,153.74889741935485,2022-12-01
-6,Campos,Roncador,Mar,PETROBRAS,145.39317516129032,2022-12-01
-7,Santos,Sépia,Mar,PETROBRAS,128.57692806451612,2022-12-01
-8,Santos,Itapu,Mar,PETROBRAS,101.44376774193549,2022-12-01
-9,Santos,Itapu_Eco,Mar,PETROBRAS,94.74205967741936,2022-12-01
-10,Campos,Albacora Leste,Mar,PETROBRAS,92.28065290322581,2022-12-01
-11,Santos,Atapu,Mar,PETROBRAS,87.02831419354838,2022-12-01
-12,Santos,Sapinhoá,Mar,PETROBRAS,79.8024441935484,2022-12-01
-13,Campos,Albacora,Mar,PETROBRAS,69.35807193548388,2022-12-01
-14,Amazonas,PA-1ENV25DAM_AM-T-84_AM-T-85,Terra,ENEVA,67.78574193548387,2022-12-01
-15,Amazonas,Azulão,Terra,ENEVA,64.8259470967742,2022-12-01
-16,Solimões,Leste do Urucu,Terra,PETROBRAS,47.17088387096774,2022-12-01
-17,Santos,Sururu,Mar,PETROBRAS,47.08591419354839,2022-12-01
-18,Santos,Sul de Tupi,Mar,PETROBRAS,46.28492,2022-12-01
-19,Santos,Lapa,Mar,TOTALENERGIES EP,42.992576451612905,2022-12-01
-20,Solimões,Rio Urucu,Terra,PETROBRAS,39.44928741935484,2022-12-01
-1,Santos,Mero,Mar,PETROBRAS,993.1841632258065,2022-07-01
-2,Santos,Tupi,Mar,PETROBRAS,657.8511658064516,2022-07-01
-3,Santos,Búzios,Mar,PETROBRAS,556.4829506451613,2022-07-01
-4,Santos,Sapinhoá,Mar,PETROBRAS,212.77683838709677,2022-07-01
-5,Campos,Roncador,Mar,PETROBRAS,193.9426451612903,2022-07-01
-6,Campos,Albacora,Mar,PETROBRAS,105.3166035483871,2022-07-01
-7,Campos,Marlim,Mar,PETROBRAS,102.02918,2022-07-01
-8,Solimões,Leste do Urucu,Terra,PETROBRAS,91.3059170967742,2022-07-01
-9,Campos,Marlim Sul,Mar,PETROBRAS,91.13807096774194,2022-07-01
-10,Solimões,Rio Urucu,Terra,PETROBRAS,81.28718870967742,2022-07-01
-11,Campos,Albacora Leste,Mar,PETROBRAS,66.28304193548387,2022-07-01
-12,Santos,Sépia,Mar,PETROBRAS,59.53428612903225,2022-07-01
-13,Campos,Marlim Leste,Mar,PETROBRAS,56.804659032258066,2022-07-01
-14,Amazonas,Azulão,Terra,ENEVA,54.437978709677424,2022-07-01
-15,Santos,Sul de Tupi,Mar,PETROBRAS,46.0361029032258,2022-07-01
-16,Campos,Barracuda,Mar,PETROBRAS,43.946459677419355,2022-07-01
-17,Campos,Jubarte,Mar,PETROBRAS,39.14369774193548,2022-07-01
-18,Santos,Anc_Mero,Mar,PETROBRAS,36.02222290322581,2022-07-01
-19,Santos,Atapu,Mar,PETROBRAS,35.685211612903224,2022-07-01
-20,Campos,Tubarão Martelo,Mar,PETRO RIO O&G,35.52094419354838,2022-07-01
-1,Santos,Tupi,Mar,PETROBRAS,742.1165616666666,2022-11-01
-2,Santos,Búzios,Mar,PETROBRAS,591.9148273333334,2022-11-01
-3,Santos,Mero,Mar,PETROBRAS,318.166593,2022-11-01
-4,Santos,Sapinhoá,Mar,PETROBRAS,248.45764400000002,2022-11-01
-5,Campos,Roncador,Mar,PETROBRAS,180.45331866666666,2022-11-01
-6,Campos,Marlim Sul,Mar,PETROBRAS,134.38565566666665,2022-11-01
-7,Santos,Atapu,Mar,PETROBRAS,107.61055866666666,2022-11-01
-8,Campos,Marlim,Mar,PETROBRAS,94.98038666666666,2022-11-01
-9,Campos,Albacora Leste,Mar,PETROBRAS,93.50929,2022-11-01
-10,Campos,Jubarte,Mar,PETROBRAS,81.34030333333334,2022-11-01
-11,Amazonas,Azulão,Terra,ENEVA,74.68475833333333,2022-11-01
-12,Campos,Albacora,Mar,PETROBRAS,63.12344333333333,2022-11-01
-13,Solimões,Leste do Urucu,Terra,PETROBRAS,59.09123366666667,2022-11-01
-14,Santos,Sépia,Mar,PETROBRAS,52.42858433333333,2022-11-01
-15,Santos,Sul de Tupi,Mar,PETROBRAS,48.62004133333333,2022-11-01
-16,Solimões,Rio Urucu,Terra,PETROBRAS,45.343201666666666,2022-11-01
-17,Santos,Sururu,Mar,PETROBRAS,44.93624333333333,2022-11-01
-18,Amazonas,PA-1ENV25DAM_AM-T-84_AM-T-85,Terra,ENEVA,44.83403333333333,2022-11-01
-19,Campos,Marlim Leste,Mar,PETROBRAS,44.672612666666666,2022-11-01
-20,Santos,Lapa,Mar,TOTALENERGIES EP,29.771957999999998,2022-11-01
-1,Santos,Tupi,Mar,PETROBRAS,501.3384274193548,2022-10-01
-2,Santos,Búzios,Mar,PETROBRAS,495.95685258064515,2022-10-01
-3,Campos,Roncador,Mar,PETROBRAS,207.63619322580647,2022-10-01
-4,Santos,Mero,Mar,PETROBRAS,167.82678935483872,2022-10-01
-5,Campos,Marlim Sul,Mar,PETROBRAS,145.53390677419355,2022-10-01
-6,Campos,Marlim,Mar,PETROBRAS,103.36775580645161,2022-10-01
-7,Santos,Sépia,Mar,PETROBRAS,84.43469838709679,2022-10-01
-8,Santos,Sapinhoá,Mar,PETROBRAS,82.00356096774193,2022-10-01
-9,Campos,Jubarte,Mar,PETROBRAS,81.61395967741934,2022-10-01
-10,Santos,Atapu,Mar,PETROBRAS,73.4617729032258,2022-10-01
-11,Campos,Albacora Leste,Mar,PETROBRAS,66.81807677419356,2022-10-01
-12,Campos,Albacora,Mar,PETROBRAS,66.06567935483871,2022-10-01
-13,Santos,Sururu,Mar,PETROBRAS,61.74190967741935,2022-10-01
-14,Amazonas,Azulão,Terra,ENEVA,56.485352258064516,2022-10-01
-15,Solimões,Leste do Urucu,Terra,PETROBRAS,53.92220161290323,2022-10-01
-16,Campos,Marlim Leste,Mar,PETROBRAS,46.177728064516124,2022-10-01
-17,Solimões,Rio Urucu,Terra,PETROBRAS,45.08323225806452,2022-10-01
-18,Santos,Sul de Tupi,Mar,PETROBRAS,35.12205580645162,2022-10-01
-19,Campos,Pampo,Mar,TRIDENT ENERGY,25.26692935483871,2022-10-01
-20,Campos,Barracuda,Mar,PETROBRAS,25.13404741935484,2022-10-01
-1,Santos,Tupi,Mar,PETROBRAS,686.4731983333334,2022-09-01
-2,Santos,Búzios,Mar,PETROBRAS,545.6960633333333,2022-09-01
-3,Santos,Mero,Mar,PETROBRAS,250.09120966666666,2022-09-01
-4,Campos,Marlim Sul,Mar,PETROBRAS,181.95328133333334,2022-09-01
-5,Campos,Roncador,Mar,PETROBRAS,157.28263066666665,2022-09-01
-6,Santos,Sapinhoá,Mar,PETROBRAS,97.94965666666667,2022-09-01
-7,Santos,Sépia,Mar,PETROBRAS,81.306196,2022-09-01
-8,Solimões,Leste do Urucu,Terra,PETROBRAS,80.435495,2022-09-01
-9,Campos,Jubarte,Mar,PETROBRAS,79.36360833333333,2022-09-01
-10,Campos,Marlim Leste,Mar,PETROBRAS,62.46943233333333,2022-09-01
-11,Solimões,Rio Urucu,Terra,PETROBRAS,62.422170333333334,2022-09-01
-12,Campos,Barracuda,Mar,PETROBRAS,60.157916666666665,2022-09-01
-13,Campos,Albacora Leste,Mar,PETROBRAS,57.03558566666666,2022-09-01
-14,Campos,Albacora,Mar,PETROBRAS,52.16940433333333,2022-09-01
-15,Campos,Marlim,Mar,PETROBRAS,48.960955,2022-09-01
-16,Santos,Sul de Tupi,Mar,PETROBRAS,43.443062000000005,2022-09-01
-17,Santos,Atapu,Mar,PETROBRAS,43.13346933333333,2022-09-01
-18,Amazonas,Azulão,Terra,ENEVA,33.874615666666664,2022-09-01
-19,Santos,Sururu,Mar,PETROBRAS,28.519736333333334,2022-09-01
-20,Campos,Papa-Terra,Mar,PETROBRAS,28.013373333333334,2022-09-01
-1,Santos,Búzios,Mar,PETROBRAS,609.3829666666667,2023-04-01
-2,Santos,Tupi,Mar,PETROBRAS,605.9547,2023-04-01
-3,Santos,Mero,Mar,PETROBRAS,302.9861,2023-04-01
-4,Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,238.52496666666667,2023-04-01
-5,Santos,Sapinhoá,Mar,PETROBRAS,174.57306666666668,2023-04-01
-6,Campos,Roncador,Mar,PETROBRAS,130.79306666666668,2023-04-01
-7,Campos,Marlim Sul,Mar,PETROBRAS,130.12873333333334,2023-04-01
-8,Santos,Itapu,Mar,PETROBRAS,122.28153333333333,2023-04-01
-9,Santos,Itapu_Eco,Mar,PETROBRAS,114.20323333333334,2023-04-01
-10,Campos,Jubarte,Mar,PETROBRAS,94.83936666666666,2023-04-01
-11,Santos,Sépia,Mar,PETROBRAS,93.16386666666668,2023-04-01
-12,Potiguar,Lorena,Terra,POTIGUAR E&P S.A.,77.383,2023-04-01
-13,Amazonas,Azulão,Terra,ENEVA,66.8415,2023-04-01
-14,Santos,Sururu,Mar,PETROBRAS,61.73043333333333,2023-04-01
-15,Santos,Atapu,Mar,PETROBRAS,56.62873333333334,2023-04-01
-16,Campos,Frade,Mar,PETRO RIO JAGUAR,56.06706666666666,2023-04-01
-17,Potiguar,Brejinho Rn,Terra,POTIGUAR E&P S.A.,50.379266666666666,2023-04-01
-18,Solimões,Leste do Urucu,Terra,PETROBRAS,49.8594,2023-04-01
-19,Campos,Marlim Leste,Mar,PETROBRAS,44.358266666666665,2023-04-01
-20,Campos,Barracuda,Mar,PETROBRAS,41.00436666666667,2023-04-01
-1,Santos,Búzios,Mar,PETROBRAS,657.6326129032258,2023-12-01
-2,Santos,Tupi,Mar,PETROBRAS,521.0359677419355,2023-12-01
-3,Santos,Mero,Mar,PETROBRAS,139.23912903225806,2023-12-01
-4,Campos,Marlim Sul,Mar,PETROBRAS,135.62435483870965,2023-12-01
-5,Campos,Roncador,Mar,PETROBRAS,133.01948387096775,2023-12-01
-6,Amazonas,Azulão,Terra,ENEVA,126.40180645161291,2023-12-01
-7,Santos,Sapinhoá,Mar,PETROBRAS,119.73622580645161,2023-12-01
-8,Campos,Jubarte,Mar,PETROBRAS,114.32148387096774,2023-12-01
-9,Campos,Marlim,Mar,PETROBRAS,89.55016129032258,2023-12-01
-10,Campos,Marimbá,Mar,TRIDENT ENERGY,71.07148387096774,2023-12-01
-11,Potiguar,Lorena,Terra,POTIGUAR E&P S.A.,61.793290322580646,2023-12-01
-12,Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,55.12516129032259,2023-12-01
-13,Campos,Peregrino,Mar,EQUINOR BRASIL,54.943999999999996,2023-12-01
-14,Santos,Sépia,Mar,PETROBRAS,50.310709677419354,2023-12-01
-15,Campos,Tartaruga Verde,Mar,PETROBRAS,46.41858064516129,2023-12-01
-16,Campos,Barracuda,Mar,PETROBRAS,40.29925806451613,2023-12-01
-17,Campos,Marlim Leste,Mar,PETROBRAS,39.82316129032258,2023-12-01
-18,Solimões,Leste do Urucu,Terra,PETROBRAS,39.09461290322581,2023-12-01
-19,Potiguar,Riacho da Forquilha,Terra,POTIGUAR E&P S.A.,38.551322580645156,2023-12-01
-20,Santos,Itapu,Mar,PETROBRAS,36.008322580645164,2023-12-01
-1,Santos,Tupi,Mar,PETROBRAS,876.2483928571429,2023-02-01
-2,Santos,Búzios,Mar,PETROBRAS,473.7818571428571,2023-02-01
-3,Santos,Itapu,Mar,PETROBRAS,283.3024642857143,2023-02-01
-4,Santos,Itapu_Eco,Mar,PETROBRAS,264.5865714285714,2023-02-01
-5,Santos,Mero,Mar,PETROBRAS,172.84242857142857,2023-02-01
-6,Campos,Roncador,Mar,PETROBRAS,116.35546428571429,2023-02-01
-7,Campos,Marlim Sul,Mar,PETROBRAS,114.19939285714285,2023-02-01
-8,Santos,Sapinhoá,Mar,PETROBRAS,113.17871428571428,2023-02-01
-9,Campos,Jubarte,Mar,PETROBRAS,111.27714285714286,2023-02-01
-10,Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,96.3174642857143,2023-02-01
-11,Santos,Sépia,Mar,PETROBRAS,89.19667857142858,2023-02-01
-12,Solimões,Leste do Urucu,Terra,PETROBRAS,73.35292857142858,2023-02-01
-13,Amazonas,Azulão,Terra,ENEVA,69.79003571428572,2023-02-01
-14,Campos,Barracuda,Mar,PETROBRAS,67.45471428571429,2023-02-01
-15,Solimões,Rio Urucu,Terra,PETROBRAS,64.29889285714286,2023-02-01
-16,Santos,Atapu,Mar,PETROBRAS,60.189928571428574,2023-02-01
-17,Santos,Sul de Tupi,Mar,PETROBRAS,52.67017857142857,2023-02-01
-18,Santos,Sururu,Mar,PETROBRAS,51.675000000000004,2023-02-01
-19,Campos,Albacora,Mar,PETROBRAS,48.931607142857146,2023-02-01
-20,Santos,Lapa,Mar,TOTALENERGIES EP,35.743964285714284,2023-02-01
-1,Santos,Tupi,Mar,PETROBRAS,735.9338064516129,2023-01-01
-2,Santos,Búzios,Mar,PETROBRAS,567.4171290322581,2023-01-01
-3,Santos,Itapu,Mar,PETROBRAS,307.2392580645161,2023-01-01
-4,Santos,Itapu_Eco,Mar,PETROBRAS,286.94199999999995,2023-01-01
-5,Santos,Sapinhoá,Mar,PETROBRAS,262.87154838709677,2023-01-01
-6,Campos,Roncador,Mar,PETROBRAS,187.19670967741936,2023-01-01
-7,Santos,Sépia,Mar,PETROBRAS,142.68406451612904,2023-01-01
-8,Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,122.71677419354837,2023-01-01
-9,Amazonas,PA-1ENV25DAM_AM-T-84_AM-T-85,Terra,ENEVA,121.61058064516129,2023-01-01
-10,Santos,Mero,Mar,PETROBRAS,112.96316129032259,2023-01-01
-11,Campos,Marlim Sul,Mar,PETROBRAS,109.93870967741935,2023-01-01
-12,Santos,Atapu,Mar,PETROBRAS,89.8343870967742,2023-01-01
-13,Campos,Jubarte,Mar,PETROBRAS,69.08170967741935,2023-01-01
-14,Santos,Lapa,Mar,TOTALENERGIES EP,66.19270967741936,2023-01-01
-15,Amazonas,Azulão,Terra,ENEVA,65.56474193548387,2023-01-01
-16,Campos,Barracuda,Mar,PETROBRAS,61.62825806451613,2023-01-01
-17,Solimões,Leste do Urucu,Terra,PETROBRAS,57.908193548387096,2023-01-01
-18,Santos,Sul de Tupi,Mar,PETROBRAS,50.94696774193548,2023-01-01
-19,Santos,Sururu,Mar,PETROBRAS,49.89616129032258,2023-01-01
-20,Campos,Marlim Leste,Mar,PETROBRAS,43.001548387096776,2023-01-01
-1,Santos,Búzios,Mar,PETROBRAS,1407.563806451613,2023-07-01
-2,Santos,Tupi,Mar,PETROBRAS,633.5281612903226,2023-07-01
-3,Campos,Marlim,Mar,PETROBRAS,232.68925806451614,2023-07-01
-4,Santos,Mero,Mar,PETROBRAS,229.3508064516129,2023-07-01
-5,Campos,Marlim Sul,Mar,PETROBRAS,159.6134193548387,2023-07-01
-6,Campos,Roncador,Mar,PETROBRAS,140.62551612903223,2023-07-01
-7,Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,121.46664516129032,2023-07-01
-8,Campos,Jubarte,Mar,PETROBRAS,88.21006451612904,2023-07-01
-9,Santos,Sapinhoá,Mar,PETROBRAS,82.58667741935484,2023-07-01
-10,Amazonas,Azulão,Terra,ENEVA,80.39125806451612,2023-07-01
-11,Potiguar,Brejinho Rn,Terra,POTIGUAR E&P S.A.,73.86748387096773,2023-07-01
-12,Campos,Frade,Mar,PETRO RIO JAGUAR,58.31632258064516,2023-07-01
-13,Santos,Sépia,Mar,PETROBRAS,57.214354838709674,2023-07-01
-14,Santos,Sul de Tupi,Mar,PETROBRAS,44.613193548387095,2023-07-01
-15,Solimões,Leste do Urucu,Terra,PETROBRAS,43.5848064516129,2023-07-01
-16,Santos,Atapu,Mar,PETROBRAS,40.879612903225805,2023-07-01
-17,Espírito Santo,Golfinho,Mar,PETROBRAS,38.95467741935484,2023-07-01
-18,Campos,Barracuda,Mar,PETROBRAS,38.014806451612905,2023-07-01
-19,Campos,Papa-Terra,Mar,3R PETROLEUM OFF,34.49841935483871,2023-07-01
-20,Santos,Sururu,Mar,PETROBRAS,32.212645161290325,2023-07-01
-1,Santos,Búzios,Mar,PETROBRAS,1542.704,2023-06-01
-2,Santos,Tupi,Mar,PETROBRAS,681.0037666666667,2023-06-01
-3,Campos,Marlim,Mar,PETROBRAS,300.8512,2023-06-01
-4,Santos,Mero,Mar,PETROBRAS,187.3548,2023-06-01
-5,Campos,Roncador,Mar,PETROBRAS,158.00376666666668,2023-06-01
-6,Campos,Marlim Sul,Mar,PETROBRAS,126.14283333333333,2023-06-01
-7,Amazonas,Azulão,Terra,ENEVA,102.69593333333334,2023-06-01
-8,Potiguar,Lorena,Terra,POTIGUAR E&P S.A.,98.02986666666668,2023-06-01
-9,Santos,Sapinhoá,Mar,PETROBRAS,89.38953333333333,2023-06-01
-10,Campos,Jubarte,Mar,PETROBRAS,73.3552,2023-06-01
-11,Potiguar,Brejinho Rn,Terra,POTIGUAR E&P S.A.,66.39076666666666,2023-06-01
-12,Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,65.2675,2023-06-01
-13,Campos,Barracuda,Mar,PETROBRAS,51.1474,2023-06-01
-14,Espírito Santo,Golfinho,Mar,PETROBRAS,50.046166666666664,2023-06-01
-15,Campos,Marlim Leste,Mar,PETROBRAS,46.591,2023-06-01
-16,Santos,Atapu,Mar,PETROBRAS,44.102666666666664,2023-06-01
-17,Santos,Sururu,Mar,PETROBRAS,42.235866666666666,2023-06-01
-18,Santos,Sul de Tupi,Mar,PETROBRAS,39.886433333333336,2023-06-01
-19,Santos,Sépia,Mar,PETROBRAS,39.79543333333333,2023-06-01
-20,Campos,Papa-Terra,Mar,3R PETROLEUM OFF,34.654466666666664,2023-06-01
-1,Santos,Tupi,Mar,PETROBRAS,824.4946451612902,2023-05-01
-2,Santos,Búzios,Mar,PETROBRAS,691.3976774193549,2023-05-01
-3,Santos,Mero,Mar,PETROBRAS,324.7600967741935,2023-05-01
-4,Santos,Sapinhoá,Mar,PETROBRAS,171.24335483870968,2023-05-01
-5,Campos,Roncador,Mar,PETROBRAS,170.73551612903228,2023-05-01
-6,Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,136.72451612903225,2023-05-01
-7,Campos,Marlim,Mar,PETROBRAS,127.38432258064516,2023-05-01
-8,Potiguar,Lorena,Terra,POTIGUAR E&P S.A.,116.9588064516129,2023-05-01
-9,Campos,Jubarte,Mar,PETROBRAS,95.07912903225807,2023-05-01
-10,Amazonas,Azulão,Terra,ENEVA,83.68232258064516,2023-05-01
-11,Campos,Marlim Sul,Mar,PETROBRAS,75.12570967741935,2023-05-01
-12,Santos,Atapu,Mar,PETROBRAS,67.27135483870967,2023-05-01
-13,Santos,Sépia,Mar,PETROBRAS,63.13716129032258,2023-05-01
-14,Potiguar,Brejinho Rn,Terra,POTIGUAR E&P S.A.,58.51074193548387,2023-05-01
-15,Campos,Marlim Leste,Mar,PETROBRAS,55.4846129032258,2023-05-01
-16,Potiguar,Cachoeirinha,Terra,POTIGUAR E&P S.A.,53.93803225806452,2023-05-01
-17,Campos,Barracuda,Mar,PETROBRAS,53.72432258064516,2023-05-01
-18,Santos,Sul de Tupi,Mar,PETROBRAS,48.89883870967742,2023-05-01
-19,Santos,Sururu,Mar,PETROBRAS,46.54958064516129,2023-05-01
-20,Santos,Itapu,Mar,PETROBRAS,43.59367741935484,2023-05-01
-1,Santos,Tupi,Mar,PETROBRAS,764.9471935483872,2023-03-01
-2,Santos,Búzios,Mar,PETROBRAS,392.8698064516129,2023-03-01
-3,Santos,Sapinhoá,Mar,PETROBRAS,306.156,2023-03-01
-4,Santos,Itapu,Mar,PETROBRAS,222.60048387096774,2023-03-01
-5,Santos,Itapu_Eco,Mar,PETROBRAS,207.8947741935484,2023-03-01
-6,Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,144.95012903225805,2023-03-01
-7,Campos,Jubarte,Mar,PETROBRAS,117.71945161290323,2023-03-01
-8,Campos,Marlim Sul,Mar,PETROBRAS,99.76387096774194,2023-03-01
-9,Santos,Mero,Mar,PETROBRAS,90.84612903225806,2023-03-01
-10,Campos,Roncador,Mar,PETROBRAS,90.00741935483872,2023-03-01
-11,Santos,Lapa,Mar,TOTALENERGIES EP,84.71603225806452,2023-03-01
-12,Amazonas,Azulão,Terra,ENEVA,70.01529032258065,2023-03-01
-13,Santos,Sépia,Mar,PETROBRAS,66.36061290322581,2023-03-01
-14,Campos,Barracuda,Mar,PETROBRAS,58.8501935483871,2023-03-01
-15,Santos,Atapu,Mar,PETROBRAS,55.25945161290323,2023-03-01
-16,Santos,Sul de Tupi,Mar,PETROBRAS,42.832193548387096,2023-03-01
-17,Solimões,Leste do Urucu,Terra,PETROBRAS,41.27038709677419,2023-03-01
-18,Santos,Sururu,Mar,PETROBRAS,40.80274193548387,2023-03-01
-19,Campos,Albacora,Mar,PETROBRAS,40.748322580645166,2023-03-01
-20,Solimões,Rio Urucu,Terra,PETROBRAS,38.19558064516129,2023-03-01
-1,Santos,Búzios,Mar,PETROBRAS,652.7935,2023-11-01
-2,Santos,Tupi,Mar,PETROBRAS,548.9859666666667,2023-11-01
-3,Santos,Sapinhoá,Mar,PETROBRAS,210.9057,2023-11-01
-4,Campos,Jubarte,Mar,PETROBRAS,182.92610000000002,2023-11-01
-5,Campos,Marlim,Mar,PETROBRAS,160.33613333333332,2023-11-01
-6,Potiguar,Lorena,Terra,POTIGUAR E&P S.A.,157.413,2023-11-01
-7,Campos,Roncador,Mar,PETROBRAS,123.13483333333333,2023-11-01
-8,Potiguar,Riacho da Forquilha,Terra,POTIGUAR E&P S.A.,92.91513333333334,2023-11-01
-9,Campos,Marlim Sul,Mar,PETROBRAS,83.98536666666668,2023-11-01
-10,Amazonas,Azulão,Terra,ENEVA,81.3925,2023-11-01
-11,Potiguar,Boa Esperança,Terra,POTIGUAR E&P S.A.,77.1701,2023-11-01
-12,Santos,Mero,Mar,PETROBRAS,66.5968,2023-11-01
-13,Campos,Voador,Mar,PETROBRAS,63.61983333333333,2023-11-01
-14,Potiguar,Brejinho Rn,Terra,POTIGUAR E&P S.A.,61.519866666666665,2023-11-01
-15,Potiguar,Livramento,Terra,POTIGUAR E&P S.A.,55.600033333333336,2023-11-01
-16,Santos,Sépia,Mar,PETROBRAS,53.62803333333333,2023-11-01
-17,Santos,Atapu,Mar,PETROBRAS,51.72796666666667,2023-11-01
-18,Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,45.3067,2023-11-01
-19,Campos,Barracuda,Mar,PETROBRAS,42.8488,2023-11-01
-20,Campos,Marlim Leste,Mar,PETROBRAS,38.49986666666667,2023-11-01
-1,Santos,Búzios,Mar,PETROBRAS,704.7567419354839,2023-10-01
-2,Santos,Tupi,Mar,PETROBRAS,619.7392258064516,2023-10-01
-3,Campos,Marlim,Mar,PETROBRAS,268.82229032258067,2023-10-01
-4,Santos,Mero,Mar,PETROBRAS,248.51748387096777,2023-10-01
-5,Santos,Sapinhoá,Mar,PETROBRAS,156.873,2023-10-01
-6,Campos,Roncador,Mar,PETROBRAS,128.20703225806452,2023-10-01
-7,Campos,Jubarte,Mar,PETROBRAS,128.1942258064516,2023-10-01
-8,Campos,Voador,Mar,PETROBRAS,119.84425806451613,2023-10-01
-9,Campos,Marlim Sul,Mar,PETROBRAS,110.54329032258065,2023-10-01
-10,Amazonas,Azulão,Terra,ENEVA,78.31270967741935,2023-10-01
-11,Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,66.30306451612903,2023-10-01
-12,Santos,Atapu,Mar,PETROBRAS,63.43116129032258,2023-10-01
-13,Potiguar,Brejinho Rn,Terra,POTIGUAR E&P S.A.,54.62374193548387,2023-10-01
-14,Santos,Sépia,Mar,PETROBRAS,51.25506451612904,2023-10-01
-15,Santos,Lapa,Mar,TOTALENERGIES EP,47.02129032258065,2023-10-01
-16,Campos,Barracuda,Mar,PETROBRAS,46.80906451612903,2023-10-01
-17,Campos,Papa-Terra,Mar,3R PETROLEUM OFF,43.520161290322584,2023-10-01
-18,Santos,Sul de Tupi,Mar,PETROBRAS,41.66645161290323,2023-10-01
-19,Solimões,Leste do Urucu,Terra,PETROBRAS,41.07203225806452,2023-10-01
-20,Campos,Marimbá,Mar,TRIDENT ENERGY,37.78590322580645,2023-10-01
-1,Santos,Búzios,Mar,PETROBRAS,624,2023-09-01
-2,Santos,Tupi,Mar,PETROBRAS,478,2023-09-01
-3,Campos,Marlim,Mar,PETROBRAS,237,2023-09-01
-4,Campos,Marlim Sul,Mar,PETROBRAS,149,2023-09-01
-5,Campos,Jubarte,Mar,PETROBRAS,135,2023-09-01
-6,Campos,Roncador,Mar,PETROBRAS,128,2023-09-01
-7,Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,115,2023-09-01
-8,Santos,Mero,Mar,PETROBRAS,109,2023-09-01
-9,Santos,Sépia,Mar,PETROBRAS,108,2023-09-01
-10,Campos,Voador,Mar,PETROBRAS,101,2023-09-01
-11,Amazonas,Azulão,Terra,ENEVA,81,2023-09-01
-12,Santos,Sapinhoá,Mar,PETROBRAS,63,2023-09-01
-13,Solimões,Leste do Urucu,Terra,PETROBRAS,48,2023-09-01
-14,Potiguar,Lorena,Terra,POTIGUAR E&P S.A.,46,2023-09-01
-15,Santos,Sururu,Mar,PETROBRAS,45,2023-09-01
-16,Campos,Barracuda,Mar,PETROBRAS,39,2023-09-01
-17,Santos,Berbigão,Mar,PETROBRAS,36,2023-09-01
-18,Campos,Papa-Terra,Mar,3R PETROLEUM OFF,34,2023-09-01
-19,Santos,Baúna,Mar,KAROON BRASIL,33,2023-09-01
-20,Santos,Atapu,Mar,PETROBRAS,31,2023-09-01
-1,Santos,Búzios,Mar,PETROBRAS,787.5783548387096,2023-08-01
-2,Santos,Tupi,Mar,PETROBRAS,772.1553548387096,2023-08-01
-3,Campos,Marlim,Mar,PETROBRAS,251.59512903225806,2023-08-01
-4,Campos,Roncador,Mar,PETROBRAS,180.66735483870968,2023-08-01
-5,Campos,Marlim Sul,Mar,PETROBRAS,142.19051612903226,2023-08-01
-6,Santos,Mero,Mar,PETROBRAS,101.76348387096775,2023-08-01
-7,Amazonas,Azulão,Terra,ENEVA,96.82896774193549,2023-08-01
-8,Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,84.34474193548387,2023-08-01
-9,Potiguar,Lorena,Terra,POTIGUAR E&P S.A.,63.115580645161295,2023-08-01
-10,Campos,Voador,Mar,PETROBRAS,62.48583870967742,2023-08-01
-11,Campos,Jubarte,Mar,PETROBRAS,60.3238064516129,2023-08-01
-12,Santos,Sapinhoá,Mar,PETROBRAS,58.462322580645164,2023-08-01
-13,Santos,Sépia,Mar,PETROBRAS,56.22687096774193,2023-08-01
-14,Solimões,Leste do Urucu,Terra,PETROBRAS,55.25277419354839,2023-08-01
-15,Santos,Atapu,Mar,PETROBRAS,48.28051612903226,2023-08-01
-16,Campos,Marlim Leste,Mar,PETROBRAS,38.40816129032258,2023-08-01
-17,Solimões,Rio Urucu,Terra,PETROBRAS,37.79577419354839,2023-08-01
-18,Santos,Sul de Tupi,Mar,PETROBRAS,37.716645161290316,2023-08-01
-19,Santos,Itapu,Mar,PETROBRAS,36.650064516129035,2023-08-01
-20,Campos,Barracuda,Mar,PETROBRAS,35.592064516129035,2023-08-01
-NA,NA,NA,NA,NA,NA,2023-08-01
-1,Santos,Búzios,Mar,PETROBRAS,630,2024-04-01
-2,Santos,Mero,Mar,PETROBRAS,581,2024-04-01
-3,Santos,Tupi,Mar,PETROBRAS,544,2024-04-01
-4,Campos,Jubarte,Mar,PETROBRAS,378,2024-04-01
-5,Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,194,2024-04-01
-6,Campos,Marlim Sul,Mar,PETROBRAS,142,2024-04-01
-7,Santos,Sépia,Mar,PETROBRAS,128,2024-04-01
-8,Campos,Roncador,Mar,PETROBRAS,107,2024-04-01
-9,Santos,Sapinhoá,Mar,PETROBRAS,94,2024-04-01
-10,Campos,Marimbá,Mar,TRIDENT ENERGY,80,2024-04-01
-11,Solimões,Rio Urucu,Terra,PETROBRAS,56,2024-04-01
-12,Santos,Atapu,Mar,PETROBRAS,55,2024-04-01
-13,Campos,Barracuda,Mar,PETROBRAS,49,2024-04-01
-14,Campos,Marlim,Mar,PETROBRAS,49,2024-04-01
-15,Campos,Papa-Terra,Mar,3R PETROLEUM OFF,41,2024-04-01
-16,Santos,Baúna,Mar,KAROON BRASIL,40,2024-04-01
-17,Solimões,Leste do Urucu,Terra,PETROBRAS,38,2024-04-01
-18,Santos,Sul de Tupi,Mar,PETROBRAS,34,2024-04-01
-19,Espírito Santo,Golfinho,Mar,BW MAROMBA,29,2024-04-01
-20,Campos,Enchova,Mar,TRIDENT ENERGY,25,2024-04-01
-1,Santos,Mero,Mar,PETROBRAS,1440.8956451612903,2024-01-01
-2,Santos,Búzios,Mar,PETROBRAS,682.6910322580645,2024-01-01
-3,Santos,Tupi,Mar,PETROBRAS,544.4276129032258,2024-01-01
-4,Santos,Sapinhoá,Mar,PETROBRAS,155.2988064516129,2024-01-01
-5,Santos,Sépia,Mar,PETROBRAS,114.49916129032259,2024-01-01
-6,Campos,Jubarte,Mar,PETROBRAS,109.79687096774194,2024-01-01
-7,Campos,Marlim Sul,Mar,PETROBRAS,101.90390322580646,2024-01-01
-8,Campos,Marlim,Mar,PETROBRAS,90.44548387096773,2024-01-01
-9,Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,89.43393548387097,2024-01-01
-10,Campos,Roncador,Mar,PETROBRAS,83.0733870967742,2024-01-01
-11,Amazonas,Azulão,Terra,ENEVA,72.47358064516129,2024-01-01
-12,Campos,Marimbá,Mar,TRIDENT ENERGY,60.02712903225806,2024-01-01
-13,Campos,Marlim Leste,Mar,PETROBRAS,52.328483870967744,2024-01-01
-14,Santos,Anc_Mero,Mar,PETROBRAS,52.260451612903225,2024-01-01
-15,Campos,Papa-Terra,Mar,3R PETROLEUM OFF,41.96403225806451,2024-01-01
-16,Espírito Santo,Golfinho,Mar,BW MAROMBA,39.83916129032258,2024-01-01
-17,Campos,Barracuda,Mar,PETROBRAS,38.95406451612903,2024-01-01
-18,Santos,Sul de Tupi,Mar,PETROBRAS,37.73412903225807,2024-01-01
-19,Solimões,Leste do Urucu,Terra,PETROBRAS,37.647129032258064,2024-01-01
-20,Solimões,Rio Urucu,Terra,PETROBRAS,34.81216129032258,2024-01-01
-1,Santos,Mero,Mar,PETROBRAS,688,2024-05-01
-2,Santos,Búzios,Mar,PETROBRAS,597,2024-05-01
-3,Santos,Tupi,Mar,PETROBRAS,533,2024-05-01
-4,Campos,Roncador,Mar,PETROBRAS,162,2024-05-01
-5,Campos,Marlim Sul,Mar,PETROBRAS,122,2024-05-01
-6,Campos,Marlim,Mar,PETROBRAS,95,2024-05-01
-7,Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,91,2024-05-01
-8,Santos,Sapinhoá,Mar,PETROBRAS,81,2024-05-01
-9,Santos,Sépia,Mar,PETROBRAS,71,2024-05-01
-10,Campos,Jubarte,Mar,PETROBRAS,64,2024-05-01
-11,Campos,Marimbá,Mar,TRIDENT ENERGY,54,2024-05-01
-12,Campos,Barracuda,Mar,PETROBRAS,52,2024-05-01
-13,Solimões,Rio Urucu,Terra,PETROBRAS,52,2024-05-01
-14,Solimões,Leste do Urucu,Terra,PETROBRAS,49,2024-05-01
-15,Santos,Berbigão,Mar,PETROBRAS,46,2024-05-01
-16,Campos,Papa-Terra,Mar,3R PETROLEUM OFF,39,2024-05-01
-17,Campos,Peregrino,Mar,EQUINOR BRASIL,38,2024-05-01
-18,Espírito Santo,Golfinho,Mar,BW MAROMBA,38,2024-05-01
-19,Santos,Sul de Tupi,Mar,PETROBRAS,36,2024-05-01
-20,Campos,Voador,Mar,PETROBRAS,32,2024-05-01
-1,Santos,Mero,Mar,PETROBRAS,1396.0094193548387,2024-03-01
-2,Campos,Jubarte,Mar,PETROBRAS,993.1585806451614,2024-03-01
-3,Santos,Tupi,Mar,PETROBRAS,675.1626129032259,2024-03-01
-4,Santos,Búzios,Mar,PETROBRAS,521.1263225806453,2024-03-01
-5,Santos,Sapinhoá,Mar,PETROBRAS,253.48867741935484,2024-03-01
-6,Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,215.6548064516129,2024-03-01
-7,Campos,Marlim Sul,Mar,PETROBRAS,124.80674193548387,2024-03-01
-8,Solimões,Leste do Urucu,Terra,PETROBRAS,76.0068064516129,2024-03-01
-9,Campos,Marimbá,Mar,TRIDENT ENERGY,75.20529032258065,2024-03-01
-10,Campos,Roncador,Mar,PETROBRAS,71.25406451612903,2024-03-01
-11,Solimões,Rio Urucu,Terra,PETROBRAS,66.5734193548387,2024-03-01
-12,Campos,Frade,Mar,PETRO RIO JAGUAR,62.10416129032258,2024-03-01
-13,Santos,Sépia,Mar,PETROBRAS,60.20341935483871,2024-03-01
-14,Amazonas,Azulão,Terra,ENEVA,55.02248387096774,2024-03-01
-15,Campos,Papa-Terra,Mar,3R PETROLEUM OFF,54.480548387096775,2024-03-01
-16,Campos,Marlim,Mar,PETROBRAS,50.733677419354834,2024-03-01
-17,Santos,Anc_Mero,Mar,PETROBRAS,50.632451612903225,2024-03-01
-18,Campos,Pampo,Mar,TRIDENT ENERGY,49.556709677419356,2024-03-01
-19,Campos,Barracuda,Mar,PETROBRAS,45.547548387096775,2024-03-01
-20,Santos,Sul de Tupi,Mar,PETROBRAS,44.80341935483871,2024-03-01
-1,Santos,Lula,Mar,Petrobras,723.95799516129,2017-10-01
-2,Campos,Roncador,Mar,Petrobras,351.169255806452,2017-10-01
-3,Santos,Itapu,Mar,Petrobras,331.204064516129,2017-10-01
-4,Campos,Marlim,Mar,Petrobras,325.472912580645,2017-10-01
-5,Solimões,Leste Do Urucu,Terra,Petrobras,162.032743548387,2017-10-01
-6,Campos,Marlim Sul,Mar,Petrobras,160.222040967742,2017-10-01
-7,Santos,Sapinhoá,Mar,Petrobras,159.934192580645,2017-10-01
-8,Campos,Jubarte³,Mar,Petrobras,153.889654516129,2017-10-01
-9,Campos,Tartaruga Verde,Mar,Petrobras,83.8714838709677,2017-10-01
-10,Solimões,Rio Urucu,Terra,Petrobras,77.2542690322581,2017-10-01
-11,Campos,Marlim Leste,Mar,Petrobras,64.838565483871,2017-10-01
-12,Campos,Albacora Leste,Mar,Petrobras,60.6319458064516,2017-10-01
-13,Campos,Barracuda,Mar,Petrobras,53.8621238709677,2017-10-01
-14,Sergipe,Piranema,Mar,Petrobras,44.3201290322581,2017-10-01
-15,Campos,Baleia Azul³,Mar,Petrobras,42.7433338709677,2017-10-01
-16,Campos,Baleia Franca³,Mar,Petrobras,37.1523070967742,2017-10-01
-17,Campos,Albacora,Mar,Petrobras,34.4729238709677,2017-10-01
-18,Campos,Argonauta,Mar,Shell Brasil,33.5142761290322,2017-10-01
-19,Santos,TLD-Libra,Mar,Petrobras,33.5041935483871,2017-10-01
-20,Campos,Caratinga,Mar,Petrobras,27.4532622580645,2017-10-01
-1,Santos,LULA,Mar,Petrobras,880.113327666667,2017-11-01
-2,Campos,MARLIM,Mar,Petrobras,369.769817333333,2017-11-01
-3,Santos,ITAPU,Mar,Petrobras,339.872066666667,2017-11-01
-4,Campos,RONCADOR,Mar,Petrobras,274.747782666667,2017-11-01
-5,Campos,MARLIM SUL,Mar,Petrobras,184.529626333333,2017-11-01
-6,Solimões,LESTE DO URUCU,Terra,Petrobras,176.703428333333,2017-11-01
-7,Campos,JUBARTE³,Mar,Petrobras,134.737935666667,2017-11-01
-8,Santos,SAPINHOÁ,Mar,Petrobras,121.044032666667,2017-11-01
-9,Santos,MERO,Mar,Petrobras,113.882766666667,2017-11-01
-10,Solimões,RIO URUCU,Terra,Petrobras,105.841157333333,2017-11-01
-11,Campos,TARTARUGA VERDE,Mar,Petrobras,80.0551666666667,2017-11-01
-12,Campos,ALBACORA LESTE,Mar,Petrobras,53.358158,2017-11-01
-13,Campos,BARRACUDA,Mar,Petrobras,52.642199,2017-11-01
-14,Campos,MARLIM LESTE,Mar,Petrobras,45.7785166666667,2017-11-01
-15,Campos,ALBACORA,Mar,Petrobras,42.5213076666667,2017-11-01
-16,Sergipe,PIRANEMA,Mar,Petrobras,33.8151333333333,2017-11-01
-17,Campos,BALEIA FRANCA³,Mar,Petrobras,33.7204796666667,2017-11-01
-18,Campos,BALEIA AZUL³,Mar,Petrobras,24.8212056666667,2017-11-01
-19,Campos,CARATINGA,Mar,Petrobras,23.9520663333333,2017-11-01
-20,Campos,CHERNE,Mar,Petrobras,21.8366856666667,2017-11-01
-1,Santos,Lula,Mar,Petrobras,889.937801290323,2017-12-01
-2,Santos,Mero,Mar,Petrobras,670.292,2017-12-01
-3,Campos,Marlim,Mar,Petrobras,429.913229032258,2017-12-01
-4,Campos,Roncador,Mar,Petrobras,254.02396516129,2017-12-01
-5,Campos,Marlim Sul,Mar,Petrobras,188.967968064516,2017-12-01
-6,Santos,Sapinhoá,Mar,Petrobras,162.95651516129,2017-12-01
-7,Campos,Jubarte³,Mar,Petrobras,156.570543870968,2017-12-01
-8,Solimões,Leste Do Urucu,Terra,Petrobras,137.947698709677,2017-12-01
-9,Solimões,Rio Urucu,Terra,Petrobras,85.0238335483871,2017-12-01
-10,Campos,Marlim Leste,Mar,Petrobras,80.1912751612903,2017-12-01
-11,Campos,Barracuda,Mar,Petrobras,52.7643441935484,2017-12-01
-12,Campos,Albacora Leste,Mar,Petrobras,48.6972416129032,2017-12-01
-13,Campos,Tartaruga Verde,Mar,Petrobras,38.7028064516129,2017-12-01
-14,Campos,Albacora,Mar,Petrobras,36.3586287096774,2017-12-01
-15,Santos,Itapu,Mar,Petrobras,33.9171612903226,2017-12-01
-16,Campos,Baleia Azul³,Mar,Petrobras,33.7637103225806,2017-12-01
-17,Campos,Baleia Franca³,Mar,Petrobras,30.9418625806452,2017-12-01
-18,Sergipe,Piranema,Mar,Petrobras,30.2507419354839,2017-12-01
-19,Santos,Lapa,Mar,Petrobras,24.3262903225806,2017-12-01
-20,Campos,Caratinga,Mar,Petrobras,23.1693316129032,2017-12-01
+Bacia,Campo,Localização,Operador,Queima de Gás (Mm³/d),mes
+Santos,Mero,Mar,Petrobras,802,2018-01-01
+Santos,Lula,Mar,Petrobras,720,2018-01-01
+Campos,Roncador,Mar,Petrobras,511,2018-01-01
+Campos,Marlim,Mar,Petrobras,398,2018-01-01
+Santos,Sapinhoá,Mar,Petrobras,233,2018-01-01
+Campos,Marlim Sul,Mar,Petrobras,207,2018-01-01
+Campos,Jubarte³,Mar,Petrobras,144,2018-01-01
+Solimões,Leste Do Urucu,Terra,Petrobras,124,2018-01-01
+Solimões,Rio Urucu,Terra,Petrobras,75,2018-01-01
+Campos,Marlim Leste,Mar,Petrobras,69,2018-01-01
+Campos,Barracuda,Mar,Petrobras,67,2018-01-01
+Campos,Albacora Leste,Mar,Petrobras,60,2018-01-01
+Campos,Albacora,Mar,Petrobras,44,2018-01-01
+Campos,Baleia Azul³,Mar,Petrobras,38,2018-01-01
+Sergipe,Piranema,Mar,Petrobras,35,2018-01-01
+Campos,Caratinga,Mar,Petrobras,32,2018-01-01
+Campos,Baleia Franca³,Mar,Petrobras,22,2018-01-01
+Campos,Cherne,Mar,Petrobras,22,2018-01-01
+Campos,Namorado,Mar,Petrobras,21,2018-01-01
+Campos,Tubarão Martelo,Mar,Dommo Energia,21,2018-01-01
+Santos,Mero,Mar,Petrobras,623,2018-02-01
+Santos,Lula,Mar,Petrobras,566,2018-02-01
+Campos,Roncador,Mar,Petrobras,397,2018-02-01
+Campos,Marlim,Mar,Petrobras,395,2018-02-01
+Santos,Sururu,Mar,Petrobras,360,2018-02-01
+Campos,Marlim Sul,Mar,Petrobras,161,2018-02-01
+Solimões,Leste Do Urucu,Terra,Petrobras,102,2018-02-01
+Santos,Sapinhoá,Mar,Petrobras,95,2018-02-01
+Campos,Jubarte³,Mar,Petrobras,92,2018-02-01
+Campos,Marlim Leste,Mar,Petrobras,68,2018-02-01
+Solimões,Rio Urucu,Terra,Petrobras,67,2018-02-01
+Campos,Barracuda,Mar,Petrobras,55,2018-02-01
+Campos,Albacora Leste,Mar,Petrobras,52,2018-02-01
+Campos,Albacora,Mar,Petrobras,43,2018-02-01
+Sergipe,Piranema,Mar,Petrobras,41,2018-02-01
+Campos,Caratinga,Mar,Petrobras,27,2018-02-01
+Santos,Lapa,Mar,Total E&P do Brasil,22,2018-02-01
+Potiguar,Canto Do Amaro,Terra,Petrobras,22,2018-02-01
+Campos,Tubarão Martelo,Mar,Dommo Energia,21,2018-02-01
+Campos,Marimbá,Mar,Petrobras,21,2018-02-01
+Santos,Lula,Mar,Petrobras,631.666413870968,2018-03-01
+Santos,Sururu,Mar,Petrobras,478.288160967742,2018-03-01
+Campos,Roncador,Mar,Petrobras,373.374070322581,2018-03-01
+Campos,Marlim,Mar,Petrobras,291.699377419355,2018-03-01
+Santos,Sapinhoá,Mar,Petrobras,205.793225483871,2018-03-01
+Campos,Jubarte³,Mar,Petrobras,148.456850645161,2018-03-01
+Campos,Marlim Sul,Mar,Petrobras,131.646603870968,2018-03-01
+Solimões,Leste Do Urucu,Terra,Petrobras,129.577256451613,2018-03-01
+Santos,Mero,Mar,Petrobras,82.1637096774193,2018-03-01
+Solimões,Rio Urucu,Terra,Petrobras,81.5682525806452,2018-03-01
+Campos,Albacora,Mar,Petrobras,59.9533551612903,2018-03-01
+Campos,Albacora Leste,Mar,Petrobras,59.5639983870968,2018-03-01
+Campos,Barracuda,Mar,Petrobras,59.3285435483871,2018-03-01
+Campos,Marlim Leste,Mar,Petrobras,40.5572832258065,2018-03-01
+Sergipe,Piranema,Mar,Petrobras,35.7375806451613,2018-03-01
+Campos,Baleia Azul³,Mar,Petrobras,33.1326706451613,2018-03-01
+Campos,Caratinga,Mar,Petrobras,27.6141325806452,2018-03-01
+Campos,Baleia Franca³,Mar,Petrobras,26.6153558064516,2018-03-01
+Santos,Lapa,Mar,Total E&P do Brasil,22.65477,2018-03-01
+Campos,Pampo,Mar,Petrobras,21.868464516129,2018-03-01
+Santos,Lula,Mar,Petrobras,634.956094333333,2018-04-01
+Santos,Sururu,Mar,Petrobras,463.183133333333,2018-04-01
+Santos,Búzios,Mar,Petrobras,338.201466666667,2018-04-01
+Campos,Marlim,Mar,Petrobras,264.515839333333,2018-04-01
+Campos,Roncador,Mar,Petrobras,257.959134333333,2018-04-01
+Campos,Marlim Sul,Mar,Petrobras,184.617107666667,2018-04-01
+Santos,Sapinhoá,Mar,Petrobras,183.675732333333,2018-04-01
+Solimões,Leste Do Urucu,Terra,Petrobras,105.318437,2018-04-01
+Campos,Jubarte³,Mar,Petrobras,81.912539,2018-04-01
+Campos,Marlim Leste,Mar,Petrobras,79.231581,2018-04-01
+Santos,Mero,Mar,Petrobras,77.6672333333333,2018-04-01
+Solimões,Rio Urucu,Terra,Petrobras,72.493354,2018-04-01
+Campos,Barracuda,Mar,Petrobras,67.768115,2018-04-01
+Campos,Albacora,Mar,Petrobras,37.9480223333333,2018-04-01
+Sergipe,Piranema,Mar,Petrobras,36.6204,2018-04-01
+Campos,Albacora Leste,Mar,Petrobras,36.3010436666667,2018-04-01
+Campos,Caratinga,Mar,Petrobras,33.2774166666667,2018-04-01
+Campos,Marimbá,Mar,Petrobras,29.2294666666667,2018-04-01
+Campos,Baleia Franca³,Mar,Petrobras,24.7481586666667,2018-04-01
+Campos,Cherne,Mar,Petrobras,23.6608883333333,2018-04-01
+Santos,Búzios,Mar,Petrobras,943.88535483871,2018-05-01
+Santos,Lula,Mar,Petrobras,502.302801290323,2018-05-01
+Santos,Sururu,Mar,Petrobras,460.280419032258,2018-05-01
+Campos,Marlim,Mar,Petrobras,399.787344193548,2018-05-01
+Campos,Roncador,Mar,Petrobras,355.632842258065,2018-05-01
+Santos,Sapinhoá,Mar,Petrobras,221.68022483871,2018-05-01
+Campos,Marlim Sul,Mar,Petrobras,123.321861612903,2018-05-01
+Campos,Jubarte³,Mar,Petrobras,92.3962380645161,2018-05-01
+Solimões,Leste Do Urucu,Terra,Petrobras,90.9024838709677,2018-05-01
+Campos,Albacora Leste,Mar,Petrobras,64.0471374193548,2018-05-01
+Solimões,Rio Urucu,Terra,Petrobras,61.5967219354839,2018-05-01
+Campos,Barracuda,Mar,Petrobras,60.5678941935484,2018-05-01
+Campos,Marlim Leste,Mar,Petrobras,51.3496370967742,2018-05-01
+Santos,Mero,Mar,Petrobras,48.5822580645161,2018-05-01
+Santos,Atlanta,Mar,Queiroz Galvão,48.2816129032258,2018-05-01
+Sergipe,Piranema,Mar,Petrobras,44.4219677419355,2018-05-01
+Campos,Albacora,Mar,Petrobras,43.9381841935484,2018-05-01
+Santos,Lapa,Mar,Total E&P do Brasil,30.3064996774193,2018-05-01
+Campos,Namorado,Mar,Petrobras,29.9410019354839,2018-05-01
+Campos,Cherne,Mar,Petrobras,26.7632064516129,2018-05-01
+Santos,Búzios,Mar,Petrobras,950.983466666667,2018-06-01
+Santos,Lula,Mar,Petrobras,595.203194666667,2018-06-01
+Santos,Sururu,Mar,Petrobras,446.170166333333,2018-06-01
+Campos,Marlim,Mar,Petrobras,344.302729,2018-06-01
+Campos,Roncador,Mar,Petrobras,286.546547333333,2018-06-01
+Santos,Sapinhoá,Mar,Petrobras,176.536432666667,2018-06-01
+Solimões,Leste Do Urucu,Terra,Petrobras,129.807814666667,2018-06-01
+Campos,Marlim Sul,Mar,Petrobras,121.441254,2018-06-01
+Campos,Jubarte³,Mar,Petrobras,98.2014426666667,2018-06-01
+Solimões,Rio Urucu,Terra,Petrobras,84.6808113333333,2018-06-01
+Campos,Marlim Leste,Mar,Petrobras,83.7909826666667,2018-06-01
+Campos,Tartaruga Verde,Mar,Petrobras,69.4639666666667,2018-06-01
+Campos,Albacora Leste,Mar,Petrobras,65.9403323333333,2018-06-01
+Campos,Barracuda,Mar,Petrobras,57.853617,2018-06-01
+Santos,Atlanta,Mar,Queiroz Galvão,47.468,2018-06-01
+Sergipe,Piranema,Mar,Petrobras,37.8839,2018-06-01
+Campos,Albacora,Mar,Petrobras,29.753666,2018-06-01
+Campos,Pampo,Mar,Petrobras,28.322191,2018-06-01
+Potiguar,Canto Do Amaro,Terra,Petrobras,27.3448643333333,2018-06-01
+Campos,Cherne,Mar,Petrobras,26.9749256666667,2018-06-01
+Santos,Búzios,Mar,Petrobras,814.416677419355,2018-07-01
+Santos,Lula,Mar,Petrobras,379.179640967742,2018-07-01
+Campos,Marlim,Mar,Petrobras,334.859226774194,2018-07-01
+Santos,Sapinhoá,Mar,Petrobras,314.176740967742,2018-07-01
+Campos,Tartaruga Verde,Mar,Petrobras,286.727240645161,2018-07-01
+Santos,Sururu,Mar,Petrobras,248.265806451613,2018-07-01
+Campos,Roncador,Mar,Petrobras,215.430774193548,2018-07-01
+Campos,Marlim Leste,Mar,Petrobras,101.717917096774,2018-07-01
+Campos,Marlim Sul,Mar,Petrobras,99.6498929032258,2018-07-01
+Solimões,Leste Do Urucu,Terra,Petrobras,96.2883793548387,2018-07-01
+Campos,Jubarte³,Mar,Petrobras,77.5672077419355,2018-07-01
+Campos,Albacora Leste,Mar,Petrobras,71.2854990322581,2018-07-01
+Solimões,Rio Urucu,Terra,Petrobras,63.2545390322581,2018-07-01
+Campos,Barracuda,Mar,Petrobras,59.6803793548387,2018-07-01
+Santos,Mexilhão,Mar,Petrobras,55.7264838709677,2018-07-01
+Santos,Mero,Mar,Petrobras,47.9026129032258,2018-07-01
+Sergipe,Piranema,Mar,Petrobras,40.951064516129,2018-07-01
+Campos,AnC Tartaruga Verde⁴,Mar,Petrobras,30.7627590322581,2018-07-01
+Campos,Pampo,Mar,Petrobras,30.3015990322581,2018-07-01
+Santos,Atlanta,Mar,Queiroz Galvão,29.1767741935484,2018-07-01
+Santos,Lula,Mar,Petrobras,423.401961935484,2018-08-01
+Santos,Búzios,Mar,Petrobras,391.516129032258,2018-08-01
+Campos,Marlim,Mar,Petrobras,294.734782258065,2018-08-01
+Campos,Roncador,Mar,Petrobras,274.952401612903,2018-08-01
+Campos,Tartaruga Verde,Mar,Petrobras,228.226063225806,2018-08-01
+Santos,Sapinhoá,Mar,Petrobras,201.57922483871,2018-08-01
+Campos,Marlim Sul,Mar,Petrobras,140.311209354839,2018-08-01
+Campos,Marlim Leste,Mar,Petrobras,126.924338064516,2018-08-01
+Campos,Jubarte³,Mar,Petrobras,111.041066774194,2018-08-01
+Solimões,Leste Do Urucu,Terra,Petrobras,89.7322722580645,2018-08-01
+Campos,Albacora Leste,Mar,Petrobras,61.2933041935484,2018-08-01
+Solimões,Rio Urucu,Terra,Petrobras,60.6979906451613,2018-08-01
+Campos,Barracuda,Mar,Petrobras,58.8086203225806,2018-08-01
+Sergipe,Piranema,Mar,Petrobras,51.7356129032258,2018-08-01
+Santos,Sururu,Mar,Petrobras,36.7323225806452,2018-08-01
+Campos,Marimbá,Mar,Petrobras,32.416,2018-08-01
+Campos,Baleia Franca³,Mar,Petrobras,30.189344516129,2018-08-01
+Santos,Mero,Mar,Petrobras,30.1727741935484,2018-08-01
+Campos,AnC Tartaruga Verde⁴,Mar,Petrobras,27.1624203225806,2018-08-01
+Campos,Cherne,Mar,Petrobras,26.913664516129,2018-08-01
+Santos,Lula,Mar,Petrobras,483.255994666667,2018-09-01
+Campos,Marlim,Mar,Petrobras,303.919809666667,2018-09-01
+Campos,Tartaruga Verde,Mar,Petrobras,299.082949666667,2018-09-01
+Santos,Búzios,Mar,Petrobras,266.459733333333,2018-09-01
+Campos,Roncador,Mar,Petrobras,251.092519,2018-09-01
+Campos,Jubarte³,Mar,Petrobras,158.579023666667,2018-09-01
+Campos,Marlim Sul,Mar,Petrobras,136.759262333333,2018-09-01
+Solimões,Leste Do Urucu,Terra,Petrobras,117.538635666667,2018-09-01
+Campos,Marlim Leste,Mar,Petrobras,99.8106126666667,2018-09-01
+Solimões,Rio Urucu,Terra,Petrobras,75.8921443333333,2018-09-01
+Campos,Anc_Tartaruga_Verde⁴,Mar,Petrobras,66.0090833333333,2018-09-01
+Campos,Barracuda,Mar,Petrobras,63.5346146666667,2018-09-01
+Campos,Albacora Leste,Mar,Petrobras,56.0073053333333,2018-09-01
+Santos,Sapinhoá,Mar,Petrobras,55.6742326666667,2018-09-01
+Campos,Albacora,Mar,Petrobras,48.104992,2018-09-01
+Santos,Lapa,Mar,Total E&P do Brasil,35.558343,2018-09-01
+Sergipe,Piranema,Mar,Petrobras,34.9452666666667,2018-09-01
+Campos,Baleia Franca³,Mar,Petrobras,31.275983,2018-09-01
+Campos,Marimbá,Mar,Petrobras,30.8082,2018-09-01
+Campos,Argonauta,Mar,Shell Brasil,29.409908,2018-09-01
+Santos,Lula,Mar,Petrobras,629.342897419355,2018-10-01
+Campos,Marlim,Mar,Petrobras,336.834857419355,2018-10-01
+Campos,Roncador,Mar,Petrobras,261.704602580645,2018-10-01
+Santos,Búzios,Mar,Petrobras,209.861548387097,2018-10-01
+Campos,Tartaruga Verde,Mar,Petrobras,196.137836129032,2018-10-01
+Campos,Jubarte³,Mar,Petrobras,139.516229032258,2018-10-01
+Campos,Marlim Sul,Mar,Petrobras,115.692646129032,2018-10-01
+Solimões,Leste Do Urucu,Terra,Petrobras,95.8481432258064,2018-10-01
+Campos,Marlim Leste,Mar,Petrobras,89.0279106451613,2018-10-01
+Santos,Sapinhoá,Mar,Petrobras,81.1677732258064,2018-10-01
+Campos,Barracuda,Mar,Petrobras,63.980965483871,2018-10-01
+Campos,Albacora Leste,Mar,Petrobras,57.928194516129,2018-10-01
+Solimões,Rio Urucu,Terra,Petrobras,55.9739325806452,2018-10-01
+Campos,AnC Tartaruga Verde⁴,Mar,Petrobras,43.5333893548387,2018-10-01
+Santos,Lapa,Mar,Total E&P do Brasil,42.65318,2018-10-01
+Campos,Albacora,Mar,Petrobras,42.5692229032258,2018-10-01
+Sergipe,Piranema,Mar,Petrobras,38.3529677419355,2018-10-01
+Campos,Baleia Franca³,Mar,Petrobras,32.5365332258065,2018-10-01
+Campos,Marimbá,Mar,Petrobras,27.763064516129,2018-10-01
+Campos,Cherne,Mar,Petrobras,26.8604351612903,2018-10-01
+Santos,Lula,Mar,Petrobras,1403.245795,2018-11-01
+Santos,Búzios,Mar,Petrobras,815.707733333333,2018-11-01
+Campos,Roncador,Mar,Petrobras,264.169766666667,2018-11-01
+Campos,Marlim,Mar,Petrobras,263.458308,2018-11-01
+Campos,Marlim Sul,Mar,Petrobras,174.337823333333,2018-11-01
+Santos,Sapinhoá,Mar,Petrobras,110.324399,2018-11-01
+Campos,Jubarte³,Mar,Petrobras,95.9118583333333,2018-11-01
+Solimões,Leste Do Urucu,Terra,Petrobras,92.8023416666667,2018-11-01
+Campos,Tartaruga Verde,Mar,Petrobras,90.6632323333333,2018-11-01
+Campos,Marlim Leste,Mar,Petrobras,78.629931,2018-11-01
+Campos,Barracuda,Mar,Petrobras,68.6228193333333,2018-11-01
+Solimões,Rio Urucu,Terra,Petrobras,61.8883156666667,2018-11-01
+Campos,Albacora Leste,Mar,Petrobras,53.1239796666667,2018-11-01
+Campos,Albacora,Mar,Petrobras,41.708318,2018-11-01
+Sergipe,Piranema,Mar,Petrobras,38.4971333333333,2018-11-01
+Campos,Baleia Franca³,Mar,Petrobras,31.766718,2018-11-01
+Campos,Marimbá,Mar,Petrobras,27.3440333333333,2018-11-01
+Campos,Namorado,Mar,Petrobras,24.3579383333333,2018-11-01
+Campos,Pampo,Mar,Petrobras,24.2332636666667,2018-11-01
+Campos,Caratinga,Mar,Petrobras,24.0741793333333,2018-11-01
+Santos,LULA,Mar,Petrobras,1174.72589709677,2018-12-01
+Santos,BÚZIOS,Mar,Petrobras,1167.15174193548,2018-12-01
+Campos,MARLIM,Mar,Petrobras,341.593428709677,2018-12-01
+Campos,RONCADOR,Mar,Petrobras,231.282964516129,2018-12-01
+Santos,SAPINHOÁ,Mar,Petrobras,164.655579677419,2018-12-01
+Solimões,LESTE DO URUCU,Terra,Petrobras,139.123603225806,2018-12-01
+Santos,LAPA,Mar,Total E&P do Brasil,128.70347,2018-12-01
+Campos,MARLIM SUL,Mar,Petrobras,117.479195483871,2018-12-01
+Santos,MERO,Mar,Petrobras,106.759870967742,2018-12-01
+Campos,JUBARTE³,Mar,Petrobras,99.6031925806452,2018-12-01
+Campos,ALBACORA,Mar,Petrobras,97.1937796774193,2018-12-01
+Solimões,RIO URUCU,Terra,Petrobras,91.8140603225806,2018-12-01
+Campos,BARRACUDA,Mar,Petrobras,59.6604774193548,2018-12-01
+Campos,ALBACORA LESTE,Mar,Petrobras,55.9796703225806,2018-12-01
+Campos,MARLIM LESTE,Mar,Petrobras,51.0620977419355,2018-12-01
+Campos,TARTARUGA VERDE,Mar,Petrobras,47.2977867741935,2018-12-01
+Campos,MARIMBÁ,Mar,Petrobras,35.2070322580645,2018-12-01
+Sergipe,PIRANEMA,Mar,Petrobras,32.6943870967742,2018-12-01
+Espírito Santo,GOLFINHO,Mar,Petrobras,28.656064516129,2018-12-01
+Campos,BALEIA FRANCA³,Mar,Petrobras,27.4526006451613,2018-12-01
+Santos,Lula,Mar,Petrobras,1376.72892806452,2019-01-01
+Santos,Lapa,Mar,Total E&P do Brasil,1095.76823,2019-01-01
+Santos,Búzios,Mar,Petrobras,1004.22158064516,2019-01-01
+Campos,Marlim,Mar,Petrobras,343.36504,2019-01-01
+Campos,Roncador,Mar,Petrobras,305.016900322581,2019-01-01
+Santos,Sapinhoá,Mar,Petrobras,167.621082903226,2019-01-01
+Campos,Marlim Sul,Mar,Petrobras,122.441406451613,2019-01-01
+Solimões,Leste Do Urucu,Terra,Petrobras,120.989228387097,2019-01-01
+Campos,Jubarte³,Mar,Petrobras,103.893563225806,2019-01-01
+Solimões,Rio Urucu,Terra,Petrobras,94.2957580645161,2019-01-01
+Campos,Albacora,Mar,Petrobras,68.2780832258064,2019-01-01
+Santos,Mero,Mar,Petrobras,66.4485161290322,2019-01-01
+Campos,Albacora Leste,Mar,Petrobras,64.9317212903226,2019-01-01
+Campos,Barracuda,Mar,Petrobras,60.7293519354839,2019-01-01
+Campos,Marlim Leste,Mar,Petrobras,56.6892590322581,2019-01-01
+Campos,Tartaruga Verde,Mar,Petrobras,44.463054516129,2019-01-01
+Campos,Baleia Franca³,Mar,Petrobras,28.881944516129,2019-01-01
+Campos,Namorado,Mar,Petrobras,28.1081741935484,2019-01-01
+Sergipe,Piranema,Mar,Petrobras,27.1413870967742,2019-01-01
+Campos,Marimbá,Mar,Petrobras,27.1353548387097,2019-01-01
+Santos,Lula,Mar,Petrobras,1521.26768857143,2019-02-01
+Santos,Búzios,Mar,Petrobras,816.934785714286,2019-02-01
+Santos,Lapa,Mar,Total E&P do Brasil,744.978627857143,2019-02-01
+Campos,Roncador,Mar,Petrobras,284.219753928571,2019-02-01
+Campos,Marlim,Mar,Petrobras,262.767823214286,2019-02-01
+Campos,Marlim Sul,Mar,Petrobras,150.742113214286,2019-02-01
+Campos,Jubarte³,Mar,Petrobras,117.32438,2019-02-01
+Solimões,Leste Do Urucu,Terra,Petrobras,104.406341428571,2019-02-01
+Solimões,Rio Urucu,Terra,Petrobras,84.4778382142857,2019-02-01
+Santos,Mero,Mar,Petrobras,71.7801428571428,2019-02-01
+Santos,Sul De Lula,Mar,Petrobras,68.8775889285714,2019-02-01
+Campos,Marlim Leste,Mar,Petrobras,66.1013517857143,2019-02-01
+Campos,Barracuda,Mar,Petrobras,58.2947314285714,2019-02-01
+Sergipe,Piranema,Mar,Petrobras,54.8315357142857,2019-02-01
+Santos,Sapinhoá,Mar,Petrobras,54.5461060714286,2019-02-01
+Campos,Albacora,Mar,Petrobras,51.5593007142857,2019-02-01
+Campos,Albacora Leste,Mar,Petrobras,37.7711253571429,2019-02-01
+Campos,Marimbá,Mar,Petrobras,27.5328214285714,2019-02-01
+Campos,Baleia Franca³,Mar,Petrobras,26.6947525,2019-02-01
+Campos,Tartaruga Verde,Mar,Petrobras,22.7394146428571,2019-02-01
+Santos,Búzios,Mar,Petrobras,2015.83403225806,2019-03-01
+Santos,Lula,Mar,Petrobras,1682.69050580645,2019-03-01
+Campos,Roncador,Mar,Petrobras,268.95254516129,2019-03-01
+Campos,Marlim,Mar,Petrobras,187.002503225806,2019-03-01
+Santos,Sapinhoá,Mar,Petrobras,163.721585483871,2019-03-01
+Campos,Marlim Sul,Mar,Petrobras,151.765283548387,2019-03-01
+Solimões,Leste Do Urucu,Terra,Petrobras,131.216018709677,2019-03-01
+Santos,Sul De Lula,Mar,Petrobras,117.667261612903,2019-03-01
+Campos,Jubarte,Mar,Petrobras,117.571832903226,2019-03-01
+Santos,Mero,Mar,Petrobras,108.135483870968,2019-03-01
+Solimões,Rio Urucu,Terra,Petrobras,103.776437096774,2019-03-01
+Campos,Marlim Leste,Mar,Petrobras,60.7762274193548,2019-03-01
+Campos,Albacora,Mar,Petrobras,52.9381693548387,2019-03-01
+Campos,Barracuda,Mar,Petrobras,50.8734477419355,2019-03-01
+Sergipe,Piranema,Mar,Petrobras,47.737064516129,2019-03-01
+Campos,Albacora Leste,Mar,Petrobras,41.2944096774193,2019-03-01
+Espírito Santo,Golfinho,Mar,Petrobras,32.4172903225806,2019-03-01
+Campos,Baleia Franca,Mar,Petrobras,29.0667496774193,2019-03-01
+Campos,Marimbá,Mar,Petrobras,26.7536129032258,2019-03-01
+Campos,Cherne,Mar,Petrobras,26.1147867741935,2019-03-01
+Santos,Búzios,Mar,Petrobras,2252.05236666667,2019-04-01
+Santos,Lula,Mar,Petrobras,1477.736728,2019-04-01
+Campos,Roncador,Mar,Petrobras,377.426348333333,2019-04-01
+Santos,Sapinhoá,Mar,Petrobras,246.425245666667,2019-04-01
+Campos,Marlim,Mar,Petrobras,194.960361333333,2019-04-01
+Campos,Marlim Sul,Mar,Petrobras,138.884815,2019-04-01
+Solimões,Leste Do Urucu,Terra,Petrobras,112.485473333333,2019-04-01
+Santos,Sul De Lula,Mar,Petrobras,110.167526,2019-04-01
+Campos,Albacora Leste,Mar,Petrobras,102.944779666667,2019-04-01
+Solimões,Rio Urucu,Terra,Petrobras,96.654994,2019-04-01
+Campos,Jubarte,Mar,Petrobras,95.1356006666667,2019-04-01
+Campos,Marlim Leste,Mar,Petrobras,74.411716,2019-04-01
+Santos,Mero,Mar,Petrobras,71.277,2019-04-01
+Campos,Barracuda,Mar,Petrobras,53.6877123333333,2019-04-01
+Campos,Albacora,Mar,Petrobras,48.8789846666667,2019-04-01
+Campos,Marimbá,Mar,Petrobras,36.4470666666667,2019-04-01
+Sergipe,Piranema,Mar,Petrobras,30.3704,2019-04-01
+Campos,Baleia Azul,Mar,Petrobras,28.2370206666667,2019-04-01
+Campos,Baleia Franca,Mar,Petrobras,23.587738,2019-04-01
+Campos,Tartaruga Verde,Mar,Petrobras,22.2448723333333,2019-04-01
+Santos,Búzios,Mar,Petrobras,2007.04270967742,2019-05-01
+Santos,Lula,Mar,Petrobras,996.275850645161,2019-05-01
+Campos,Roncador,Mar,Petrobras,246.05325483871,2019-05-01
+Campos,Marlim,Mar,Petrobras,201.518817419355,2019-05-01
+Campos,Jubarte,Mar,Petrobras,176.205893870968,2019-05-01
+Solimões,Leste Do Urucu,Terra,Petrobras,141.673707419355,2019-05-01
+Campos,Marlim Sul,Mar,Petrobras,140.688675806452,2019-05-01
+Solimões,Rio Urucu,Terra,Petrobras,112.119772258065,2019-05-01
+Campos,Marlim Leste,Mar,Petrobras,74.8658719354839,2019-05-01
+Santos,Sul De Lula,Mar,Petrobras,73.7556093548387,2019-05-01
+Santos,Sapinhoá,Mar,Petrobras,58.161315483871,2019-05-01
+Campos,Albacora Leste,Mar,Petrobras,41.277594516129,2019-05-01
+Campos,Barracuda,Mar,Petrobras,40.3518687096774,2019-05-01
+Santos,Mero,Mar,Petrobras,33.3914193548387,2019-05-01
+Parnaíba,Gavião Branco,Terra,Eneva,30.2267032258064,2019-05-01
+Sergipe,Piranema,Mar,Petrobras,29.9748387096774,2019-05-01
+Campos,Albacora,Mar,Petrobras,29.6516948387097,2019-05-01
+Campos,Namorado,Mar,Petrobras,29.0414570967742,2019-05-01
+Campos,Marimbá,Mar,Petrobras,25.5170967741935,2019-05-01
+Santos,Lapa,Mar,Total E&P do Brasil,25.3130541935484,2019-05-01
+Santos,Búzios,Mar,Petrobras,1451.78973333333,2019-06-01
+Santos,Lula,Mar,Petrobras,694.869952333333,2019-06-01
+Campos,Roncador,Mar,Petrobras,245.6278,2019-06-01
+Campos,Jubarte,Mar,Petrobras,165.215363666667,2019-06-01
+Santos,Sapinhoá,Mar,Petrobras,157.617578666667,2019-06-01
+Solimões,Leste Do Urucu,Terra,Petrobras,144.427777666667,2019-06-01
+Campos,Marlim,Mar,Petrobras,142.589146333333,2019-06-01
+Solimões,Rio Urucu,Terra,Petrobras,119.438377333333,2019-06-01
+Campos,Marlim Sul,Mar,Petrobras,102.969536666667,2019-06-01
+Campos,Marlim Leste,Mar,Petrobras,64.064965,2019-06-01
+Santos,Mero,Mar,Petrobras,51.4036666666667,2019-06-01
+Campos,Albacora Leste,Mar,Petrobras,48.4878123333333,2019-06-01
+Santos,Sul De Lula,Mar,Petrobras,45.481181,2019-06-01
+Campos,Barracuda,Mar,Petrobras,43.7435053333333,2019-06-01
+Sergipe,Piranema,Mar,Petrobras,38.0560333333333,2019-06-01
+Santos,Lapa,Mar,Total E&P do Brasil,33.615193,2019-06-01
+Campos,Tartaruga Verde,Mar,Petrobras,30.3237933333333,2019-06-01
+Campos,Marimbá,Mar,Petrobras,26.4623666666667,2019-06-01
+Espírito Santo,Golfinho,Mar,Petrobras,24.1787666666667,2019-06-01
+Campos,Caratinga,Mar,Petrobras,18.4334266666667,2019-06-01
+Santos,Búzios,Mar,Petrobras,953.486935483871,2019-07-01
+Santos,Lula,Mar,Petrobras,646.653042903226,2019-07-01
+Campos,Roncador,Mar,Petrobras,290.05658,2019-07-01
+Campos,Marlim,Mar,Petrobras,165.81733516129,2019-07-01
+Campos,Jubarte,Mar,Petrobras,132.365495806452,2019-07-01
+Solimões,Leste Do Urucu,Terra,Petrobras,130.638875806452,2019-07-01
+Campos,Marlim Sul,Mar,Petrobras,119.567520967742,2019-07-01
+Solimões,Rio Urucu,Terra,Petrobras,104.663103548387,2019-07-01
+Santos,Sapinhoá,Mar,Petrobras,85.2179806451613,2019-07-01
+Campos,Marlim Leste,Mar,Petrobras,73.821844516129,2019-07-01
+Campos,Albacora Leste,Mar,Petrobras,67.0682590322581,2019-07-01
+Sergipe,Piranema,Mar,Petrobras,54.3917096774193,2019-07-01
+Campos,Barracuda,Mar,Petrobras,47.8081241935484,2019-07-01
+Santos,Sul De Lula,Mar,Petrobras,45.0613980645161,2019-07-01
+Santos,Mero,Mar,Petrobras,36.802935483871,2019-07-01
+Santos,Atlanta,Mar,Enauta Energia S.A.,26.9538064516129,2019-07-01
+Espírito Santo,Golfinho,Mar,Petrobras,23.9609677419355,2019-07-01
+Campos,Cherne,Mar,Petrobras,23.846354516129,2019-07-01
+Campos,Albacora,Mar,Petrobras,22.4134164516129,2019-07-01
+Campos,Marimbá,Mar,Petrobras,18.9405483870968,2019-07-01
+Santos,Lula,Mar,Petrobras,788.945432258065,2019-08-01
+Santos,Búzios,Mar,Petrobras,731.269548387097,2019-08-01
+Campos,Roncador,Mar,Petrobras,224.797482580645,2019-08-01
+Campos,Jubarte,Mar,Petrobras,175.27484516129,2019-08-01
+Campos,Marlim,Mar,Petrobras,162.564546774194,2019-08-01
+Campos,Marlim Sul,Mar,Petrobras,118.568805483871,2019-08-01
+Solimões,Leste Do Urucu,Terra,Petrobras,113.294441290323,2019-08-01
+Santos,Sapinhoá,Mar,Petrobras,106.051274193548,2019-08-01
+Solimões,Rio Urucu,Terra,Petrobras,96.3125116129032,2019-08-01
+Campos,Marlim Leste,Mar,Petrobras,84.9821283870968,2019-08-01
+Santos,Sul De Lula,Mar,Petrobras,56.7425903225806,2019-08-01
+Campos,Albacora Leste,Mar,Petrobras,50.9983051612903,2019-08-01
+Santos,Mero,Mar,Petrobras,44.5017096774193,2019-08-01
+Campos,Barracuda,Mar,Petrobras,37.5970522580645,2019-08-01
+Sergipe,Piranema,Mar,Petrobras,33.8663548387097,2019-08-01
+Campos,Albacora,Mar,Petrobras,27.1236929032258,2019-08-01
+Santos,Atlanta,Mar,Enauta Energia S.A.,23.640064516129,2019-08-01
+Recôncavo,Tiê,Terra,Maha Energy,22.348,2019-08-01
+Campos,Cherne,Mar,Petrobras,21.8201864516129,2019-08-01
+Espírito Santo,Golfinho,Mar,Petrobras,20.1823548387097,2019-08-01
+Santos,Lula,Mar,Petrobras,895.303301333333,2019-09-01
+Santos,Búzios,Mar,Petrobras,614.4,2019-09-01
+Campos,Marlim,Mar,Petrobras,198.135556333333,2019-09-01
+Campos,Roncador,Mar,Petrobras,131.801965666667,2019-09-01
+Campos,Jubarte,Mar,Petrobras,127.507975,2019-09-01
+Solimões,Leste Do Urucu,Terra,Petrobras,125.488942333333,2019-09-01
+Solimões,Rio Urucu,Terra,Petrobras,112.486631,2019-09-01
+Campos,Marlim Sul,Mar,Petrobras,112.187120333333,2019-09-01
+Santos,Sapinhoá,Mar,Petrobras,106.121989,2019-09-01
+Santos,Sul De Lula,Mar,Petrobras,63.429903666666704,2019-09-01
+Campos,Marlim Leste,Mar,Petrobras,61.745886,2019-09-01
+Campos,Albacora,Mar,Petrobras,56.6464313333333,2019-09-01
+Campos,Albacora Leste,Mar,Petrobras,50.3674,2019-09-01
+Santos,Mero,Mar,Petrobras,43.4028333333333,2019-09-01
+Campos,Tartaruga Verde,Mar,Petrobras,40.9018263333333,2019-09-01
+Sergipe,Piranema,Mar,Petrobras,38.5838666666667,2019-09-01
+Santos,Atlanta,Mar,Enauta Energia S.A.,33.4100333333333,2019-09-01
+Campos,Cherne,Mar,Petrobras,25.8906843333333,2019-09-01
+Campos,Barracuda,Mar,Petrobras,25.5727546666667,2019-09-01
+Campos,Marimbá,Mar,Petrobras,23.6375333333333,2019-09-01
+Santos,Lula,Mar,Petrobras,828.805529354839,2019-10-01
+Santos,Búzios,Mar,Petrobras,828.72136483871,2019-10-01
+Campos,Jubarte,Mar,Petrobras,202.238542903226,2019-10-01
+Campos,Roncador,Mar,Petrobras,175.10522483871,2019-10-01
+Campos,Marlim,Mar,Petrobras,151.798356129032,2019-10-01
+Campos,Marlim Sul,Mar,Petrobras,123.641118709677,2019-10-01
+Solimões,Leste Do Urucu,Terra,Petrobras,113.216003225806,2019-10-01
+Solimões,Rio Urucu,Terra,Petrobras,95.4828835483871,2019-10-01
+Santos,Sapinhoá,Mar,Petrobras,77.0294364516129,2019-10-01
+Campos,Marlim Leste,Mar,Petrobras,75.2974896774193,2019-10-01
+Santos,Atlanta,Mar,Enauta Energia S.A.,72.6716451612903,2019-10-01
+Santos,Sul De Lula,Mar,Petrobras,56.9299406451613,2019-10-01
+Campos,Barracuda,Mar,Petrobras,53.5386125806452,2019-10-01
+Campos,Albacora,Mar,Petrobras,51.3229677419355,2019-10-01
+Santos,Mero,Mar,Petrobras,42.2333225806452,2019-10-01
+Campos,Albacora Leste,Mar,Petrobras,41.7399335483871,2019-10-01
+Campos,Cherne,Mar,Petrobras,25.4903867741935,2019-10-01
+Sergipe,Piranema,Mar,Petrobras,25.006,2019-10-01
+Santos,Lapa,Mar,Total E&P do Brasil,23.7374658064516,2019-10-01
+Campos,Caratinga,Mar,Petrobras,23.0949674193548,2019-10-01
+Santos,Lula,Mar,Petrobras,679.848385,2019-11-01
+Santos,Búzios,Mar,Petrobras,520.324156666667,2019-11-01
+Santos,Berbigão,Mar,Petrobras,217.306633,2019-11-01
+Campos,Marlim,Mar,Petrobras,209.087625666667,2019-11-01
+Campos,Roncador,Mar,Petrobras,205.685732,2019-11-01
+Santos,Sapinhoá,Mar,Petrobras,189.041970333333,2019-11-01
+Campos,Jubarte,Mar,Petrobras,162.799346666667,2019-11-01
+Campos,Marlim Sul,Mar,Petrobras,148.001343,2019-11-01
+Solimões,Leste Do Urucu,Terra,Petrobras,118.684956333333,2019-11-01
+Solimões,Rio Urucu,Terra,Petrobras,96.59225,2019-11-01
+Campos,Albacora Leste,Mar,Petrobras,76.271287,2019-11-01
+Santos,Atlanta,Mar,Enauta Energia S.A.,67.4688333333333,2019-11-01
+Santos,Sul De Lula,Mar,Petrobras,46.8855103333333,2019-11-01
+Santos,Mero,Mar,Petrobras,44.9009,2019-11-01
+Campos,Barracuda,Mar,Petrobras,42.797947,2019-11-01
+Sergipe,Piranema,Mar,Petrobras,38.3956333333333,2019-11-01
+Campos,Marlim Leste,Mar,Petrobras,33.2684333333333,2019-11-01
+Campos,Cherne,Mar,Petrobras,28.7212993333333,2019-11-01
+Campos,Albacora,Mar,Petrobras,28.0161436666667,2019-11-01
+Campos,Tartaruga Verde,Mar,Petrobras,25.698827,2019-11-01
+Santos,Lula,Mar,Petrobras,754.399015806452,2019-12-01
+Santos,Búzios,Mar,Petrobras,466.501916451613,2019-12-01
+Santos,Berbigão,Mar,Petrobras,360.680387096774,2019-12-01
+Campos,Roncador,Mar,Petrobras,307.613676129032,2019-12-01
+Campos,Jubarte,Mar,Petrobras,200.353226129032,2019-12-01
+Campos,Marlim,Mar,Petrobras,171.758265483871,2019-12-01
+Santos,Sapinhoá,Mar,Petrobras,157.152092258065,2019-12-01
+Campos,Marlim Sul,Mar,Petrobras,127.603187096774,2019-12-01
+Solimões,Leste Do Urucu,Terra,Petrobras,109.371514516129,2019-12-01
+Solimões,Rio Urucu,Terra,Petrobras,95.702375483871,2019-12-01
+Santos,Atlanta,Mar,Enauta Energia S.A.,75.096129032258,2019-12-01
+Campos,Albacora Leste,Mar,Petrobras,59.5129974193548,2019-12-01
+Campos,Marlim Leste,Mar,Petrobras,50.7412316129032,2019-12-01
+Santos,Sul De Lula,Mar,Petrobras,50.4680919354839,2019-12-01
+Campos,Barracuda,Mar,Petrobras,44.9206087096774,2019-12-01
+Campos,Frade,Mar,Petro Rio Jaguar,38.1307419354839,2019-12-01
+Campos,Albacora,Mar,Petrobras,37.5603874193548,2019-12-01
+Sergipe,Piranema,Mar,Petrobras,34.7892258064516,2019-12-01
+Santos,Mero,Mar,Petrobras,34.2505483870968,2019-12-01
+Campos,Cherne,Mar,Petrobras,29.5336874193548,2019-12-01
+Santos,Lula,Mar,Petrobras,856.928412258065,2020-01-01
+Santos,Berbigão,Mar,Petrobras,614.674774193548,2020-01-01
+Santos,Búzios,Mar,Petrobras,580.067307741935,2020-01-01
+Campos,Roncador,Mar,Petrobras,303.797676451613,2020-01-01
+Campos,Jubarte,Mar,Petrobras,187.784965483871,2020-01-01
+Campos,Marlim,Mar,Petrobras,146.762178709677,2020-01-01
+Solimões,Leste Do Urucu,Terra,Petrobras,138.936997741935,2020-01-01
+Solimões,Rio Urucu,Terra,Petrobras,129.499143870968,2020-01-01
+Campos,Marlim Sul,Mar,Petrobras,121.963834516129,2020-01-01
+Santos,Sapinhoá,Mar,Petrobras,112.193848064516,2020-01-01
+Santos,Atlanta,Mar,Enauta Energia S.A.,69.1844516129032,2020-01-01
+Campos,Marlim Leste,Mar,Petrobras,66.5654574193548,2020-01-01
+Santos,Sul De Lula,Mar,Petrobras,62.2213606451613,2020-01-01
+Campos,Barracuda,Mar,Petrobras,50.3129306451613,2020-01-01
+Campos,Albacora Leste,Mar,Petrobras,36.9544158064516,2020-01-01
+Campos,Cherne,Mar,Petrobras,34.1631264516129,2020-01-01
+Campos,Tartaruga Verde,Mar,Petrobras,28.9529748387097,2020-01-01
+Campos,Peregrino,Mar,Equinor Brasil,24.4225806451613,2020-01-01
+Sergipe,Piranema,Mar,Petrobras,23.1917741935484,2020-01-01
+Espírito Santo,Golfinho,Mar,Petrobras,22.4551612903226,2020-01-01
+Santos,Lula,Mar,Petrobras,827.570710689655,2020-02-01
+Santos,Búzios,Mar,Petrobras,471.46611,2020-02-01
+Santos,Berbigão,Mar,Petrobras,411.188,2020-02-01
+Campos,Roncador,Mar,Petrobras,269.432895517241,2020-02-01
+Campos,Marlim,Mar,Petrobras,173.446271724138,2020-02-01
+Campos,Marlim Sul,Mar,Petrobras,148.425748965517,2020-02-01
+Campos,Jubarte,Mar,Petrobras,143.006188275862,2020-02-01
+Solimões,Leste Do Urucu,Terra,Petrobras,137.933292068966,2020-02-01
+Solimões,Rio Urucu,Terra,Petrobras,102.697343103448,2020-02-01
+Sergipe,Pa-1Brsa1083Ses-Seal-M-426,Mar,Petrobras,88.2336896551724,2020-02-01
+Santos,Atlanta,Mar,Enauta Energia S.A.,67.5143448275862,2020-02-01
+Campos,Albacora Leste,Mar,Petrobras,64.9993251724138,2020-02-01
+Santos,Sapinhoá,Mar,Petrobras,61.9982713793103,2020-02-01
+Santos,Sul De Lula,Mar,Petrobras,60.1822737931034,2020-02-01
+Campos,Barracuda,Mar,Petrobras,53.7283793103448,2020-02-01
+Campos,Marlim Leste,Mar,Petrobras,42.8895717241379,2020-02-01
+Sergipe,Piranema,Mar,Petrobras,32.1042413793103,2020-02-01
+Campos,Tartaruga Verde,Mar,Petrobras,28.6162944827586,2020-02-01
+Santos,Mero,Mar,Petrobras,28.1717931034483,2020-02-01
+Campos,Cherne,Mar,Petrobras,26.6915168965517,2020-02-01
+Santos,Lula,Mar,Petrobras,827.570710689655,2020-03-01
+Santos,Búzios,Mar,Petrobras,471.46611,2020-03-01
+Santos,Berbigão,Mar,Petrobras,411.188,2020-03-01
+Campos,Roncador,Mar,Petrobras,269.432895517241,2020-03-01
+Campos,Marlim,Mar,Petrobras,173.446271724138,2020-03-01
+Campos,Marlim Sul,Mar,Petrobras,148.425748965517,2020-03-01
+Campos,Jubarte,Mar,Petrobras,143.006188275862,2020-03-01
+Solimões,Leste Do Urucu,Terra,Petrobras,137.933292068966,2020-03-01
+Solimões,Rio Urucu,Terra,Petrobras,102.697343103448,2020-03-01
+Sergipe,Tld-Seal –M 426,Mar,Petrobras,88.2336896551724,2020-03-01
+Santos,Atlanta,Mar,Enauta Energia S.A.,67.5143448275862,2020-03-01
+Campos,Albacora Leste,Mar,Petrobras,64.9993251724138,2020-03-01
+Santos,Sapinhoá,Mar,Petrobras,61.9982713793103,2020-03-01
+Santos,Sul De Lula,Mar,Petrobras,60.1822737931034,2020-03-01
+Campos,Barracuda,Mar,Petrobras,53.7283793103448,2020-03-01
+Campos,Marlim Leste,Mar,Petrobras,42.8895717241379,2020-03-01
+Sergipe,Piranema,Mar,Petrobras,32.1042413793103,2020-03-01
+Campos,Tartaruga Verde,Mar,Petrobras,28.6162944827586,2020-03-01
+Santos,Mero,Mar,Petrobras,28.1717931034483,2020-03-01
+Campos,Cherne,Mar,Petrobras,26.6915168965517,2020-03-01
+Santos,Búzios,Mar,Petrobras,473.911191,2020-04-01
+Santos,Lula,Mar,Petrobras,445.461338333333,2020-04-01
+Campos,Roncador,Mar,Petrobras,200.756198333333,2020-04-01
+Santos,Berbigão,Mar,Petrobras,159.683066666667,2020-04-01
+Santos,Sapinhoá,Mar,Petrobras,155.566614333333,2020-04-01
+Campos,Marlim,Mar,Petrobras,151.482177,2020-04-01
+Campos,Marlim Sul,Mar,Petrobras,127.387423,2020-04-01
+Solimões,Leste Do Urucu,Terra,Petrobras,108.524699333333,2020-04-01
+Solimões,Rio Urucu,Terra,Petrobras,87.0649543333333,2020-04-01
+Santos,Atlanta,Mar,Enauta Energia S.A.,79.5817,2020-04-01
+Campos,Jubarte,Mar,Petrobras,61.1097656666667,2020-04-01
+Campos,Marlim Leste,Mar,Petrobras,39.8923993333333,2020-04-01
+Santos,Mero,Mar,Petrobras,35.8582666666667,2020-04-01
+Campos,Barracuda,Mar,Petrobras,35.4469116666667,2020-04-01
+Campos,Albacora Leste,Mar,Petrobras,34.7957393333333,2020-04-01
+Santos,Sul De Lula,Mar,Petrobras,28.033491,2020-04-01
+Recôncavo,Tiê,Terra,Maha Energy,24.832637,2020-04-01
+Sergipe,Carmópolis,Terra,Petrobras,21.0457563333333,2020-04-01
+Campos,Caratinga,Mar,Petrobras,18.744021,2020-04-01
+Campos,Albacora,Mar,Petrobras,18.407026,2020-04-01
+Santos,Lula,Mar,Petrobras,642.418991612903,2020-05-01
+Santos,Búzios,Mar,Petrobras,527.877772580645,2020-05-01
+Campos,Roncador,Mar,Petrobras,192.224030967742,2020-05-01
+Santos,Berbigão,Mar,Petrobras,171.500999677419,2020-05-01
+Campos,Marlim,Mar,Petrobras,137.566906129032,2020-05-01
+Solimões,Leste Do Urucu,Terra,Petrobras,97.1008829032258,2020-05-01
+Campos,Marlim Sul,Mar,Petrobras,90.8835122580645,2020-05-01
+Campos,Jubarte,Mar,Petrobras,83.1186770967742,2020-05-01
+Santos,Atlanta,Mar,Enauta Energia S.A.,58.8917096774193,2020-05-01
+Solimões,Rio Urucu,Terra,Petrobras,57.6570812903226,2020-05-01
+Campos,Albacora Leste,Mar,Petrobras,51.4274335483871,2020-05-01
+Campos,Albacora,Mar,Petrobras,48.6514687096774,2020-05-01
+Santos,Sul De Lula,Mar,Petrobras,45.8728538709677,2020-05-01
+Parnaíba,Gavião Preto,Terra,Eneva,41.3009670967742,2020-05-01
+Campos,Barracuda,Mar,Petrobras,35.6327835483871,2020-05-01
+Campos,Marlim Leste,Mar,Petrobras,31.7514387096774,2020-05-01
+Santos,Mero,Mar,Petrobras,29.544935483871,2020-05-01
+Santos,Sapinhoá,Mar,Petrobras,26.2107151612903,2020-05-01
+Campos,Caratinga,Mar,Petrobras,23.3271825806452,2020-05-01
+Campos,Marimbá,Mar,Petrobras,20.1173225806452,2020-05-01
+Santos,Lula,Mar,Petrobras,614.820256666667,2020-06-01
+Santos,Búzios,Mar,Petrobras,575.971155333333,2020-06-01
+Campos,Roncador,Mar,Petrobras,152.682298333333,2020-06-01
+Campos,Marlim,Mar,Petrobras,143.767879,2020-06-01
+Santos,Atapu,Mar,Petrobras,129.639947,2020-06-01
+Campos,Jubarte,Mar,Petrobras,128.091632666667,2020-06-01
+Santos,Sururu,Mar,Petrobras,123.290429666667,2020-06-01
+Santos,Berbigão,Mar,Petrobras,95.7557363333333,2020-06-01
+Santos,Sapinhoá,Mar,Petrobras,90.4097446666667,2020-06-01
+Solimões,Leste Do Urucu,Terra,Petrobras,89.641706,2020-06-01
+Campos,Marlim Sul,Mar,Petrobras,85.5881476666667,2020-06-01
+Campos,Albacora,Mar,Petrobras,79.7692793333333,2020-06-01
+Campos,Albacora Leste,Mar,Petrobras,77.926819,2020-06-01
+Solimões,Rio Urucu,Terra,Petrobras,69.004017,2020-06-01
+Santos,Mero,Mar,Petrobras,57.4163,2020-06-01
+Campos,Barracuda,Mar,Petrobras,51.8916006666667,2020-06-01
+Santos,Sul De Lula,Mar,Petrobras,40.975427,2020-06-01
+Santos,Atlanta,Mar,Enauta Energia S.A.,30.3825333333333,2020-06-01
+Campos,Marlim Leste,Mar,Petrobras,27.1010056666667,2020-06-01
+Santos,Oeste De Atapu,Mar,Petrobras,26.9212553333333,2020-06-01
+Santos,Atapu,Mar,Petrobras,815.954485483871,2020-07-01
+Santos,Lula,Mar,Petrobras,648.182178387097,2020-07-01
+Santos,Búzios,Mar,Petrobras,627.772144193548,2020-07-01
+Campos,Roncador,Mar,Petrobras,230.890869354839,2020-07-01
+Santos,Oeste De Atapu,Mar,Petrobras,169.442521612903,2020-07-01
+Campos,Marlim,Mar,Petrobras,127.677615806452,2020-07-01
+Campos,Marlim Sul,Mar,Petrobras,105.142970967742,2020-07-01
+Solimões,Leste Do Urucu,Terra,Petrobras,103.403412580645,2020-07-01
+Santos,Sapinhoá,Mar,Petrobras,99.2303758064516,2020-07-01
+Santos,Sururu,Mar,Petrobras,88.193484516129,2020-07-01
+Campos,Jubarte,Mar,Petrobras,86.9770335483871,2020-07-01
+Solimões,Rio Urucu,Terra,Petrobras,79.4732551612903,2020-07-01
+Santos,Berbigão,Mar,Petrobras,64.3549661290322,2020-07-01
+Campos,Albacora Leste,Mar,Petrobras,58.8004587096774,2020-07-01
+Campos,Marlim Leste,Mar,Petrobras,51.7042777419355,2020-07-01
+Santos,Lapa,Mar,Total E&P do Brasil,47.8468938709677,2020-07-01
+Campos,Albacora,Mar,Petrobras,46.77841,2020-07-01
+Santos,Sul De Lula,Mar,Petrobras,43.7522103225806,2020-07-01
+Campos,Barracuda,Mar,Petrobras,38.3983148387097,2020-07-01
+Santos,Atlanta,Mar,Enauta Energia S.A.,33.4007096774193,2020-07-01
+Santos,Búzios,Mar,Petrobras,848.626085483871,2020-08-01
+Santos,Atapu,Mar,Petrobras,763.47820483871,2020-08-01
+Santos,Tupi,Mar,Petrobras,515.561665806452,2020-08-01
+Campos,Roncador,Mar,Petrobras,209.570256774194,2020-08-01
+Santos,Oeste De Atapu,Mar,Petrobras,158.545206451613,2020-08-01
+Campos,Jubarte,Mar,Petrobras,153.792446774194,2020-08-01
+Campos,Marlim,Mar,Petrobras,143.292249032258,2020-08-01
+Campos,Marlim Sul,Mar,Petrobras,109.145223225806,2020-08-01
+Solimões,Leste Do Urucu,Terra,Petrobras,102.289860322581,2020-08-01
+Santos,Sapinhoá,Mar,Petrobras,86.2861958064516,2020-08-01
+Solimões,Rio Urucu,Terra,Petrobras,80.9132877419355,2020-08-01
+Campos,Marlim Leste,Mar,Petrobras,63.9680235483871,2020-08-01
+Campos,Albacora,Mar,Petrobras,49.5913790322581,2020-08-01
+Campos,Albacora Leste,Mar,Petrobras,46.0509093548387,2020-08-01
+Santos,Sururu,Mar,Petrobras,41.8597783870968,2020-08-01
+Campos,Barracuda,Mar,Petrobras,41.05059,2020-08-01
+Santos,Sul De Tupi,Mar,Petrobras,34.4983625806452,2020-08-01
+Campos,Marimbá,Mar,Trident Energy,34.2588106451613,2020-08-01
+Santos,Berbigão,Mar,Petrobras,30.4791883870968,2020-08-01
+Campos,Pampo,Mar,Trident Energy,26.9177132258064,2020-08-01
+Santos,Búzios,Mar,Petrobras,697.487707,2020-09-01
+Santos,Atapu,Mar,Petrobras,620.644805,2020-09-01
+Santos,Tupi,Mar,Petrobras,560.430141333333,2020-09-01
+Campos,Roncador,Mar,Petrobras,217.046265333333,2020-09-01
+Santos,Oeste De Atapu,Mar,Petrobras,128.884175,2020-09-01
+Campos,Jubarte,Mar,Petrobras,121.792207,2020-09-01
+Solimões,Leste Do Urucu,Terra,Petrobras,109.968948,2020-09-01
+Campos,Marlim Sul,Mar,Petrobras,89.6633993333333,2020-09-01
+Campos,Marlim,Mar,Petrobras,76.017994,2020-09-01
+Solimões,Rio Urucu,Terra,Petrobras,75.881828,2020-09-01
+Campos,Barracuda,Mar,Petrobras,44.0821016666667,2020-09-01
+Santos,Sul De Tupi,Mar,Petrobras,38.7335573333333,2020-09-01
+Santos,Sapinhoá,Mar,Petrobras,37.9102266666667,2020-09-01
+Campos,Marimbá,Mar,Trident Energy,37.837685,2020-09-01
+Santos,Lapa,Mar,Total E&P do Brasil,36.7658503333333,2020-09-01
+Campos,Albacora Leste,Mar,Petrobras,34.5726693333333,2020-09-01
+Campos,Albacora,Mar,Petrobras,31.947095,2020-09-01
+Santos,Atlanta,Mar,Enauta Energia S.A.,31.3175313333333,2020-09-01
+Campos,Marlim Leste,Mar,Petrobras,26.9987373333333,2020-09-01
+Santos,Mero,Mar,Petrobras,24.4734666666667,2020-09-01
+Santos,Tupi,Mar,Petrobras,730.263067333333,2020-11-01
+Santos,Búzios,Mar,Petrobras,478.283371333333,2020-11-01
+Campos,Roncador,Mar,Petrobras,259.861732,2020-11-01
+Santos,Atapu,Mar,Petrobras,136.860100666667,2020-11-01
+Santos,Sapinhoá,Mar,Petrobras,120.671602333333,2020-11-01
+Campos,Marlim,Mar,Petrobras,117.43837,2020-11-01
+Campos,Jubarte,Mar,Petrobras,114.067946,2020-11-01
+Campos,Marlim Sul,Mar,Petrobras,98.616671,2020-11-01
+Solimões,Leste do Urucu,Terra,Petrobras,87.963258,2020-11-01
+Solimões,Rio Urucu,Terra,Petrobras,68.3235443333333,2020-11-01
+Campos,Barracuda,Mar,Petrobras,57.3217236666667,2020-11-01
+Campos,Albacora Leste,Mar,Petrobras,55.6439666666667,2020-11-01
+Recôncavo,Araçás,Terra,Petrobras,48.586511,2020-11-01
+Santos,Sul de Tupi,Mar,Petrobras,43.219004,2020-11-01
+Campos,Albacora,Mar,Petrobras,36.341764,2020-11-01
+Campos,Frade,Mar,Petro Rio Jaguar,35.0610666666667,2020-11-01
+Campos,Marlim Leste,Mar,Petrobras,34.352823,2020-11-01
+Campos,Pampo,Mar,Trident Energy,34.319631,2020-11-01
+Recôncavo,Massapê,Terra,Petrobras,30.382758,2020-11-01
+Santos,Mero,Mar,Petrobras,30.2645666666667,2020-11-01
+Santos,Tupi,Mar,Petrobras,595.299733870968,2020-12-01
+Santos,Búzios,Mar,Petrobras,467.487265806452,2020-12-01
+Campos,Roncador,Mar,Petrobras,267.470901935484,2020-12-01
+Santos,Sapinhoá,Mar,Petrobras,159.989649677419,2020-12-01
+Campos,Jubarte,Mar,Petrobras,139.407894193548,2020-12-01
+Campos,Marlim,Mar,Petrobras,136.617900645161,2020-12-01
+Santos,Atapu,Mar,Petrobras,136.098472903226,2020-12-01
+Campos,Marlim Sul,Mar,Petrobras,120.358569032258,2020-12-01
+Campos,Marlim Leste,Mar,Petrobras,78.7669751612903,2020-12-01
+Solimões,Leste Do Urucu,Terra,Petrobras,73.1794764516129,2020-12-01
+Solimões,Rio Urucu,Terra,Petrobras,61.0402432258064,2020-12-01
+Campos,Albacora,Mar,Petrobras,59.8446206451613,2020-12-01
+Santos,Lapa,Mar,Total E&P do Brasil,46.9926783870968,2020-12-01
+Campos,Barracuda,Mar,Petrobras,44.9841306451613,2020-12-01
+Recôncavo,Araçás,Terra,Petrobras,38.7469083870968,2020-12-01
+Santos,Sul De Tupi,Mar,Petrobras,38.5446212903226,2020-12-01
+Campos,Albacora Leste,Mar,Petrobras,38.333344516129,2020-12-01
+Espírito Santo,Golfinho,Mar,Petrobras,29.5298387096774,2020-12-01
+Santos,Oeste De Atapu,Mar,Petrobras,28.2624441935484,2020-12-01
+Santos,Mero,Mar,Petrobras,26.3094838709677,2020-12-01
+Santos,Búzios,Mar,Petrobras,640.687749354839,2020-10-01
+Santos,Tupi,Mar,Petrobras,520.399320322581,2020-10-01
+Santos,Atapu,Mar,Petrobras,236.975639032258,2020-10-01
+Campos,Roncador,Mar,Petrobras,180.627869677419,2020-10-01
+Campos,Jubarte,Mar,Petrobras,168.39004,2020-10-01
+Campos,Marlim Sul,Mar,Petrobras,105.338169354839,2020-10-01
+Santos,Sapinhoá,Mar,Petrobras,94.695764516129,2020-10-01
+Campos,Marlim,Mar,Petrobras,75.3496609677419,2020-10-01
+Solimões,Leste Do Urucu,Terra,Petrobras,70.4172119354839,2020-10-01
+Campos,Barracuda,Mar,Petrobras,65.4832780645161,2020-10-01
+Campos,Albacora,Mar,Petrobras,60.9283641935484,2020-10-01
+Solimões,Rio Urucu,Terra,Petrobras,56.7551251612903,2020-10-01
+Santos,Oeste De Atapu,Mar,Petrobras,49.2107712903226,2020-10-01
+Campos,Albacora Leste,Mar,Petrobras,43.3747629032258,2020-10-01
+Campos,Marlim Leste,Mar,Petrobras,37.3579090322581,2020-10-01
+Campos,Garoupa,Mar,Petrobras,36.6881935483871,2020-10-01
+Santos,Lapa,Mar,Total E&P do Brasil,32.3504548387097,2020-10-01
+Santos,Atlanta,Mar,Enauta Energia,29.7498287096774,2020-10-01
+Santos,Sul De Tupi,Mar,Petrobras,25.3163835483871,2020-10-01
+Santos,Sururu,Mar,Petrobras,24.5481809677419,2020-10-01
+Santos,Búzios,Mar,Petrobras,615.036730645161,2021-01-01
+Santos,Tupi,Mar,Petrobras,495.551908709677,2021-01-01
+Campos,Roncador,Mar,Petrobras,259.481192258065,2021-01-01
+Santos,Sapinhoá,Mar,Petrobras,124.572156129032,2021-01-01
+Campos,Marlim,Mar,Petrobras,123.264541935484,2021-01-01
+Campos,Jubarte,Mar,Petrobras,101.370757419355,2021-01-01
+Campos,Marlim Sul,Mar,Petrobras,100.535983870968,2021-01-01
+Santos,Atapu,Mar,Petrobras,86.2621667741935,2021-01-01
+Solimões,Leste do Urucu,Terra,Petrobras,81.0481270967742,2021-01-01
+Campos,Marlim Leste,Mar,Petrobras,76.3338477419355,2021-01-01
+Solimões,Rio Urucu,Terra,Petrobras,68.8188393548387,2021-01-01
+Campos,Albacora Leste,Mar,Petrobras,63.6282396774194,2021-01-01
+Campos,Barracuda,Mar,Petrobras,58.0570974193548,2021-01-01
+Campos,Albacora,Mar,Petrobras,41.9232741935484,2021-01-01
+Santos,Sul de Tupi,Mar,Petrobras,36.0235696774193,2021-01-01
+Santos,Mero,Mar,Petrobras,34.2437419354839,2021-01-01
+Campos,Tartaruga Verde,Mar,Petrobras,30.5899793548387,2021-01-01
+Campos,Pampo,Mar,Trident Energy,29.1047570967742,2021-01-01
+Campos,Enchova Oeste,Mar,Trident Energy,21.7554009677419,2021-01-01
+Campos,Marimbá,Mar,Trident Energy,21.4543322580645,2021-01-01
+Santos,Tupi,Mar,Petrobras,675.930619354839,2021-03-01
+Santos,Búzios,Mar,Petrobras,578.264780645161,2021-03-01
+Campos,Roncador,Mar,Petrobras,288.57038483871,2021-03-01
+Campos,Marlim,Mar,Petrobras,215.956986451613,2021-03-01
+Campos,Jubarte,Mar,Petrobras,135.248138064516,2021-03-01
+Campos,Marlim Sul,Mar,Petrobras,125.495138709677,2021-03-01
+Campos,Albacora,Mar,Petrobras,92.9227577419355,2021-03-01
+Solimões,Leste do Urucu,Terra,Petrobras,83.4252167741935,2021-03-01
+Santos,Sapinhoá,Mar,Petrobras,73.6765525806452,2021-03-01
+Solimões,Rio Urucu,Terra,Petrobras,73.3043196774193,2021-03-01
+Campos,Barracuda,Mar,Petrobras,67.6645525806452,2021-03-01
+Santos,Lapa,Mar,Total E&P do Brasil,55.055065483871,2021-03-01
+Santos,Atapu,Mar,Petrobras,52.318435483871,2021-03-01
+Santos,Sul de Tupi,Mar,Petrobras,50.3355474193548,2021-03-01
+Campos,Albacora Leste,Mar,Petrobras,46.9047238709677,2021-03-01
+Santos,Sururu,Mar,Petrobras,24.9566503225806,2021-03-01
+Espírito Santo,Golfinho,Mar,Petrobras,23.572064516129,2021-03-01
+Campos,Marlim Leste,Mar,Petrobras,22.288875483871,2021-03-01
+Campos,Tartaruga Verde,Mar,Petrobras,21.3819735483871,2021-03-01
+Santos,Atlanta,Mar,Enauta Energia,17.0774516129032,2021-03-01
+Santos,Búzios,Mar,Petrobras,577.491939666667,2021-04-01
+Santos,Tupi,Mar,Petrobras,533.152202333333,2021-04-01
+Campos,Roncador,Mar,Petrobras,212.267199,2021-04-01
+Campos,Marlim,Mar,Petrobras,192.052335666667,2021-04-01
+Campos,Marlim Sul,Mar,Petrobras,120.352381666667,2021-04-01
+Solimões,Leste Do Urucu,Terra,Petrobras,119.680063666667,2021-04-01
+Santos,Sapinhoá,Mar,Petrobras,109.328826333333,2021-04-01
+Solimões,Rio Urucu,Terra,Petrobras,106.629237333333,2021-04-01
+Campos,Jubarte,Mar,Petrobras,103.155534,2021-04-01
+Santos,Mero,Mar,Petrobras,63.6143,2021-04-01
+Campos,Albacora Leste,Mar,Petrobras,44.3674626666667,2021-04-01
+Campos,Marlim Leste,Mar,Petrobras,40.0606426666667,2021-04-01
+Espírito Santo,Golfinho,Mar,Petrobras,39.6741666666667,2021-04-01
+Campos,Barracuda,Mar,Petrobras,36.6803303333333,2021-04-01
+Santos,Sul De Tupi,Mar,Petrobras,35.0311626666667,2021-04-01
+Campos,Marimbá,Mar,Trident Energy,27.3215593333333,2021-04-01
+Campos,Albacora,Mar,Petrobras,26.7183353333333,2021-04-01
+Recôncavo,Araçás,Terra,Petrobras,23.83529,2021-04-01
+Campos,Tartaruga Verde,Mar,Petrobras,23.1039306666667,2021-04-01
+Campos,Caratinga,Mar,Petrobras,23.0800353333333,2021-04-01
+Santos,Búzios,Mar,Petrobras,621.384180967742,2021-05-01
+Santos,Tupi,Mar,Petrobras,489.694216774194,2021-05-01
+Campos,Roncador,Mar,Petrobras,180.33722483871,2021-05-01
+Campos,Marlim,Mar,Petrobras,146.174199354839,2021-05-01
+Solimões,Leste do Urucu,Terra,Petrobras,143.184208064516,2021-05-01
+Solimões,Rio Urucu,Terra,Petrobras,126.772285483871,2021-05-01
+Santos,Sapinhoá,Mar,Petrobras,124.491433870968,2021-05-01
+Campos,Jubarte,Mar,Petrobras,121.387727741935,2021-05-01
+Campos,Marlim Sul,Mar,Petrobras,112.45604516129,2021-05-01
+Campos,Albacora Leste,Mar,Petrobras,72.5690648387097,2021-05-01
+Santos,Mero,Mar,Petrobras,69.5582903225806,2021-05-01
+Campos,Marlim Leste,Mar,Petrobras,60.5663422580645,2021-05-01
+Campos,Barracuda,Mar,Petrobras,37.2578787096774,2021-05-01
+Santos,Sururu,Mar,Petrobras,37.1027138709677,2021-05-01
+Campos,Albacora,Mar,Petrobras,37.0001909677419,2021-05-01
+Santos,Atlanta,Mar,Enauta Energia,35.1445806451613,2021-05-01
+Santos,Sul De Tupi,Mar,Petrobras,34.479785483871,2021-05-01
+Campos,Marimbá,Mar,Trident Energy,32.6410587096774,2021-05-01
+Campos,Pampo,Mar,Trident Energy,30.4122180645161,2021-05-01
+Santos,Atapu,Mar,Petrobras,23.1663806451613,2021-05-01
+Santos,Búzios,Mar,Petrobras,710.279907666667,2021-06-01
+Santos,Tupi,Mar,Petrobras,670.976378333333,2021-06-01
+Campos,Roncador,Mar,Petrobras,223.152299,2021-06-01
+Solimões,Leste do Urucu,Terra,Petrobras,117.407846,2021-06-01
+Solimões,Rio Urucu,Terra,Petrobras,108.193863666667,2021-06-01
+Campos,Jubarte,Mar,Petrobras,108.048752666667,2021-06-01
+Campos,Marlim Sul,Mar,Petrobras,105.824258333333,2021-06-01
+Campos,Marlim,Mar,Petrobras,101.274333,2021-06-01
+Santos,Sapinhoá,Mar,Petrobras,98.259349,2021-06-01
+Campos,Albacora Leste,Mar,Petrobras,94.7992353333333,2021-06-01
+Campos,Albacora,Mar,Petrobras,65.1500623333333,2021-06-01
+Santos,Mero,Mar,Petrobras,57.5006333333333,2021-06-01
+Santos,Sul de Tupi,Mar,Petrobras,46.281314,2021-06-01
+Campos,Marlim Leste,Mar,Petrobras,44.2121216666667,2021-06-01
+Santos,Sururu,Mar,Petrobras,34.7063446666667,2021-06-01
+Campos,Pampo,Mar,Trident Energy,34.6204736666667,2021-06-01
+Santos,Atlanta,Mar,Enauta Energia,29.2149546666667,2021-06-01
+Campos,Barracuda,Mar,Petrobras,27.412746,2021-06-01
+Santos,Atapu,Mar,Petrobras,26.050557,2021-06-01
+Campos,Marimbá,Mar,Trident Energy,23.616455,2021-06-01
+Santos,Tupi,Mar,Petrobras,778.244285483871,2021-07-01
+Santos,Búzios,Mar,Petrobras,613.985803870968,2021-07-01
+Campos,Jubarte,Mar,Petrobras,311.318329677419,2021-07-01
+Campos,Roncador,Mar,Petrobras,223.725482258065,2021-07-01
+Santos,Sapinhoá,Mar,Petrobras,179.602542903226,2021-07-01
+Campos,Marlim,Mar,Petrobras,145.274143548387,2021-07-01
+Campos,Marlim Sul,Mar,Petrobras,106.635794516129,2021-07-01
+Solimões,Leste Do Urucu,Terra,Petrobras,92.6338293548387,2021-07-01
+Campos,Albacora Leste,Mar,Petrobras,91.0231970967742,2021-07-01
+Solimões,Rio Urucu,Terra,Petrobras,84.929554516129,2021-07-01
+Santos,Mero,Mar,Petrobras,67.3146451612903,2021-07-01
+Campos,Albacora,Mar,Petrobras,66.5546396774193,2021-07-01
+Santos,Sururu,Mar,Petrobras,53.7317264516129,2021-07-01
+Campos,Marlim Leste,Mar,Petrobras,47.2900332258065,2021-07-01
+Santos,Sul De Tupi,Mar,Petrobras,46.3858983870968,2021-07-01
+Campos,Pampo,Mar,Trident Energy,37.9226387096774,2021-07-01
+Santos,Atapu,Mar,Petrobras,37.2628409677419,2021-07-01
+Santos,Lapa,Mar,TotalEnergies EP,31.9664535483871,2021-07-01
+Campos,Argonauta,Mar,Shell Brasil,28.4311767741935,2021-07-01
+Campos,Marimbá,Mar,Trident Energy,25.2069425806452,2021-07-01
+Santos,Tupi,Mar,Petrobras,587.095623870968,2021-08-01
+Santos,Búzios,Mar,Petrobras,471.789786129032,2021-08-01
+Santos,Sépia,Mar,Petrobras,204.728153870968,2021-08-01
+Campos,Roncador,Mar,Petrobras,174.970289354839,2021-08-01
+Campos,Jubarte,Mar,Petrobras,121.076315483871,2021-08-01
+Solimões,Leste Do Urucu,Terra,Petrobras,105.507933548387,2021-08-01
+Campos,Marlim Sul,Mar,Petrobras,101.572407741935,2021-08-01
+Solimões,Rio Urucu,Terra,Petrobras,97.9733377419355,2021-08-01
+Santos,Sapinhoá,Mar,Petrobras,93.1267577419355,2021-08-01
+Santos,Sururu,Mar,Petrobras,93.0113948387097,2021-08-01
+Santos,Atapu,Mar,Petrobras,91.4550435483871,2021-08-01
+Campos,Albacora,Mar,Petrobras,83.9455225806452,2021-08-01
+Campos,Marlim,Mar,Petrobras,79.8022661290322,2021-08-01
+Campos,Albacora Leste,Mar,Petrobras,63.831055483871,2021-08-01
+Campos,Marlim Leste,Mar,Petrobras,46.3737432258065,2021-08-01
+Santos,Atlanta,Mar,Enauta Energia,44.5288593548387,2021-08-01
+Santos,Sul De Tupi,Mar,Petrobras,41.0287016129032,2021-08-01
+Campos,Namorado,Mar,Petrobras,36.0288387096774,2021-08-01
+Espírito Santo,Golfinho,Mar,Petrobras,35.9660967741935,2021-08-01
+Campos,Polvo,Mar,Petro Rio O&G,33.6195658064516,2021-08-01
+Santos,Sépia,Mar,Petrobras,1065.097606,2021-09-01
+Santos,Tupi,Mar,Petrobras,542.839061,2021-09-01
+Santos,Búzios_Eco,Mar,Petrobras,319.352011,2021-09-01
+Campos,Roncador,Mar,Petrobras,209.000631333333,2021-09-01
+Santos,Sépia Leste,Mar,Petrobras,146.217893666667,2021-09-01
+Campos,Jubarte,Mar,Petrobras,139.950055333333,2021-09-01
+Santos,Sapinhoá,Mar,Petrobras,139.792352666667,2021-09-01
+Campos,Marlim,Mar,Petrobras,116.758778333333,2021-09-01
+Santos,Búzios,Mar,Petrobras,112.908707333333,2021-09-01
+Solimões,Leste Do Urucu,Terra,Petrobras,110.496073333333,2021-09-01
+Campos,Marlim Sul,Mar,Petrobras,110.364890666667,2021-09-01
+Solimões,Rio Urucu,Terra,Petrobras,99.34337,2021-09-01
+Campos,Albacora Leste,Mar,Petrobras,73.0638066666667,2021-09-01
+Santos,Sururu,Mar,Petrobras,66.8565696666667,2021-09-01
+Campos,Marlim Leste,Mar,Petrobras,58.2308626666667,2021-09-01
+Santos,Atapu,Mar,Petrobras,53.2273303333333,2021-09-01
+Camamu,Manati,Mar,Petrobras,35.5642333333333,2021-09-01
+Santos,Sul De Tupi,Mar,Petrobras,35.2923066666667,2021-09-01
+Campos,Pampo,Mar,Trident Energy,33.997397,2021-09-01
+Santos,Atlanta,Mar,Enauta Energia,33.5065333333333,2021-09-01
+Santos,Sépia,Mar,Petrobras,1090.68807903226,2021-10-01
+Santos,Tupi,Mar,Petrobras,608.197389677419,2021-10-01
+Santos,Búzios,Mar,Petrobras,516.607480645161,2021-10-01
+Campos,Roncador,Mar,Petrobras,239.766579032258,2021-10-01
+Santos,Sépia Leste,Mar,Petrobras,149.73098483871,2021-10-01
+Santos,Sapinhoá,Mar,Petrobras,139.239857419355,2021-10-01
+Campos,Jubarte,Mar,Petrobras,131.254836451613,2021-10-01
+Campos,Marlim Sul,Mar,Petrobras,109.267642258065,2021-10-01
+Solimões,Leste Do Urucu,Terra,Petrobras,100.626282258065,2021-10-01
+Solimões,Rio Urucu,Terra,Petrobras,95.384005483871,2021-10-01
+Campos,Marlim,Mar,Petrobras,89.5168303225806,2021-10-01
+Campos,Albacora Leste,Mar,Petrobras,78.9159790322581,2021-10-01
+Santos,Sururu,Mar,Petrobras,54.9406693548387,2021-10-01
+Campos,Marlim Leste,Mar,Petrobras,54.8576661290322,2021-10-01
+Potiguar,Lorena,Terra,Potiguar E&P S.A.,47.5136303225806,2021-10-01
+Santos,Atapu,Mar,Petrobras,46.2156877419355,2021-10-01
+Campos,Barracuda,Mar,Petrobras,42.9747429032258,2021-10-01
+Amazonas,Azulão,Terra,Eneva,39.7251716129032,2021-10-01
+Santos,Sul De Tupi,Mar,Petrobras,38.5077583870968,2021-10-01
+Campos,Pampo,Mar,Trident Energy,37.39,2021-10-01
+Santos,Búzios,Mar,Petrobras,600,2021-12-01
+Santos,Tupi,Mar,Petrobras,585.266248387097,2021-12-01
+Campos,Roncador,Mar,Petrobras,196.672191612903,2021-12-01
+Santos,Mero,Mar,Petrobras,161.836032258065,2021-12-01
+Campos,Jubarte,Mar,Petrobras,147.047856129032,2021-12-01
+Santos,Sépia,Mar,Petrobras,144.136109677419,2021-12-01
+Campos,Marlim,Mar,Petrobras,141.02758,2021-12-01
+Campos,Marlim Sul,Mar,Petrobras,131.599638064516,2021-12-01
+Santos,Sapinhoá,Mar,Petrobras,117.354688064516,2021-12-01
+Solimões,Leste Do Urucu,Terra,Petrobras,100.447056129032,2021-12-01
+Solimões,Rio Urucu,Terra,Petrobras,93.6856287096774,2021-12-01
+Santos,Lapa,Mar,TotalEnergies EP,84.5467987096774,2021-12-01
+Campos,Tubarão Martelo,Mar,Petro Rio O&G,65.7841687096774,2021-12-01
+Campos,Polvo,Mar,Petro Rio O&G,57.8384541935484,2021-12-01
+Santos,Sururu,Mar,Petrobras,56.72171,2021-12-01
+Campos,Barracuda,Mar,Petrobras,46.7836467741935,2021-12-01
+Campos,Marlim Leste,Mar,Petrobras,41.331984516129,2021-12-01
+Santos,Sul De Tupi,Mar,Petrobras,35.9784474193548,2021-12-01
+Campos,Cherne,Mar,Petrobras,32.6242903225806,2021-12-01
+Campos,Albacora Leste,Mar,Petrobras,27,2021-12-01
+Santos,Tupi,Mar,Petrobras,634,2021-11-01
+Santos,Búzios,Mar,Petrobras,579,2021-11-01
+Santos,Sépia,Mar,Petrobras,523,2021-11-01
+Campos,Roncador,Mar,Petrobras,254,2021-11-01
+Campos,Jubarte,Mar,Petrobras,142,2021-11-01
+Santos,Sapinhoá,Mar,Petrobras,140,2021-11-01
+Campos,Marlim,Mar,Petrobras,133,2021-11-01
+Santos,Sururu,Mar,Petrobras,101,2021-11-01
+Campos,Marlim Sul,Mar,Petrobras,100,2021-11-01
+Campos,Albacora Leste,Mar,Petrobras,84,2021-11-01
+Solimões,Leste do Urucu,Terra,Petrobras,82,2021-11-01
+Solimões,Rio Urucu,Terra,Petrobras,76,2021-11-01
+Santos,Atapu,Mar,Petrobras,73,2021-11-01
+Santos,Sépia Leste,Mar,Petrobras,72,2021-11-01
+Campos,Tubarão Martelo,Mar,Petro Rio O&G,63,2021-11-01
+Campos,Polvo,Mar,Petro Rio O&G,48,2021-11-01
+Campos,Barracuda,Mar,Petrobras,46,2021-11-01
+Campos,Marlim Leste,Mar,Petrobras,42,2021-11-01
+Santos,Sul De Tupi,Mar,Petrobras,42,2021-11-01
+Campos,Cherne,Mar,Petrobras,30,2021-11-01
+Santos,Tupi,Mar,Petrobras,812.663306428571,2021-02-01
+Santos,Búzios,Mar,Petrobras,585.906294285714,2021-02-01
+Campos,Roncador,Mar,Petrobras,296.636355357143,2021-02-01
+Santos,Sapinhoá,Mar,Petrobras,175.273308571429,2021-02-01
+Campos,Jubarte,Mar,Petrobras,129.673223571429,2021-02-01
+Solimões,Leste do Urucu,Terra,Petrobras,127.091243214286,2021-02-01
+Campos,Marlim Sul,Mar,Petrobras,122.772835714286,2021-02-01
+Campos,Marlim,Mar,Petrobras,114.059272142857,2021-02-01
+Solimões,Rio Urucu,Terra,Petrobras,96.5009142857143,2021-02-01
+Campos,Albacora,Mar,Petrobras,69.372805,2021-02-01
+Parnaíba,Gavião Preto,Terra,Eneva,67.7271428571429,2021-02-01
+Campos,Barracuda,Mar,Petrobras,62.5287792857143,2021-02-01
+Campos,Albacora Leste,Mar,Petrobras,55.8138353571428,2021-02-01
+Santos,Sul de Tupi,Mar,Petrobras,53.1360332142857,2021-02-01
+Santos,Mero,Mar,Petrobras,36.6569285714286,2021-02-01
+Campos,Pampo,Mar,Trident Energy,36.1254532142857,2021-02-01
+Campos,Marlim Leste,Mar,Petrobras,33.9095714285714,2021-02-01
+Campos,Bonito,Mar,Trident Energy,31.9366242857143,2021-02-01
+Santos,Atapu,Mar,Petrobras,28.7747260714286,2021-02-01
+Campos,Enchova,Mar,Trident Energy,28.3363685714286,2021-02-01
+Santos,Tupi,Mar,Petrobras,554.931528333333,2022-04-01
+Santos,Búzios,Mar,Petrobras,437,2022-04-01
+Campos,Roncador,Mar,Petrobras,176.433500333333,2022-04-01
+Campos,Jubarte,Mar,Petrobras,168.986627,2022-04-01
+Campos,Marlim Sul,Mar,Petrobras,146.036362333333,2022-04-01
+Campos,Marlim,Mar,Petrobras,144.620422666667,2022-04-01
+Solimões,Leste do Urucu,Terra,Petrobras,110.007202666667,2022-04-01
+Solimões,Rio Urucu,Terra,Petrobras,108.546798666667,2022-04-01
+Santos,Mero,Mar,Petrobras,74.320665,2022-04-01
+Campos,Tubarão Martelo,Mar,Petro Rio O&G,51.1727393333333,2022-04-01
+Santos,Atapu,Mar,Petrobras,49.969193,2022-04-01
+Campos,Barracuda,Mar,Petrobras,44.9184373333333,2022-04-01
+Santos,Lapa,Mar,TotalEnergies EP,40.6210343333333,2022-04-01
+Santos,Sépia,Mar,Petrobras,39.9780923333333,2022-04-01
+Campos,Albacora Leste,Mar,Petrobras,39.0071436666667,2022-04-01
+Santos,Sapinhoá,Mar,Petrobras,36.703108,2022-04-01
+Santos,Sul de Tupi,Mar,Petrobras,35.305368,2022-04-01
+Campos,Marlim Leste,Mar,Petrobras,34.2109983333333,2022-04-01
+Campos,Sururu,Mar,Petrobras,34.162428,2022-04-01
+Espírito Santo,Golfinho,Mar,Petrobras,22,2022-04-01
+Santos,Tupi,Mar,Petrobras,669.678756428571,2022-02-01
+Santos,Búzios,Mar,Petrobras,466,2022-02-01
+Campos,Roncador,Mar,Petrobras,196.116640714286,2022-02-01
+Solimões,Leste Do Urucu,Terra,Petrobras,144.703801428571,2022-02-01
+Solimões,Rio Urucu,Terra,Petrobras,121.914087142857,2022-02-01
+Campos,Albacora,Mar,Petrobras,112.729643214286,2022-02-01
+Campos,Marlim,Mar,Petrobras,105.120438214286,2022-02-01
+Santos,Sapinhoá,Mar,Petrobras,95.3620357142857,2022-02-01
+Campos,Jubarte,Mar,Petrobras,92.8313775,2022-02-01
+Campos,Marlim Sul,Mar,Petrobras,76.6818978571428,2022-02-01
+Santos,Sururu,Mar,Petrobras,76.2132517857143,2022-02-01
+Santos,Atapu,Mar,Petrobras,72.5939264285714,2022-02-01
+Campos,Albacora Leste,Mar,Petrobras,53.5764971428571,2022-02-01
+Campos,Barracuda,Mar,Petrobras,52.6605721428571,2022-02-01
+Campos,Marlim Leste,Mar,Petrobras,51.0360082142857,2022-02-01
+Santos,Sul De Tupi,Mar,Petrobras,47.0733725,2022-02-01
+Santos,Sépia,Mar,Petrobras,45.9999307142857,2022-02-01
+Campos,Tubarão Martelo,Mar,Petro Rio O&G,35.0856575,2022-02-01
+Campos,Cherne,Mar,Petrobras,34.7113571428571,2022-02-01
+Espírito Santos,Golfinho,Mar,Petrobras,34,2022-02-01
+Santos,Búzios,Mar,Petrobras,537,2022-01-01
+Santos,Tupi,Mar,Petrobras,499.856809032258,2022-01-01
+Campos,Roncador,Mar,Petrobras,255.71874,2022-01-01
+Campos,Marlim,Mar,Petrobras,168.327555806452,2022-01-01
+Santos,Sapinhoá,Mar,Petrobras,167.343489677419,2022-01-01
+Campos,Albacora,Mar,Petrobras,132.004725483871,2022-01-01
+Campos,Jubarte,Mar,Petrobras,104.968647419355,2022-01-01
+Campos,Marlim Sul,Mar,Petrobras,100.392828709677,2022-01-01
+Solimões,Leste Do Urucu,Terra,Petrobras,82.1832203225806,2022-01-01
+Santos,Mero,Mar,Petrobras,80.7575480645161,2022-01-01
+Solimões,Rio Urucu,Terra,Petrobras,76.9567335483871,2022-01-01
+Santos,Atapu,Mar,Petrobras,76.9492341935484,2022-01-01
+Santos,Sépia,Mar,Petrobras,74.4606312903226,2022-01-01
+Campos,Albacora Leste,Mar,Petrobras,57.1877574193548,2022-01-01
+Campos,Tubarão Martelo,Mar,Petro Rio O&G,55.1300338709677,2022-01-01
+Campos,Barracuda,Mar,Petrobras,53.3053425806452,2022-01-01
+Santos,Sururu,Mar,Petrobras,51.2923164516129,2022-01-01
+Santos,Lapa,Mar,TotalEnergies EP,42.7541351612903,2022-01-01
+Campos,Polvo,Mar,Petro Rio O&G,42.5910890322581,2022-01-01
+Campos,Marlim Leste,Mar,Petrobras,40.071,2022-01-01
+Santos,Mero,Mar,Petrobras,1575.52468433333,2022-06-01
+Santos,Búzios,Mar,Petrobras,568,2022-06-01
+Santos,Tupi,Mar,Petrobras,530.115696333333,2022-06-01
+Campos,Roncador,Mar,Petrobras,216.310133333333,2022-06-01
+Campos,Marlim Sul,Mar,Petrobras,105.174721,2022-06-01
+Solimões,Leste Do Urucu,Terra,Petrobras,96.4220473333333,2022-06-01
+Campos,Marlim,Mar,Petrobras,92.7461813333333,2022-06-01
+Solimões,Rio Urucu,Terra,Petrobras,87.1755526666667,2022-06-01
+Santos,Sapinhoá,Mar,Petrobras,79.4607893333333,2022-06-01
+Campos,Jubarte,Mar,Petrobras,75.074354,2022-06-01
+Campos,Albacora,Mar,Petrobras,68.2082136666667,2022-06-01
+Campos,Marlim Leste,Mar,Petrobras,57.244302,2022-06-01
+Santos,Anc_Mero,Mar,Petrobras,57.1433823333333,2022-06-01
+Campos,Tubarão Martelo,Mar,Petro Rio O&G,47.5205703333333,2022-06-01
+Campos,Albacora Leste,Mar,Petrobras,47.0378196666667,2022-06-01
+Campos,Pampo,Mar,Trident Energy,42.8251163333333,2022-06-01
+Santos,Sururu,Mar,Petrobras,41.3967226666667,2022-06-01
+Campos,Barracuda,Mar,Petrobras,38.3660043333333,2022-06-01
+Santos,Lapa,Mar,TotalEnergies EP,35.2181866666667,2022-06-01
+Santos,Atapu,Mar,Petrobras,32,2022-06-01
+Santos,Mero,Mar,Petrobras,1565.78409709677,2022-05-01
+Santos,Tupi,Mar,Petrobras,641.528486774194,2022-05-01
+Santos,Búzios,Mar,Petrobras,525,2022-05-01
+Campos,Roncador,Mar,Petrobras,202.977806451613,2022-05-01
+Campos,Jubarte,Mar,Petrobras,123.256267419355,2022-05-01
+Campos,Marlim,Mar,Petrobras,108.100648064516,2022-05-01
+Campos,Marlim Sul,Mar,Petrobras,105.479939354839,2022-05-01
+Santos,Sépia,Mar,Petrobras,85,2022-05-01
+Solimões,Leste Do Urucu,Terra,Petrobras,82.1808393548387,2022-05-01
+Solimões,Rio Urucu,Terra,Petrobras,76.4358861290322,2022-05-01
+Santos,Atapu,Mar,Petrobras,66,2022-05-01
+Santos,Sururu,Mar,Petrobras,63.7892841935484,2022-05-01
+Campos,Albacora,Mar,Petrobras,57.7886790322581,2022-05-01
+Santos,Anc_Mero,Mar,Petrobras,56.7900967741935,2022-05-01
+Santos,Sapinhoá,Mar,Petrobras,54.9238048387097,2022-05-01
+Campos,Barracuda,Mar,Petrobras,53.8061296774193,2022-05-01
+Campos,Pargo,Mar,Perenco Brasil,52.5198664516129,2022-05-01
+Campos,Albacora Leste,Mar,Petrobras,52.2640306451613,2022-05-01
+Campos,Tubarão Martelo,Mar,Petro Rio O&G,47.3917983870968,2022-05-01
+Santos,Sul De Tupi,Mar,Petrobras,42.3749003225806,2022-05-01
+Santos,Tupi,Mar,Petrobras,587.437061935484,2022-03-01
+Santos,Búzios,Mar,Petrobras,520,2022-03-01
+Campos,Roncador,Mar,Petrobras,223.160126451613,2022-03-01
+Campos,Marlim Sul,Mar,Petrobras,141.852381935484,2022-03-01
+Solimões,Leste Do Urucu,Terra,Petrobras,121.600784193548,2022-03-01
+Solimões,Rio Urucu,Terra,Petrobras,120.058490967742,2022-03-01
+Campos,Jubarte,Mar,Petrobras,102.986260645161,2022-03-01
+Campos,Marlim,Mar,Petrobras,102.109986129032,2022-03-01
+Santos,Sururu,Mar,Petrobras,72.6769767741935,2022-03-01
+Santos,Lapa,Mar,TotalEnergies EP,63.9051135483871,2022-03-01
+Santos,Sapinhoá,Mar,Petrobras,63.2895693548387,2022-03-01
+Campos,Albacora,Mar,Petrobras,56.7097209677419,2022-03-01
+Santos,Mero,Mar,Petrobras,53.9531790322581,2022-03-01
+Campos,Albacora Leste,Mar,Petrobras,52.3062767741935,2022-03-01
+Santos,Atapu,Mar,Petrobras,51.3074441935484,2022-03-01
+Campos,Barracuda,Mar,Petrobras,47.8086687096774,2022-03-01
+Campos,Marlim Leste,Mar,Petrobras,45.5229806451613,2022-03-01
+Campos,Tubarão Martelo,Mar,Petro Rio O&G,42.4150541935484,2022-03-01
+Santos,Sépia,Mar,Petrobras,41.5990961290322,2022-03-01
+Santos,Sul De Tupi,Mar,Petrobras,41,2022-03-01
+Santos,Búzios,Mar,PETROBRAS,566.3625070967742,2022-08-01
+Santos,Tupi,Mar,PETROBRAS,558.4618648387097,2022-08-01
+Santos,Mero,Mar,PETROBRAS,382.3364551612903,2022-08-01
+Campos,Roncador,Mar,PETROBRAS,183.02029032258065,2022-08-01
+Campos,Marlim Sul,Mar,PETROBRAS,138.58656741935482,2022-08-01
+Campos,Marlim,Mar,PETROBRAS,115.24186967741936,2022-08-01
+Santos,Sapinhoá,Mar,PETROBRAS,93.73643193548386,2022-08-01
+Campos,Peregrino,Mar,EQUINOR BRASIL,93.5324422580645,2022-08-01
+Santos,Sépia,Mar,PETROBRAS,92.84471322580644,2022-08-01
+Campos,Albacora,Mar,PETROBRAS,79.23534806451613,2022-08-01
+Santos,Atapu,Mar,PETROBRAS,75.61390225806451,2022-08-01
+Campos,Jubarte,Mar,PETROBRAS,74.6874135483871,2022-08-01
+Solimões,Leste do Urucu,Terra,PETROBRAS,57.80232161290322,2022-08-01
+Campos,Barracuda,Mar,PETROBRAS,52.52881419354839,2022-08-01
+Solimões,Rio Urucu,Terra,PETROBRAS,45.210311612903226,2022-08-01
+Campos,Marlim Leste,Mar,PETROBRAS,44.02382096774194,2022-08-01
+Campos,Albacora Leste,Mar,PETROBRAS,43.80684580645161,2022-08-01
+Santos,Sul de Tupi,Mar,PETROBRAS,36.21084967741936,2022-08-01
+Santos,Sururu,Mar,PETROBRAS,30.666230967741935,2022-08-01
+Santos,Lapa,Mar,TOTALENERGIES EP,28.827224516129032,2022-08-01
+Santos,Búzios,Mar,PETROBRAS,702.3248551612902,2022-12-01
+Santos,Tupi,Mar,PETROBRAS,699.3244267741935,2022-12-01
+Santos,Mero,Mar,PETROBRAS,226.84941580645162,2022-12-01
+Campos,Marlim Sul,Mar,PETROBRAS,168.50648419354837,2022-12-01
+Campos,Jubarte,Mar,PETROBRAS,153.74889741935485,2022-12-01
+Campos,Roncador,Mar,PETROBRAS,145.39317516129032,2022-12-01
+Santos,Sépia,Mar,PETROBRAS,128.57692806451612,2022-12-01
+Santos,Itapu,Mar,PETROBRAS,101.44376774193549,2022-12-01
+Santos,Itapu_Eco,Mar,PETROBRAS,94.74205967741936,2022-12-01
+Campos,Albacora Leste,Mar,PETROBRAS,92.28065290322581,2022-12-01
+Santos,Atapu,Mar,PETROBRAS,87.02831419354838,2022-12-01
+Santos,Sapinhoá,Mar,PETROBRAS,79.8024441935484,2022-12-01
+Campos,Albacora,Mar,PETROBRAS,69.35807193548388,2022-12-01
+Amazonas,PA-1ENV25DAM_AM-T-84_AM-T-85,Terra,ENEVA,67.78574193548387,2022-12-01
+Amazonas,Azulão,Terra,ENEVA,64.8259470967742,2022-12-01
+Solimões,Leste do Urucu,Terra,PETROBRAS,47.17088387096774,2022-12-01
+Santos,Sururu,Mar,PETROBRAS,47.08591419354839,2022-12-01
+Santos,Sul de Tupi,Mar,PETROBRAS,46.28492,2022-12-01
+Santos,Lapa,Mar,TOTALENERGIES EP,42.992576451612905,2022-12-01
+Solimões,Rio Urucu,Terra,PETROBRAS,39.44928741935484,2022-12-01
+Santos,Mero,Mar,PETROBRAS,993.1841632258065,2022-07-01
+Santos,Tupi,Mar,PETROBRAS,657.8511658064516,2022-07-01
+Santos,Búzios,Mar,PETROBRAS,556.4829506451613,2022-07-01
+Santos,Sapinhoá,Mar,PETROBRAS,212.77683838709677,2022-07-01
+Campos,Roncador,Mar,PETROBRAS,193.9426451612903,2022-07-01
+Campos,Albacora,Mar,PETROBRAS,105.3166035483871,2022-07-01
+Campos,Marlim,Mar,PETROBRAS,102.02918,2022-07-01
+Solimões,Leste do Urucu,Terra,PETROBRAS,91.3059170967742,2022-07-01
+Campos,Marlim Sul,Mar,PETROBRAS,91.13807096774194,2022-07-01
+Solimões,Rio Urucu,Terra,PETROBRAS,81.28718870967742,2022-07-01
+Campos,Albacora Leste,Mar,PETROBRAS,66.28304193548387,2022-07-01
+Santos,Sépia,Mar,PETROBRAS,59.53428612903225,2022-07-01
+Campos,Marlim Leste,Mar,PETROBRAS,56.804659032258066,2022-07-01
+Amazonas,Azulão,Terra,ENEVA,54.437978709677424,2022-07-01
+Santos,Sul de Tupi,Mar,PETROBRAS,46.0361029032258,2022-07-01
+Campos,Barracuda,Mar,PETROBRAS,43.946459677419355,2022-07-01
+Campos,Jubarte,Mar,PETROBRAS,39.14369774193548,2022-07-01
+Santos,Anc_Mero,Mar,PETROBRAS,36.02222290322581,2022-07-01
+Santos,Atapu,Mar,PETROBRAS,35.685211612903224,2022-07-01
+Campos,Tubarão Martelo,Mar,PETRO RIO O&G,35.52094419354838,2022-07-01
+Santos,Tupi,Mar,PETROBRAS,742.1165616666666,2022-11-01
+Santos,Búzios,Mar,PETROBRAS,591.9148273333334,2022-11-01
+Santos,Mero,Mar,PETROBRAS,318.166593,2022-11-01
+Santos,Sapinhoá,Mar,PETROBRAS,248.45764400000002,2022-11-01
+Campos,Roncador,Mar,PETROBRAS,180.45331866666666,2022-11-01
+Campos,Marlim Sul,Mar,PETROBRAS,134.38565566666665,2022-11-01
+Santos,Atapu,Mar,PETROBRAS,107.61055866666666,2022-11-01
+Campos,Marlim,Mar,PETROBRAS,94.98038666666666,2022-11-01
+Campos,Albacora Leste,Mar,PETROBRAS,93.50929,2022-11-01
+Campos,Jubarte,Mar,PETROBRAS,81.34030333333334,2022-11-01
+Amazonas,Azulão,Terra,ENEVA,74.68475833333333,2022-11-01
+Campos,Albacora,Mar,PETROBRAS,63.12344333333333,2022-11-01
+Solimões,Leste do Urucu,Terra,PETROBRAS,59.09123366666667,2022-11-01
+Santos,Sépia,Mar,PETROBRAS,52.42858433333333,2022-11-01
+Santos,Sul de Tupi,Mar,PETROBRAS,48.62004133333333,2022-11-01
+Solimões,Rio Urucu,Terra,PETROBRAS,45.343201666666666,2022-11-01
+Santos,Sururu,Mar,PETROBRAS,44.93624333333333,2022-11-01
+Amazonas,PA-1ENV25DAM_AM-T-84_AM-T-85,Terra,ENEVA,44.83403333333333,2022-11-01
+Campos,Marlim Leste,Mar,PETROBRAS,44.672612666666666,2022-11-01
+Santos,Lapa,Mar,TOTALENERGIES EP,29.771957999999998,2022-11-01
+Santos,Tupi,Mar,PETROBRAS,501.3384274193548,2022-10-01
+Santos,Búzios,Mar,PETROBRAS,495.95685258064515,2022-10-01
+Campos,Roncador,Mar,PETROBRAS,207.63619322580647,2022-10-01
+Santos,Mero,Mar,PETROBRAS,167.82678935483872,2022-10-01
+Campos,Marlim Sul,Mar,PETROBRAS,145.53390677419355,2022-10-01
+Campos,Marlim,Mar,PETROBRAS,103.36775580645161,2022-10-01
+Santos,Sépia,Mar,PETROBRAS,84.43469838709679,2022-10-01
+Santos,Sapinhoá,Mar,PETROBRAS,82.00356096774193,2022-10-01
+Campos,Jubarte,Mar,PETROBRAS,81.61395967741934,2022-10-01
+Santos,Atapu,Mar,PETROBRAS,73.4617729032258,2022-10-01
+Campos,Albacora Leste,Mar,PETROBRAS,66.81807677419356,2022-10-01
+Campos,Albacora,Mar,PETROBRAS,66.06567935483871,2022-10-01
+Santos,Sururu,Mar,PETROBRAS,61.74190967741935,2022-10-01
+Amazonas,Azulão,Terra,ENEVA,56.485352258064516,2022-10-01
+Solimões,Leste do Urucu,Terra,PETROBRAS,53.92220161290323,2022-10-01
+Campos,Marlim Leste,Mar,PETROBRAS,46.177728064516124,2022-10-01
+Solimões,Rio Urucu,Terra,PETROBRAS,45.08323225806452,2022-10-01
+Santos,Sul de Tupi,Mar,PETROBRAS,35.12205580645162,2022-10-01
+Campos,Pampo,Mar,TRIDENT ENERGY,25.26692935483871,2022-10-01
+Campos,Barracuda,Mar,PETROBRAS,25.13404741935484,2022-10-01
+Santos,Tupi,Mar,PETROBRAS,686.4731983333334,2022-09-01
+Santos,Búzios,Mar,PETROBRAS,545.6960633333333,2022-09-01
+Santos,Mero,Mar,PETROBRAS,250.09120966666666,2022-09-01
+Campos,Marlim Sul,Mar,PETROBRAS,181.95328133333334,2022-09-01
+Campos,Roncador,Mar,PETROBRAS,157.28263066666665,2022-09-01
+Santos,Sapinhoá,Mar,PETROBRAS,97.94965666666667,2022-09-01
+Santos,Sépia,Mar,PETROBRAS,81.306196,2022-09-01
+Solimões,Leste do Urucu,Terra,PETROBRAS,80.435495,2022-09-01
+Campos,Jubarte,Mar,PETROBRAS,79.36360833333333,2022-09-01
+Campos,Marlim Leste,Mar,PETROBRAS,62.46943233333333,2022-09-01
+Solimões,Rio Urucu,Terra,PETROBRAS,62.422170333333334,2022-09-01
+Campos,Barracuda,Mar,PETROBRAS,60.157916666666665,2022-09-01
+Campos,Albacora Leste,Mar,PETROBRAS,57.03558566666666,2022-09-01
+Campos,Albacora,Mar,PETROBRAS,52.16940433333333,2022-09-01
+Campos,Marlim,Mar,PETROBRAS,48.960955,2022-09-01
+Santos,Sul de Tupi,Mar,PETROBRAS,43.443062000000005,2022-09-01
+Santos,Atapu,Mar,PETROBRAS,43.13346933333333,2022-09-01
+Amazonas,Azulão,Terra,ENEVA,33.874615666666664,2022-09-01
+Santos,Sururu,Mar,PETROBRAS,28.519736333333334,2022-09-01
+Campos,Papa-Terra,Mar,PETROBRAS,28.013373333333334,2022-09-01
+Santos,Búzios,Mar,PETROBRAS,609.3829666666667,2023-04-01
+Santos,Tupi,Mar,PETROBRAS,605.9547,2023-04-01
+Santos,Mero,Mar,PETROBRAS,302.9861,2023-04-01
+Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,238.52496666666667,2023-04-01
+Santos,Sapinhoá,Mar,PETROBRAS,174.57306666666668,2023-04-01
+Campos,Roncador,Mar,PETROBRAS,130.79306666666668,2023-04-01
+Campos,Marlim Sul,Mar,PETROBRAS,130.12873333333334,2023-04-01
+Santos,Itapu,Mar,PETROBRAS,122.28153333333333,2023-04-01
+Santos,Itapu_Eco,Mar,PETROBRAS,114.20323333333334,2023-04-01
+Campos,Jubarte,Mar,PETROBRAS,94.83936666666666,2023-04-01
+Santos,Sépia,Mar,PETROBRAS,93.16386666666668,2023-04-01
+Potiguar,Lorena,Terra,POTIGUAR E&P S.A.,77.383,2023-04-01
+Amazonas,Azulão,Terra,ENEVA,66.8415,2023-04-01
+Santos,Sururu,Mar,PETROBRAS,61.73043333333333,2023-04-01
+Santos,Atapu,Mar,PETROBRAS,56.62873333333334,2023-04-01
+Campos,Frade,Mar,PETRO RIO JAGUAR,56.06706666666666,2023-04-01
+Potiguar,Brejinho Rn,Terra,POTIGUAR E&P S.A.,50.379266666666666,2023-04-01
+Solimões,Leste do Urucu,Terra,PETROBRAS,49.8594,2023-04-01
+Campos,Marlim Leste,Mar,PETROBRAS,44.358266666666665,2023-04-01
+Campos,Barracuda,Mar,PETROBRAS,41.00436666666667,2023-04-01
+Santos,Búzios,Mar,PETROBRAS,657.6326129032258,2023-12-01
+Santos,Tupi,Mar,PETROBRAS,521.0359677419355,2023-12-01
+Santos,Mero,Mar,PETROBRAS,139.23912903225806,2023-12-01
+Campos,Marlim Sul,Mar,PETROBRAS,135.62435483870965,2023-12-01
+Campos,Roncador,Mar,PETROBRAS,133.01948387096775,2023-12-01
+Amazonas,Azulão,Terra,ENEVA,126.40180645161291,2023-12-01
+Santos,Sapinhoá,Mar,PETROBRAS,119.73622580645161,2023-12-01
+Campos,Jubarte,Mar,PETROBRAS,114.32148387096774,2023-12-01
+Campos,Marlim,Mar,PETROBRAS,89.55016129032258,2023-12-01
+Campos,Marimbá,Mar,TRIDENT ENERGY,71.07148387096774,2023-12-01
+Potiguar,Lorena,Terra,POTIGUAR E&P S.A.,61.793290322580646,2023-12-01
+Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,55.12516129032259,2023-12-01
+Campos,Peregrino,Mar,EQUINOR BRASIL,54.943999999999996,2023-12-01
+Santos,Sépia,Mar,PETROBRAS,50.310709677419354,2023-12-01
+Campos,Tartaruga Verde,Mar,PETROBRAS,46.41858064516129,2023-12-01
+Campos,Barracuda,Mar,PETROBRAS,40.29925806451613,2023-12-01
+Campos,Marlim Leste,Mar,PETROBRAS,39.82316129032258,2023-12-01
+Solimões,Leste do Urucu,Terra,PETROBRAS,39.09461290322581,2023-12-01
+Potiguar,Riacho da Forquilha,Terra,POTIGUAR E&P S.A.,38.551322580645156,2023-12-01
+Santos,Itapu,Mar,PETROBRAS,36.008322580645164,2023-12-01
+Santos,Tupi,Mar,PETROBRAS,876.2483928571429,2023-02-01
+Santos,Búzios,Mar,PETROBRAS,473.7818571428571,2023-02-01
+Santos,Itapu,Mar,PETROBRAS,283.3024642857143,2023-02-01
+Santos,Itapu_Eco,Mar,PETROBRAS,264.5865714285714,2023-02-01
+Santos,Mero,Mar,PETROBRAS,172.84242857142857,2023-02-01
+Campos,Roncador,Mar,PETROBRAS,116.35546428571429,2023-02-01
+Campos,Marlim Sul,Mar,PETROBRAS,114.19939285714285,2023-02-01
+Santos,Sapinhoá,Mar,PETROBRAS,113.17871428571428,2023-02-01
+Campos,Jubarte,Mar,PETROBRAS,111.27714285714286,2023-02-01
+Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,96.3174642857143,2023-02-01
+Santos,Sépia,Mar,PETROBRAS,89.19667857142858,2023-02-01
+Solimões,Leste do Urucu,Terra,PETROBRAS,73.35292857142858,2023-02-01
+Amazonas,Azulão,Terra,ENEVA,69.79003571428572,2023-02-01
+Campos,Barracuda,Mar,PETROBRAS,67.45471428571429,2023-02-01
+Solimões,Rio Urucu,Terra,PETROBRAS,64.29889285714286,2023-02-01
+Santos,Atapu,Mar,PETROBRAS,60.189928571428574,2023-02-01
+Santos,Sul de Tupi,Mar,PETROBRAS,52.67017857142857,2023-02-01
+Santos,Sururu,Mar,PETROBRAS,51.675000000000004,2023-02-01
+Campos,Albacora,Mar,PETROBRAS,48.931607142857146,2023-02-01
+Santos,Lapa,Mar,TOTALENERGIES EP,35.743964285714284,2023-02-01
+Santos,Tupi,Mar,PETROBRAS,735.9338064516129,2023-01-01
+Santos,Búzios,Mar,PETROBRAS,567.4171290322581,2023-01-01
+Santos,Itapu,Mar,PETROBRAS,307.2392580645161,2023-01-01
+Santos,Itapu_Eco,Mar,PETROBRAS,286.94199999999995,2023-01-01
+Santos,Sapinhoá,Mar,PETROBRAS,262.87154838709677,2023-01-01
+Campos,Roncador,Mar,PETROBRAS,187.19670967741936,2023-01-01
+Santos,Sépia,Mar,PETROBRAS,142.68406451612904,2023-01-01
+Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,122.71677419354837,2023-01-01
+Amazonas,PA-1ENV25DAM_AM-T-84_AM-T-85,Terra,ENEVA,121.61058064516129,2023-01-01
+Santos,Mero,Mar,PETROBRAS,112.96316129032259,2023-01-01
+Campos,Marlim Sul,Mar,PETROBRAS,109.93870967741935,2023-01-01
+Santos,Atapu,Mar,PETROBRAS,89.8343870967742,2023-01-01
+Campos,Jubarte,Mar,PETROBRAS,69.08170967741935,2023-01-01
+Santos,Lapa,Mar,TOTALENERGIES EP,66.19270967741936,2023-01-01
+Amazonas,Azulão,Terra,ENEVA,65.56474193548387,2023-01-01
+Campos,Barracuda,Mar,PETROBRAS,61.62825806451613,2023-01-01
+Solimões,Leste do Urucu,Terra,PETROBRAS,57.908193548387096,2023-01-01
+Santos,Sul de Tupi,Mar,PETROBRAS,50.94696774193548,2023-01-01
+Santos,Sururu,Mar,PETROBRAS,49.89616129032258,2023-01-01
+Campos,Marlim Leste,Mar,PETROBRAS,43.001548387096776,2023-01-01
+Santos,Búzios,Mar,PETROBRAS,1407.563806451613,2023-07-01
+Santos,Tupi,Mar,PETROBRAS,633.5281612903226,2023-07-01
+Campos,Marlim,Mar,PETROBRAS,232.68925806451614,2023-07-01
+Santos,Mero,Mar,PETROBRAS,229.3508064516129,2023-07-01
+Campos,Marlim Sul,Mar,PETROBRAS,159.6134193548387,2023-07-01
+Campos,Roncador,Mar,PETROBRAS,140.62551612903223,2023-07-01
+Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,121.46664516129032,2023-07-01
+Campos,Jubarte,Mar,PETROBRAS,88.21006451612904,2023-07-01
+Santos,Sapinhoá,Mar,PETROBRAS,82.58667741935484,2023-07-01
+Amazonas,Azulão,Terra,ENEVA,80.39125806451612,2023-07-01
+Potiguar,Brejinho Rn,Terra,POTIGUAR E&P S.A.,73.86748387096773,2023-07-01
+Campos,Frade,Mar,PETRO RIO JAGUAR,58.31632258064516,2023-07-01
+Santos,Sépia,Mar,PETROBRAS,57.214354838709674,2023-07-01
+Santos,Sul de Tupi,Mar,PETROBRAS,44.613193548387095,2023-07-01
+Solimões,Leste do Urucu,Terra,PETROBRAS,43.5848064516129,2023-07-01
+Santos,Atapu,Mar,PETROBRAS,40.879612903225805,2023-07-01
+Espírito Santo,Golfinho,Mar,PETROBRAS,38.95467741935484,2023-07-01
+Campos,Barracuda,Mar,PETROBRAS,38.014806451612905,2023-07-01
+Campos,Papa-Terra,Mar,3R PETROLEUM OFF,34.49841935483871,2023-07-01
+Santos,Sururu,Mar,PETROBRAS,32.212645161290325,2023-07-01
+Santos,Búzios,Mar,PETROBRAS,1542.704,2023-06-01
+Santos,Tupi,Mar,PETROBRAS,681.0037666666667,2023-06-01
+Campos,Marlim,Mar,PETROBRAS,300.8512,2023-06-01
+Santos,Mero,Mar,PETROBRAS,187.3548,2023-06-01
+Campos,Roncador,Mar,PETROBRAS,158.00376666666668,2023-06-01
+Campos,Marlim Sul,Mar,PETROBRAS,126.14283333333333,2023-06-01
+Amazonas,Azulão,Terra,ENEVA,102.69593333333334,2023-06-01
+Potiguar,Lorena,Terra,POTIGUAR E&P S.A.,98.02986666666668,2023-06-01
+Santos,Sapinhoá,Mar,PETROBRAS,89.38953333333333,2023-06-01
+Campos,Jubarte,Mar,PETROBRAS,73.3552,2023-06-01
+Potiguar,Brejinho Rn,Terra,POTIGUAR E&P S.A.,66.39076666666666,2023-06-01
+Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,65.2675,2023-06-01
+Campos,Barracuda,Mar,PETROBRAS,51.1474,2023-06-01
+Espírito Santo,Golfinho,Mar,PETROBRAS,50.046166666666664,2023-06-01
+Campos,Marlim Leste,Mar,PETROBRAS,46.591,2023-06-01
+Santos,Atapu,Mar,PETROBRAS,44.102666666666664,2023-06-01
+Santos,Sururu,Mar,PETROBRAS,42.235866666666666,2023-06-01
+Santos,Sul de Tupi,Mar,PETROBRAS,39.886433333333336,2023-06-01
+Santos,Sépia,Mar,PETROBRAS,39.79543333333333,2023-06-01
+Campos,Papa-Terra,Mar,3R PETROLEUM OFF,34.654466666666664,2023-06-01
+Santos,Tupi,Mar,PETROBRAS,824.4946451612902,2023-05-01
+Santos,Búzios,Mar,PETROBRAS,691.3976774193549,2023-05-01
+Santos,Mero,Mar,PETROBRAS,324.7600967741935,2023-05-01
+Santos,Sapinhoá,Mar,PETROBRAS,171.24335483870968,2023-05-01
+Campos,Roncador,Mar,PETROBRAS,170.73551612903228,2023-05-01
+Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,136.72451612903225,2023-05-01
+Campos,Marlim,Mar,PETROBRAS,127.38432258064516,2023-05-01
+Potiguar,Lorena,Terra,POTIGUAR E&P S.A.,116.9588064516129,2023-05-01
+Campos,Jubarte,Mar,PETROBRAS,95.07912903225807,2023-05-01
+Amazonas,Azulão,Terra,ENEVA,83.68232258064516,2023-05-01
+Campos,Marlim Sul,Mar,PETROBRAS,75.12570967741935,2023-05-01
+Santos,Atapu,Mar,PETROBRAS,67.27135483870967,2023-05-01
+Santos,Sépia,Mar,PETROBRAS,63.13716129032258,2023-05-01
+Potiguar,Brejinho Rn,Terra,POTIGUAR E&P S.A.,58.51074193548387,2023-05-01
+Campos,Marlim Leste,Mar,PETROBRAS,55.4846129032258,2023-05-01
+Potiguar,Cachoeirinha,Terra,POTIGUAR E&P S.A.,53.93803225806452,2023-05-01
+Campos,Barracuda,Mar,PETROBRAS,53.72432258064516,2023-05-01
+Santos,Sul de Tupi,Mar,PETROBRAS,48.89883870967742,2023-05-01
+Santos,Sururu,Mar,PETROBRAS,46.54958064516129,2023-05-01
+Santos,Itapu,Mar,PETROBRAS,43.59367741935484,2023-05-01
+Santos,Tupi,Mar,PETROBRAS,764.9471935483872,2023-03-01
+Santos,Búzios,Mar,PETROBRAS,392.8698064516129,2023-03-01
+Santos,Sapinhoá,Mar,PETROBRAS,306.156,2023-03-01
+Santos,Itapu,Mar,PETROBRAS,222.60048387096774,2023-03-01
+Santos,Itapu_Eco,Mar,PETROBRAS,207.8947741935484,2023-03-01
+Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,144.95012903225805,2023-03-01
+Campos,Jubarte,Mar,PETROBRAS,117.71945161290323,2023-03-01
+Campos,Marlim Sul,Mar,PETROBRAS,99.76387096774194,2023-03-01
+Santos,Mero,Mar,PETROBRAS,90.84612903225806,2023-03-01
+Campos,Roncador,Mar,PETROBRAS,90.00741935483872,2023-03-01
+Santos,Lapa,Mar,TOTALENERGIES EP,84.71603225806452,2023-03-01
+Amazonas,Azulão,Terra,ENEVA,70.01529032258065,2023-03-01
+Santos,Sépia,Mar,PETROBRAS,66.36061290322581,2023-03-01
+Campos,Barracuda,Mar,PETROBRAS,58.8501935483871,2023-03-01
+Santos,Atapu,Mar,PETROBRAS,55.25945161290323,2023-03-01
+Santos,Sul de Tupi,Mar,PETROBRAS,42.832193548387096,2023-03-01
+Solimões,Leste do Urucu,Terra,PETROBRAS,41.27038709677419,2023-03-01
+Santos,Sururu,Mar,PETROBRAS,40.80274193548387,2023-03-01
+Campos,Albacora,Mar,PETROBRAS,40.748322580645166,2023-03-01
+Solimões,Rio Urucu,Terra,PETROBRAS,38.19558064516129,2023-03-01
+Santos,Búzios,Mar,PETROBRAS,652.7935,2023-11-01
+Santos,Tupi,Mar,PETROBRAS,548.9859666666667,2023-11-01
+Santos,Sapinhoá,Mar,PETROBRAS,210.9057,2023-11-01
+Campos,Jubarte,Mar,PETROBRAS,182.92610000000002,2023-11-01
+Campos,Marlim,Mar,PETROBRAS,160.33613333333332,2023-11-01
+Potiguar,Lorena,Terra,POTIGUAR E&P S.A.,157.413,2023-11-01
+Campos,Roncador,Mar,PETROBRAS,123.13483333333333,2023-11-01
+Potiguar,Riacho da Forquilha,Terra,POTIGUAR E&P S.A.,92.91513333333334,2023-11-01
+Campos,Marlim Sul,Mar,PETROBRAS,83.98536666666668,2023-11-01
+Amazonas,Azulão,Terra,ENEVA,81.3925,2023-11-01
+Potiguar,Boa Esperança,Terra,POTIGUAR E&P S.A.,77.1701,2023-11-01
+Santos,Mero,Mar,PETROBRAS,66.5968,2023-11-01
+Campos,Voador,Mar,PETROBRAS,63.61983333333333,2023-11-01
+Potiguar,Brejinho Rn,Terra,POTIGUAR E&P S.A.,61.519866666666665,2023-11-01
+Potiguar,Livramento,Terra,POTIGUAR E&P S.A.,55.600033333333336,2023-11-01
+Santos,Sépia,Mar,PETROBRAS,53.62803333333333,2023-11-01
+Santos,Atapu,Mar,PETROBRAS,51.72796666666667,2023-11-01
+Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,45.3067,2023-11-01
+Campos,Barracuda,Mar,PETROBRAS,42.8488,2023-11-01
+Campos,Marlim Leste,Mar,PETROBRAS,38.49986666666667,2023-11-01
+Santos,Búzios,Mar,PETROBRAS,704.7567419354839,2023-10-01
+Santos,Tupi,Mar,PETROBRAS,619.7392258064516,2023-10-01
+Campos,Marlim,Mar,PETROBRAS,268.82229032258067,2023-10-01
+Santos,Mero,Mar,PETROBRAS,248.51748387096777,2023-10-01
+Santos,Sapinhoá,Mar,PETROBRAS,156.873,2023-10-01
+Campos,Roncador,Mar,PETROBRAS,128.20703225806452,2023-10-01
+Campos,Jubarte,Mar,PETROBRAS,128.1942258064516,2023-10-01
+Campos,Voador,Mar,PETROBRAS,119.84425806451613,2023-10-01
+Campos,Marlim Sul,Mar,PETROBRAS,110.54329032258065,2023-10-01
+Amazonas,Azulão,Terra,ENEVA,78.31270967741935,2023-10-01
+Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,66.30306451612903,2023-10-01
+Santos,Atapu,Mar,PETROBRAS,63.43116129032258,2023-10-01
+Potiguar,Brejinho Rn,Terra,POTIGUAR E&P S.A.,54.62374193548387,2023-10-01
+Santos,Sépia,Mar,PETROBRAS,51.25506451612904,2023-10-01
+Santos,Lapa,Mar,TOTALENERGIES EP,47.02129032258065,2023-10-01
+Campos,Barracuda,Mar,PETROBRAS,46.80906451612903,2023-10-01
+Campos,Papa-Terra,Mar,3R PETROLEUM OFF,43.520161290322584,2023-10-01
+Santos,Sul de Tupi,Mar,PETROBRAS,41.66645161290323,2023-10-01
+Solimões,Leste do Urucu,Terra,PETROBRAS,41.07203225806452,2023-10-01
+Campos,Marimbá,Mar,TRIDENT ENERGY,37.78590322580645,2023-10-01
+Santos,Búzios,Mar,PETROBRAS,624,2023-09-01
+Santos,Tupi,Mar,PETROBRAS,478,2023-09-01
+Campos,Marlim,Mar,PETROBRAS,237,2023-09-01
+Campos,Marlim Sul,Mar,PETROBRAS,149,2023-09-01
+Campos,Jubarte,Mar,PETROBRAS,135,2023-09-01
+Campos,Roncador,Mar,PETROBRAS,128,2023-09-01
+Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,115,2023-09-01
+Santos,Mero,Mar,PETROBRAS,109,2023-09-01
+Santos,Sépia,Mar,PETROBRAS,108,2023-09-01
+Campos,Voador,Mar,PETROBRAS,101,2023-09-01
+Amazonas,Azulão,Terra,ENEVA,81,2023-09-01
+Santos,Sapinhoá,Mar,PETROBRAS,63,2023-09-01
+Solimões,Leste do Urucu,Terra,PETROBRAS,48,2023-09-01
+Potiguar,Lorena,Terra,POTIGUAR E&P S.A.,46,2023-09-01
+Santos,Sururu,Mar,PETROBRAS,45,2023-09-01
+Campos,Barracuda,Mar,PETROBRAS,39,2023-09-01
+Santos,Berbigão,Mar,PETROBRAS,36,2023-09-01
+Campos,Papa-Terra,Mar,3R PETROLEUM OFF,34,2023-09-01
+Santos,Baúna,Mar,KAROON BRASIL,33,2023-09-01
+Santos,Atapu,Mar,PETROBRAS,31,2023-09-01
+Santos,Búzios,Mar,PETROBRAS,787.5783548387096,2023-08-01
+Santos,Tupi,Mar,PETROBRAS,772.1553548387096,2023-08-01
+Campos,Marlim,Mar,PETROBRAS,251.59512903225806,2023-08-01
+Campos,Roncador,Mar,PETROBRAS,180.66735483870968,2023-08-01
+Campos,Marlim Sul,Mar,PETROBRAS,142.19051612903226,2023-08-01
+Santos,Mero,Mar,PETROBRAS,101.76348387096775,2023-08-01
+Amazonas,Azulão,Terra,ENEVA,96.82896774193549,2023-08-01
+Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,84.34474193548387,2023-08-01
+Potiguar,Lorena,Terra,POTIGUAR E&P S.A.,63.115580645161295,2023-08-01
+Campos,Voador,Mar,PETROBRAS,62.48583870967742,2023-08-01
+Campos,Jubarte,Mar,PETROBRAS,60.3238064516129,2023-08-01
+Santos,Sapinhoá,Mar,PETROBRAS,58.462322580645164,2023-08-01
+Santos,Sépia,Mar,PETROBRAS,56.22687096774193,2023-08-01
+Solimões,Leste do Urucu,Terra,PETROBRAS,55.25277419354839,2023-08-01
+Santos,Atapu,Mar,PETROBRAS,48.28051612903226,2023-08-01
+Campos,Marlim Leste,Mar,PETROBRAS,38.40816129032258,2023-08-01
+Solimões,Rio Urucu,Terra,PETROBRAS,37.79577419354839,2023-08-01
+Santos,Sul de Tupi,Mar,PETROBRAS,37.716645161290316,2023-08-01
+Santos,Itapu,Mar,PETROBRAS,36.650064516129035,2023-08-01
+Campos,Barracuda,Mar,PETROBRAS,35.592064516129035,2023-08-01
+NA,NA,NA,NA,NA,2023-08-01
+Santos,Búzios,Mar,PETROBRAS,630,2024-04-01
+Santos,Mero,Mar,PETROBRAS,581,2024-04-01
+Santos,Tupi,Mar,PETROBRAS,544,2024-04-01
+Campos,Jubarte,Mar,PETROBRAS,378,2024-04-01
+Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,194,2024-04-01
+Campos,Marlim Sul,Mar,PETROBRAS,142,2024-04-01
+Santos,Sépia,Mar,PETROBRAS,128,2024-04-01
+Campos,Roncador,Mar,PETROBRAS,107,2024-04-01
+Santos,Sapinhoá,Mar,PETROBRAS,94,2024-04-01
+Campos,Marimbá,Mar,TRIDENT ENERGY,80,2024-04-01
+Solimões,Rio Urucu,Terra,PETROBRAS,56,2024-04-01
+Santos,Atapu,Mar,PETROBRAS,55,2024-04-01
+Campos,Barracuda,Mar,PETROBRAS,49,2024-04-01
+Campos,Marlim,Mar,PETROBRAS,49,2024-04-01
+Campos,Papa-Terra,Mar,3R PETROLEUM OFF,41,2024-04-01
+Santos,Baúna,Mar,KAROON BRASIL,40,2024-04-01
+Solimões,Leste do Urucu,Terra,PETROBRAS,38,2024-04-01
+Santos,Sul de Tupi,Mar,PETROBRAS,34,2024-04-01
+Espírito Santo,Golfinho,Mar,BW MAROMBA,29,2024-04-01
+Campos,Enchova,Mar,TRIDENT ENERGY,25,2024-04-01
+Santos,Mero,Mar,PETROBRAS,1440.8956451612903,2024-01-01
+Santos,Búzios,Mar,PETROBRAS,682.6910322580645,2024-01-01
+Santos,Tupi,Mar,PETROBRAS,544.4276129032258,2024-01-01
+Santos,Sapinhoá,Mar,PETROBRAS,155.2988064516129,2024-01-01
+Santos,Sépia,Mar,PETROBRAS,114.49916129032259,2024-01-01
+Campos,Jubarte,Mar,PETROBRAS,109.79687096774194,2024-01-01
+Campos,Marlim Sul,Mar,PETROBRAS,101.90390322580646,2024-01-01
+Campos,Marlim,Mar,PETROBRAS,90.44548387096773,2024-01-01
+Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,89.43393548387097,2024-01-01
+Campos,Roncador,Mar,PETROBRAS,83.0733870967742,2024-01-01
+Amazonas,Azulão,Terra,ENEVA,72.47358064516129,2024-01-01
+Campos,Marimbá,Mar,TRIDENT ENERGY,60.02712903225806,2024-01-01
+Campos,Marlim Leste,Mar,PETROBRAS,52.328483870967744,2024-01-01
+Santos,Anc_Mero,Mar,PETROBRAS,52.260451612903225,2024-01-01
+Campos,Papa-Terra,Mar,3R PETROLEUM OFF,41.96403225806451,2024-01-01
+Espírito Santo,Golfinho,Mar,BW MAROMBA,39.83916129032258,2024-01-01
+Campos,Barracuda,Mar,PETROBRAS,38.95406451612903,2024-01-01
+Santos,Sul de Tupi,Mar,PETROBRAS,37.73412903225807,2024-01-01
+Solimões,Leste do Urucu,Terra,PETROBRAS,37.647129032258064,2024-01-01
+Solimões,Rio Urucu,Terra,PETROBRAS,34.81216129032258,2024-01-01
+Santos,Mero,Mar,PETROBRAS,688,2024-05-01
+Santos,Búzios,Mar,PETROBRAS,597,2024-05-01
+Santos,Tupi,Mar,PETROBRAS,533,2024-05-01
+Campos,Roncador,Mar,PETROBRAS,162,2024-05-01
+Campos,Marlim Sul,Mar,PETROBRAS,122,2024-05-01
+Campos,Marlim,Mar,PETROBRAS,95,2024-05-01
+Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,91,2024-05-01
+Santos,Sapinhoá,Mar,PETROBRAS,81,2024-05-01
+Santos,Sépia,Mar,PETROBRAS,71,2024-05-01
+Campos,Jubarte,Mar,PETROBRAS,64,2024-05-01
+Campos,Marimbá,Mar,TRIDENT ENERGY,54,2024-05-01
+Campos,Barracuda,Mar,PETROBRAS,52,2024-05-01
+Solimões,Rio Urucu,Terra,PETROBRAS,52,2024-05-01
+Solimões,Leste do Urucu,Terra,PETROBRAS,49,2024-05-01
+Santos,Berbigão,Mar,PETROBRAS,46,2024-05-01
+Campos,Papa-Terra,Mar,3R PETROLEUM OFF,39,2024-05-01
+Campos,Peregrino,Mar,EQUINOR BRASIL,38,2024-05-01
+Espírito Santo,Golfinho,Mar,BW MAROMBA,38,2024-05-01
+Santos,Sul de Tupi,Mar,PETROBRAS,36,2024-05-01
+Campos,Voador,Mar,PETROBRAS,32,2024-05-01
+Santos,Mero,Mar,PETROBRAS,1396.0094193548387,2024-03-01
+Campos,Jubarte,Mar,PETROBRAS,993.1585806451614,2024-03-01
+Santos,Tupi,Mar,PETROBRAS,675.1626129032259,2024-03-01
+Santos,Búzios,Mar,PETROBRAS,521.1263225806453,2024-03-01
+Santos,Sapinhoá,Mar,PETROBRAS,253.48867741935484,2024-03-01
+Campos,Albacora Leste,Mar,PETRO RIO JAGUAR,215.6548064516129,2024-03-01
+Campos,Marlim Sul,Mar,PETROBRAS,124.80674193548387,2024-03-01
+Solimões,Leste do Urucu,Terra,PETROBRAS,76.0068064516129,2024-03-01
+Campos,Marimbá,Mar,TRIDENT ENERGY,75.20529032258065,2024-03-01
+Campos,Roncador,Mar,PETROBRAS,71.25406451612903,2024-03-01
+Solimões,Rio Urucu,Terra,PETROBRAS,66.5734193548387,2024-03-01
+Campos,Frade,Mar,PETRO RIO JAGUAR,62.10416129032258,2024-03-01
+Santos,Sépia,Mar,PETROBRAS,60.20341935483871,2024-03-01
+Amazonas,Azulão,Terra,ENEVA,55.02248387096774,2024-03-01
+Campos,Papa-Terra,Mar,3R PETROLEUM OFF,54.480548387096775,2024-03-01
+Campos,Marlim,Mar,PETROBRAS,50.733677419354834,2024-03-01
+Santos,Anc_Mero,Mar,PETROBRAS,50.632451612903225,2024-03-01
+Campos,Pampo,Mar,TRIDENT ENERGY,49.556709677419356,2024-03-01
+Campos,Barracuda,Mar,PETROBRAS,45.547548387096775,2024-03-01
+Santos,Sul de Tupi,Mar,PETROBRAS,44.80341935483871,2024-03-01
+Santos,Lula,Mar,Petrobras,723.95799516129,2017-10-01
+Campos,Roncador,Mar,Petrobras,351.169255806452,2017-10-01
+Santos,Itapu,Mar,Petrobras,331.204064516129,2017-10-01
+Campos,Marlim,Mar,Petrobras,325.472912580645,2017-10-01
+Solimões,Leste Do Urucu,Terra,Petrobras,162.032743548387,2017-10-01
+Campos,Marlim Sul,Mar,Petrobras,160.222040967742,2017-10-01
+Santos,Sapinhoá,Mar,Petrobras,159.934192580645,2017-10-01
+Campos,Jubarte³,Mar,Petrobras,153.889654516129,2017-10-01
+Campos,Tartaruga Verde,Mar,Petrobras,83.8714838709677,2017-10-01
+Solimões,Rio Urucu,Terra,Petrobras,77.2542690322581,2017-10-01
+Campos,Marlim Leste,Mar,Petrobras,64.838565483871,2017-10-01
+Campos,Albacora Leste,Mar,Petrobras,60.6319458064516,2017-10-01
+Campos,Barracuda,Mar,Petrobras,53.8621238709677,2017-10-01
+Sergipe,Piranema,Mar,Petrobras,44.3201290322581,2017-10-01
+Campos,Baleia Azul³,Mar,Petrobras,42.7433338709677,2017-10-01
+Campos,Baleia Franca³,Mar,Petrobras,37.1523070967742,2017-10-01
+Campos,Albacora,Mar,Petrobras,34.4729238709677,2017-10-01
+Campos,Argonauta,Mar,Shell Brasil,33.5142761290322,2017-10-01
+Santos,TLD-Libra,Mar,Petrobras,33.5041935483871,2017-10-01
+Campos,Caratinga,Mar,Petrobras,27.4532622580645,2017-10-01
+Santos,LULA,Mar,Petrobras,880.113327666667,2017-11-01
+Campos,MARLIM,Mar,Petrobras,369.769817333333,2017-11-01
+Santos,ITAPU,Mar,Petrobras,339.872066666667,2017-11-01
+Campos,RONCADOR,Mar,Petrobras,274.747782666667,2017-11-01
+Campos,MARLIM SUL,Mar,Petrobras,184.529626333333,2017-11-01
+Solimões,LESTE DO URUCU,Terra,Petrobras,176.703428333333,2017-11-01
+Campos,JUBARTE³,Mar,Petrobras,134.737935666667,2017-11-01
+Santos,SAPINHOÁ,Mar,Petrobras,121.044032666667,2017-11-01
+Santos,MERO,Mar,Petrobras,113.882766666667,2017-11-01
+Solimões,RIO URUCU,Terra,Petrobras,105.841157333333,2017-11-01
+Campos,TARTARUGA VERDE,Mar,Petrobras,80.0551666666667,2017-11-01
+Campos,ALBACORA LESTE,Mar,Petrobras,53.358158,2017-11-01
+Campos,BARRACUDA,Mar,Petrobras,52.642199,2017-11-01
+Campos,MARLIM LESTE,Mar,Petrobras,45.7785166666667,2017-11-01
+Campos,ALBACORA,Mar,Petrobras,42.5213076666667,2017-11-01
+Sergipe,PIRANEMA,Mar,Petrobras,33.8151333333333,2017-11-01
+Campos,BALEIA FRANCA³,Mar,Petrobras,33.7204796666667,2017-11-01
+Campos,BALEIA AZUL³,Mar,Petrobras,24.8212056666667,2017-11-01
+Campos,CARATINGA,Mar,Petrobras,23.9520663333333,2017-11-01
+Campos,CHERNE,Mar,Petrobras,21.8366856666667,2017-11-01
+Santos,Lula,Mar,Petrobras,889.937801290323,2017-12-01
+Santos,Mero,Mar,Petrobras,670.292,2017-12-01
+Campos,Marlim,Mar,Petrobras,429.913229032258,2017-12-01
+Campos,Roncador,Mar,Petrobras,254.02396516129,2017-12-01
+Campos,Marlim Sul,Mar,Petrobras,188.967968064516,2017-12-01
+Santos,Sapinhoá,Mar,Petrobras,162.95651516129,2017-12-01
+Campos,Jubarte³,Mar,Petrobras,156.570543870968,2017-12-01
+Solimões,Leste Do Urucu,Terra,Petrobras,137.947698709677,2017-12-01
+Solimões,Rio Urucu,Terra,Petrobras,85.0238335483871,2017-12-01
+Campos,Marlim Leste,Mar,Petrobras,80.1912751612903,2017-12-01
+Campos,Barracuda,Mar,Petrobras,52.7643441935484,2017-12-01
+Campos,Albacora Leste,Mar,Petrobras,48.6972416129032,2017-12-01
+Campos,Tartaruga Verde,Mar,Petrobras,38.7028064516129,2017-12-01
+Campos,Albacora,Mar,Petrobras,36.3586287096774,2017-12-01
+Santos,Itapu,Mar,Petrobras,33.9171612903226,2017-12-01
+Campos,Baleia Azul³,Mar,Petrobras,33.7637103225806,2017-12-01
+Campos,Baleia Franca³,Mar,Petrobras,30.9418625806452,2017-12-01
+Sergipe,Piranema,Mar,Petrobras,30.2507419354839,2017-12-01
+Santos,Lapa,Mar,Petrobras,24.3262903225806,2017-12-01
+Campos,Caratinga,Mar,Petrobras,23.1693316129032,2017-12-01
