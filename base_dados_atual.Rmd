@@ -866,9 +866,17 @@ for(i in seq_along(lista_guia4_restantes)) {
 }
 ```
 
+Retirar a coluna "Nº"
 
 ```{r}
-tabela16_maiores_instalacoes_petroleo <- map_df(lista_guia4_restantes, `[[`, 6) 
+df_prov <- map_df(lista_guia4_restantes, `[[`, 6) |> 
+  select(!"Nº")
+
+```
+
+
+```{r}
+tabela16_maiores_instalacoes_petroleo <- df_prov  
 ```
 
 ```{r}
@@ -916,7 +924,6 @@ for(i in seq_along(lista_guia4_restantes)) {
 }
 ```
 
-
 ## 1. Retirar a coluna `Nº`
 
 
@@ -934,10 +941,29 @@ for(i in seq_along(lista_guia4_restantes)){
 
 ```
 
+```{r}
+prov17 <- map_df(lista_guia4_restantes, `[[`, 7)
+```
 
 ```{r}
-tabela17_maiores_instalacoes_gas <- map_df(lista_guia4_restantes, `[[`, 7)
+prov17. <- prov17 |> 
+  filter(!is.na(`Campos produtores`)) |> 
+  select(!"Campos Produtores")
+
+prov17.. <- prov17 |> 
+  filter(is.na(`Campos produtores`)) |> 
+  select(!"Campos produtores")
 ```
+
+
+```{r}
+names(prov17..)[6] <- names(prov17.)[7] 
+```
+
+```{r}
+tabela17_maiores_instalacoes_gas <- bind_rows(prov17.., prov17.)
+```
+
 
 ```{r}
 base_consolidada[[k]] <- tabela17_maiores_instalacoes_gas

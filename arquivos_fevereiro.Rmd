@@ -19,6 +19,16 @@ read_tab <- function(x) {read_delim(x,
     trim_ws = TRUE)}
 ```
 
+## Importar base atual
+
+```{r}
+arquivos_base_atual <- list.files(path = "csv", pattern = ".csv")
+arquivos_base_atual <- paste0("csv/", arquivos_base_atual)
+```
+ Criar lista com arquivos de fevereiro de 2024
+```{r}
+base_atual <- map(arquivos_base_atual, read_csv)  
+```
 
 # Preparar arquivos
 
@@ -65,25 +75,24 @@ i <- 1 + 1
 
 ```
 
-## Apagar coluna "Nº"
-
 
 
 ### Tabelas 1, 2, 3 e 4 (histórico)
 A cada mês o conteúdo dos dataframes numerados de 1 a 4 é acrescido de apenas uma linha. Logo, o conteúdo publicado em fevereiro foi divulgado em março. Portanto, não é preciso importar esse conteúdo à base de dados.
 
-
-
-## Importar base atual
+# Acertar nomes de colunas das tabelas 16 e 17
 
 ```{r}
-arquivos_base_atual <- list.files(path = "csv", pattern = ".csv")
-arquivos_base_atual <- paste0("csv/", arquivos_base_atual)
+names(lista_fev_2024[[16]]) <- names(lista_fev_2024[[16]]) |> str_squish()
+names(lista_fev_2024[[17]]) <- names(lista_fev_2024[[17]]) |> str_squish()
 ```
- Criar lista com arquivos de fevereiro de 2024
+
 ```{r}
-base_atual <- map(arquivos_base_atual, read_csv)  
+names(lista_fev_2024[[17]])
+names(base_atual[[17]])
 ```
+
+
 
 
 ## Incorporar conteúdo de fevereiro à base de dados atuais
@@ -94,8 +103,6 @@ Os nomes de fevereiro estão na mesma ordem da base atual, mas não exatamente i
 
 ```{r}
 bind_rows(base_atual[[5]],lista_fev_2024[[5]])
-
-
 ```
 
 
