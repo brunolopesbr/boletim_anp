@@ -92,9 +92,6 @@ names(lista_fev_2024[[17]])
 names(base_atual[[17]])
 ```
 
-
-
-
 ## Incorporar conteúdo de fevereiro à base de dados atuais
 
 Os nomes de fevereiro estão na mesma ordem da base atual, mas não exatamente iguais. Então, copiamos os nomes da base atual para a lista com as tabelas de fevereiro.
@@ -113,7 +110,6 @@ Em seguida são incorporados os dataframes de 5 em diante à base atual:
 i <- 5
 for(i in 6:length(base_atual)){
   base_atual[[i]] <- bind_rows(base_atual[[i]],lista_fev_2024[[i]])  
-  
   i <- i + 1
 }
 ```

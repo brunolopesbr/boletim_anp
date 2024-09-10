@@ -1,0 +1,113 @@
+---
+title: "Tabelas dscontinuadas"
+author: "BML"
+date: "2024-09-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Carregar libraries e funções
+
+```{r}
+library(tidyverse)
+library(readxl)
+```
+
+```{r message=FALSE, include=FALSE}
+source(knitr::purl("funcoes_data_e_extrair.Rmd", quiet=TRUE))
+```
+
+## Tabela descontinuada - guia 2
+
+## Produção dos poços do Pré-sal 
+```{r}
+titulo <- read_excel(paste0("data/", planilhas[4]), sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela "))) |> 
+  slice(7) |>
+  select(1)
+
+titulo
+```
+Verificar tabelas 
+
+```{r}
+mostrar_tabela_descont <- function(x){
+titulo <- read_excel(paste0("data/", planilhas[x]), sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  slice(7) |> 
+    pull(1) |> 
+  length()
+
+if(titulo > 0){
+  titulo <- read_excel(paste0("data/", planilhas[x]), sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
+  filter(if_any(1, ~ str_detect(., "Tabela"))) |> 
+  slice(7) |> 
+    pull(1)
+}
+titulo
+}
+```
+
+```{r}
+vetor_descontinuado <- as.character()
+
+i <- 1
+for(i in seq_along(planilhas)){
+vetor_descontinuado[i] <- mostrar_tabela_descont(i)
+  }
+
+tabela_7 <- data.frame(
+  planilhas = planilhas,
+  numero_planilhas = seq_along(planilhas),
+  titulos = vetor_descontinuado
+)
+ 
+
+```
+As planilhas com tabelas referentes a "poços do Pré-Sal" são as seguintes:
+
+```{r}
+planilhas_tabelas_pocos <- tabela_7 |> 
+  filter(str_detect(titulos, "poços")) |> 
+  pull(numero_planilhas)
+```
+
+### Importar guia 3 das planilhas 
+
+```{r message=FALSE, warning=FALSE}
+lista_guia3_todas <- map(seq_along(planilhas), extrair_todas_tabelas, sheet = 3)
+```
+
+Separar as listas dos meses com as planilhas com poços do Pré-Sal:
+
+```{r}
+lista_tabela7 <- lista_guia3_todas[planilhas_tabelas_pocos]
+lista_tabela7[[35]][[7]]
+```
+```{r}
+lista_tabela7[[35]][[7]] <- lista_tabela7[[35]][[7]] |> 
+  mutate("Campo" = as.character(`Campo`))
+```
+
+
+```{r}
+tabela7_descontinuada <- map_df(lista_tabela7, `[[`, 7)
+
+tabela7_descontinuada
+```
+```{r}
+
+tabelas_descontinuadas <- list()
+
+tabela7_descontinuada <- tabela7_descontinuada |> 
+  select(!8:11)
+
+tabelas_descontinuadas[[1]] <- tabela7_descontinuada
+
+
+tabelas_descontinuadas
+```
+
