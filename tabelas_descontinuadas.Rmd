@@ -22,7 +22,7 @@ source(knitr::purl("funcoes_data_e_extrair.Rmd", quiet=TRUE))
 
 ## Tabela descontinuada - guia 2
 
-## Produção dos poços do Pré-sal 
+### Produção dos poços do Pré-sal 
 ```{r}
 titulo <- read_excel(paste0("data/", planilhas[4]), sheet = 3, col_types = "text",  .name_repair = "unique_quiet") |> 
   filter(if_any(1, ~ str_detect(., "Tabela "))) |> 
@@ -75,7 +75,7 @@ planilhas_tabelas_pocos <- tabela_7 |>
   pull(numero_planilhas)
 ```
 
-### Importar guia 3 das planilhas 
+## Importar guia 3 das planilhas 
 
 ```{r message=FALSE, warning=FALSE}
 lista_guia3_todas <- map(seq_along(planilhas), extrair_todas_tabelas, sheet = 3)
@@ -109,5 +109,42 @@ tabelas_descontinuadas[[1]] <- tabela7_descontinuada
 
 
 tabelas_descontinuadas
+```
+
+## Outras tabelas descontinuadas
+
+Contar número de elementos na lista da Guia 3:
+
+```{r}
+length(lista_guia3_todas)
+```
+
+```{r}
+map_dbl(lista_guia3_todas, length)
+  
+```
+
+```{r}
+lista_guia4_todas <- map(seq_along(planilhas), extrair_todas_tabelas, sheet = 4)
+```
+
+```{r}
+numero_tabelas_guia4 <- map_dbl(lista_guia4_todas, length)
+
+resumo_guia4 <- data.frame(numero_tabelas = numero_tabelas_guia4, planilhas = planilhas, numero_planilhas = seq_along(planilhas))
+```
+
+```{r}
+planilhas_16_tabelas <- resumo_guia4 |> 
+  filter(numero_tabelas > 9) |> 
+  pull(numero_planilhas)
+```
+
+```{r}
+lista_guia4_16_tabelas <- lista_guia4_todas[planilhas_16_tabelas]
+```
+
+```{r}
+map_dbl(lista_guia4_16_tabelas, length)
 ```
 
