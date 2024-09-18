@@ -232,8 +232,6 @@ guias_covid <- guias |>
 
 ```{r}
 extrair_todas_tabelas <- function(nume, sheet = sheet){
-  mes_boletim <- extrair_data_novo(nume) 
-  
   prov <- read_excel(paste0("data/", planilhas[nume]), sheet = sheet)
   
   names(prov)[1] <- "col1"
@@ -255,14 +253,30 @@ extrair_todas_tabelas <- function(nume, sheet = sheet){
   
   minha_lista <- list()
   
-  
-  i <- 1
+    if(sheet != 2) {
+    mes_boletim <- extrair_data_novo(nume) 
+    
+    i <- 1
   for(i in seq_along(corte)){
     minha_lista[[i]] <- read_excel(paste0("data/", planilhas[nume]), sheet = sheet, skip = corte[i] + 
                                      ajuste, n_max = maximo_linha[i] + ajuste2) |> 
       mutate(mes = mes_boletim)
     i <- i + 1
   }
+    
+    }
+  
+      if(sheet == 2) {
+
+    
+    i <- 1
+  for(i in seq_along(corte)){
+    minha_lista[[i]] <- read_excel(paste0("data/", planilhas[nume]), sheet = sheet, skip = corte[i] + 
+                                     ajuste, n_max = maximo_linha[i] + ajuste2) 
+    i <- i + 1
+  }
+    
+    }
   
   minha_lista
 }

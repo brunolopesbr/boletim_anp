@@ -63,7 +63,7 @@ titulo_tabelas_descontinuadas. <- titulo_tabelas_descontinuadas. |>
   pull(1) |> 
   str_remove_all("Tabela Adicional [0-9]. ")
 
-titulo_tabelas_descontinuadas
+titulo_tabelas_descontinuadas.
 ```
 
 ```{r}
@@ -240,10 +240,10 @@ titulo_tabelas_descontinuadas <- c(titulo_tabelas_descontinuadas., titulo_tabela
 num_tabelas_descontinuadas <- seq_along(tabelas_descontinuadas)
 
 for(i in seq_along(tabelas_descontinuadas)){
-tabelas_descontinuadas[[i]] |> write.csv(file = paste0("csv/tabela_descontinuada",i, ".csv"))  
+tabelas_descontinuadas[[i]] |> write.csv(file = paste0("csv_descontinuado/tabela_descontinuada",i, ".csv"))  
 }
 
-write.csv(titulo_tabelas_descontinuadas, "csv/relacao_tabelas_descontinuadas.csv")
+write.csv(titulo_tabelas_descontinuadas, "csv_descontinuado/relacao_tabelas_descontinuadas.csv")
 ```
 
 ```{r}
