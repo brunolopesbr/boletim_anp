@@ -12,11 +12,55 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
+# Preparar arquivos
+
 ```{r}
-read_tab <- function(x) {read_delim(x, 
-    delim = "\t", escape_double = FALSE, 
-    locale = locale(decimal_mark = ",", grouping_mark = "."), 
-    trim_ws = TRUE)}
+arquivos_fev_2024 <- list.files(path = "fevereiro", pattern = "tsv")
+arquivos_fev_2024 <- paste0("fevereiro/", arquivos_fev_2024)
+```
+ Criar lista com arquivos de fevereiro de 2024
+
+```{r warning=FALSE}
+tabelas_fev_2024 <- lapply(arquivos_fev_2024, function(x) {read_delim(x, 
+    delim = "\t", trim_ws = TRUE)})  
+tabelas_fev_2024
+```
+# Limpeza das tabelas de fevereiro
+## Fazer o pivot em três tabelas
+
+```{r}
+for(i in c(1,2,4)){
+tabelas_fev_2024[[i]] <-  tabelas_fev_2024[[i]] |> 
+  pivot_longer(names_to = "Período", values_to = "Valor", -1) |> 
+  mutate(Período = my(Período)) 
+
+names(tabelas_fev_2024[[i]])[1] <- "Produto"  
+}
+
+
+```
+## Limpar a tabela 3
+```{r}
+tabelas_fev_2024[[3]] <- tabelas_fev_2024[[3]] |> 
+  mutate(Aproveitamento = str_remove_all(Aproveitamento, "%")) |> 
+  mutate(Aproveitamento = str_replace_all(Aproveitamento, ",", ".")) |> 
+  mutate(Aproveitamento = as.numeric(Aproveitamento)) |> 
+  mutate(Aproveitamento = Aproveitamento/100) |> 
+  mutate("Mês/Ano" = my(`Mês/Ano`))
+
+tabelas_fev_2024[[3]]
+```
+## Colocar data nas tabelas 5 a 18
+
+Ao importar cada planilha do boletim é inserida a sua data em cada linha de cada tabela, dentro de uma coluna com o nome "mes". Isso também será feito com todos os dataframes do mês de fevereiro ("2024-02-01").
+
+```{r}
+boletim_fev <- as.Date("2024-02-01")
+
+for(i in 5:18){
+tabelas_fev_2024[[i]] <- tabelas_fev_2024[[i]] |> 
+  mutate(mes = as.Date(boletim_fev))
+}
 ```
 
 ## Importar base atual
@@ -30,92 +74,22 @@ arquivos_base_atual <- paste0("csv/", arquivos_base_atual)
 base_atual <- map(arquivos_base_atual, read_csv)  
 ```
 
-# Preparar arquivos
-
-```{r}
-arquivos_fev_2024 <- list.files(path = "fevereiro", pattern = "tsv")
-arquivos_fev_2024 <- paste0("fevereiro/", arquivos_fev_2024)
-```
- Criar lista com arquivos de fevereiro de 2024
-```{r}
-lista_fev_2024 <- map(arquivos_fev_2024, read_tab)  
-```
-
-```{r}
-length(lista_fev_2024)
-
-```
-
-
-## Limpando arquivos
-
-### Data do boletim
-
-Ao importar cada planilha do boletim é inserida a sua data em cada linha de cada tabela, dentro de uma coluna com o nome "mes". Isso também será feito com todos os dataframes do mês de fevereiro ("2024-01-01").
-
-```{r}
-# mutate(mes = mes_boletim)
-
-boletim_fev <- as.Date("2024-01-01")
-boletim_fev
-```
-```{r}
-lista_fev_2024[[5]] |> 
-  mutate(mes = boletim_fev)
-```
-```{r}
-i <- 1
-
-for(i in seq_along(lista_fev_2024)){
-lista_fev_2024[[i]] <- lista_fev_2024[[i]] |> 
-  mutate(mes = as.Date(boletim_fev))
-
-i <- 1 + 1  
-}
-
-```
-
-
-
-### Tabelas 1, 2, 3 e 4 (histórico)
-A cada mês o conteúdo dos dataframes numerados de 1 a 4 é acrescido de apenas uma linha. Logo, o conteúdo publicado em fevereiro foi divulgado em março. Portanto, não é preciso importar esse conteúdo à base de dados.
-
-# Acertar nomes de colunas das tabelas 16 e 17
-
-```{r}
-names(lista_fev_2024[[16]]) <- names(lista_fev_2024[[16]]) |> str_squish()
-names(lista_fev_2024[[17]]) <- names(lista_fev_2024[[17]]) |> str_squish()
-```
-
-```{r}
-names(lista_fev_2024[[17]])
-names(base_atual[[17]])
-```
 
 ## Incorporar conteúdo de fevereiro à base de dados atuais
 
 Os nomes de fevereiro estão na mesma ordem da base atual, mas não exatamente iguais. Então, copiamos os nomes da base atual para a lista com as tabelas de fevereiro.
 
 
-
-```{r}
-bind_rows(base_atual[[5]],lista_fev_2024[[5]])
-```
-
-
-
-length(lista_fev_2024)
 Em seguida são incorporados os dataframes de 5 em diante à base atual:
 ```{r}
-i <- 5
-for(i in 6:length(base_atual)){
-  base_atual[[i]] <- bind_rows(base_atual[[i]],lista_fev_2024[[i]])  
-  i <- i + 1
-}
+nova_base <- list()
+i <- 1
+for(i in seq_along(base_atual)){
+  nova_base[[i]] <- base_atual[[i]] |> 
+    bind_rows(tabelas_fev_2024[[i]])  
+ }
 ```
-
 
 ```{r}
-base_atual
+nova_base
 ```
-

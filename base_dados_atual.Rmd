@@ -118,6 +118,35 @@ lista_guia4_3_primeiras <- lista_guia4_todas[c(1:3)]
 lista_guia4_restantes <- lista_guia4_todas[-c(1:3)]
 ```
 
+## Fazer o pivot nas tabelas 1, 2 e 4
+
+```{r}
+
+lista_tabelas_tidy <- list()
+
+for(i in c(1,2,4)){
+lista_tabelas_tidy[[i]] <-  map_df(lista_guia2_todas, `[[`, 4) |> 
+  pivot_longer(names_to = "Período", values_to = "Valor", -1) |> 
+  filter(!is.na(Valor)) |> 
+  mutate(Período = my(Período))
+
+names(lista_tabelas_tidy[[i]])[1] <- "Produto"  
+}
+
+map_df(lista_guia2_todas, `[[`, 4) |> 
+  pivot_longer(names_to = "Período", values_to = "Valor", -1) |> 
+  filter(!is.na(Valor)) |> 
+  mutate(Período = my(Período))
+
+lista_guia2_todas[[6]][[4]]
+```
+```{r}
+lista_tabelas_tidy[[1]]
+lista_tabelas_tidy[[2]]
+lista_tabelas_tidy[[4]]
+```
+
+
 ## Histórico de produção de petróleo
 
 ```{r}
