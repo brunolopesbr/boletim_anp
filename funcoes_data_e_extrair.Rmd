@@ -43,37 +43,64 @@ extrair_guias <- function(num){
 ## Função 2: extrair a data da planilha, usando a informação da guia 2
 
 ```{r}
-planilhas[10]
+
 x2017_10 <- read_excel(paste0("data/", planilhas[78]), 
     sheet = 2, 
     range = "O8", col_names = FALSE)
 x2017_10 <- pull(x2017_10) 
-x2017_10 |> class()
 
-{
-  if (str_detect(x2017_10, "/") == TRUE) {x2017_10 <- lubridate::my(x2017_10)}
-  
-  else {x2017_10 <- as.Date(as.numeric(x2017_10), origin = "1899-12-30")} 
-}
+class(x2017_10)
 
-x2017_10
+x2017_10 <- read_excel(paste0("data/", planilhas[77]), 
+    sheet = 2, 
+    range = "O8", col_names = FALSE)
+x2017_10 <- pull(x2017_10) 
+x2017 <- str_remove(x2017_10, "UTC")
+class(x2017_10)
+
 ```
-```{r warning=FALSE}
+```{r message=FALSE, warning=FALSE}
 
 i <- 1
-
+meu_df <- data.frame("planilha" = NA, "valor" = NA, "classe" = NA)
 for(i in seq_along(planilhas)){
   x2017_10 <- read_excel(paste0("data/", planilhas[i]), 
     sheet = 2, 
     range = "O8", col_names = FALSE)
 x2017_10 <- pull(x2017_10) 
-print(i)
-print(x2017_10)
+
+meu_df[i,1] <- i
+meu_df[i,2] <- x2017_10
+meu_df[i,3] <- class(x2017_10)[1]
 }
+
+meu_df
 ```
 
+```{r}
+importar_periodo <- function(x){
+    df <- read_xlsx(paste0("data/", planilhas[x]), 
+    sheet = 2, range = "O8", col_names = FALSE,
+    .name_repair = "unique_quiet")
+  
+valor <- pull(df) 
 
+{
+  if (class(valor)[1] == "character") {valor <- my(valor)}
+  if (class(valor)[1] == "POSIXct") {valor <- as.Date(valor)}
+}
 
+valor
+}
+```
+Testar
+```{r}
+importar_periodo(1) 
+importar_periodo(78)
+importar_periodo(9) 
+```
+
+Não usar
 ```{r}
 extrair_data_novo <- function(x){
     mes_planilha <- read_excel(paste0("data/", planilhas[x]), 
@@ -101,7 +128,7 @@ Conferir datas das planilhas
 ```{r eval=FALSE, include=FALSE}
 i <- 1
 for(i in seq_along(planilhas)){
-  extrair_data_novo(i) |> print()
+  importar_periodo(i) |> print()
   i <- 1 + i
 }
 
@@ -181,57 +208,12 @@ guias <- guias |>
 ```{r}
 guias
 ```
-
-Guias 2: sempre com o mesmo nome
-
+Nomes únicos de guias:
 ```{r}
-unique(guias$V2)
-
-```
-
-Guias 3: dois grupos ("Movimentação de Gás Natural" e "Ranking")
-
-```{r}
-planilhas_ws4_grupo1 <- guias |> 
-  filter(V4 == unique(guias$V4)[1]) |> 
-  pull(num_arquivo)
-
-planilhas_ws4_grupo2 <- guias |> 
-  filter(V4 == unique(guias$V4)[2]) |> 
-  pull(num_arquivo)
-
-```
-
-Guias 5: dois grupos (um com "4. Pandemia_Covid-19", outro sem planilhas )
-
-```{r}
-guias |> 
-  filter(V5 == unique(guias$V5)[2]) |> 
-  pull(num_arquivo)
-
+unique(guias[,1:5])
 ```
 
 
-```{r}
-planilhas_ws4_grupo1 <- guias |> 
-  filter(V5 == unique(guias$V5[1])) |> 
-  pull(num_arquivo)
-
-planilhas_ws4_grupo2 <- guias |> 
-  filter(V4 == unique(guias$V4[2]))
-
-```
-
-Guias que mudaram de nome:
-```{r}
-unique(guias$V2) |> length()
-unique(guias$V3) |> length()
-unique(guias$V4) |> length()
-unique(guias$V5) |> length()
-
-unique(guias$V4)
-unique(guias$V5)
-```
 
 # Covid
 
@@ -244,7 +226,74 @@ guias_covid <- guias |>
 
 ```
 
-# Função 3: extrair tabelas de planilhas (qualquer número de tabelas)
+```{r}
+ prov <- read_excel(paste0("data/", planilhas[5]), sheet = 3, .name_repair = "unique_quiet")
+  
+  names(prov)[1] <- "col1"
+  
+  linha_inicial <- which(str_detect(prov$col1, "Tabela [0-9]*")) + 2
+  # E a a linha seguinte com a palavra tabela indica o início da tabela seguinte
+  tamanho_tabela <- lead(linha_inicial) - linha_inicial - 2
+  
+  # tamanho da última tabela: número total de linhas do DF - linha da última tabela do DF
+  # substituir esse valor no vetor, que aparece como "NA"
+  tamanho_ultima_tabela <- (nrow(prov) - linha_inicial[length(linha_inicial)]) - 2
+  
+  tamanho_tabela[length(tamanho_tabela)] <- tamanho_ultima_tabela 
+  
+limite_tabelas <- data.frame(linha_inicial, tamanho_tabela)
+  
+ limite_tabelas
+```
+```{r}
+# read_excel(paste0("data/", planilhas[5]), sheet = 3, .name_repair = "unique_quiet",
+ #          skip = limite_tabelas[1,1], n_max = limite_tabelas[1,2])
+
+
+
+i <- 1
+for(i in 1:nrow(limite_tabelas)){
+read_excel(paste0("data/", planilhas[5]), sheet = 3, .name_repair = "unique_quiet",
+           skip = limite_tabelas[i,1], n_max = limite_tabelas[i,2])  |> 
+    print()
+}
+
+```
+
+
+
+# Função: definir limites das tabelas
+
+```{r}
+definir_limites_tabelas <- function(nume, sheet = sheet){
+  
+   prov <- read_excel(paste0("data/", planilhas[nume]), sheet = sheet, .name_repair = "unique_quiet")
+  
+  names(prov)[1] <- "col1"
+  
+  linha_inicial <- which(str_detect(prov$col1, "Tabela [0-9]*")) + 2
+  # E a a linha seguinte com a palavra tabela indica o início da tabela seguinte
+  tamanho_tabela <- lead(linha_inicial) - linha_inicial - 2
+  
+  # tamanho da última tabela: número total de linhas do DF - linha da última tabela do DF
+  # substituir esse valor no vetor, que aparece como "NA"
+  tamanho_ultima_tabela <- (nrow(prov) - linha_inicial[length(linha_inicial)]) - 2
+  
+  tamanho_tabela[length(tamanho_tabela)] <- tamanho_ultima_tabela 
+  
+limite_tabelas <- data.frame(linha_inicial, tamanho_tabela)
+  
+ limite_tabelas
+}
+```
+
+```{r}
+definir_limites_tabelas(nume = 5, sheet = 3)
+```
+
+
+
+# Extrair tabelas de planilhas (qualquer número de tabelas)
 
 ```{r}
 extrair_todas_tabelas <- function(nume, sheet = sheet){
