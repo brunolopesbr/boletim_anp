@@ -52,19 +52,19 @@ No total, 18 tabelas a serem montadas. Versões antigas do Boletim da Produção
 
 ### Guia 2:
 ```{r message=FALSE, warning=FALSE}
-lista_guia2_todas <- map(seq_along(planilhas), extrair_todas_tabelas, sheet = 2)
+lista_guia2_todas <- map(seq_along(planilhas), importar_tabela_limpa, sheet = 2)
 ```
 
 ### Guia 3:
 
 ```{r }
-lista_guia3_todas <- map(seq_along(planilhas), extrair_todas_tabelas, sheet = 3)
+lista_guia3_todas <- map(seq_along(planilhas), importar_tabela_limpa, sheet = 3)
 ```
 
 ### Guia 4:
 
 ```{r}
-lista_guia4_todas <- map(seq_along(planilhas), extrair_todas_tabelas, sheet = 4)
+lista_guia4_todas <- map(seq_along(planilhas), importar_tabela_limpa, sheet = 4)
 ```
 
 ###  Crição de listas sem as planilhas de 2017
@@ -103,16 +103,12 @@ lista_guia2_restantes <- lista_guia2_todas[-c(1:3)]
 
 As três primeiras planilhas, referentes ao ano de 2017, têm um conjunto diferente de tabelas. Em algumas situações será preciso recorrer a uma lista sem as planilhas de 2017, e outra lista contendo apenas as planilhas de 2017.
 
-Mesma operação para a lista 3:
+Mesma operação para a lista 3 e lista 4:
 ```{r}
 lista_guia3_3_primeiras <- lista_guia3_todas[c(1:3)]
 
 lista_guia3_restantes <- lista_guia3_todas[-c(1:3)]
-```
 
-Criar lista 4 sem as três primeiras planilhas
-
-```{r}
 lista_guia4_3_primeiras <- lista_guia4_todas[c(1:3)]
 
 lista_guia4_restantes <- lista_guia4_todas[-c(1:3)]
@@ -122,24 +118,41 @@ lista_guia4_restantes <- lista_guia4_todas[-c(1:3)]
 
 ```{r}
 
+lista_tabelas_guia2_3_primeiras <- list()
+
+for(i in c(1,2,3)){
+lista_tabelas_guia2_3_primeiras[[i]] <-  map_df(lista_guia2_3_primeiras, `[[`, i) |> 
+  pivot_longer(names_to = "Período", values_to = "Valor", -1) |> 
+  filter(!is.na(Valor)) |> 
+  mutate(Período = my(Período))
+
+names(lista_tabelas_guia2_3_primeiras[[i]])[1] <- "Produto"  
+}
+
+lista_tabelas_guia2_3_primeiras[[4]] <- lista_tabelas_guia2_3_primeiras[[3]] 
+
+lista_tabelas_guia2 <- list()
+
+for(i in c(1,2,4)){
+lista_tabelas_guia2[[i]] <-  map_df(lista_guia2_restantes, `[[`, i) |> 
+  pivot_longer(names_to = "Período", values_to = "Valor", -1) |> 
+  filter(!is.na(Valor)) |> 
+  mutate(Período = my(Período))
+
+names(lista_tabelas_guia2[[i]])[1] <- "Produto"  
+}
+
 lista_tabelas_tidy <- list()
 
 for(i in c(1,2,4)){
-lista_tabelas_tidy[[i]] <-  map_df(lista_guia2_todas, `[[`, 4) |> 
-  pivot_longer(names_to = "Período", values_to = "Valor", -1) |> 
-  filter(!is.na(Valor)) |> 
-  mutate(Período = my(Período))
+lista_tabelas_tidy[[i]] <-  lista_tabelas_guia2_3_primeiras[[i]] |> 
+  bind_rows(lista_tabelas_guia2[[i]])
 
-names(lista_tabelas_tidy[[i]])[1] <- "Produto"  
+
 }
 
-map_df(lista_guia2_todas, `[[`, 4) |> 
-  pivot_longer(names_to = "Período", values_to = "Valor", -1) |> 
-  filter(!is.na(Valor)) |> 
-  mutate(Período = my(Período))
-
-lista_guia2_todas[[6]][[4]]
 ```
+
 ```{r}
 lista_tabelas_tidy[[1]]
 lista_tabelas_tidy[[2]]
@@ -150,13 +163,7 @@ lista_tabelas_tidy[[4]]
 ## Histórico de produção de petróleo
 
 ```{r}
-tabela01_historico_prod_petroleo <- map_df(lista_guia2_todas, `[[`, 1)   |> 
-  # retirar coluna mês
-  #select(!mes) |> 
-  pivot_longer(names_to = "Período", values_to = "produto", -1) |> 
-  distinct() |> 
-   mutate(Período = my(Período)) |> 
-  filter(!is.na(produto)) 
+tabela01_historico_prod_petroleo <- lista_tabelas_tidy[[1]]
 ```
 
 ```{r}
@@ -170,13 +177,7 @@ k <- k + 1
 ## Histórico de produção de gás natural
 
 ```{r}
-tabela02_historico_prod__gas <- map_df(lista_guia2_todas, `[[`, 2)   |> 
-  # reirar coluna mês
-  # select(!mes) |> 
-  pivot_longer(names_to = "Período", values_to = "produto", -1) |> 
-  distinct() |> 
-   mutate(Período = my(Período)) |> 
-  filter(!is.na(produto)) 
+tabela02_historico_prod__gas <- lista_tabelas_tidy[[2]]
 ```
 ```{r}
 
@@ -230,7 +231,7 @@ for(i in seq_along(lista_guia2_restantes)){
 ```{r}
 try(map_df(lista_guia2_restantes, `[[`, 3)  ) 
 ```
-A coluna "mes", criada durante a importação de dados, aqui representa o mês do boletim em que a informação foi criada, e permanece na base de dados.
+
 
 ```{r}
 tabela03_historico_movimentação__gas_natural <- map_df(lista_guia2_restantes, `[[`, 3)  
@@ -246,29 +247,9 @@ k <- k + 1
 
 Usamos a quarta tabela, das planilhas 4 em diante 
 ```{r}
-parcial_tab4 <-  map_df(lista_guia2_restantes, `[[`, 4)   |> 
-  # select(!mes) |> 
-  pivot_longer(names_to = "Período", values_to = "produto", -1) |> 
-  distinct() |> 
-   mutate(Período = my(Período)) |> 
-  filter(!is.na(produto)) 
-```
-E a tabela 3 das três primeiras planilhas
-
-```{r}
-parcial2_tab4 <- map_df(lista_guia2_3_primeiras, `[[`, 3)    |> 
-  # select(!mes) |> 
-  gather(key = "Período", value = "produto", -1) |> 
-  distinct() |> 
-   mutate(Período = my(Período)) |> 
-  filter(!is.na(produto)) 
+tabela04_historico_produção_petroleo_gas_natural <-  lista_tabelas_tidy[[4]]
 ```
 
-```{r}
-tabela04_historico_produção_petroleo_gas_natural <- parcial_tab4 |> 
-  rbind(parcial2_tab4) |> 
-  unique()
-```
 
 ```{r}
 base_consolidada[[k]] <- tabela04_historico_produção_petroleo_gas_natural
@@ -350,6 +331,7 @@ for(i in seq_along(lista_guia3_todas)){
 ```{r}
 tabela05_produção_petroleo_gas_natural_por_estado <- map_df(lista_guia3_todas, `[[`, 1) 
 ```
+
 
 ```{r}
 base_consolidada[[k]] <- tabela05_produção_petroleo_gas_natural_por_estado
@@ -1085,35 +1067,36 @@ base_consolidada[[k]] <- tabela18_campos_com_maior_queimas
 k <- k + 1
 ```
 
-```{r}
-names(base_consolidada[[12]]) |> 
-  str_detect("Nº")  |> sum()
 
-names(base_consolidada[[1]]) |> 
-  str_detect("Nº")  |> sum()
-
-base_consolidada[[12]] |> 
-  select(!`Nº`)
-```
-Retirar as colunas "Nº".
+# Retirar a coluna "Nº"
 
 ```{r}
-i <- 1
-for(i in c(11:15, 18)){
-  
-  base_consolidada[[i]] <- base_consolidada[[i]] |> 
-  select(!`Nº`)
-  
+coluna_n <- numeric()
+for(i in seq_along(base_consolidada)){
+ 
+  coluna_n[i] <- names(base_consolidada[[i]])[1]
+  i <- i + 1
 }
+base_consolidada[[11]] |> 
+    select(!"Nº")
 
+which(str_detect(coluna_n, "Nº"))
 ```
+```{r}
+for(i in c(11:15, 18)){
+   base_consolidada[[i]] <- base_consolidada[[i]] |> 
+    select(!"Nº")
+}
+```
+
 
 # Nomes das colunas
 
-Para manter a consistência, os nomes das colunas são os da edição 76 (maio/2024) do boletim
+Para manter a consistência, os nomes das colunas das tabelas são mudados para os da edição 76 (maio/2024) do boletim
 
-```{r}
-planilha76 <- c(extrair_todas_tabelas(nume = 76, sheet = 2), extrair_todas_tabelas(nume = 76, sheet = 3), extrair_todas_tabelas(nume = 76, sheet = 4))
+```{r warning=FALSE}
+planilha76 <- c(importar_tabela_limpa(nume = 76, sheet = 2), importar_tabela_limpa(nume = 76, sheet = 3), importar_tabela_limpa(nume = 76, sheet = 4))
+
 ```
 Retirar colunas "Nº":
 ```{r}
@@ -1129,28 +1112,216 @@ for(i in 7:length(planilha76)){
 }
 planilha76[[7]]
 ```
+Fazer o pivot nas tabelas 1, 2 e 4
+
+```{r}
+for(i in c(1, 2,4)){
+planilha76[[i]] <- planilha76[[i]] |> 
+pivot_longer(names_to = "Período", values_to = "Valor", -1) |> 
+  filter(!is.na(Valor)) 
+
+names(planilha76[[i]])[1] <- "Produto"
+
+print(planilha76[[i]])
+}
+
+```
+
+```{r}
+for(i in seq_along(planilha76)){
+  names(planilha76[[i]]) <- names(planilha76[[i]]) |> stringr::str_squish()
+}
+
+
+```
+
+
+Comparar nomes da tabela 76 com a da base consolidada
+```{r warning=FALSE}
+i <- 1
+nomes_a_verificar <- numeric()
+for(i in seq_along(planilha76)){
+
+  verifica <- names(planilha76[[i]]) != names(base_consolidada[[i]])
+if(any(verifica) == TRUE) {
+  nomes_a_verificar[i] <- i
+  i <- i + 1
+    }
+
+}
+nomes_a_verificar[!is.na(nomes_a_verificar)]
+```
+Verificando tabelas 3
+```{r}
+base_consolidada_reserva <- base_consolidada
+
+names(planilha76[[3]]) == names(base_consolidada[[3]])
+ 
+base_consolidada[[3]] <- base_consolidada[[3]] |> 
+  select(1:3, "Injeção", "Disponível", 6:9)
+
+names(planilha76[[3]]) == names(base_consolidada[[3]])
+```
+
+```{r}
+names(planilha76[[9]]) == names(base_consolidada[[9]])
+
+names(planilha76[[9]])
+
+base_consolidada[[9]] <- base_consolidada[[9]] |> 
+  select(1:5, "Injeção descontando CO2", "Produção", "Produção descontando CO2", "mes")
+
+names(planilha76[[9]]) == names(base_consolidada[[9]])
+```
+
+```{r warning=FALSE}
+names(planilha76[[11]])  ==  names(base_consolidada[[11]])
+names(planilha76[[11]])  
+
+base_consolidada[[11]] <- base_consolidada[[11]] |> 
+  select( "Poço",             "Campo",            "Bacia",            "Localização",               "Petróleo (bbl/d)",
+ "mes", "Operador")
+
+```
+
+```{r warning=FALSE}
+names(planilha76[[12]])  ==  names(base_consolidada[[12]])
+names(planilha76[[12]])
+names(base_consolidada[[12]])  
+
+base_consolidada[[12]] <- base_consolidada[[12]] |> 
+  select("Poço",                "Campo",               "Bacia",               "Localização",     "Gás natural (Mm³/d)", "mes", "Operador")
+
+names(planilha76[[12]])  ==  names(base_consolidada[[12]])
+
+```
+```{r}
+names(planilha76[[13]])  ==  names(base_consolidada[[13]])
+names(planilha76[[13]])
+names(base_consolidada[[13]])  
+
+base_consolidada[[13]] <- base_consolidada[[13]] |> 
+  select(names(planilha76[[13]]), "Operador")
+
+names(planilha76[[13]])  ==  names(base_consolidada[[13]])
+
+```
+```{r}
+names(planilha76[[14]])  ==  names(base_consolidada[[14]])
+names(planilha76[[14]])
+names(base_consolidada[[14]])  
+
+base_consolidada[[14]] <- base_consolidada[[14]] |> 
+  select(names(planilha76[[14]]), "Operador")
+
+names(planilha76[[14]])  ==  names(base_consolidada[[14]])
+```
+```{r}
+names(planilha76[[15]])  ==  names(base_consolidada[[15]])
+names(planilha76[[15]])[5]
+# corrigindo "natural" para "Natural"
+# names(base_consolidada[[15]])[6] <- names(planilha76[[15]])[5]  
+
+base_consolidada[[15]] <- base_consolidada[[15]] |> 
+  select(names(base_consolidada[[15]])[c(1:4, 6, 7)], "Operador")
+
+names(planilha76[[15]])  ==  names(base_consolidada[[15]])
+```
+```{r}
+names(planilha76[[16]])  ==  names(base_consolidada[[16]])
+names(planilha76[[16]])
+names(base_consolidada[[16]])  
+
+base_consolidada[[16]] <- base_consolidada[[16]] |> 
+  select(names(planilha76[[16]]), "Gás natural (Mm³/d)", "Produção (boe/d)")
+
+names(planilha76[[16]])  ==  names(base_consolidada[[16]])
+```
+
+```{r}
+names(planilha76[[17]])  ==  names(base_consolidada[[17]])
+names(planilha76[[17]])
+names(base_consolidada[[17]])  
+
+base_consolidada[[17]] <- base_consolidada[[17]] |> 
+  select(names(planilha76[[17]]), "Petróleo (bbl/d)", "Produção (boe/d)")
+
+names(planilha76[[17]])  ==  names(base_consolidada[[17]])
+```
+
+```{r}
+names(planilha76[[18]])  ==  names(base_consolidada[[18]])
+names(planilha76[[18]])
+names(base_consolidada[[18]])  
+
+base_consolidada[[18]] <- base_consolidada[[18]] |> 
+  select(names(planilha76[[18]]))
+
+names(planilha76[[18]])  ==  names(base_consolidada[[18]])
+```
 
 
 
+# Importar arquivos de fevereiro
+
+Importar diretamente do arquivo markdown:
+
+```{r message=FALSE}
+source(knitr::purl("arquivos_fevereiro.Rmd", quiet=TRUE))
+```
+
+```{r}
+tabelas_fev_2024
+```
+```{r}
+# Acertando nomes com espaços em branco
+# names(base_consolidada[[17]])[3]
+names(tabelas_fev_2024_limpas[[17]])[3] <- names(tabelas_fev_2024_limpas[[17]])[3] |> str_squish()
+
+# names(base_consolidada[[16]])[3]
+names(tabelas_fev_2024_limpas[[16]])[3] <- names(tabelas_fev_2024_limpas[[16]])[3] |> str_squish()
+```
+
+
+
+## Unir as tabelas de fevereiro de 2024 com as tabelas atuais
+
+```{r}
+nova_base <- list()
+i <- 1
+for(i in seq_along(base_consolidada)){
+  nova_base[[i]] <- base_consolidada[[i]] |> 
+    bind_rows(tabelas_fev_2024_limpas[[i]]) 
+}
+  
+nova_base 
+
+```
+
+
+
+
+
+colocar as colunas na mesma ordem
 ```{r}
 i <- 5
 for(i in 5:14){
 ordem_colunas <- names(planilha76[[i]])  
 ordem_colunas
 
-base_atual[[i]] <- base_atual[[i]] |> 
+base_consolidada[[i]] <- base_consolidada[[i]] |> 
   select(ordem_colunas)   
 
 i <- 1 + 1
 }
 ```
 
-
+Verificar se as colunas têm os mesmos nomes
 ```{r}
 i <- 5
 for(i in 5:14){
 names1 <- names(planilha76[[i]])  
-names2 <- names(base_atual[[i]]) 
+names2 <- names(base_consolidada[[i]]) 
 
 (names1 == names2) |> print()
 

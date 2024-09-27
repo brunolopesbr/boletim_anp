@@ -1,34 +1,22 @@
----
-title: "importar_fevereiro"
-author: "BML"
-date: "2024-08-02"
-output: html_document
----
-
-```{r setup, include=FALSE}
+## ----setup, include=FALSE-----------------------------------------------------
 knitr::opts_chunk$set(echo = TRUE)
-```
-```{r}
+
+## -----------------------------------------------------------------------------
 library(tidyverse)
-```
 
-# Preparar arquivos
 
-```{r}
+## -----------------------------------------------------------------------------
 arquivos_fev_2024 <- list.files(path = "fevereiro", pattern = "tsv")
 arquivos_fev_2024 <- paste0("fevereiro/", arquivos_fev_2024)
-```
- Criar lista com arquivos de fevereiro de 2024
 
-```{r warning=FALSE}
+
+## ----warning=FALSE------------------------------------------------------------
 tabelas_fev_2024 <- lapply(arquivos_fev_2024, function(x) {read_delim(x, 
     delim = "\t", trim_ws = TRUE)})  
 tabelas_fev_2024
-```
-# Limpeza das tabelas de fevereiro
-## Fazer o pivot em três tabelas
 
-```{r}
+
+## -----------------------------------------------------------------------------
 for(i in c(1,2,4)){
 tabelas_fev_2024[[i]] <-  tabelas_fev_2024[[i]] |> 
   pivot_longer(names_to = "Período", values_to = "Valor", -1) |> 
@@ -37,45 +25,30 @@ tabelas_fev_2024[[i]] <-  tabelas_fev_2024[[i]] |>
 names(tabelas_fev_2024[[i]])[1] <- "Produto"  
 }
 
-```
-## Limpar a tabela 3
-```{r}
+
+
+## -----------------------------------------------------------------------------
 tabelas_fev_2024[[3]] <- tabelas_fev_2024[[3]] |> 
   mutate(Aproveitamento = str_remove_all(Aproveitamento, "%")) |> 
   mutate(Aproveitamento = str_replace_all(Aproveitamento, ",", ".")) |> 
   mutate(Aproveitamento = as.numeric(Aproveitamento)) |> 
   mutate(Aproveitamento = Aproveitamento/100) |> 
   mutate("Mês/Ano" = my(`Mês/Ano`))
-```
 
 
-
-
-
-
-## Colocar data nas tabelas 5 a 18
-
-Ao importar cada planilha do boletim é inserida a sua data em cada linha de cada tabela, dentro de uma coluna com o nome "mes". Isso também será feito com todos os dataframes do mês de fevereiro ("2024-02-01").
-
-```{r}
+## -----------------------------------------------------------------------------
 boletim_fev <- as.Date("2024-02-01")
 
 for(i in 5:18){
 tabelas_fev_2024[[i]] <- tabelas_fev_2024[[i]] |> 
   mutate(mes = as.Date(boletim_fev))
 }
-```
 
-## Exportar arquivos de fevereiro
 
-```{r}
+## -----------------------------------------------------------------------------
 for(i in seq_along(tabelas_fev_2024)){
   write.csv(tabelas_fev_2024[[i]], file = paste0("fevereiro/tab_fev", i, ".csv"), row.names = FALSE )
 }
  
  
-```
-
-tabelas_fev_2024
-
 

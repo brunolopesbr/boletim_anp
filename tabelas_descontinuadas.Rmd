@@ -27,7 +27,7 @@ source(knitr::purl("funcoes_data_e_extrair.Rmd", quiet=TRUE))
 Criar a list com tabelas da Guia 4:
 
 ```{r include=FALSE}
-lista_guia4_todas <- map(seq_along(planilhas), extrair_todas_tabelas, sheet = 4)
+lista_guia4_todas <- map(seq_along(planilhas), importar_tabela_limpa, sheet = 4)
 ```
 
 Esse é o número de tabelas em cada planilha, agrupada na guia 4.
@@ -66,9 +66,6 @@ titulo_tabelas_descontinuadas. <- titulo_tabelas_descontinuadas. |>
 titulo_tabelas_descontinuadas.
 ```
 
-```{r}
-
-```
 
 
 Unir as tabelas:
@@ -88,7 +85,7 @@ tabelas_descontinuadas[[i]]   <- map_df(lista_guia4_16_tabelas, `[[`, j)
 ## Importar planilhas - guia 3
 
 ```{r message=FALSE, warning=FALSE}
-lista_guia3_todas <- map(seq_along(planilhas), extrair_todas_tabelas, sheet = 3)
+lista_guia3_todas <- map(seq_along(planilhas), importar_tabela_limpa, sheet = 3)
 ```
 
 ## Planilhas de 2017

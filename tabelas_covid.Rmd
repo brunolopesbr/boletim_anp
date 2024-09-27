@@ -104,7 +104,7 @@ Portanto, há duas tabelas, de número 20 e 21, nas guias de número 5.
 # Criar lista 
 
 ```{r}
-lista_guia5 <- map(planilhas_com_5_guias, extrair_todas_tabelas, sheet = 5)
+lista_guia5 <- map(planilhas_com_5_guias, importar_tabela_limpa, sheet = 5)
 lista_guia5
 ```
 

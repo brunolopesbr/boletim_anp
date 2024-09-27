@@ -1,20 +1,17 @@
-datasets::AirPassengers |> 
-  write.csv("AirPassengers.csv")
+#datasets::AirPassengers |> 
+#  write.csv("AirPassengers.csv")
 
-datasets::mtcars |> 
-  write.csv("mtcars.csv")
+#datasets::mtcars |> 
+#  write.csv("mtcars.csv")
 
-datasets::iris |> 
-  write.csv("iris.csv")
+#datasets::iris |> 
+#  write.csv("iris.csv")
 
-setwd("csv")
-import_files <- dir(pattern = "*.csv")
-map(import_files, read.csv)
+library(readxl)
+library(tidyverse)
 
-guias <- excel_sheets("planilha.xlsx") 
+plan_exemplo <- paste0("exemplo/", list.files(path = "exemplo", pattern = ".xlsx"))
 
-read_planilha <- function(name) {
-  read_xlsx("planilha.xlsx", sheet = name)
-  }
+guias <- excel_sheets(plan_exemplo) 
 
-map(guias, read_planilha)
+lapply(guias, function(x){read_xlsx(plan_exemplo, sheet = x)})
