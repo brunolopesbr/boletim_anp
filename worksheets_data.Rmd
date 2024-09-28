@@ -20,7 +20,7 @@ planilhas <- dir(path = "data", pattern = "*xls*")
 
 # Funções personalizadas
 
-Função 1: obter nomes de todas as guias
+Função 1: obter nomes de todas as guias  
 ```{r}
 # 2.1 - Obter nomes de todas as guias
 extrair_guias <- function(num){
