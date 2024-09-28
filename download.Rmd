@@ -40,7 +40,7 @@ resultado_bots <- paths_allowed(
 
 ## Iniciar o webscrapping
 
-Imprimir para o console o objeto capturado na URL
+Imprimir para o console o objeto capturado na URL 
 ```{r}
 boletim_anp <- read_html(url)
 

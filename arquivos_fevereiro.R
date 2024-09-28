@@ -15,7 +15,7 @@ tabelas_fev_2024 <- lapply(arquivos_fev_2024, function(x) {read_delim(x,
     delim = "\t", trim_ws = TRUE)})  
 tabelas_fev_2024
 
-
+ 
 ## -----------------------------------------------------------------------------
 for(i in c(1,2,4)){
 tabelas_fev_2024[[i]] <-  tabelas_fev_2024[[i]] |> 

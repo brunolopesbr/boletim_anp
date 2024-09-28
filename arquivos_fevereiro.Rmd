@@ -16,9 +16,9 @@ library(tidyverse)
 
 ```{r}
 arquivos_fev_2024 <- list.files(path = "fevereiro", pattern = "tsv")
-arquivos_fev_2024 <- paste0("fevereiro/", arquivos_fev_2024)
+arquivos_fev_2024 <- paste0("fevereiro/", arquivos_fev_2024) 
 ```
- Criar lista com arquivos de fevereiro de 2024
+ Criar lista com arquivos de fevereiro de 2024 
 
 ```{r warning=FALSE}
 tabelas_fev_2024 <- lapply(arquivos_fev_2024, function(x) {read_delim(x, 

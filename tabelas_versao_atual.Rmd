@@ -15,7 +15,7 @@ library(readxl)
 ```
 
 ```{r}
-source(knitr::purl("funcoes_data_e_extrair.Rmd", quiet=TRUE))
+source(knitr::purl("funcoes_data_e_extrair.Rmd", quiet=TRUE))  
 ```
 
 # Tabelas 1 a 4: 

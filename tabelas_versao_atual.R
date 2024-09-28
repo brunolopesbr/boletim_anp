@@ -8,7 +8,7 @@ library(readxl)
 
 
 ## ----------------------------------------------------------------------------------
-source(knitr::purl("funcoes_data_e_extrair.Rmd", quiet=TRUE))
+source(knitr::purl("funcoes_data_e_extrair.Rmd", quiet=TRUE))  
 
 
 ## ----------------------------------------------------------------------------------

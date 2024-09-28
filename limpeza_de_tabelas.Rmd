@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Limpeza de tabelas
 
-Esse arquivo lista os principais pontos a serem feitas para limpar as tabelas, na sua união.
+Esse arquivo lista os principais pontos a serem feitas para limpar as tabelas, na sua união. 
 
 ## 1. Retirar a coluna `Nº`
 

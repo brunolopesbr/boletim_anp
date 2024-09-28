@@ -3,4 +3,6 @@
 .RData
 .Ruserdata
 data/
+data2/
+img/
 *.zip

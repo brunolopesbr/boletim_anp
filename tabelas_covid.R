@@ -8,7 +8,7 @@ library(readxl)
 
 
 ## ----warning=FALSE------------------------------------------------------------------------------------------
-# Rodar o arquivo worksheets e data
+# Rodar o arquivo worksheets e data 
 
 source(knitr::purl("worksheets_data.Rmd", quiet=TRUE))
 

@@ -5,14 +5,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ## ------------------------------------------------------------------------------------------
 library(tidyverse)
 library(readxl)
-
+  
 
 ## ------------------------------------------------------------------------------------------
 planilhas <- dir(path = "data", pattern = "*xls*")
 
 
 ## ----eval=FALSE, include=FALSE-------------------------------------------------------------
-## # planilhas_novas <- c("2024_tabela-abril.xlsm", "2024_tabela-maio.xlsm", "2024_tabela-junho.xlsm")
+## # planilhas_novas <- c("2024_tabela-abril.xlsm", "2024_tabela-maio.xlsm", "2024_tabela-junho.xlsm")  
 ## 
 ## 
 ## 

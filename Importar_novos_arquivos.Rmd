@@ -21,7 +21,7 @@ source(knitr::purl("funcoes_data_e_extrair.Rmd", quiet=TRUE))
 
 Esse arquivo importa novas planilhas para a base de dados previamente instalada
 
-# Importar dados da base existente
+# Importar dados da base existente 
 
 ```{r}
 arquivos_base_atual <- list.files(path = "csv", pattern = "csv")
