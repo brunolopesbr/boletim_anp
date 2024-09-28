@@ -139,7 +139,7 @@ arquivos_pdf <- list.files(pattern = "pdf")
 # custom function
 mover_arquivos <- function(x){
   file.rename( from = file.path(x) ,
-               to = file.path("data", x) )
+               to = file.path("data2", x) )
 }
 
 mover_arquivos(arquivos_planilhas)

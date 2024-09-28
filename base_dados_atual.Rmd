@@ -1276,10 +1276,10 @@ tabelas_fev_2024
 ```{r}
 # Acertando nomes com espaços em branco
 # names(base_consolidada[[17]])[3]
-names(tabelas_fev_2024_limpas[[17]])[3] <- names(tabelas_fev_2024_limpas[[17]])[3] |> str_squish()
+names(tabelas_fev_2024[[17]])[3] <- names(tabelas_fev_2024[[17]])[3] |> str_squish()
 
 # names(base_consolidada[[16]])[3]
-names(tabelas_fev_2024_limpas[[16]])[3] <- names(tabelas_fev_2024_limpas[[16]])[3] |> str_squish()
+names(tabelas_fev_2024[[16]])[3] <- names(tabelas_fev_2024[[16]])[3] |> str_squish()
 ```
 
 
@@ -1291,7 +1291,7 @@ nova_base <- list()
 i <- 1
 for(i in seq_along(base_consolidada)){
   nova_base[[i]] <- base_consolidada[[i]] |> 
-    bind_rows(tabelas_fev_2024_limpas[[i]]) 
+    bind_rows(tabelas_fev_2024[[i]]) 
 }
   
 nova_base 
@@ -1302,32 +1302,7 @@ nova_base
 
 
 
-colocar as colunas na mesma ordem
-```{r}
-i <- 5
-for(i in 5:14){
-ordem_colunas <- names(planilha76[[i]])  
-ordem_colunas
 
-base_consolidada[[i]] <- base_consolidada[[i]] |> 
-  select(ordem_colunas)   
-
-i <- 1 + 1
-}
-```
-
-Verificar se as colunas têm os mesmos nomes
-```{r}
-i <- 5
-for(i in 5:14){
-names1 <- names(planilha76[[i]])  
-names2 <- names(base_consolidada[[i]]) 
-
-(names1 == names2) |> print()
-
-i <- 1 + 1
-}
-```
 
 # Tabelas geradas
 
