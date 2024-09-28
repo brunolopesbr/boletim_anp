@@ -417,16 +417,16 @@ pandemia_4_plataformas_com_producao_interrompida_totais <- map_df(lista_guia5, `
 ```{r}
 
 pandemia_1_campos_com_producao_interrompida |> 
-  write_csv("csv/pandemia_1_campos_com_producao_interrompida.csv", )
+  write_csv("csv_descontinuado/pandemia_1_campos_com_producao_interrompida.csv", )
 
 pandemia_2_plataformas_com_producao_interrompida |> 
-  write_csv("csv/pandemia_2_plataformas_com_producao_interrompida.csv", )
+  write_csv("csv_descontinuado/pandemia_2_plataformas_com_producao_interrompida.csv", )
 
 pandemia_3_plataformas_com_producao_interrompida_totais |> 
-  write_csv("csv/pandemia_3_plataformas_com_producao_interrompida_totais.csv", )
+  write_csv("csv_descontinuado/pandemia_3_plataformas_com_producao_interrompida_totais.csv", )
 
 pandemia_4_plataformas_com_producao_interrompida_totais |> 
-  write_csv("csv/pandemia_4_plataformas_com_producao_interrompida_totais.csv", )
+  write_csv("csv_descontinuado/pandemia_4_plataformas_com_producao_interrompida_totais.csv", )
 
 ```
 

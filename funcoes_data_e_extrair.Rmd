@@ -61,7 +61,7 @@ valor
 Testar
 ```{r}
 importar_periodo(1) 
-importar_periodo(78)
+importar_periodo(70)
 importar_periodo(9) 
 ```
 ```{r}
