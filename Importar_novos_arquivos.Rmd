@@ -31,301 +31,183 @@ base_atual <- map(paste0("csv/", arquivos_base_atual), read_csv)
 
 # Importar dados das novas planilhas
 
-```{r}
-planilhas <- list.files(pattern = "xls")
-planilhas
-```
 
 
-
-## Criar arquivo com a data dos arquivos
+## Importar dados da guia 2
 
 ```{r}
-extrair_data_novo <- function(num){
-
-prov1 <- read_excel(planilhas[num], sheet = 2, .name_repair = "unique_quiet")
-
-names(prov1)[1] <- "col1"
-
-corte <- which(str_detect(prov1$col1, "Tabela [0-9]*"))
-
-maximo_linha <- corte - lag(corte)
-
-# Extrair tabela 1, na ws2
-
-df1 <- read_excel(planilhas[num], sheet = 2, ,skip = corte[2] + 2, n_max = maximo_linha[2] -2, .name_repair = "unique_quiet")
-
-data_ws1 <- names(df1)[length(df1)]
-
-{
-  if (str_detect(data_ws1, "/") == TRUE) {data_ws2 <- lubridate::my(data_ws1)}
-  
-  else {data_ws2 <- as.Date(as.numeric(data_ws1), origin = "1899-12-30")} 
-}
-
-as_tibble(data_ws2) 
-}
+novos_guia2 <- map(seq_along(planilhas_novas), importar_tabela_limpa_novos, sheet = 2)
 ```
 
-```{r}
+# Limpeza
 
-data_arquivos <- extrair_data_novo(1)
-
-data_arquivos
-```
-## Função para extrair dados das tabelas
-
-```{r}
-extrair_tabelas <- function(nume, sheet = sheet){
-  mes_boletim <- datas_arquivos[[nume,1]]
-  
-  prov <- read_excel(planilhas[nume], sheet = sheet)
-  
-  names(prov)[1] <- "col1"
-  
-  corte <- which(str_detect(prov$col1, "Tabela [0-9]*"))
-  # E a a linha seguinte com a palavra tabela indica o início da tabela seguinte
-  maximo_linha <- lead(corte) - corte
-  
-  # tamanho da última tabela: número total de linhas do DF - linha da última tabela do DF
-  # substituir esse valor no vetor, que aparece como "NA"
-  ultima_n_max <- nrow(prov) - corte[length(corte)]
-  
-  maximo_linha[length(maximo_linha)] <- ultima_n_max + 2
-  
-  maximo_linha
-  
-  minha_lista <- list()
-  
-  
-  i <- 1
-  for(i in seq_along(corte)){
-    minha_lista[[i]] <- read_excel(planilhas[nume], sheet = sheet, skip = corte[i] + 
-                                     2, n_max = maximo_linha[i] -2) |> 
-      mutate(mes = mes_boletim)
-    i <- i + 1
-  }
-  
-  minha_lista
-}
-```
-
-
-## Extrair dados da guia 2
-
-```{r}
-list_guia2 <- extrair_tabelas(1, sheet = 2)
-```
 Corrigindo tabelas 1, 2 e 4
 
 ```{r}
-tabela_1. <- list_guia2[[1]] |> 
-  # retirar coluna mês
-  select(!mes) |> 
-  gather(key = "Período", value = "produto", -1)
+
+novos_guia2_prov <- list()
+
+for(i in c(1,2,4)){
+novos_guia2_prov[[i]] <-  map_df(novos_guia2, `[[`, i) |> 
+  pivot_longer(names_to = "Período", values_to = "Valor", -1) |> 
+  filter(!is.na(Valor)) |> 
+  mutate(Período = my(Período))
+
+names(novos_guia2_prov[[i]])[1] <- "Produto"  
+}
 
 
-Historico_petroleo <- rbind(tabela_1. |> 
-       filter(str_detect(Período, "/")) |> 
-  mutate(Período = my(Período)) |> 
-  filter(!is.na(produto)),
-tabela_1. |> 
-  filter(!str_detect(Período, "/")) |> 
-  mutate(Período = as.Date(as.numeric(Período), origin = "1899-12-30")) |> 
-  filter(!is.na(produto))
-) |> 
-  distinct()
+novos_guia2_limpa <- list()
+novos_guia2_limpa[[1]] <- novos_guia2_prov[[1]]
+novos_guia2_limpa[[2]] <- novos_guia2_prov[[2]]
+novos_guia2_limpa[[3]] <- map_df(novos_guia2, `[[`, 3)
+novos_guia2_limpa[[4]] <- novos_guia2_prov[[4]]
+
+novos_guia2_limpa
 ```
 
-```{r}
-list_guia2[[1]] <- Historico_petroleo
-```
+Corrigir classe da coluna 1 da tabela 3
 
 ```{r}
-tabela_1. <- list_guia2[[2]] |> 
-  # retirar coluna mês
-  select(!mes) |> 
-  gather(key = "Período", value = "produto", -1)
-
-
-Historico_prod_gas <- rbind(tabela_1. |> 
-       filter(str_detect(Período, "/")) |> 
-  mutate(Período = my(Período)) |> 
-  filter(!is.na(produto)),
-tabela_1. |> 
-  filter(!str_detect(Período, "/")) |> 
-  mutate(Período = as.Date(as.numeric(Período), origin = "1899-12-30")) |> 
-  filter(!is.na(produto))
-) |> 
-  distinct()
+novos_guia2_limpa[[3]] <- novos_guia2_limpa[[3]] |> 
+  mutate(`Mês/Ano` = my(`Mês/Ano`))
 ```
 
 
-```{r}
-list_guia2[[2]] <- Historico_prod_gas
-```
+Importar e unir as outras planilhas
 
 ```{r}
-tabela_1. <- list_guia2[[4]] |> 
-  # retirar coluna mês
-  select(!mes) |> 
-  gather(key = "Período", value = "produto", -1)
+novos_guia3 <- map(seq_along(planilhas_novas), importar_tabela_limpa_novos, sheet = 3)
 
-Historico_prod_petroleo_gas <- rbind(tabela_1. |> 
-       filter(str_detect(Período, "/")) |> 
-  mutate(Período = my(Período)) |> 
-  filter(!is.na(produto)),
-tabela_1. |> 
-  filter(!str_detect(Período, "/")) |> 
-  mutate(Período = as.Date(as.numeric(Período), origin = "1899-12-30")) |> 
-  filter(!is.na(produto))
-) |> 
-  distinct()
+novos_guia3_limpa <- list()
 
+for(i in seq_along(novos_guia3[[1]])){
+novos_guia3_limpa[[i]] <-  map_df(novos_guia3, `[[`, i) 
+}
+
+novos_guia3_limpa
 ```
 
 
-```{r}
-list_guia2[[4]] <- Historico_prod_petroleo_gas
-```
 
 ```{r}
-list_guia2[[1]]
-list_guia2[[2]]
-list_guia2[[4]]
+novos_guia4 <- map(seq_along(planilhas_novas), importar_tabela_limpa_novos, sheet = 4)
+
+novos_guia4_limpa <- list()
+
+for(i in seq_along(novos_guia4[[1]])){
+novos_guia4_limpa[[i]] <-  map_df(novos_guia4, `[[`, i) 
+}
+
+novos_guia4_limpa
 ```
-Corrigindo tabela 3
+
+Unir as três lists
 
 ```{r}
-list_guia2[[3]] <- list_guia2[[3]] |> 
-  mutate(`Mês/Ano` = my(`Mês/Ano`) )
+novas_tabelas <- c(novos_guia2_limpa, novos_guia3_limpa, novos_guia4_limpa)
+```
+
+# Limpeza da nova tabela
+
+Retirar a coluna "Nº"
+
+```{r}
+
+for(i in seq_along(novas_tabelas)){
+
+  if(names(novas_tabelas[[i]])[1] |> str_detect("Nº") |> sum() > 0) {
+  
+    novas_tabelas[[i]] <- novas_tabelas[[i]] |> 
+  select(!"Nº")
+  }
+  
+}
+
+novas_tabelas
+```
+
+Limpar nomes dos nomes de espaços em branco
+
+```{r}
+for(i in seq_along(novas_tabelas)){
+
+names(novas_tabelas[[i]]) <- names(novas_tabelas[[i]]) |> str_squish()
+  
+  
+}
 ```
 
 
 # Verificar nomes das tabelas da base de dados atual e da base importada
 
-## Guia 2
-
 ```{r}
-i <- 1
-for(i in seq_along(list_guia2)){
-   names(base_atual[[i]]) == names(list_guia2[[i]])
-  
-}
+lista_nomes <- list()
+
+lista_nomes[[1]] <- names(novas_tabelas[[1]]) |> data.frame() 
+
+lista_nomes[[2]] <- names(base_atual[[1]]) |> data.frame()
+
+lista_nomes[[1]] == lista_nomes[[2]]
+
 ```
-
+Comparação de nomes
 ```{r}
-base_atual[[1]] |> rbind(list_guia2[[1]] )
-```
-```{r}
-base_atual[[2]] |> rbind(list_guia2[[2]] )
+df_compara <- data.frame()
 
-base_atual[[3]] |> rbind(list_guia2[[3]] )
+for(i in c(1:10, 18)){
+df1 <- names(novas_tabelas[[i]]) |> data.frame()
 
-base_atual[[4]] |> rbind(list_guia2[[4]] )
-```
+df2 <- names(base_atual[[i]]) |> data.frame()
 
+print(df1 == df2)
 
-
-```{r}
-base_atualizada <- list()
-
-i <- 1
-for(i in seq_along(1:4)){
-base_atualizada[[i]] <- base_atual[[i]] |> rbind(list_guia2[[i]] )
-i <- 1 + i
 }
 
-base_atualizada
 ```
 
-## Guia 3
-
-```{r}
-list_guia3 <- extrair_tabelas(1, sheet = 3)
-```
-Se a primeira coluna é chamada de "Nº", retirar ela
-```{r}
-i <- 1
-for(i in seq_along(list_guia3)){
-
-  if( names(list_guia3[[i]])[1] |> 
-  str_detect("Nº") |> sum() >= 1 ) {list_guia3[[i]] <- list_guia3[[i]] |> select(!"Nº")}
-  
-  i <- 1 + 1
-}
-```
-
+Tabelas 11 a 15 novas não têm coluna descontinuada "Operador". Fazer comparação retirando essa coluna
 
 ```{r}
 
-i <- 1
-for(i in seq_along(list_guia3)){
-base_atualizada[[(i+ 4)]] <-  base_atual[[(i + 4)]] |> rbind(list_guia3[[i]] ) 
-i <- 1 + i
+
+
+for(i in c(11:15)){
+df1 <- names(novas_tabelas[[i]]) |> data.frame()
+
+df2 <- names(base_atual[[i]])[-length(base_atual[[i]])] |> data.frame()
+
+print(df1 == df2)
+
 }
 
-base_atualizada
 ```
 
-## Guia 4
+Tabelas 16 e 17  têm  colunas descontiadas, "Operador". Fazer comparação retirando essas duas colunas.
 
 ```{r}
-list_guia4 <- extrair_tabelas(1, sheet = 4)
-```
-Se a primeira coluna é chamada de "Nº", retirar ela
-```{r}
-i <- 1
-for(i in seq_along(list_guia4)){
 
-  if( names(list_guia4[[i]])[1] |> 
-  str_detect("Nº") |> sum() >= 1 ) {list_guia4[[i]] <- list_guia4[[i]] |> select(!"Nº")}
-  
-  i <- 1 + 1
+for(i in c(16:17)){
+df1 <- names(novas_tabelas[[i]]) |> data.frame()
+
+df2 <- names(base_atual[[i]])[-c(length(base_atual[[i]]),length(base_atual[[i]])-1)] |> data.frame()
+
+print(df1 == df2)
+
 }
 
-i <- 1
-for(i in seq_along(base_atual)){
-
-  if( names(base_atual[[i]])[1] |> 
-  str_detect("Nº") |> sum() >= 1 ) {base_atual[[i]] <- base_atual[[i]] |> select(!"Nº")}
-  
-  i <- 1 + 1
-}
 ```
+
+Se todos os resultados são iguais, as colunas novas e antigas podem ser unidas.
 
 ```{r}
-list_guia4[[5]]
-```
+tabelas_atualizadas <- list()
 
-
-```{r}
-tabelas_importadas <- length(list_guia2) + length(list_guia3)
-
-i <- 1
-for(i in seq_along(list_guia4)){
-#base_atualizada[[(i+ tabelas_importadas)]] <-  
-  names(base_atual[[(i + tabelas_importadas)]]) |> print() 
-  names(list_guia4[[i]] ) |> print()
-i <- 1 + i
+for(i in seq_along(novas_tabelas)){
+  tabelas_atualizadas[[i]] <- bind_rows(novas_tabelas[[i]], base_atual[[i]])
 }
 
-base_atualizada
+tabelas_atualizadas
 ```
 
-
-
-```{r}
-tabelas_importadas <- length(list_guia2) + length(list_guia3)
-
-i <- 1
-for(i in seq_along(list_guia4)){
-base_atualizada[[(i+ tabelas_importadas)]] <-  
-  base_atual[[(i + tabelas_importadas)]] |> 
-  bind_rows(list_guia4[[i]] )
-i <- 1 + i
-}
-
-
-```
 
